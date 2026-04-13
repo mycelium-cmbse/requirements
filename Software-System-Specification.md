@@ -1113,7 +1113,18 @@ TBD — Supportability, update mechanisms, backward compatibility, data migratio
 
 ### 5.13 System and software observability requirements
 
-TBD — Logging, distributed tracing, metrics exposition, health check endpoints.
+The Mycelium platform must be operable in both SaaS and on-premise deployments, which imposes a minimum observability baseline: structured logs with correlation, distributed traces spanning Bloom, Fabric, and Forge, machine-readable metrics, health endpoints for orchestrators, an append-only security audit trail, user-facing correlation identifiers, progress telemetry for long-running operations, and disciplined retention and privacy on everything that is emitted.
+
+| ID | Roles | Requirement | Ref |
+|----|-------|-------------|-----|
+| SSS-FB-OBS-S1A | - | Mycelium Fabric and Mycelium Forge shall emit every server log line as a structured JSON (TBC) record that includes at minimum an ISO 8601 timestamp, a log level, a trace identifier, a span identifier, the user identifier (when known), the organisation and project identifiers (when applicable), and a correlation identifier propagated from the originating request, when "any server-side component writes a log entry." | - |
+| SSS-FB-OBS-D2B | - | Mycelium Fabric and Mycelium Forge shall emit OpenTelemetry-compatible distributed traces covering inbound HTTP requests, outbound calls between Bloom, Fabric, Forge, and the database, background jobs, and SignalR notification flows, when "a request or background task executes." | - |
+| SSS-FB-OBS-M3C | - | Mycelium Fabric and Mycelium Forge shall expose a Prometheus-compatible `/metrics` endpoint publishing counters, gauges, and histograms for request rates, request latency, error rates, commit throughput, active SignalR connections, queue depths, and resource utilisation, when "a metrics scraper polls the endpoint." | - |
+| SSS-FB-OBS-H4D | - | Mycelium Fabric and Mycelium Forge shall expose HTTP `/livez` (TBC) and `/readyz` (TBC) endpoints returning a success status when the component is alive and ready to serve traffic and an error status with a machine-readable reason otherwise, when "an orchestrator or load balancer probes the component." | - |
+| SSS-FB-OBS-A5E | - | Mycelium Fabric shall record every security-relevant event — authentication success and failure, session creation and termination, role or permission changes, organisation and project lifecycle events, ownership reassignments, and configuration changes — into an append-only audit log that is tamper-evident (TBC), retrievable by authorised Installation Administrators, and retained per the organisation retention policy, when "any such event occurs." | - |
+| SSS-PA-OBS-E6F | PA, PT, VW | Mycelium Bloom shall display, on every user-facing error or failure dialog, the correlation identifier of the failing request and a one-click action to copy it to the clipboard, so that the user can include it in a support request, when "Mycelium Bloom surfaces an error to the user." | - |
+| SSS-FB-OBS-P7G | - | Mycelium Fabric shall publish progress events — start, percentage complete, stage, and terminal success/failure status — for long-running operations (commit creation, merge, library import, migration, package publication) over SignalR so that Bloom can display progress to the initiating user, when "a long-running operation executes." | - |
+| SSS-FB-OBS-R8H | - | Mycelium Fabric and Mycelium Forge shall scrub authentication credentials, session tokens, personal data beyond what the audit log requires, and any attribute values annotated as sensitive from all structured logs and traces, and shall enforce a per-deployment retention bound on log and trace storage, when "any component emits telemetry." | - |
 
 ---
 
