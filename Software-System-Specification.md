@@ -363,6 +363,12 @@ The core of system modeling is defining the building blocks (Definitions) of the
 | SSS-PA-ELEM-J4K | PA, PT | Mycelium Bloom shall create a Conjugation relationship between two Types — designating one as the conjugating Type whose inherited Features have inverted directions relative to the original Type — when "a user designates a Type as the conjugate of another Type, either via the detail panel or via `~` notation when typing a Usage." | KerML 7.6.3 |
 | SSS-PA-ELEM-M6N | PA, PT, VW | Mycelium Bloom shall display the inherited Features of a conjugating Type with their directions shown inverted relative to the original Type — `in` rendered as `out`, `out` rendered as `in`, `inout` preserved — in the detail panel, the model browser, and on diagrams, when "a user views a Type that is the conjugate of another Type." | KerML 7.6.3 |
 | SSS-FB-ELEM-N7P | - | Mycelium Fabric shall reject any commit in which a conjugating Type owns Features other than those inherited with inverted direction from its conjugated Type, and shall return a validation error identifying the offending Features, when "a client submits a commit that would violate the KerML Conjugation well-formedness rule." | KerML 7.6.3 |
+| SSS-PA-ELEM-O2K | PA, PT, VW | Mycelium Bloom shall display, in the detail panel of any Namespace or Type, the complete list of its Memberships grouped by kind (OwningMembership, FeatureMembership, AliasMembership, imported Membership, VariantMembership, StakeholderMembership, ActorMembership, SubjectMembership, FramedConcernMembership, RequirementConstraintMembership, RequirementVerificationMembership, ExposeMembership, ObjectiveMembership), showing each member's `memberName`, visibility, and the source of the membership, when "a user views the detail panel of a Namespace or Type." | KerML 7.2 |
+| SSS-PA-ELEM-F4M | PA, PT, VW | Mycelium Bloom shall display the owned Features of a Type — derived from its FeatureMemberships — with their visibility, multiplicity, direction, and type, in the detail panel of the Type, when "a user views a Type that owns one or more Features." | KerML 7.6.1 |
+| SSS-PA-ELEM-E5N | PA, PT, VW | Mycelium Bloom shall display the end Features of a Connector, Connection, Interaction, Association, or Flow Connection — derived from their EndFeatureMemberships — showing each end's referent Feature and multiplicity, in the detail panel, when "a user views a relationship element with end features." | KerML 7.13.2 |
+| SSS-PA-ELEM-P6Q | PA, PT, VW | Mycelium Bloom shall display the parameter Features of an Action, Calculation, Function, or Case — derived from their ParameterMemberships — with each parameter's direction, type, and multiplicity, in the detail panel, when "a user views an Action, Calculation, Function, or Case." | KerML 7.12.3 |
+| SSS-PA-ELEM-R7S | PA, PT, VW | Mycelium Bloom shall display the return Feature of a Function or Calculation — derived from its ReturnParameterMembership — with its type and multiplicity, in the detail panel, when "a user views a Function or Calculation." | KerML 7.12.3 |
+| SSS-PA-ELEM-X8T | PA, PT, VW | Mycelium Bloom shall display the result expression of a Calculation or Boolean Expression — derived from its ResultExpressionMembership — in its textual form, in the detail panel, when "a user views a Calculation or Boolean Expression." | KerML 7.12.3 |
 
 ##### 5.2.1.4a Quantities, units, and measurement management
 
@@ -521,6 +527,7 @@ Engineers need to evaluate design quality and verify that requirements are met. 
 | SSS-PA-AV-LLI | PA | Mycelium Bloom shall support setting up Trade Studies to compare design alternatives using evaluation functions and objectives (maximize/minimize) when "the Project Administrator creates a Trade Study and specifies alternatives, criteria, and objective functions." | - |
 | SSS-PA-AV-2RG | PA, PT, VW | Mycelium Bloom shall display a validation dashboard showing model quality, constraint violations, and verification status when "a user navigates to the validation dashboard view." | - |
 | SSS-PA-AV-WRI | PA | Mycelium Bloom shall support defining and executing Rule Verification Lists to check model structural integrity against defined rules when "the Project Administrator creates a Rule Verification List and initiates its execution." | - |
+| SSS-PA-AV-O9U | PA, PT | Mycelium Bloom shall link a Case (Use Case, Analysis Case, or Verification Case) to its objective Requirement by creating an ObjectiveMembership referencing the target Requirement Usage when "a user sets the objective of a Case from a selected Requirement." | SysML 8.3.14 |
 | SSS-PT-ANALYSIS-4W2 | PT | Mycelium Bloom shall support defining Calculation Definitions and instantiating them as Calculation Usages to express domain-specific computations over model attributes when "the Participant creates a Calculation Definition and specifies input parameters, output parameters, and the computation expression." | SysML 7.19 |
 | SSS-PT-ANALYSIS-NWL | PT | Mycelium Bloom shall support defining parametric Constraint Usages within their Ownership to validate design feasibility when "the Participant creates a Constraint Usage referencing model attributes within their Ownership." | SysML 7.20 |
 | SSS-PT-ANALYSIS-EAJ | PA, PT, VW | Mycelium Bloom shall display constraint evaluation results showing which constraints pass or violate when "a user navigates to the constraint evaluation view or triggers constraint evaluation." | SysML 7.20 |
@@ -1146,7 +1153,11 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | CrossSubsetting | In | SSS-PA-ELEM-C5X | SSS-PA-ELEM-D8K |
 | Redefinition | In | SSS-PA-ELEM-H9W, SSS-FB-ELEM-T7B | SSS-PA-ELEM-D8K |
 | Conjugation | In | SSS-PA-ARCH-K7M, SSS-PA-ELEM-J4K, SSS-FB-ELEM-N7P | SSS-PA-ELEM-D8K, SSS-PA-ELEM-M6N |
-| FeatureMembership | In | TBC | TBC |
+| FeatureMembership | In | SSS-PA-ELEM-F4M | SSS-PA-ELEM-F4M, SSS-PA-ELEM-O2K |
+| EndFeatureMembership | In | SSS-PA-ELEM-E5N | SSS-PA-ELEM-E5N, SSS-PA-ELEM-O2K |
+| ParameterMembership | In | SSS-PA-ELEM-P6Q | SSS-PA-ELEM-P6Q, SSS-PA-ELEM-O2K |
+| ReturnParameterMembership | In | SSS-PA-ELEM-R7S | SSS-PA-ELEM-R7S, SSS-PA-ELEM-O2K |
+| ResultExpressionMembership | In | SSS-PA-ELEM-X8T | SSS-PA-ELEM-X8T, SSS-PA-ELEM-O2K |
 | TypeFeaturing | In | SSS-PA-ARCH-N5W | TBC |
 | FeatureChaining | In | TBC | TBC |
 | FeatureInverting | Deferred | TBC | TBC |
@@ -1258,6 +1269,7 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | AnalysisCaseUsage | In | SSS-PA-AV-QII | TBC |
 | VerificationCaseDefinition | In | SSS-PA-AV-UCQ | TBC |
 | VerificationCaseUsage | In | SSS-PA-AV-UCQ, SSS-PA-REQ-W9B | TBC |
+| ObjectiveMembership | In | SSS-PA-AV-O9U | SSS-PA-ELEM-O2K |
 
 ### 8.10 SysML v2 — Views, Viewpoints, Rendering
 
