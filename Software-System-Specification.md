@@ -296,6 +296,16 @@ SysML v2 organizes models into Packages and Namespaces. Packages group related e
 | SSS-PA-PKG-J3W | PA, PT | Mycelium Bloom shall create a Filtered Import that imports only elements matching a metadata-based condition (e.g. import only elements annotated with a specific Metadata Usage) when "a user creates a namespace import and specifies a metadata filter expression." | SysML 7.5.4 |
 | SSS-PA-PKG-H6T | PA, PT | Mycelium Bloom shall support setting member visibility (public, private) on elements within a Namespace when "a user configures the visibility of a model element within its owning namespace." | KerML 7.2.5 |
 | SSS-PA-PKG-Q1M | PA, PT | Mycelium Bloom shall support creating Alias memberships to provide alternative names for elements within a namespace when "a user assigns an alias to an imported or local element." | KerML 7.5.2 |
+| SSS-PA-PKG-V8N | PA, PT, VW | Mycelium Bloom shall display the visibility marker (public, private, protected) of every Membership alongside its owning element in the model browser, the detail panel, and tabular views when "a user views a namespace or its members." | KerML 7.2.5 |
+| SSS-FB-PKG-E3K | - | Mycelium Fabric shall exclude non-public members of a Namespace from the resolved member set returned through imports when "a client requests the members visible to an importing namespace." | KerML 7.2.5 |
+| SSS-PA-PKG-T5C | PA, PT, VW | Mycelium Bloom shall display the imported members of a Namespace in the model browser, visually distinguished from owned members by a dedicated icon or rendering style, when "a user expands a namespace that declares one or more imports." | KerML 7.5 |
+| SSS-FB-PKG-W2M | - | Mycelium Fabric shall compute the visible member set of a Namespace as the union of its owned public Memberships and the transitively imported public Memberships of all namespaces it imports, honouring Alias, Filtered Import, and visibility rules, when "a client queries the visible members of a namespace." | KerML 7.2.5 |
+| SSS-FB-PKG-F4H | - | Mycelium Fabric shall reject any commit that introduces two non-Alias Memberships with the same `memberName` inside a single Namespace and shall return a validation error identifying the conflicting members when "a client submits a commit that would violate KerML `memberName` uniqueness." | KerML 7.2.5 |
+| SSS-PA-PKG-C7B | PA, PT | Mycelium Bloom shall display the validation error returned by Mycelium Fabric for a duplicate `memberName` conflict, highlighting the conflicting members and blocking the offending edit, when "a commit or edit submitted by a user is rejected by Fabric due to a duplicate `memberName`." | KerML 7.2.5 |
+| SSS-PA-NAV-S6P | PA, PT, VW | Mycelium Bloom shall provide a global search interface that matches model elements by `name` and by `qualifiedName` across every Namespace in the current project, returning results with their qualified path and navigation link, when "a user enters a search term into the global search bar." | KerML 7.2.5 |
+| SSS-PA-ELEM-R3G | PA, PT, VW | Mycelium Bloom shall propagate a rename operation to every displayed `qualifiedName` of the renamed element and of its transitive descendants — in the model browser, detail panels, diagram labels, tooltips, breadcrumbs, and tabular views — when "a user renames a Namespace or one of its members." | KerML 7.2.5 |
+| SSS-PA-ELEM-M9T | PA, PT | Mycelium Bloom shall re-parent a model element to a new owning Namespace, update its `qualifiedName` and those of its transitive descendants, and preserve all incoming references to the moved element when "a user moves an element to a different namespace via drag-and-drop or the move action." | KerML 7.2.5 |
+| SSS-PA-NAV-B8D | PA, PT, VW | Mycelium Bloom shall display a breadcrumb trail of the `qualifiedName` segments of the currently selected element and shall navigate to the corresponding owning Namespace when "a user clicks a segment in the breadcrumb trail." | KerML 7.2.5 |
 
 ##### 5.2.1.4 System architecture modeling
 
@@ -1095,7 +1105,7 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | Comment | In | SSS-PA-CMT-R4K, SSS-PA-CMT-M6J, SSS-PA-CMT-T9F, SSS-PA-CMT-K2B, SSS-PA-CMT-D5P, SSS-PA-CMT-N8V, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-VIS-F8Q, SSS-PA-VIS-B2M, SSS-PA-VIS-T1J, SSS-PA-VIS-G5R, SSS-PA-CMT-L7X |
 | Documentation | In | SSS-PA-CMT-W7N, SSS-PA-CMT-H3D, SSS-PA-CMT-M6J, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
 | TextualRepresentation | In | SSS-PA-CMT-Y6L, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
-| Namespace | In | SSS-PA-PKG-H6T | TBC |
+| Namespace | In | SSS-PA-PKG-H6T, SSS-PA-PKG-V8N, SSS-FB-PKG-E3K, SSS-PA-PKG-T5C, SSS-FB-PKG-W2M, SSS-FB-PKG-F4H, SSS-PA-PKG-C7B, SSS-PA-ELEM-R3G, SSS-PA-ELEM-M9T | SSS-PA-NAV-F3K, SSS-PA-PKG-V8N, SSS-PA-PKG-T5C, SSS-PA-NAV-S6P, SSS-PA-NAV-B8D |
 | Membership † | In | SSS-PA-PKG-H6T | NA |
 | OwningMembership † | In | NA | NA |
 | Import | In | SSS-PA-PKG-D4N | TBC |
