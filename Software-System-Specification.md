@@ -353,6 +353,13 @@ The core of system modeling is defining the building blocks (Definitions) of the
 | SSS-PA-ELEM-H9W | PA, PT | Mycelium Bloom shall create a redefinition relationship where a feature in a specializing type replaces a feature inherited from a general type when "a user designates a feature as a redefinition of an inherited feature." | KerML 7.6.5 |
 | SSS-PA-ELEM-M4J | PA, PT | Mycelium Bloom shall create a Specialization relationship between two Definitions, where the specializing Definition inherits all features of the general Definition and can add or redefine features, when "a user designates one Definition as a specialization of another." | KerML 7.6 |
 | SSS-PA-ELEM-R6F | PA, PT, VW | Mycelium Bloom shall display the generalization/specialization hierarchy of a selected Definition, showing its general types and all its specializations, when "a user views the type hierarchy of a Definition." | KerML 7.6 |
+| SSS-PA-ELEM-F3T | PA, PT | Mycelium Bloom shall create a FeatureTyping relationship between a Usage and its typing Definition when "a user sets or changes the type of a Usage via the detail panel or by dragging a Definition onto a Usage." | KerML 7.6.4 |
+| SSS-PA-ELEM-R4S | PA, PT | Mycelium Bloom shall create a ReferenceSubsetting on a reference Feature of a Connection end, Flow end, or Interface end, identifying the participating Feature that the end refers to, when "a user sets the referent of a connector, flow, or interface end." | KerML 7.6.5 |
+| SSS-PA-ELEM-C5X | PA, PT | Mycelium Bloom shall create a CrossSubsetting on a cross Feature of an Association Definition when "a user designates a Feature as the cross-feature of an Association between two participating Types." | KerML 7.6.5 |
+| SSS-PA-ELEM-D8K | PA, PT, VW | Mycelium Bloom shall display, in the detail panel of any Type or Feature, all incoming and outgoing Specialization relationships grouped by kind (Subclassification, FeatureTyping, Subsetting, ReferenceSubsetting, Redefinition, CrossSubsetting, Conjugation) when "a user views the detail panel of a Type or Feature." | KerML 7.6 |
+| SSS-PA-ELEM-L9P | PA, PT | Mycelium Bloom shall delete a Specialization of any concrete kind (Subclassification, FeatureTyping, Subsetting, ReferenceSubsetting, Redefinition, CrossSubsetting, Conjugation) when "a user selects a Specialization in the detail panel and invokes the 'Remove' action." | KerML 7.6 |
+| SSS-FB-ELEM-C6V | - | Mycelium Fabric shall reject any commit that introduces a cycle in the Subclassification or Subsetting chain of a Type or Feature and shall return a validation error identifying the cycle when "a client submits a commit that would produce a specialization cycle." | KerML 7.6 |
+| SSS-FB-ELEM-T7B | - | Mycelium Fabric shall reject any commit in which a Redefinition assigns a type or multiplicity to the specializing Feature that is incompatible with the redefined Feature, and shall return a validation error identifying the incompatibility, when "a client submits a commit containing an incompatible Redefinition." | KerML 7.6.5 |
 
 ##### 5.2.1.4a Quantities, units, and measurement management
 
@@ -1128,12 +1135,14 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | Feature | In | TBC | TBC |
 | Type † | In | NA | NA |
 | Classifier † | In | NA | NA |
-| Specialization | In | SSS-PA-ELEM-M4J, SSS-PA-ELEM-R6F | TBC |
-| Subclassification | In | SSS-PA-ELEM-M4J | TBC |
-| FeatureTyping | In | TBC | TBC |
-| Subsetting | In | SSS-PA-ELEM-D2N | TBC |
-| Redefinition | In | SSS-PA-ELEM-H9W | TBC |
-| Conjugation | In | TBC | TBC |
+| Specialization | In | SSS-PA-ELEM-M4J, SSS-PA-ELEM-L9P, SSS-FB-ELEM-C6V | SSS-PA-ELEM-R6F, SSS-PA-ELEM-D8K |
+| Subclassification | In | SSS-PA-ELEM-M4J | SSS-PA-ELEM-R6F, SSS-PA-ELEM-D8K |
+| FeatureTyping | In | SSS-PA-ELEM-F3T | SSS-PA-ELEM-D8K |
+| Subsetting | In | SSS-PA-ELEM-D2N | SSS-PA-ELEM-D8K |
+| ReferenceSubsetting | In | SSS-PA-ELEM-R4S | SSS-PA-ELEM-D8K |
+| CrossSubsetting | In | SSS-PA-ELEM-C5X | SSS-PA-ELEM-D8K |
+| Redefinition | In | SSS-PA-ELEM-H9W, SSS-FB-ELEM-T7B | SSS-PA-ELEM-D8K |
+| Conjugation | In | TBC | SSS-PA-ELEM-D8K |
 | FeatureMembership | In | TBC | TBC |
 | TypeFeaturing | In | SSS-PA-ARCH-N5W | TBC |
 | FeatureChaining | In | TBC | TBC |
