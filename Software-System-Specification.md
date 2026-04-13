@@ -984,7 +984,7 @@ Mycelium Fabric is responsible for propagating model changes to all connected cl
 
 ##### 5.2.2.5 Model persistence and versioning
 
-Mycelium Fabric persists model data in a relational database with auto-generated schemas from the SysML v2 metamodel. The requirements in this section cover persistence performance and API responsiveness targets.
+Mycelium Fabric persists model data in a relational (TBC) database with auto-generated schemas from the SysML v2 metamodel. The requirements in this section cover persistence performance and API responsiveness targets.
 
 | ID | Roles | Requirement | Ref |
 |----|-------|-------------|-----|
@@ -997,7 +997,7 @@ Lock-free collaboration is fundamental to concurrent design — no user can bloc
 
 | ID | Roles | Requirement | Ref |
 |----|-------|-------------|-----|
-| SSS-CC-COLLAB-62C | All | Mycelium Fabric shall support lock-free collaborative modeling where no single user can block others from updating the model when "multiple users concurrently modify different elements within the same project." | - |
+| SSS-CC-COLLAB-62C | All | Mycelium Fabric shall support owner/ownership-based lock-free collaborative modeling where no single user can block others from updating the model when "multiple users concurrently modify different elements within the same project." | - |
 
 ---
 
@@ -1026,9 +1026,18 @@ Additional interface specifications between Mycelium Bloom, Mycelium Fabric, and
 
 ### 5.4 Adaptation and missionization requirements
 
-The Mycelium platform supports two project modes (Regular and Concurrent Design) configurable per project (see SSS-PA-MGMT-73C). The platform supports both SaaS and on-premise deployment models with configurable organization policies.
+Missionization covers the set of adaptations that turn a generic Mycelium installation into one that fits a specific programme, customer, or mission without recompiling or modifying source code. The axes below — deployment model, identity integration, SysML v2 library catalogue, programme-specific metadata and viewpoints, localisation, branding, retention, and notification — must all be configurable through declarative configuration or administrator-facing interfaces. Project-level adaptation (Regular vs Concurrent Design mode, per project) is covered by `SSS-PA-MGMT-73C` in §5.2.1.2 and is not repeated here.
 
-Additional adaptation and missionization requirements: TBD.
+| ID | Roles | Requirement | Ref |
+|----|-------|-------------|-----|
+| SSS-CC-ADAPT-G1P | IA | Mycelium shall read its runtime configuration from a declarative source (configuration file, environment variable, or installation-administrator interface) and apply configuration changes when "an Installation Administrator modifies a configuration value." | - |
+| SSS-CC-ADAPT-A3R | IA | Mycelium Fabric shall integrate with a Keycloak identity provider whose authentication backends (JWT, OIDC, LDAP, SAML) are configured at the installation level when "an Installation Administrator configures the identity-provider backend." | - |
+| SSS-CC-ADAPT-L4S | IA, OA | Mycelium Forge shall expose a configurable catalogue of SysML v2 standard and programme-specific libraries whose membership is determined by installation-level and organisation-level configuration when "an Installation Administrator or Organisation Administrator updates the library catalogue." | - |
+| SSS-CC-ADAPT-M5T | OA | Mycelium shall import programme-specific Metadata Definitions at the organisation level and make them available to every project within the organisation when "an Organisation Administrator imports a Metadata Definition library from Mycelium Forge or from a supplied package." | SysML 7.27 |
+| SSS-CC-ADAPT-V6U | OA, PA | Mycelium shall import programme-specific Viewpoint Definitions, View Definitions, and Rendering Definitions at the organisation or project level and make them selectable in the View editor when "an Organisation Administrator or Project Administrator imports a Viewpoint library." | SysML 7.26 |
+| SSS-CC-ADAPT-I7V | PA, PT, VW | Mycelium Bloom shall render its user interface in the locale selected by the user — applying localised strings, date/number formats, and quantity-unit labels — selected from the set of locales installed at the deployment, when "a user selects a locale in their profile settings." | - |
+| SSS-CC-ADAPT-R9X | OA | Mycelium Fabric shall apply per-organisation data retention and archival policies — including commit history retention, audit log retention, and archived-project lifetime — configured at the organisation level, when "an Organisation Administrator configures the retention policy." | - |
+| SSS-CC-ADAPT-N1Y | OA | Mycelium Fabric shall deliver model-change and review notifications through configurable channels (email, webhook) whose endpoints and filters are set per organisation, when "an Organisation Administrator configures a notification channel." | - |
 
 ### 5.5 Computer resource requirements
 
