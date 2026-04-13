@@ -306,6 +306,14 @@ SysML v2 organizes models into Packages and Namespaces. Packages group related e
 | SSS-PA-ELEM-R3G | PA, PT, VW | Mycelium Bloom shall propagate a rename operation to every displayed `qualifiedName` of the renamed element and of its transitive descendants — in the model browser, detail panels, diagram labels, tooltips, breadcrumbs, and tabular views — when "a user renames a Namespace or one of its members." | KerML 7.2.5 |
 | SSS-PA-ELEM-M9T | PA, PT | Mycelium Bloom shall re-parent a model element to a new owning Namespace, update its `qualifiedName` and those of its transitive descendants, and preserve all incoming references to the moved element when "a user moves an element to a different namespace via drag-and-drop or the move action." | KerML 7.2.5 |
 | SSS-PA-NAV-B8D | PA, PT, VW | Mycelium Bloom shall display a breadcrumb trail of the `qualifiedName` segments of the currently selected element and shall navigate to the corresponding owning Namespace when "a user clicks a segment in the breadcrumb trail." | KerML 7.2.5 |
+| SSS-PA-PKG-N4J | PA, PT | Mycelium Bloom shall create a NamespaceImport in the importing Namespace, referencing the imported Namespace, when "a user selects a target Namespace and invokes the 'Import Namespace' action from a package or namespace." | KerML 7.5.3 |
+| SSS-PA-PKG-M5P | PA, PT | Mycelium Bloom shall create a MembershipImport in the importing Namespace, referencing the imported Membership, when "a user selects a single named element from another Namespace and invokes the 'Import Member' action." | KerML 7.5.3 |
+| SSS-PA-PKG-R9K | PA, PT | Mycelium Bloom shall set the `isRecursive` flag on a NamespaceImport, causing nested namespaces of the imported Namespace to be imported as well, when "a user toggles the 'include nested namespaces' option on a NamespaceImport." | KerML 7.5.3 |
+| SSS-PA-PKG-A7Q | PA, PT | Mycelium Bloom shall set the `isImportAll` flag on an Import, causing non-public Memberships to be included in the imported set, when "a user toggles the 'include private members' option on an Import." | KerML 7.5.3 |
+| SSS-PA-PKG-H3W | PA, PT | Mycelium Bloom shall set the visibility of an Import to public, private, or protected, controlling whether the Import is re-exported through transitive imports, when "a user edits the visibility of an Import." | KerML 7.5.3 |
+| SSS-PA-PKG-L6D | PA, PT, VW | Mycelium Bloom shall display, in the detail panel of a Namespace, the list of Imports it declares — showing the import kind (NamespaceImport or MembershipImport), the imported target, and the `isRecursive`, `isImportAll`, and visibility values — when "a user views a Namespace that declares one or more Imports." | KerML 7.5.3 |
+| SSS-PA-PKG-X8C | PA, PT | Mycelium Bloom shall delete an Import from a Namespace when "a user selects an Import in the detail panel and invokes the 'Remove import' action." | KerML 7.5.3 |
+| SSS-FB-PKG-B3M | - | Mycelium Fabric shall return a validation error identifying any Import whose imported Namespace or imported Membership cannot be resolved when "a client queries the visible members of a Namespace or submits a commit containing an unresolvable Import." | KerML 7.5.3 |
 
 ##### 5.2.1.4 System architecture modeling
 
@@ -1108,9 +1116,9 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | Namespace | In | SSS-PA-PKG-H6T, SSS-PA-PKG-V8N, SSS-FB-PKG-E3K, SSS-PA-PKG-T5C, SSS-FB-PKG-W2M, SSS-FB-PKG-F4H, SSS-PA-PKG-C7B, SSS-PA-ELEM-R3G, SSS-PA-ELEM-M9T | SSS-PA-NAV-F3K, SSS-PA-PKG-V8N, SSS-PA-PKG-T5C, SSS-PA-NAV-S6P, SSS-PA-NAV-B8D |
 | Membership † | In | SSS-PA-PKG-H6T | NA |
 | OwningMembership † | In | NA | NA |
-| Import | In | SSS-PA-PKG-D4N | TBC |
-| NamespaceImport | In | TBC | TBC |
-| MembershipImport | In | TBC | TBC |
+| Import | In | SSS-PA-PKG-D4N, SSS-PA-PKG-A7Q, SSS-PA-PKG-H3W, SSS-PA-PKG-X8C, SSS-FB-PKG-B3M | SSS-PA-PKG-L6D |
+| NamespaceImport | In | SSS-PA-PKG-D4N, SSS-PA-PKG-N4J, SSS-PA-PKG-R9K | SSS-PA-PKG-L6D |
+| MembershipImport | In | SSS-PA-PKG-D4N, SSS-PA-PKG-M5P | SSS-PA-PKG-L6D |
 | AliasMembership | In | SSS-PA-PKG-Q1M | TBC |
 
 ### 8.2 KerML — Core
