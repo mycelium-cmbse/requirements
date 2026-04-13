@@ -1077,10 +1077,12 @@ This appendix tracks every KerML and SysML v2 modelling concept (metaclass) agai
 
 - **Concept** — the KerML or SysML v2 metaclass name as used in the OMG specifications (KerML formal/25-09-01, SysML v2 formal/25-09-03).
 - **Scope** — whether the concept is In scope for Mycelium, Deferred (planned beyond early-phase MBSE), or Out (not intended to be surfaced).
-- **Abstract syntax** — SSS requirement identifiers that cover the metaclass at the *abstract-syntax* level: representation, persistence, query, creation, modification, deletion, and validation. `TBC` where coverage is missing or has not yet been verified.
-- **UX / notation** — SSS requirement identifiers that cover the *user-facing surface area* for the concept: browsers, tabular views, diagrams and diagram notation per SysML v2 §8.2.3, dashboards, property editors, tooltips, and similar. `TBC` where coverage is missing or has not yet been verified.
+- **Abstract syntax** — SSS requirement identifiers that cover the metaclass at the *abstract-syntax* level: representation, persistence, query, creation, modification, deletion, and validation.
+- **UX / notation** — SSS requirement identifiers that cover the *user-facing surface area* for the concept: browsers, tabular views, diagrams and diagram notation per SysML v2 §8.2.3, dashboards, property editors, tooltips, and similar.
 
 A concept is fully covered only when both its *Abstract syntax* and *UX / notation* cells list at least one requirement. Splitting the two prevents a single generic UX requirement from implicitly painting the matrix green, while still recording notation coverage alongside the semantics. Multiple requirement IDs are comma-separated. Coverage is derived from the *KerML/SysML spec reference* column of each requirement table in §5 and, where that column is empty, from the requirement text.
+
+**Abstract metaclasses (marked with †).** Rows whose concept name ends with `†` are *abstract taxonomy anchors* in the KerML or SysML v2 metamodel — classes that cannot be instantiated directly and exist only to organise the hierarchy (for example `Type`, `Classifier`, `Membership`). They are listed for completeness so the matrix mirrors the specification, but they are expected to carry `NA` in both coverage columns: any requirement that appears applicable at this level is in practice covered by the concrete subclasses further down the matrix (e.g. coverage for `Type` is provided by `PartDefinition`, `ItemDefinition`, `AttributeDefinition`, and every other concrete `Definition`/`Usage` pair). `NA` on an abstract row is therefore *not* a gap — it is by construction.
 
 ### 8.1 KerML — Root
 
@@ -1094,8 +1096,8 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | Documentation | In | SSS-PA-CMT-W7N, SSS-PA-CMT-H3D, SSS-PA-CMT-M6J, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
 | TextualRepresentation | In | SSS-PA-CMT-Y6L, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
 | Namespace | In | SSS-PA-PKG-H6T | TBC |
-| Membership | In | SSS-PA-PKG-H6T | TBC |
-| OwningMembership | In | TBC | TBC |
+| Membership † | In | SSS-PA-PKG-H6T | NA |
+| OwningMembership † | In | NA | NA |
 | Import | In | SSS-PA-PKG-D4N | TBC |
 | NamespaceImport | In | TBC | TBC |
 | MembershipImport | In | TBC | TBC |
@@ -1106,8 +1108,8 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | Concept | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- |
 | Feature | In | TBC | TBC |
-| Type | In | TBC | TBC |
-| Classifier | In | TBC | TBC |
+| Type † | In | NA | NA |
+| Classifier † | In | NA | NA |
 | Specialization | In | SSS-PA-ELEM-M4J, SSS-PA-ELEM-R6F | TBC |
 | Subclassification | In | SSS-PA-ELEM-M4J | TBC |
 | FeatureTyping | In | TBC | TBC |
@@ -1122,7 +1124,7 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | MultiplicityRange | In | SSS-PA-ELEM-V7K | TBC |
 | Package | In | SSS-PA-PKG-R8W, SSS-PA-PKG-V2J | TBC |
 | LibraryPackage | In | TBC | TBC |
-| Metaclass | In | TBC | TBC |
+| Metaclass † | In | NA | NA |
 | MetadataFeature | In | SSS-PA-META-K7R, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
 
 ### 8.3 SysML v2 — Structure (Part, Item, Attribute, Reference)
