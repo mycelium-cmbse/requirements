@@ -337,6 +337,11 @@ The core of system modeling is defining the building blocks (Definitions) of the
 | SSS-PA-ARCH-N5W | PA, PT | Mycelium Bloom shall create a Featuring relationship establishing that one type features another type when "a user explicitly specifies a featuring relationship between two types." | KerML 7.6 |
 | SSS-PA-ARCH-97Z | PA, PT | Mycelium Bloom shall support defining Attribute Definitions and instantiating them as Attribute Usages on any element definition or usage, with quantities, units, and measurement scales consistent with the SysML v2 Quantities and Units library, when "a user adds or edits an attribute on a model element." | SysML 7.7 |
 | SSS-PA-ARCH-9W5 | PA, PT | Mycelium Bloom shall support defining Enumeration Definitions to restrict attribute values to specified sets when "a user creates an Enumeration Definition and specifies its literal values." | SysML 7.7.4 |
+| SSS-PA-ARCH-E1A | PA, PT | Mycelium Bloom shall add, rename, and remove Enumeration Literals of an Enumeration Definition — with optional Documentation per literal — when "a user edits the literal set of an Enumeration Definition in the detail panel." | SysML 7.7.4 |
+| SSS-PA-ARCH-E2B | PA, PT | Mycelium Bloom shall reorder the Enumeration Literals of an Enumeration Definition when "a user drags a literal to a new position in the literal list." | SysML 7.7.4 |
+| SSS-PA-VIS-E3C | PA, PT, VW | Mycelium Bloom shall display the literal set of an Enumeration Definition in its detail panel, showing each literal's `name`, its ordinal position, and its Documentation, when "a user views an Enumeration Definition." | SysML 7.7.4 |
+| SSS-PA-ARCH-E4D | PA, PT | Mycelium Bloom shall present the allowed literals of the typing Enumeration Definition as a dropdown selection when "a user edits the value of an Attribute Usage whose type is an Enumeration Definition." | SysML 7.7.4 |
+| SSS-FB-ARCH-E5F | - | Mycelium Fabric shall reject any commit that assigns to an Attribute Usage typed by an Enumeration Definition a value that is not one of the Definition's Enumeration Literals, and shall return a validation error identifying the offending assignment, when "a client submits such a commit." | SysML 7.7.4 |
 | SSS-PA-ARCH-B2D | PA, PT | Mycelium Bloom shall support defining Item Definitions to represent non-structural elements (data types, signals, resources) when "a user creates a new Item Definition." | SysML 7.10 |
 | SSS-PT-DATA-N7O | PT | Mycelium Bloom shall display and enable editing of model elements within the user's assigned Ownership when "the Participant navigates to a model element annotated with their Ownership as Owner." | - |
 | SSS-PT-DATA-D5I | PT | Mycelium Bloom shall provide a selector to set attribute value sources as Manual (hand-entered), Computed (calculated), or Reference (sourced from another element) when "the Participant edits an attribute value." (TBC) | SysML 7.7 |
@@ -1194,8 +1199,8 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | AttributeDefinition | In | SSS-PA-ARCH-97Z, SSS-PA-QU-H2V, SSS-PA-QU-K6F, SSS-PA-CONST-N7K, SSS-PA-CONST-D3V, SSS-PA-CONST-W8F, SSS-PA-META-K7R, SSS-PA-GLOSS-T5R | SSS-PA-QU-T3K, SSS-PA-QU-R7N, SSS-PA-QU-W5J, SSS-PA-QU-D8M, SSS-PA-CONST-D3V, SSS-PA-CONST-J5M, SSS-PA-CONST-R2H |
 | AttributeUsage | In | SSS-PA-ARCH-97Z, SSS-PT-DATA-I9M, SSS-PT-DATA-OH2, SSS-PT-DATA-492, SSS-PA-QU-N9X, SSS-PT-COLLAB-8U9, SSS-PT-PUB-K4W, SSS-PT-PUB-R7N, SSS-PT-PUB-H8J | SSS-PA-NAV-ZRW, SSS-PA-HIST-K3R, SSS-PA-HIST-T6W, SSS-PA-HIST-V2P |
 | ReferenceUsage | In | TBC | TBC |
-| EnumerationDefinition | In | SSS-PA-ARCH-9W5 | TBC |
-| EnumerationUsage | In | SSS-PA-ARCH-9W5 | TBC |
+| EnumerationDefinition | In | SSS-PA-ARCH-9W5, SSS-PA-ARCH-E1A, SSS-PA-ARCH-E2B, SSS-FB-ARCH-E5F | SSS-PA-VIS-E3C |
+| EnumerationUsage | In | SSS-PA-ARCH-9W5, SSS-PA-ARCH-E4D, SSS-FB-ARCH-E5F | SSS-PA-VIS-E3C, SSS-PA-ARCH-E4D |
 
 ### 8.4 SysML v2 — Ports, Interfaces, Connections, Flows
 
