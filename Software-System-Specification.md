@@ -356,6 +356,11 @@ The core of system modeling is defining the building blocks (Definitions) of the
 | SSS-PA-ELEM-W3N | PA, PT | Mycelium Bloom shall move a Usage from its current parent element to a different parent element, preserving all attributes, attribute values, and Ownership assignments, when "a user drags a Usage and drops it onto a different parent element in the model browser or a diagram." | - |
 | SSS-PA-ELEM-J6D | PA, PT | Mycelium Bloom shall delete a Definition or Usage and all its owned nested children when "a user deletes a model element and confirms the deletion.". Nested children that are owned by other Owners than the current Owner are deleted as well.  | - |
 | SSS-PA-ELEM-V7K | PA, PT | Mycelium Bloom shall set the multiplicity (lower bound, upper bound) on any Usage when "a user edits the multiplicity of a Usage in the detail panel or on a diagram." | KerML 7.6.6 |
+| SSS-PA-ELEM-N8P | PA, PT | Mycelium Bloom shall set the lower and upper bounds of a Multiplicity Range as either a literal non-negative integer, the unbounded symbol `*`, or an Expression referencing other Features, when "a user edits the bounds of a Multiplicity Range in the detail panel or on a diagram." | KerML 7.6.6 |
+| SSS-PA-ELEM-O1Q | PA, PT | Mycelium Bloom shall set the `isOrdered` and `isUnique` flags of a Feature, controlling whether its values are ordered and whether duplicates are permitted, when "a user toggles the ordering or uniqueness of a Feature in the detail panel." | KerML 7.6.6 |
+| SSS-PA-VIS-U7M | PA, PT, VW | Mycelium Bloom shall render the Multiplicity of a Feature or Usage in the model browser, tabular views, detail panel, and diagram labels using the textual notation `[lower..upper]` — displaying `*` for an unbounded upper, `[n]` when lower equals upper, and the expression text when a bound is an Expression — when "a user views an element that declares a Multiplicity." | KerML 7.6.6 |
+| SSS-FB-ELEM-B2R | - | Mycelium Fabric shall reject any commit that introduces a Multiplicity Range whose lower bound is negative, whose upper bound is negative, or whose lower bound exceeds its upper bound, and shall return a validation error identifying the offending Multiplicity Range, when "a client submits a commit containing an invalid Multiplicity Range." | KerML 7.6.6 |
+| SSS-PA-ELEM-V3W | PA, PT, VW | Mycelium Bloom shall display, in the validation dashboard and in the detail panel of the owning element, a warning for any Feature whose actual value count falls outside the literal bounds of its Multiplicity Range when "a user runs model validation or opens the detail panel of such a Feature." | KerML 7.6.6 |
 | SSS-PA-ELEM-D2N | PA, PT | Mycelium Bloom shall create a subsetting relationship between a feature and another feature of a compatible type when "a user designates a feature as a subset of another feature." | KerML 7.6.5 |
 | SSS-PA-ELEM-H9W | PA, PT | Mycelium Bloom shall create a redefinition relationship where a feature in a specializing type replaces a feature inherited from a general type when "a user designates a feature as a redefinition of an inherited feature." | KerML 7.6.5 |
 | SSS-PA-ELEM-M4J | PA, PT | Mycelium Bloom shall create a Specialization relationship between two Definitions, where the specializing Definition inherits all features of the general Definition and can add or redefine features, when "a user designates one Definition as a specialization of another." | KerML 7.6 |
@@ -1171,8 +1176,8 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | TypeFeaturing | In | SSS-PA-ARCH-N5W | TBC |
 | FeatureChaining | In | TBC | TBC |
 | FeatureInverting | Deferred | TBC | TBC |
-| Multiplicity | In | SSS-PA-ELEM-V7K | TBC |
-| MultiplicityRange | In | SSS-PA-ELEM-V7K | TBC |
+| Multiplicity | In | SSS-PA-ELEM-V7K, SSS-PA-ELEM-O1Q, SSS-PA-ELEM-V3W | SSS-PA-VIS-U7M |
+| MultiplicityRange | In | SSS-PA-ELEM-V7K, SSS-PA-ELEM-N8P, SSS-FB-ELEM-B2R | SSS-PA-VIS-U7M |
 | Package | In | SSS-PA-PKG-R8W, SSS-PA-PKG-V2J, SSS-PA-PKG-M3G | SSS-PA-PKG-L6D |
 | LibraryPackage | In | SSS-PA-PKG-P8D, SSS-PA-PKG-S1E, SSS-FB-PKG-L2F | SSS-PA-PKG-V4H, SSS-PA-PKG-M3G |
 | Metaclass † | In | NA | NA |
