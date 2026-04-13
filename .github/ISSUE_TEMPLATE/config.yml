@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: RID process reference
+    url: https://github.com/STARIONGROUP/mycelium-requirements/blob/main/docs/rid-process.md
+    about: Review Item Discrepancy lifecycle, kanban columns, and ECSS-M-ST-10-01C mapping.

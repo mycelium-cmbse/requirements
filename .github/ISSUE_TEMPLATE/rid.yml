@@ -1,0 +1,129 @@
+name: Review Item Discrepancy (RID)
+description: Raise a Review Item Discrepancy against a reviewed document, per ECSS-M-ST-10-01C.
+title: "[RID] <short description>"
+labels: ["rid"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to raise a **Review Item Discrepancy (RID)** against a document under formal review.
+        RIDs follow the lifecycle defined in ECSS-M-ST-10-01C — see [`docs/rid-process.md`](../blob/main/docs/rid-process.md).
+
+        The issue number will be used as the RID identifier. You (the submitter) are the **Originator**.
+        The **Response**, **Originator evaluation**, and **Final disposition** fields are filled in later during the review process — leave them blank at submission.
+
+  - type: dropdown
+    id: review
+    attributes:
+      label: Review
+      description: Which review is this RID raised against?
+      options:
+        - SRR — System Requirements Review
+        - PDR — Preliminary Design Review
+        - CDR — Critical Design Review
+        - QR  — Qualification Review
+        - AR  — Acceptance Review
+        - ORR — Operational Readiness Review
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: document
+    attributes:
+      label: Document under review
+      options:
+        - Software-System-Specification.md (SSS)
+        - Software-Requirements-Specification.md (SRS)
+        - Roles-and-Permissions.md
+        - Other (specify in Location)
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Section / heading / line range (e.g. "§5.2.1, SSS-PA-BEH-X9V" or "§5.6, lines 412-418")
+      placeholder: "§5.2.1, SSS-PA-BEH-X9V"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: |
+        - **Critical** — blocks review closure; must be resolved
+        - **Major**    — significant technical or requirements issue
+        - **Minor**    — technical issue but not blocking
+        - **Editorial**— wording, typography, formatting
+      options:
+        - Critical
+        - Major
+        - Minor
+        - Editorial
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Technical
+        - Editorial
+        - Question / Request for clarification
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem description
+      description: What is wrong, missing, ambiguous, or inconsistent? Be specific and self-contained.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_change
+    attributes:
+      label: Proposed change
+      description: The originator's proposed fix or rewording. If you do not have a proposal, write "None — request for discussion".
+    validations:
+      required: true
+
+  - type: textarea
+    id: response
+    attributes:
+      label: Response (filled by actionee)
+      description: Leave blank at submission. The assigned actionee fills this in during the *In Response* phase.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: evaluation
+    attributes:
+      label: Originator evaluation of response
+      description: Leave as *Pending* at submission. Updated by the originator once a response is provided.
+      options:
+        - Pending
+        - Agree
+        - Disagree
+    validations:
+      required: false
+
+  - type: dropdown
+    id: disposition
+    attributes:
+      label: Final disposition
+      description: Leave as *Pending* at submission. Set at the end of the RID lifecycle.
+      options:
+        - Pending
+        - Accepted — change applied
+        - Accepted — alternative change applied
+        - Rejected — no change
+        - Withdrawn by originator
+        - Escalated to action item
+    validations:
+      required: false
