@@ -18,7 +18,7 @@ Key differentiators from CDP4-COMET:
 
 ## Architecture
 
-The system has four main components:
+The system has five main components:
 
 1. **C# SDK** - Auto-generated C# classes/interfaces mirroring the SysML v2 metamodel. Handles JSON/XMI/MessagePack serialization and provides a REST HTTP client for communicating with the model server.
 
@@ -26,7 +26,9 @@ The system has four main components:
 
 3. **Web Application (Mycelium Bloom)** - ASP.NET Blazor frontend (full-stack C#). Includes model browser, diagram editors, property editors, validation dashboards, and collaborative views. Real-time notifications via SignalR. Selectively exposes SysML v2 concepts relevant to early-phase design.
 
-4. **ECSS-E-TM-10-25 to SysML v2 Converter** - Migration tool for existing CDP4-COMET models.
+4. **Package Registry (Mycelium Forge)** - Registry for SysML v2 model libraries and reusable packages. Hosts standard libraries (Quantities and Units, standard view definitions) and handles publishing, discovery, versioning, and download of SysML v2 packages. Runs alongside Fabric in the same container environment; Project Administrators import Forge packages into their projects via Bloom, after which Fabric makes them available for querying and specialization.
+
+5. **ECSS-E-TM-10-25 to SysML v2 Converter** - Migration tool for existing CDP4-COMET models.
 
 ## Technology Stack
 
@@ -38,6 +40,7 @@ The system has four main components:
 - **Serialization:** JSON, XMI, MessagePack
 - **Database:** PostgreSQL (auto-generated schemas from SysML v2 UML model)
 - **Auth:** Keycloak (JWT, OIDC, LDAP, SAML)
+- **Deployment:** Linux containers (Docker/Kubernetes); Fabric and Forge share the same runtime stack (.NET 10, PostgreSQL, Keycloak, RabbitMQ)
 
 ## Standards Compliance
 
