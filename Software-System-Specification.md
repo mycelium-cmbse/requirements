@@ -314,6 +314,13 @@ SysML v2 organizes models into Packages and Namespaces. Packages group related e
 | SSS-PA-PKG-L6D | PA, PT, VW | Mycelium Bloom shall display, in the detail panel of a Namespace, the list of Imports it declares — showing the import kind (NamespaceImport or MembershipImport), the imported target, and the `isRecursive`, `isImportAll`, and visibility values — when "a user views a Namespace that declares one or more Imports." | KerML 7.5.3 |
 | SSS-PA-PKG-X8C | PA, PT | Mycelium Bloom shall delete an Import from a Namespace when "a user selects an Import in the detail panel and invokes the 'Remove import' action." | KerML 7.5.3 |
 | SSS-FB-PKG-B3M | - | Mycelium Fabric shall return a validation error identifying any Import whose imported Namespace or imported Membership cannot be resolved when "a client queries the visible members of a Namespace or submits a commit containing an unresolvable Import." | KerML 7.5.3 |
+| SSS-PA-PKG-P8D | PA | Mycelium Bloom shall convert a Package into a LibraryPackage, or create a new LibraryPackage, when "a user invokes the 'Convert to Library' action on a Package or the 'New Library Package' action in the model browser." | KerML 7.5.5 |
+| SSS-PA-PKG-S1E | PA | Mycelium Bloom shall set the `isStandard` flag on a LibraryPackage, marking it as a standard library distinct from a user library, when "a user toggles the 'Standard library' option on a LibraryPackage." | KerML 7.5.5 |
+| SSS-PA-PKG-M3G | PA, PT | Mycelium Bloom shall edit the metadata of a Package or LibraryPackage — version, author, description, license, and tags — via the detail panel when "a user edits any of the metadata fields of a Package or LibraryPackage." | - |
+| SSS-PA-PKG-V4H | PA, PT, VW | Mycelium Bloom shall render a LibraryPackage in the model browser, tabular views, and diagrams with a distinguishing icon or badge that sets it apart from a regular Package, when "a user views a LibraryPackage." | KerML 7.5.5 |
+| SSS-FB-PKG-L2F | - | Mycelium Fabric shall reject any commit that modifies the owned content of a LibraryPackage — including creation, modification, deletion, or re-parenting of any of its members — and shall return a validation error identifying the LibraryPackage, when "a client submits a commit that would mutate a LibraryPackage." | KerML 7.5.5 |
+| SSS-FG-PKG-P7L | - | Mycelium Forge shall publish a LibraryPackage as a versioned, downloadable package — including its metadata, content, and transitive library dependencies — when "a user or CI pipeline submits a LibraryPackage for publication to Mycelium Forge." | - |
+| SSS-PA-PKG-F8M | PA | Mycelium Bloom shall import a LibraryPackage from Mycelium Forge into the current project, creating the corresponding NamespaceImport and fetching the referenced content, when "a user selects a LibraryPackage from Mycelium Forge and invokes the 'Import Library' action." | - |
 
 ##### 5.2.1.4 System architecture modeling
 
@@ -1163,8 +1170,8 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | FeatureInverting | Deferred | TBC | TBC |
 | Multiplicity | In | SSS-PA-ELEM-V7K | TBC |
 | MultiplicityRange | In | SSS-PA-ELEM-V7K | TBC |
-| Package | In | SSS-PA-PKG-R8W, SSS-PA-PKG-V2J | TBC |
-| LibraryPackage | In | TBC | TBC |
+| Package | In | SSS-PA-PKG-R8W, SSS-PA-PKG-V2J, SSS-PA-PKG-M3G | SSS-PA-PKG-L6D |
+| LibraryPackage | In | SSS-PA-PKG-P8D, SSS-PA-PKG-S1E, SSS-FB-PKG-L2F | SSS-PA-PKG-V4H, SSS-PA-PKG-M3G |
 | Metaclass † | In | NA | NA |
 | MetadataFeature | In | SSS-PA-META-K7R, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
 
@@ -1311,8 +1318,8 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 
 | Concept | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- |
-| Package (SysML) | In | SSS-PA-PKG-R8W, SSS-PA-PKG-V2J | TBC |
-| LibraryPackage (SysML) | In | SSS-PA-QU-G1W, SSS-PA-IE-OYJ | TBC |
+| Package (SysML) | In | SSS-PA-PKG-R8W, SSS-PA-PKG-V2J, SSS-PA-PKG-M3G | SSS-PA-PKG-L6D |
+| LibraryPackage (SysML) | In | SSS-PA-QU-G1W, SSS-PA-IE-OYJ, SSS-PA-PKG-P8D, SSS-PA-PKG-S1E, SSS-FB-PKG-L2F, SSS-PA-PKG-F8M, SSS-FG-PKG-P7L | SSS-PA-PKG-V4H, SSS-PA-PKG-M3G |
 | FilteredImport | In | SSS-PA-PKG-J3W | TBC |
 | VariantMembership | In | SSS-PA-VAR-R7W, SSS-PA-VAR-J9K, SSS-PA-VAR-F1P | TBC |
 | VariationMembership | In | SSS-PA-VAR-R7W | TBC |
