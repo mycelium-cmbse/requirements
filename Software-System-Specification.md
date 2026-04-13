@@ -531,6 +531,14 @@ Beyond structure, systems exhibit behavior: actions performed, states held, tran
 | SSS-PA-BEH-IX9 | PA, PT | Mycelium Bloom shall support defining Use Case Definitions specifying system behavior from an external actor perspective when "a user creates a Use Case Definition and specifies actors and subjects." | SysML 7.25 |
 | SSS-PA-BEH-T7P | PA, PT | Mycelium Bloom shall create an Include Use Case Usage that includes one Use Case as part of another Use Case when "a user designates one Use Case as included by another." | SysML 7.25 |
 | SSS-PA-BEH-J3F | PA, PT | Mycelium Bloom shall create an Extend Use Case Usage that extends one Use Case with the optional behavior of another Use Case when "a user designates one Use Case as extending another." | SysML 7.25 |
+| SSS-PA-BEH-SD1 | PA, PT | Mycelium Bloom shall designate one State Usage inside a composite State Definition as the default (initial) state entered when the containing state is entered, when "a user marks a State Usage as the default state of its parent State Definition." | SysML 7.17 |
+| SSS-PA-BEH-SC2 | PA, PT | Mycelium Bloom shall define nested State Usages within a State Definition, producing a composite state machine in which each nested State Usage has its own entry, do, and exit Action, when "a user adds a child State Usage to a State Definition." | SysML 7.17 |
+| SSS-PA-BEH-SP3 | PA, PT | Mycelium Bloom shall define parallel regions (orthogonal state machines) inside a State Definition, each with its own set of State Usages and Transition Usages, when "a user adds one or more parallel regions to a State Definition." | SysML 7.17 |
+| SSS-PA-BEH-SE4 | PA, PT | Mycelium Bloom shall attach, replace, and remove an Entry Action, a Do Action, and an Exit Action on any State Usage, each realised as an Action Usage owned via the corresponding Feature Membership, when "a user edits the entry, do, or exit behavior of a State Usage." | KerML 7.17, SysML 7.17 |
+| SSS-PA-BEH-TR5 | PA, PT | Mycelium Bloom shall create a Transition Usage of any of the kinds — normal (between distinct source and target states), self (source and target are the same state), internal (no state exit or entry), or completion (no trigger, fires when the source state's Do Action completes) — when "a user creates a transition in a State Transition View or via the detail panel." | SysML 7.17 |
+| SSS-PA-BEH-TG6 | PA, PT | Mycelium Bloom shall set the trigger (an Accept Action Usage), the guard (a Boolean Expression), and the effect (an Action Usage) of a Transition Usage when "a user edits the trigger, guard, or effect of a Transition Usage." | SysML 7.17 |
+| SSS-PA-VIS-SH7 | PA, PT, VW | Mycelium Bloom shall display the state-machine structure of a State Definition in its detail panel — showing the default state, the nested State Usages, the parallel regions, the Entry / Do / Exit Actions on each State Usage, and the outgoing Transition Usages with their triggers, guards, and effects — when "a user views a State Definition that owns at least one State Usage or Transition Usage." | SysML 7.17 |
+| SSS-FB-BEH-SV8 | - | Mycelium Fabric shall return a validation warning identifying any State Usage that is unreachable from the default state of its owning State Definition, and any State Usage that has two or more outgoing Transition Usages with the same trigger and an overlapping guard, when "a client runs model validation or submits a commit containing a State Definition." | SysML 7.17 |
 
 ##### 5.2.1.8 Analysis and verification
 
@@ -1240,13 +1248,13 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 
 | Concept | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- |
-| StateDefinition | In | SSS-PA-BEH-RPK, SSS-PT-DATA-492 | SSS-PA-VIS-DP2, SSS-PA-VIS-B8V |
-| StateUsage | In | SSS-PA-BEH-RPK, SSS-PA-BEH-H83 | SSS-PA-VIS-DP2, SSS-PA-VIS-B8V, SSS-PA-VIS-F2C |
-| ExhibitStateUsage | In | SSS-PA-BEH-H83 | TBC |
-| TransitionUsage | In | SSS-PA-BEH-RPK | SSS-PA-VIS-B8V |
-| EntryAction | In | TBC | TBC |
-| DoAction | In | TBC | TBC |
-| ExitAction | In | TBC | TBC |
+| StateDefinition | In | SSS-PA-BEH-RPK, SSS-PT-DATA-492, SSS-PA-BEH-SD1, SSS-PA-BEH-SC2, SSS-PA-BEH-SP3, SSS-FB-BEH-SV8 | SSS-PA-VIS-DP2, SSS-PA-VIS-B8V, SSS-PA-VIS-SH7 |
+| StateUsage | In | SSS-PA-BEH-RPK, SSS-PA-BEH-H83, SSS-PA-BEH-SD1, SSS-PA-BEH-SC2, SSS-PA-BEH-SE4 | SSS-PA-VIS-DP2, SSS-PA-VIS-B8V, SSS-PA-VIS-F2C, SSS-PA-VIS-SH7 |
+| ExhibitStateUsage | In | SSS-PA-BEH-H83 | SSS-PA-VIS-SH7 |
+| TransitionUsage | In | SSS-PA-BEH-RPK, SSS-PA-BEH-TR5, SSS-PA-BEH-TG6, SSS-FB-BEH-SV8 | SSS-PA-VIS-B8V, SSS-PA-VIS-SH7 |
+| EntryAction | In | SSS-PA-BEH-SE4 | SSS-PA-VIS-SH7 |
+| DoAction | In | SSS-PA-BEH-SE4 | SSS-PA-VIS-SH7 |
+| ExitAction | In | SSS-PA-BEH-SE4 | SSS-PA-VIS-SH7 |
 
 ### 8.7 SysML v2 — Calculations and Constraints
 
