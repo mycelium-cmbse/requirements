@@ -588,6 +588,9 @@ An Interconnection View shows the structural composition of a system: parts, the
 | SSS-PA-VIS-G8N | PA, PT | Mycelium Bloom shall provide an editor for creating and editing Interconnection Views showing parts, ports, and connections when "a user opens or creates an Interconnection View for a selected model scope." | SysML 8.2.3.11 |
 | SSS-PA-VIS-W3T | PA, PT, VW | Mycelium Bloom shall render Part Usages as rectangular nodes with «part» headers, Port Usages as small squares on part boundaries with directional indicators (in, out, inout), and Connection Usages as lines between ports, using the SysML v2 graphical notation (section 8.2.3.11-14) when "an Interconnection View displays structural model content." | SysML 8.2.3.11-14 |
 | SSS-PA-VIS-Q7K | PA, PT, VW | Mycelium Bloom shall render Interface Usages as connection lines between ports with the «interface» label and optional constraint compartments using the SysML v2 graphical notation (section 8.2.3.14) when "an Interconnection View displays interface connections." | SysML 8.2.3.14 |
+| SSS-PA-VIS-I4R | PA, PT, VW | Mycelium Bloom shall render an Item Usage in the model browser, tabular views, and diagrams with a distinguishing icon and the «item» stereotype label, visually distinct from a Part Usage, showing its name, its typing Item Definition, and its multiplicity, when "a user views an Item Usage." | SysML 8.2.3.12 |
+| SSS-PA-VIS-I5S | PA, PT, VW | Mycelium Bloom shall render Item Usages on a structural diagram as rounded-corner nodes using the SysML v2 graphical notation and shall support creating an Item Usage on the canvas by dragging an Item Definition from the model browser or the Item tool from the toolbox when "a user adds or views an Item Usage on a structural diagram." | SysML 8.2.3.12 |
+| SSS-PA-VIS-I6T | PA, PT, VW | Mycelium Bloom shall render the payload Item Usage of a Flow Connection Usage alongside the flow connection line on a diagram, displaying the Item Usage name, its typing Item Definition, and its multiplicity, when "a user views a Flow Connection Usage that carries an Item." | SysML 8.2.3.15 |
 
 ###### 5.2.1.9.3 Action Flow View
 
@@ -1181,8 +1184,8 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | --- | --- | --- | --- |
 | PartDefinition | In | SSS-PA-ARCH-JQH, SSS-PA-ARCH-TB2, SSS-PA-ELEM-K4T, SSS-PA-ELEM-R8V, SSS-PA-ELEM-T2N, SSS-PA-ELEM-D7M, SSS-PA-ELEM-W4F | SSS-PA-VIS-W3T, SSS-PA-NAV-8IB, SSS-PA-NAV-G5X |
 | PartUsage | In | SSS-PA-ARCH-JQH, SSS-PA-ARCH-TB2, SSS-PA-VAR-K3T, SSS-PT-CDS-I22 | SSS-PA-VIS-W3T, SSS-PA-VIS-M2K, SSS-PA-VIS-R3F, SSS-PT-CDS-I22 |
-| ItemDefinition | In | SSS-PA-ARCH-B2D, SSS-PA-GLOSS-T5R | SSS-PA-GLOSS-K2W, SSS-PA-GLOSS-M3J, SSS-PA-GLOSS-V9D, SSS-PA-GLOSS-F6B |
-| ItemUsage | In | SSS-PA-ARCH-B2D | TBC |
+| ItemDefinition | In | SSS-PA-ARCH-B2D, SSS-PA-GLOSS-T5R | SSS-PA-GLOSS-K2W, SSS-PA-GLOSS-M3J, SSS-PA-GLOSS-V9D, SSS-PA-GLOSS-F6B, SSS-PA-VIS-I4R, SSS-PA-VIS-I5S |
+| ItemUsage | In | SSS-PA-ARCH-B2D | SSS-PA-VIS-I4R, SSS-PA-VIS-I5S, SSS-PA-VIS-I6T |
 | AttributeDefinition | In | SSS-PA-ARCH-97Z, SSS-PA-QU-H2V, SSS-PA-QU-K6F, SSS-PA-CONST-N7K, SSS-PA-CONST-D3V, SSS-PA-CONST-W8F, SSS-PA-META-K7R, SSS-PA-GLOSS-T5R | SSS-PA-QU-T3K, SSS-PA-QU-R7N, SSS-PA-QU-W5J, SSS-PA-QU-D8M, SSS-PA-CONST-D3V, SSS-PA-CONST-J5M, SSS-PA-CONST-R2H |
 | AttributeUsage | In | SSS-PA-ARCH-97Z, SSS-PT-DATA-I9M, SSS-PT-DATA-OH2, SSS-PT-DATA-492, SSS-PA-QU-N9X, SSS-PT-COLLAB-8U9, SSS-PT-PUB-K4W, SSS-PT-PUB-R7N, SSS-PT-PUB-H8J | SSS-PA-NAV-ZRW, SSS-PA-HIST-K3R, SSS-PA-HIST-T6W, SSS-PA-HIST-V2P |
 | ReferenceUsage | In | TBC | TBC |
@@ -1201,7 +1204,7 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | ConnectionDefinition | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
 | ConnectionUsage | In | SSS-PA-ARCH-IGA, SSS-PA-ARCH-Y2D | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
 | FlowConnectionDefinition | In | SSS-PA-BEH-PC7 | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
-| FlowConnectionUsage | In | SSS-PA-BEH-PC7, SSS-PA-BEH-Q4N, SSS-PA-BEH-D6L, SSS-PA-BEH-X9V | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
+| FlowConnectionUsage | In | SSS-PA-BEH-PC7, SSS-PA-BEH-Q4N, SSS-PA-BEH-D6L, SSS-PA-BEH-X9V | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N, SSS-PA-VIS-I6T |
 
 ### 8.5 SysML v2 — Actions and Control
 
