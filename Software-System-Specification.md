@@ -360,6 +360,9 @@ The core of system modeling is defining the building blocks (Definitions) of the
 | SSS-PA-ELEM-L9P | PA, PT | Mycelium Bloom shall delete a Specialization of any concrete kind (Subclassification, FeatureTyping, Subsetting, ReferenceSubsetting, Redefinition, CrossSubsetting, Conjugation) when "a user selects a Specialization in the detail panel and invokes the 'Remove' action." | KerML 7.6 |
 | SSS-FB-ELEM-C6V | - | Mycelium Fabric shall reject any commit that introduces a cycle in the Subclassification or Subsetting chain of a Type or Feature and shall return a validation error identifying the cycle when "a client submits a commit that would produce a specialization cycle." | KerML 7.6 |
 | SSS-FB-ELEM-T7B | - | Mycelium Fabric shall reject any commit in which a Redefinition assigns a type or multiplicity to the specializing Feature that is incompatible with the redefined Feature, and shall return a validation error identifying the incompatibility, when "a client submits a commit containing an incompatible Redefinition." | KerML 7.6.5 |
+| SSS-PA-ELEM-J4K | PA, PT | Mycelium Bloom shall create a Conjugation relationship between two Types — designating one as the conjugating Type whose inherited Features have inverted directions relative to the original Type — when "a user designates a Type as the conjugate of another Type, either via the detail panel or via `~` notation when typing a Usage." | KerML 7.6.3 |
+| SSS-PA-ELEM-M6N | PA, PT, VW | Mycelium Bloom shall display the inherited Features of a conjugating Type with their directions shown inverted relative to the original Type — `in` rendered as `out`, `out` rendered as `in`, `inout` preserved — in the detail panel, the model browser, and on diagrams, when "a user views a Type that is the conjugate of another Type." | KerML 7.6.3 |
+| SSS-FB-ELEM-N7P | - | Mycelium Fabric shall reject any commit in which a conjugating Type owns Features other than those inherited with inverted direction from its conjugated Type, and shall return a validation error identifying the offending Features, when "a client submits a commit that would violate the KerML Conjugation well-formedness rule." | KerML 7.6.3 |
 
 ##### 5.2.1.4a Quantities, units, and measurement management
 
@@ -1142,7 +1145,7 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | ReferenceSubsetting | In | SSS-PA-ELEM-R4S | SSS-PA-ELEM-D8K |
 | CrossSubsetting | In | SSS-PA-ELEM-C5X | SSS-PA-ELEM-D8K |
 | Redefinition | In | SSS-PA-ELEM-H9W, SSS-FB-ELEM-T7B | SSS-PA-ELEM-D8K |
-| Conjugation | In | TBC | SSS-PA-ELEM-D8K |
+| Conjugation | In | SSS-PA-ARCH-K7M, SSS-PA-ELEM-J4K, SSS-FB-ELEM-N7P | SSS-PA-ELEM-D8K, SSS-PA-ELEM-M6N |
 | FeatureMembership | In | TBC | TBC |
 | TypeFeaturing | In | SSS-PA-ARCH-N5W | TBC |
 | FeatureChaining | In | TBC | TBC |
@@ -1174,7 +1177,7 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | --- | --- | --- | --- |
 | PortDefinition | In | SSS-PA-ARCH-5RR | SSS-PA-VIS-W3T |
 | PortUsage | In | SSS-PA-ARCH-5RR, SSS-PA-ARCH-K7M, SSS-PA-VAR-K3T | SSS-PA-VIS-W3T |
-| ConjugatedPortDefinition | In | SSS-PA-ARCH-K7M | TBC |
+| ConjugatedPortDefinition | In | SSS-PA-ARCH-K7M, SSS-FB-ELEM-N7P | SSS-PA-ELEM-M6N |
 | InterfaceDefinition | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-Q7K |
 | InterfaceUsage | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-Q7K |
 | ConnectionDefinition | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
