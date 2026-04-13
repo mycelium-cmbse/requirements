@@ -1067,4 +1067,213 @@ TBD — Installation and acceptance requirements, delivery format, integration s
 
 TBD — System context diagrams, component decomposition, interface diagrams. May reference SysML v2 model artifacts.
 
+## 8. SysML v2 and KerML concept coverage matrix
 
+This appendix tracks every KerML and SysML v2 modelling concept (metaclass) against the SSS requirements that cover it.
+
+**Columns.**
+
+- **Concept** — the KerML or SysML v2 metaclass name as used in the OMG specifications (KerML formal/25-09-01, SysML v2 formal/25-09-03).
+- **Scope** — whether the concept is In scope for Mycelium, Deferred (planned beyond early-phase MBSE), or Out (not intended to be surfaced).
+- **Abstract syntax** — SSS requirement identifiers that cover the metaclass at the *abstract-syntax* level: representation, persistence, query, creation, modification, deletion, and validation. `TBC` where coverage is missing or has not yet been verified.
+- **UX / notation** — SSS requirement identifiers that cover the *user-facing surface area* for the concept: browsers, tabular views, diagrams and diagram notation per SysML v2 §8.2.3, dashboards, property editors, tooltips, and similar. `TBC` where coverage is missing or has not yet been verified.
+
+A concept is fully covered only when both its *Abstract syntax* and *UX / notation* cells list at least one requirement. Splitting the two prevents a single generic UX requirement from implicitly painting the matrix green, while still recording notation coverage alongside the semantics. Multiple requirement IDs are comma-separated. Coverage is derived from the *KerML/SysML spec reference* column of each requirement table in §5 and, where that column is empty, from the requirement text.
+
+### 8.1 KerML — Root
+
+| Concept | Scope | Abstract syntax | UX / notation |
+| --- | --- | --- | --- |
+| Element | In | TBC | TBC |
+| Relationship | In | SSS-PA-TRACE-8ZB, SSS-PA-TRACE-V8K | TBC |
+| AnnotatingElement | In | TBC | TBC |
+| Annotation | In | TBC | TBC |
+| Comment | In | SSS-PA-CMT-R4K, SSS-PA-CMT-M6J, SSS-PA-CMT-T9F, SSS-PA-CMT-K2B, SSS-PA-CMT-D5P, SSS-PA-CMT-N8V | SSS-PA-VIS-F8Q, SSS-PA-VIS-B2M, SSS-PA-VIS-T1J, SSS-PA-VIS-G5R |
+| Documentation | In | SSS-PA-CMT-W7N, SSS-PA-CMT-H3D, SSS-PA-CMT-M6J | TBC |
+| TextualRepresentation | In | SSS-PA-CMT-Y6L | TBC |
+| Namespace | In | SSS-PA-PKG-H6T | TBC |
+| Membership | In | SSS-PA-PKG-H6T | TBC |
+| OwningMembership | In | TBC | TBC |
+| Import | In | SSS-PA-PKG-D4N | TBC |
+| NamespaceImport | In | TBC | TBC |
+| MembershipImport | In | TBC | TBC |
+| AliasMembership | In | SSS-PA-PKG-Q1M | TBC |
+
+### 8.2 KerML — Core
+
+| Concept | Scope | Abstract syntax | UX / notation |
+| --- | --- | --- | --- |
+| Feature | In | TBC | TBC |
+| Type | In | TBC | TBC |
+| Classifier | In | TBC | TBC |
+| Specialization | In | SSS-PA-ELEM-M4J, SSS-PA-ELEM-R6F | TBC |
+| Subclassification | In | SSS-PA-ELEM-M4J | TBC |
+| FeatureTyping | In | TBC | TBC |
+| Subsetting | In | SSS-PA-ELEM-D2N | TBC |
+| Redefinition | In | SSS-PA-ELEM-H9W | TBC |
+| Conjugation | In | TBC | TBC |
+| FeatureMembership | In | TBC | TBC |
+| TypeFeaturing | In | SSS-PA-ARCH-N5W | TBC |
+| FeatureChaining | In | TBC | TBC |
+| FeatureInverting | Deferred | TBC | TBC |
+| Multiplicity | In | SSS-PA-ELEM-V7K | TBC |
+| MultiplicityRange | In | SSS-PA-ELEM-V7K | TBC |
+| Package | In | SSS-PA-PKG-R8W, SSS-PA-PKG-V2J | TBC |
+| LibraryPackage | In | TBC | TBC |
+| Metaclass | In | TBC | TBC |
+| MetadataFeature | In | SSS-PA-META-K7R | TBC |
+
+### 8.3 SysML v2 — Structure (Part, Item, Attribute, Reference)
+
+| Concept | Scope | Abstract syntax | UX / notation |
+| --- | --- | --- | --- |
+| PartDefinition | In | SSS-PA-ARCH-JQH, SSS-PA-ARCH-TB2, SSS-PA-ELEM-K4T, SSS-PA-ELEM-R8V, SSS-PA-ELEM-T2N, SSS-PA-ELEM-D7M, SSS-PA-ELEM-W4F | SSS-PA-VIS-W3T, SSS-PA-NAV-8IB, SSS-PA-NAV-G5X |
+| PartUsage | In | SSS-PA-ARCH-JQH, SSS-PA-ARCH-TB2, SSS-PA-VAR-K3T, SSS-PT-CDS-I22 | SSS-PA-VIS-W3T, SSS-PA-VIS-M2K, SSS-PA-VIS-R3F, SSS-PT-CDS-I22 |
+| ItemDefinition | In | SSS-PA-ARCH-B2D, SSS-PA-GLOSS-T5R | SSS-PA-GLOSS-K2W, SSS-PA-GLOSS-M3J, SSS-PA-GLOSS-V9D, SSS-PA-GLOSS-F6B |
+| ItemUsage | In | SSS-PA-ARCH-B2D | TBC |
+| AttributeDefinition | In | SSS-PA-ARCH-97Z, SSS-PA-QU-H2V, SSS-PA-QU-K6F, SSS-PA-CONST-N7K, SSS-PA-CONST-D3V, SSS-PA-CONST-W8F, SSS-PA-META-K7R, SSS-PA-GLOSS-T5R | SSS-PA-QU-T3K, SSS-PA-QU-R7N, SSS-PA-QU-W5J, SSS-PA-QU-D8M, SSS-PA-CONST-D3V, SSS-PA-CONST-J5M, SSS-PA-CONST-R2H |
+| AttributeUsage | In | SSS-PA-ARCH-97Z, SSS-PT-DATA-I9M, SSS-PT-DATA-OH2, SSS-PT-DATA-492, SSS-PA-QU-N9X, SSS-PT-COLLAB-8U9, SSS-PT-PUB-K4W, SSS-PT-PUB-R7N, SSS-PT-PUB-H8J | SSS-PA-NAV-ZRW, SSS-PA-HIST-K3R, SSS-PA-HIST-T6W, SSS-PA-HIST-V2P |
+| ReferenceUsage | In | TBC | TBC |
+| EnumerationDefinition | In | SSS-PA-ARCH-9W5 | TBC |
+| EnumerationUsage | In | SSS-PA-ARCH-9W5 | TBC |
+
+### 8.4 SysML v2 — Ports, Interfaces, Connections, Flows
+
+| Concept | Scope | Abstract syntax | UX / notation |
+| --- | --- | --- | --- |
+| PortDefinition | In | SSS-PA-ARCH-5RR | SSS-PA-VIS-W3T |
+| PortUsage | In | SSS-PA-ARCH-5RR, SSS-PA-ARCH-K7M, SSS-PA-VAR-K3T | SSS-PA-VIS-W3T |
+| ConjugatedPortDefinition | In | SSS-PA-ARCH-K7M | TBC |
+| InterfaceDefinition | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-Q7K |
+| InterfaceUsage | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-Q7K |
+| ConnectionDefinition | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
+| ConnectionUsage | In | SSS-PA-ARCH-IGA, SSS-PA-ARCH-Y2D | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
+| FlowConnectionDefinition | In | SSS-PA-BEH-PC7 | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
+| FlowConnectionUsage | In | SSS-PA-BEH-PC7, SSS-PA-BEH-Q4N, SSS-PA-BEH-D6L, SSS-PA-BEH-X9V | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
+
+### 8.5 SysML v2 — Actions and Control
+
+| Concept | Scope | Abstract syntax | UX / notation |
+| --- | --- | --- | --- |
+| ActionDefinition | In | SSS-PA-BEH-N5Z | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R, SSS-PA-VIS-M1Z |
+| ActionUsage | In | SSS-PA-BEH-N5Z, SSS-PA-BEH-WG5, SSS-PA-BEH-H83 | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R, SSS-PA-VIS-J6N, SSS-PA-VIS-M1Z |
+| AcceptActionUsage | In | TBC | TBC |
+| SendActionUsage | In | TBC | TBC |
+| AssignmentActionUsage | In | TBC | TBC |
+| IfActionUsage | In | TBC | TBC |
+| WhileLoopActionUsage | In | TBC | TBC |
+| ForLoopActionUsage | In | TBC | TBC |
+| PerformActionUsage | In | SSS-PA-BEH-H83 | TBC |
+| TerminateActionUsage | Deferred | TBC | TBC |
+| ControlNode | In | TBC | TBC |
+| DecisionNode | In | TBC | TBC |
+| MergeNode | In | TBC | TBC |
+| ForkNode | In | TBC | TBC |
+| JoinNode | In | TBC | TBC |
+
+### 8.6 SysML v2 — States and Transitions
+
+| Concept | Scope | Abstract syntax | UX / notation |
+| --- | --- | --- | --- |
+| StateDefinition | In | SSS-PA-BEH-RPK, SSS-PT-DATA-492 | SSS-PA-VIS-DP2, SSS-PA-VIS-B8V |
+| StateUsage | In | SSS-PA-BEH-RPK, SSS-PA-BEH-H83 | SSS-PA-VIS-DP2, SSS-PA-VIS-B8V, SSS-PA-VIS-F2C |
+| ExhibitStateUsage | In | SSS-PA-BEH-H83 | TBC |
+| TransitionUsage | In | SSS-PA-BEH-RPK | SSS-PA-VIS-B8V |
+| EntryAction | In | TBC | TBC |
+| DoAction | In | TBC | TBC |
+| ExitAction | In | TBC | TBC |
+
+### 8.7 SysML v2 — Calculations and Constraints
+
+| Concept | Scope | Abstract syntax | UX / notation |
+| --- | --- | --- | --- |
+| CalculationDefinition | In | SSS-PT-ANALYSIS-4W2 | TBC |
+| CalculationUsage | In | SSS-PT-ANALYSIS-4W2 | TBC |
+| ConstraintDefinition | In | SSS-PA-AV-LSX, SSS-PT-ANALYSIS-NWL | TBC |
+| ConstraintUsage | In | SSS-PA-AV-LSX, SSS-PT-ANALYSIS-NWL, SSS-PT-ANALYSIS-EAJ, SSS-PA-SCRIPT-K8B | TBC |
+| AssumeConstraintUsage | In | TBC | TBC |
+| RequireConstraintUsage | In | TBC | TBC |
+
+### 8.8 SysML v2 — Requirements and Concerns
+
+| Concept | Scope | Abstract syntax | UX / notation |
+| --- | --- | --- | --- |
+| RequirementDefinition | In | SSS-PA-REQ-QP0, SSS-PA-REQ-WD0, SSS-PA-REQ-T8K, SSS-PA-REQ-M3N, SSS-PA-REQ-H6W | SSS-PA-VIS-C3D, SSS-PA-IE-B5W |
+| RequirementUsage | In | SSS-PA-REQ-QP0, SSS-PA-REQ-WD0, SSS-PA-REQ-DS6, SSS-PA-REQ-T8K, SSS-PA-REQ-M3N, SSS-PA-REQ-H6W, SSS-PA-REQ-V4J, SSS-PA-REQ-W9B | SSS-PA-VIS-C3D, SSS-PA-IE-B5W |
+| ConcernDefinition | In | SSS-PA-REQ-SUC | TBC |
+| ConcernUsage | In | SSS-PA-REQ-SUC | TBC |
+| StakeholderMembership | In | SSS-PA-REQ-H6W | TBC |
+| ActorMembership | In | SSS-PA-REQ-M3N | TBC |
+| SubjectMembership | In | SSS-PA-REQ-T8K | TBC |
+| FramedConcernMembership | In | SSS-PA-REQ-SUC | TBC |
+| RequirementConstraintMembership | In | SSS-PA-REQ-DS6 | TBC |
+| RequirementVerificationMembership | In | SSS-PA-REQ-W9B | TBC |
+| SatisfyRequirementUsage | In | SSS-PA-TRACE-Q72 | TBC |
+
+### 8.9 SysML v2 — Cases (Use, Analysis, Verification)
+
+| Concept | Scope | Abstract syntax | UX / notation |
+| --- | --- | --- | --- |
+| CaseDefinition | In | TBC | TBC |
+| CaseUsage | In | TBC | TBC |
+| UseCaseDefinition | In | SSS-PA-BEH-IX9 | TBC |
+| UseCaseUsage | In | SSS-PA-BEH-IX9, SSS-PA-BEH-T7P, SSS-PA-BEH-J3F | TBC |
+| IncludeUseCaseUsage | In | SSS-PA-BEH-T7P | TBC |
+| ExtendUseCaseUsage | In | SSS-PA-BEH-J3F | TBC |
+| AnalysisCaseDefinition | In | SSS-PA-AV-QII | TBC |
+| AnalysisCaseUsage | In | SSS-PA-AV-QII | TBC |
+| VerificationCaseDefinition | In | SSS-PA-AV-UCQ | TBC |
+| VerificationCaseUsage | In | SSS-PA-AV-UCQ, SSS-PA-REQ-W9B | TBC |
+
+### 8.10 SysML v2 — Views, Viewpoints, Rendering
+
+| Concept | Scope | Abstract syntax | UX / notation |
+| --- | --- | --- | --- |
+| ViewDefinition | In | SSS-PA-VIS-T2V | SSS-PA-VIS-T2V, SSS-PA-VIS-BB9, SSS-PA-VIS-JPW |
+| ViewUsage | In | SSS-PA-VIS-T2V | SSS-PA-VIS-T2V, SSS-PA-VIS-BB9, SSS-PA-VIS-JPW |
+| ViewpointDefinition | In | SSS-PA-VIS-T2V | SSS-PA-VIS-T2V |
+| ViewpointUsage | In | SSS-PA-VIS-T2V | SSS-PA-VIS-T2V |
+| RenderingDefinition | In | TBC | TBC |
+| RenderingUsage | In | TBC | TBC |
+| ExposeMembership | In | SSS-PA-VIS-K9R | TBC |
+
+### 8.11 SysML v2 — Metadata
+
+| Concept | Scope | Abstract syntax | UX / notation |
+| --- | --- | --- | --- |
+| MetadataDefinition | In | SSS-PA-META-K7R, SSS-CC-EXT-OAW | SSS-PA-META-R9V |
+| MetadataUsage | In | SSS-PA-META-W3D, SSS-PA-META-N8F, SSS-PA-META-H2T, SSS-PA-META-D5J, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-J1B, SSS-PA-META-V8G, SSS-CC-EXT-OAW, SSS-PT-PUB-B9G | SSS-PA-META-R9V, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-V8G, SSS-PA-VIS-B4F |
+
+### 8.12 SysML v2 — Occurrences and Individuals
+
+| Concept | Scope | Abstract syntax | UX / notation |
+| --- | --- | --- | --- |
+| OccurrenceDefinition | In | TBC | TBC |
+| OccurrenceUsage | In | TBC | TBC |
+| LifeClass | Deferred | TBC | TBC |
+| IndividualDefinition | In | TBC | TBC |
+| IndividualUsage | In | TBC | TBC |
+
+### 8.13 SysML v2 — Allocations
+
+| Concept | Scope | Abstract syntax | UX / notation |
+| --- | --- | --- | --- |
+| AllocationDefinition | In | SSS-PA-TRACE-YWQ | TBC |
+| AllocationUsage | In | SSS-PA-TRACE-YWQ | TBC |
+
+### 8.14 SysML v2 — Packaging, Imports, Variants
+
+| Concept | Scope | Abstract syntax | UX / notation |
+| --- | --- | --- | --- |
+| Package (SysML) | In | SSS-PA-PKG-R8W, SSS-PA-PKG-V2J | TBC |
+| LibraryPackage (SysML) | In | SSS-PA-QU-G1W, SSS-PA-IE-OYJ | TBC |
+| FilteredImport | In | SSS-PA-PKG-J3W | TBC |
+| VariantMembership | In | SSS-PA-VAR-R7W, SSS-PA-VAR-J9K, SSS-PA-VAR-F1P | TBC |
+| VariationMembership | In | SSS-PA-VAR-R7W | TBC |
+
+### 8.15 SysML v2 — Requirement / trace relationships
+
+| Concept | Scope | Abstract syntax | UX / notation |
+| --- | --- | --- | --- |
+| Dependency | In | SSS-PA-TRACE-V8K | TBC |
+| DeriveRequirementUsage | In | SSS-PA-REQ-V4J | TBC |
