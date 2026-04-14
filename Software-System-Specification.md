@@ -518,6 +518,7 @@ MBSE relies on traceability: every requirement traces to design elements that sa
 | SSS-PA-TRACE-N19 | PA | Mycelium Bloom shall identify and report requirements that are not allocated to any design element or derived requirement when "the Project Administrator executes a requirements coverage analysis." | - |
 | SSS-PA-TRACE-8ZB | PA, PT | Mycelium Bloom shall support creating and navigating typed relationships between any model elements when "a user selects source and target elements and specifies a relationship type." | KerML 7.8 |
 | SSS-PA-TRACE-V8K | PA, PT | Mycelium Bloom shall create a Dependency relationship between two model elements, asserting that the source element depends on the target element, when "a user creates a generic dependency between two model elements." | KerML 7.3 |
+| SSS-CC-EXT-5DV | PA, PT | Mycelium Bloom shall support External Relationships linking model elements to external web resources via IRIs when "a user creates a relationship targeting an external resource identified by an IRI." | SysML 7.3 |
 
 ##### 5.2.1.7 Behavior modeling
 
@@ -1083,9 +1084,6 @@ Mycelium Forge reuses the identity plumbing that Mycelium Fabric already provide
 
 | ID | Roles | Requirement | Ref |
 |----|-------|-------------|-----|
-| SSS-CC-EXT-5DV | PA, PT | Mycelium Bloom shall support External Relationships linking model elements to external web resources via IRIs when "a user creates a relationship targeting an external resource identified by an IRI." | SysML 7.3 |
-| SSS-CC-EXT-OAW | PA, PT | Mycelium Bloom shall support defining Metadata Definitions and instantiating them as Metadata Usages for tool-specific and process-specific annotations on model elements when "a user or tool creates metadata on a model element." | SysML 7.27 |
-
 Additional interface specifications between Mycelium Bloom, Mycelium Fabric, and Mycelium Forge are described in section 4.4 (Operational environment) and will be elaborated in the Interface Requirements Document (IRD).
 
 ### 5.4 Adaptation and missionization requirements
@@ -1399,8 +1397,8 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 
 | Concept | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- |
-| MetadataDefinition | In | SSS-PA-META-K7R, SSS-CC-EXT-OAW | SSS-PA-META-R9V |
-| MetadataUsage | In | SSS-PA-META-W3D, SSS-PA-META-N8F, SSS-PA-META-H2T, SSS-PA-META-D5J, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-J1B, SSS-PA-META-V8G, SSS-CC-EXT-OAW, SSS-PT-PUB-B9G | SSS-PA-META-R9V, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-V8G, SSS-PA-VIS-B4F |
+| MetadataDefinition | In | SSS-PA-META-K7R | SSS-PA-META-R9V |
+| MetadataUsage | In | SSS-PA-META-W3D, SSS-PA-META-N8F, SSS-PA-META-H2T, SSS-PA-META-D5J, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-J1B, SSS-PA-META-V8G, SSS-PT-PUB-B9G | SSS-PA-META-R9V, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-V8G, SSS-PA-VIS-B4F |
 
 ### 8.12 SysML v2 — Occurrences and Individuals
 
