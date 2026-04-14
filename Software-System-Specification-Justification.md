@@ -39,3 +39,38 @@ The wording *"in hierarchical specifications"* in `SSS-PA-REQ-QP0` should theref
 
 This choice keeps Mycelium aligned with the SysML v2 metamodel rather than inventing a platform-specific `RequirementSpecification` concept that would not round-trip through the Systems Modeling API, and it avoids duplicating capabilities — visibility, imports, ownership, version control, publication via Mycelium Forge — that `Package` already provides. If a future SysML v2 point release or profile introduces a first-class `RequirementSpecification`, the wording of `SSS-PA-REQ-QP0` is general enough to be re-satisfied at that time without changing the intent of the requirement.
 
+## [SSS-PA-VIS-G1A, SSS-PA-VIS-G2B, SSS-PA-VIS-G3C, SSS-PA-VIS-G4D, SSS-PA-VIS-G5E, SSS-PA-VIS-G6F — 3D viewer](Software-System-Specification.md#521912-3d-model-viewer)
+
+### Starting point: the CDP4-COMET-WEB 3D viewer
+
+The 3D viewer capability in Mycelium is not new territory: it is a direct evolution of the 3D viewer already shipped in **CDP4-COMET-WEB**, the web-based front end of CDP4-COMET developed by Starion Group. In CDP4-COMET-WEB, the 3D scene is constructed entirely from the parameters carried by `ElementUsage`s in the iteration — geometric parameters such as centre of mass, orientation, and shape dimensions are read from the parameters of each `ElementUsage`, the viewer assembles the scene from those values, and the rendering updates live when any of the parameters change. Users can navigate the scene, select elements, see them highlighted in the product tree, and apply domain-of-expertise colouring. That capability has been validated over multiple ESA Concurrent Design Facility sessions and is a proven way to give engineers an immediate spatial intuition of the system they are designing without requiring CAD geometry to be authored first.
+
+Mycelium adopts the same design philosophy with one substitution: the underlying data model is SysML v2 instead of ECSS-E-TM-10-25. The role that `ElementUsage` + Parameters played in CDP4-COMET-WEB is played by `PartUsage` + `AttributeUsage` in Mycelium, and the role that the CDP4-COMET parameter library played (a catalogue of standard parameter types) is played by the `Mycelium::Geometry3D` `LibraryPackage` (a catalogue of standard `AttributeDefinition`s).
+
+### Why Attribute Usages are the default rendering source
+
+Early-phase system design in the ESA Concurrent Design Facility tradition — the primary use case Mycelium targets — starts long before any CAD data exists. At the Phase-0 / Phase-A stage the engineer typically knows, for each part of a spacecraft, the approximate mass, centre of mass, overall envelope, and rough orientation. CAD geometry does not arrive until much later. A 3D viewer that requires STEP or glTF geometry as its input is therefore useless in the phase where spatial intuition matters most. A 3D viewer that renders from a handful of engineering parameters is immediately useful, and the same parameters also feed mass budgets, inertia calculations, and layout studies.
+
+By declaring the geometric `AttributeUsage`s (`centerOfGravity`, `orientation`, `basicShape`, `dimensions`) as the **primary** rendering source:
+
+- The 3D viewer becomes available from the very first commit of a project, when only rough parameters exist.
+- The same numbers drive the 3D picture, the mass budget, and the inertia matrix — there is one source of truth.
+- Concurrent design sessions can update the 3D picture in real time simply by editing `AttributeUsage` values, without touching any CAD tool.
+- Ownership enforcement, commit / branch / merge semantics, and the notification pipeline apply to 3D content automatically because the 3D content *is* model content.
+
+### Why STEP and glTF files remain an optional source
+
+Later in the lifecycle — after Phase-B, when the design freezes and CAD files become available — the approximate parametric geometry is no longer the most accurate representation the team has. `SSS-PA-VIS-G3C` therefore permits a user to attach a STEP (ISO 10303) or glTF/GLB file to a `PartUsage` and to request that the 3D viewer render from that file instead. The attached file is positioned and oriented using the `centerOfGravity` and `orientation` Attribute Usages from `SSS-PA-VIS-G2B`, so the placement logic is consistent with the parametric rendering. This keeps a single viewer working across the whole lifecycle, from back-of-the-envelope Phase-0 sketches to CAD-dense Phase-C/D reviews, without forking into separate "early" and "late" viewers.
+
+### Why a dedicated Library Package
+
+Declaring the geometric Attribute Definitions once — in `Mycelium::Geometry3D` — and distributing them via Mycelium Forge rather than copying them into every project has three reasons:
+
+- **Interoperability.** Two projects that both use `Mycelium::Geometry3D` share the same Attribute Definitions; a `PartUsage` authored in project A can be imported into project B and rendered identically, because the rendering logic keys on the AttributeDefinition identity, not on structural shape matching.
+- **Reuse of standards.** The library imports quantity kinds, units, and scales from the SysML v2 Quantities and Units standard library (ISO 80000), so Mycelium does not redefine `kg`, `m`, or `rad`. This is the `SSS-PA-VIS-G5E` constraint: the library is allowed to import standard libraries but not to duplicate them.
+- **Versioning.** Like any other Library Package, `Mycelium::Geometry3D` is versioned, published, and imported via the normal Forge flow, so the 3D rendering contract between Mycelium Bloom and user projects is an explicit, traceable contract with a visible version history instead of a hidden hard-coded assumption inside Bloom.
+
+### Continuity with CDP4-COMET-WEB
+
+Because the underlying design philosophy is identical, users migrating from CDP4-COMET-WEB should find the Mycelium 3D viewer immediately familiar: the same kinds of values produce the same kind of picture. The only change is that the values now live on SysML v2 `AttributeUsage`s typed by standard Mycelium Attribute Definitions, instead of on ECSS-E-TM-10-25 `Parameter`s typed by a parameter type library. The migration of a CDP4-COMET `Iteration` into Mycelium preserves the values of the geometric parameters and binds them to the corresponding AttributeUsages in `Mycelium::Geometry3D`, so a project that was renderable in CDP4-COMET-WEB remains renderable in Mycelium after migration.
+
