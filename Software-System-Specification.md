@@ -333,7 +333,7 @@ The core of system modeling is defining the building blocks (Definitions) of the
 | ID | Roles | Requirement | Ref |
 |----|-------|-------------|-----|
 | SSS-PA-ARCH-JQH | PA, PT | Mycelium Bloom shall support defining Part Definitions as reusable building blocks and instantiating them as Part Usages within the system hierarchy when "a user creates a new Part Definition or instantiates an existing one." | SysML 7.9 |
-| SSS-PA-ARCH-TB2 | PA, PT | Mycelium Bloom shall support decomposing the system into hierarchical levels (System, Subsystem, Equipment, Component) when "a user adds child parts to an existing part in the model hierarchy." | SysML 7.9 |
+| SSS-PA-ARCH-TB2 | PA, PT | Mycelium Bloom shall support decomposing the system into hierarchical levels (e.g. System, Subsystem, Equipment, Component) when "a user adds child parts to an existing part in the model hierarchy." | SysML 7.9 |
 | SSS-PA-ARCH-5RR | PA, PT | Mycelium Bloom shall support defining Port Definitions and instantiating them as Port Usages on parts to specify interaction points with direction (in, out, inout) when "a user adds a port to a selected part." | SysML 7.11 |
 | SSS-PA-ARCH-IGA | PA, PT | Mycelium Bloom shall support creating Connection Definitions, Connection Usages, Interface Definitions, and Interface Usages between parts to model integration and data flow when "a user selects two compatible ports and creates a connection or interface." | SysML 7.12, 7.13 |
 | SSS-PA-ARCH-Y2D | PA, PT | Mycelium Bloom shall create a Binding Connector that asserts equality between two compatible features of model elements when "a user selects two features and creates a binding between them." | KerML 7.13.3 |
