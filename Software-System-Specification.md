@@ -539,6 +539,13 @@ Beyond structure, systems exhibit behavior: actions performed, states held, tran
 | SSS-PA-BEH-TG6 | PA, PT | Mycelium Bloom shall set the trigger (an Accept Action Usage), the guard (a Boolean Expression), and the effect (an Action Usage) of a Transition Usage when "a user edits the trigger, guard, or effect of a Transition Usage." | SysML 7.17 |
 | SSS-PA-VIS-SH7 | PA, PT, VW | Mycelium Bloom shall display the state-machine structure of a State Definition in its detail panel — showing the default state, the nested State Usages, the parallel regions, the Entry / Do / Exit Actions on each State Usage, and the outgoing Transition Usages with their triggers, guards, and effects — when "a user views a State Definition that owns at least one State Usage or Transition Usage." | SysML 7.17 |
 | SSS-FB-BEH-SV8 | - | Mycelium Fabric shall return a validation warning identifying any State Usage that is unreachable from the default state of its owning State Definition, and any State Usage that has two or more outgoing Transition Usages with the same trigger and an overlapping guard, when "a client runs model validation or submits a commit containing a State Definition." | SysML 7.17 |
+| SSS-PA-BEH-A1C | PA, PT | Mycelium Bloom shall create an Accept Action Usage that waits for an incoming payload matching a specified trigger Feature, optionally typed and guarded, when "a user adds an accept-action node to an Action Flow View or to an Action Definition in the detail panel." | SysML 7.16.5 |
+| SSS-PA-BEH-S2N | PA, PT | Mycelium Bloom shall create a Send Action Usage that emits a payload Expression to a target Feature when "a user adds a send-action node to an Action Flow View or to an Action Definition in the detail panel." | SysML 7.16.5 |
+| SSS-PA-BEH-A3S | PA, PT | Mycelium Bloom shall create an Assignment Action Usage that assigns the value of a source Expression to a target Feature when "a user adds an assignment-action node to an Action Flow View or to an Action Definition in the detail panel." | SysML 7.16.5 |
+| SSS-PA-BEH-I4F | PA, PT | Mycelium Bloom shall create an If Action Usage composed of a Boolean condition Expression, a then-branch Action Usage, and an optional else-branch Action Usage when "a user adds an if-action to an Action Flow View or to an Action Definition." | SysML 7.16.5 |
+| SSS-PA-BEH-W5H | PA, PT | Mycelium Bloom shall create a While Loop Action Usage composed of a Boolean condition Expression and a body Action Usage that executes as long as the condition holds when "a user adds a while-loop to an Action Flow View or to an Action Definition." | SysML 7.16.5 |
+| SSS-PA-BEH-F6L | PA, PT | Mycelium Bloom shall create a For Loop Action Usage composed of a loop-variable Feature, a collection Expression, and a body Action Usage that executes once for each element of the collection when "a user adds a for-loop to an Action Flow View or to an Action Definition." | SysML 7.16.5 |
+| SSS-FB-BEH-C7F | - | Mycelium Fabric shall return a validation warning identifying any Decision Node with an outgoing Succession lacking a guard, any Fork Node without a matching Join Node in the same Action, any Action Usage reachable from no Succession source, and any Loop Action Usage whose condition Expression does not terminate in a finite number of iterations under trivial inputs, when "a client runs model validation or submits a commit containing an Action Definition." | SysML 7.16 |
 
 ##### 5.2.1.8 Analysis and verification
 
@@ -1250,19 +1257,19 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | --- | --- | --- | --- |
 | ActionDefinition | In | SSS-PA-BEH-N5Z | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R, SSS-PA-VIS-M1Z |
 | ActionUsage | In | SSS-PA-BEH-N5Z, SSS-PA-BEH-WG5, SSS-PA-BEH-H83 | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R, SSS-PA-VIS-J6N, SSS-PA-VIS-M1Z |
-| AcceptActionUsage | In | TBC | TBC |
-| SendActionUsage | In | TBC | TBC |
-| AssignmentActionUsage | In | TBC | TBC |
-| IfActionUsage | In | TBC | TBC |
-| WhileLoopActionUsage | In | TBC | TBC |
-| ForLoopActionUsage | In | TBC | TBC |
-| PerformActionUsage | In | SSS-PA-BEH-H83 | TBC |
+| AcceptActionUsage | In | SSS-PA-BEH-A1C | SSS-PA-VIS-M1Z |
+| SendActionUsage | In | SSS-PA-BEH-S2N | SSS-PA-VIS-M1Z |
+| AssignmentActionUsage | In | SSS-PA-BEH-A3S | SSS-PA-VIS-M1Z |
+| IfActionUsage | In | SSS-PA-BEH-I4F | SSS-PA-VIS-M1Z |
+| WhileLoopActionUsage | In | SSS-PA-BEH-W5H | SSS-PA-VIS-M1Z |
+| ForLoopActionUsage | In | SSS-PA-BEH-F6L | SSS-PA-VIS-M1Z |
+| PerformActionUsage | In | SSS-PA-BEH-H83 | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
 | TerminateActionUsage | Deferred | TBC | TBC |
-| ControlNode | In | TBC | TBC |
-| DecisionNode | In | TBC | TBC |
-| MergeNode | In | TBC | TBC |
-| ForkNode | In | TBC | TBC |
-| JoinNode | In | TBC | TBC |
+| ControlNode | In | SSS-PA-BEH-WG5, SSS-FB-BEH-C7F | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
+| DecisionNode | In | SSS-PA-BEH-WG5, SSS-FB-BEH-C7F | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
+| MergeNode | In | SSS-PA-BEH-WG5 | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
+| ForkNode | In | SSS-PA-BEH-WG5, SSS-FB-BEH-C7F | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
+| JoinNode | In | SSS-PA-BEH-WG5, SSS-FB-BEH-C7F | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
 
 ### 8.6 SysML v2 — States and Transitions
 
