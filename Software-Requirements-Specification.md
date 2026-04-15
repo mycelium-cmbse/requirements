@@ -19,7 +19,7 @@ This document is the primary input for the Preliminary Design Review (PDR).
 This Software Requirements Specification (SRS) elaborates the requirements defined in the [Software System Specification (SSS)](Software-System-Specification.md) into detailed, implementation-oriented requirements for the Mycelium platform. It addresses the three Mycelium components:
 
 - **Mycelium Bloom** — the end-user web application (ASP.NET Blazor)
-- **Mycelium Fabric** — the backend server (ASP.NET, CarterCommunity, Microsoft Orleans)
+- **Mycelium Fabric** — the backend server (ASP.NET, CarterCommunity)
 - **Mycelium Forge** — the package registry for SysML v2 model libraries
 
 ---
@@ -219,7 +219,7 @@ TBD — Hardware resource requirements, sizing and timing constraints, software 
 
 ### 5.7 Design requirements and implementation constraints
 
-TBD — Technology stack constraints (C#, .NET 10, Blazor, Carter, Orleans, PostgreSQL), coding standards, design patterns.
+TBD — Technology stack constraints (C#, .NET 10, Blazor, Carter, PostgreSQL), coding standards, design patterns.
 
 ### 5.8 Security and privacy requirements
 

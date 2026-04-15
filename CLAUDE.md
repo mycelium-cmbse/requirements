@@ -22,7 +22,7 @@ The system has five main components:
 
 1. **C# SDK** - Auto-generated C# classes/interfaces mirroring the SysML v2 metamodel. Handles JSON/XMI/MessagePack serialization and provides a REST HTTP client for communicating with the model server.
 
-2. **Model Server (Mycelium Fabric)** - ASP.NET backend using CarterCommunity API framework and Microsoft Orleans for concurrent state management. Implements the OMG Systems Modelling API and Services specification. SQL persistence with auto-generated schemas. Authentication via Keycloak supporting JWT, OIDC, LDAP, SAML.
+2. **Model Server (Mycelium Fabric)** - ASP.NET backend using the CarterCommunity API framework. Implements the OMG Systems Modelling API and Services specification. Stateless horizontally scalable service with PostgreSQL as the source of truth (auto-generated schemas from the SysML v2 metamodel). Concurrency handled by Git-style commit-based optimistic concurrency at the database layer, not by an in-memory actor framework. Real-time notifications via SignalR backed by a RabbitMQ backplane. Background jobs via `IHostedService` and RabbitMQ. Authentication via Keycloak supporting JWT, OIDC, LDAP, SAML.
 
 3. **Web Application (Mycelium Bloom)** - ASP.NET Blazor frontend (full-stack C#). Includes model browser, diagram editors, property editors, validation dashboards, and collaborative views. Real-time notifications via SignalR. Selectively exposes SysML v2 concepts relevant to early-phase design.
 
@@ -33,7 +33,7 @@ The system has five main components:
 ## Technology Stack
 
 - **Language:** C#
-- **Backend:** ASP.NET, CarterCommunity, Microsoft Orleans
+- **Backend:** ASP.NET, CarterCommunity
 - **Frontend:** ASP.NET Blazor
 - **Real-time:** SignalR
 - **Messaging:** RabbitMQ (via Mercurio)
