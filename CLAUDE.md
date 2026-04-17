@@ -50,7 +50,7 @@ The system has five main components:
 
 ## Repository Structure
 
-- `proposal/` - ESA proposal documents (technical and implementation)
+- `proposal/` - ESA proposal documents (technical)
 - `cdp4-comet/` - CDP4-COMET user manual reference
 - `Reference Documentation/` - SysML v2 and KerML specification documents (textified PDFs)
 - `Software-System-Specification.md` - Software System Specification (SSS) per ECSS-E-ST-40C Annex B — customer requirements, reviewed at SRR
@@ -104,3 +104,7 @@ Where component is: Mycelium Bloom (frontend), Mycelium Fabric (backend), or Myc
 - SRS requirement IDs follow the convention `SRS-<area>-<number>`
 - Documents follow ECSS-E-ST-40C Rev.1: SSS (Annex B) for customer requirements reviewed at SRR, SRS (Annex D) for supplier requirements reviewed at PDR
 - The SSS is organized by ECSS Annex B DRD structure: sections 1-4 (introduction/context), section 5 (specific requirements with capabilities organized by component: 5.2.1 Bloom, 5.2.2 Fabric, 5.2.3 Forge), sections 5.3-5.13 (non-functional requirements), section 6 (V&V), section 7 (system models)
+
+## tool usaage
+
+- do not use python, use c# .net 10 single file scripts for local automation
