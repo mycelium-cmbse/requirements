@@ -12,7 +12,7 @@ Every verb must describe something the software actively does: renders a UI, pro
 
 Each requirement has a unique identifier.
 
-The requirements are organized in tables. The tables list the `Requirement Identifier`, the `roles` it applies to, the requirement body or text and a `reference` to the Kerml or SysML2 specification in case this is applicable. If the kerml or syml2 reference is not applicable a `-` is used.
+The requirements are organized in tables. The tables list the `Requirement Identifier`, the `roles` it applies to, the requirement body or text and a `reference` to the Kerml or SysML2 specification in case this is applicable. If the kerml or syml2 reference is not applicable a `-` is used. The last two columns describe the priority (`low`, `medium`, `high`) and the estimated effort.
 
 ---
 
@@ -140,7 +140,7 @@ The platform consists of three components:
 The Mycelium platform provides the following high-level capabilities:
 
 - SysML v2 model creation, browsing, editing and visualization.
-- Concurrent design session support for 20-30 simultaneous participants.
+- Concurrent design session support for 20-30 simultaneous participants on one project.
 - Lock-free collaborative modeling with ownership-based access control.
 - Version control with branching, merging, tagging and commit history.
 - Requirements management with traceability to design elements.
@@ -155,7 +155,7 @@ The Mycelium platform provides the following high-level capabilities:
 - The platform shall natively implement the SysML v2 metamodel (OMG formal/25-09-03) as its data model.
 - The model server shall conform to the OMG Systems Modelling API and Services specification (formal/25-09-04) using the REST/HTTP PSM.
 - The platform shall support the Kernel Modelling Language (KerML) as the underlying formalism for SysML v2.
-- The web application shall not provide SysML v2 textual notation editing or parsing capabilities; textual notation is generated read-only.
+- The web application shall not provide SysML v2 textual notation editing or parsing capabilities; The sysml v2 textual notation is generated read-only.
 
 ### 4.4 Operational environment
 
