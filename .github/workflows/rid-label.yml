@@ -13,6 +13,9 @@ jobs:
       - uses: actions/github-script@v7
         with:
           script: |
+            const issueLabels = context.payload.issue.labels.map(l => l.name);
+            if (!issueLabels.includes("rid")) return;
+            
             const body = context.payload.issue.body ?? "";
 
             function extract(heading) {
@@ -64,7 +67,7 @@ jobs:
             };
 
             // Collect matched labels
-            const labels = ["rid"];
+            const labels = [];
             if (matchMap(review, reviewMap))     labels.push(matchMap(review, reviewMap));
             if (matchMap(document, documentMap)) labels.push(matchMap(document, documentMap));
             if (matchMap(severity, severityMap)) labels.push(matchMap(severity, severityMap));
