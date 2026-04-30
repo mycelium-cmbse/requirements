@@ -21,9 +21,15 @@ jobs:
               );
               return match ? match[1].trim() : null;
             }
+            
+            function matchMap(value, map) {
+              if (!value) return null;
+              const key = Object.keys(map).find(k => value.startsWith(k));
+              return key ? map[key] : null;
+            }
 
             const review   = extract("Review");
-            const document = extract("Document");
+            const document = extract("Document under review");
             const severity = extract("Severity");
             const category = extract("Category");
 
@@ -59,10 +65,10 @@ jobs:
 
             // Collect matched labels
             const labels = ["rid"];
-            if (reviewMap[review])     labels.push(reviewMap[review]);
-            if (documentMap[document]) labels.push(documentMap[document]);
-            if (severityMap[severity]) labels.push(severityMap[severity]);
-            if (categoryMap[category]) labels.push(categoryMap[category]);
+            if (matchMap(review, reviewMap))     labels.push(matchMap(review, reviewMap));
+            if (matchMap(document, documentMap)) labels.push(matchMap(document, documentMap));
+            if (matchMap(severity, severityMap)) labels.push(matchMap(severity, severityMap));
+            if (matchMap(category, categoryMap)) labels.push(matchMap(category, categoryMap));
 
             await github.rest.issues.addLabels({
               owner:        context.repo.owner,
