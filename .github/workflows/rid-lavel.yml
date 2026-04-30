@@ -1,0 +1,72 @@
+﻿name: Auto-label RID fields
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.issue.body ?? "";
+
+            function extract(heading) {
+              const match = body.match(
+                new RegExp(`###\\s*${heading}\\s*\\n+([^\\n#]+)`)
+              );
+              return match ? match[1].trim() : null;
+            }
+
+            const review   = extract("Review");
+            const document = extract("Document");
+            const severity = extract("Severity");
+            const category = extract("Category");
+
+            // Map form values → labels
+            const reviewMap = {
+              "SRR": "review:SRR",
+              "PDR": "review:PDR",
+              "CDR": "review:CDR",
+              "QR":  "review:QR",
+              "AR":  "review:AR",
+              "ORR": "review:ORR",
+            };
+
+            const documentMap = {
+              "Software-System-Specification.md (SSS)":   "doc:SSS",
+              "Software-Requirements-Specification.md (SRS)":   "doc:SRS",
+              "Roles-and-Permissions.md": "doc:roles",
+              "Other (specify in Location)": "doc:other",
+            };
+
+            const severityMap = {
+              "Critical":  "sev:critical",
+              "Major":     "sev:major",
+              "Minor":     "sev:minor",
+              "Editorial": "sev:editorial",
+            };
+
+            const categoryMap = {
+              "Technical": "cat:technical",
+              "Editorial": "cat:editorial",
+              "Question / Request for clarification":  "cat:question",
+            };
+
+            // Collect matched labels
+            const labels = ["rid"];
+            if (reviewMap[review])     labels.push(reviewMap[review]);
+            if (documentMap[document]) labels.push(documentMap[document]);
+            if (severityMap[severity]) labels.push(severityMap[severity]);
+            if (categoryMap[category]) labels.push(categoryMap[category]);
+
+            await github.rest.issues.addLabels({
+              owner:        context.repo.owner,
+              repo:         context.repo.repo,
+              issue_number: context.issue.number,
+              labels,
+            });
