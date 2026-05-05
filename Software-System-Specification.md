@@ -567,13 +567,14 @@ Engineers need to evaluate design quality and verify that requirements are met. 
 | SSS-PA-AV-LLI | PA | Mycelium Bloom shall support setting up Trade Studies to compare design alternatives using evaluation functions and objectives (maximize/minimize) when "the Project Administrator creates a Trade Study and specifies alternatives, criteria, and objective functions." | - | H |  |
 | SSS-PA-AV-O9U | PA, PT | Mycelium Bloom shall link a Case (Use Case, Analysis Case, or Verification Case) to its objective Requirement by creating an ObjectiveMembership referencing the target Requirement Usage when "a user sets the objective of a Case from a selected Requirement." | SysML 8.3.14 | H |  |
 | SSS-PT-ANALYSIS-4W2 | PT | Mycelium Bloom shall support defining Calculation Definitions and instantiating them as Calculation Usages to express domain-specific computations over model attributes when "the Participant creates a Calculation Definition and specifies input parameters, output parameters, and the computation expression." | SysML 7.19 | H |  |
-| SSS-PT-ANALYSIS-NWL | PT | Mycelium Bloom shall support defining parametric Constraint Usages within their Ownership to validate design feasibility when "the Participant creates a Constraint Usage referencing model attributes within their Ownership." | SysML 7.20 |  |  |
-| SSS-PT-ANALYSIS-EAJ | PA, PT, VW | Mycelium Bloom shall display constraint evaluation results showing which constraints pass or violate when "a user navigates to the constraint evaluation view or triggers constraint evaluation." | SysML 7.20 |  |  |
-| SSS-PA-AV-2RG | PA, PT, VW | Mycelium Bloom shall display a validation dashboard showing model quality, constraint violations, and verification status when "a user navigates to the validation dashboard view." | - |  |  |
+| SSS-PT-ANALYSIS-EAJ | PA, PT, VW | Mycelium Bloom shall display constraint evaluation results showing which constraints pass or violate when "a user navigates to the constraint evaluation view or triggers constraint evaluation." | SysML 7.20 | H |  |
+| SSS-PA-AV-2RG | PA, PT, VW | Mycelium Bloom shall display a validation dashboard showing model quality, constraint violations, and verification status when "a user navigates to the validation dashboard view." | - | H |  |
 
 ###### 5.2.1.8a In-browser scripting
 
 Some analyses cannot be expressed declaratively and require imperative computation. Mass budgets, power budgets, and complex requirements verification often need iteration and aggregation across the product tree. The requirements in this section describe a desirable in-browser scripting environment that runs computational analyses against model data without leaving the application.
+
+> Even though these requirements are set to M and L, being able to provide support for this in the future must be taken into account in the architecture of the web application.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
@@ -594,7 +595,7 @@ Mycelium Bloom must render model elements using the symbols defined in SysML v2 
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-VIS-X4G | PA, PT, VW | Mycelium Bloom shall render all model elements using the graphical notation symbols defined in SysML v2 Part 1, section 8.2.3, including Definition and Usage node headers with guillemet kind designators (e.g. «part def», «action», «requirement»), compartment layouts, relationship lines, and adornments when "any diagram view displays model elements." | SysML 8.2.3 |  |  |
+| SSS-PA-VIS-X4G | PA, PT, VW | Mycelium Bloom shall render all model elements using the graphical notation symbols defined in SysML v2 Part 1, section 8.2.3, including Definition and Usage node headers with guillemet kind designators (e.g. «part def», «action», «requirement»), compartment layouts, relationship lines, and adornments when "any diagram view displays model elements." | SysML 8.2.3 | H |  |
 | SSS-PA-VIS-L7Q | PA, PT, VW | Mycelium Bloom shall visually distinguish Definition nodes from Usage nodes by displaying the `def` keyword in the guillemet header of Definition nodes (e.g. «part def») and omitting it for Usage nodes (e.g. «part») when "a diagram renders Definition and Usage elements." | SysML 8.2.3 |  |  |
 | SSS-PA-VIS-R3F | PA, PT | Mycelium Bloom shall create the corresponding graphical node on the diagram canvas when "a user drags a model element from the model browser or a tabular browser and drops it onto a diagram." | - |  |  |
 | SSS-PA-VIS-K8M | PA, PT | Mycelium Bloom shall create the corresponding model element in the underlying model when "a user creates a new graphical node or relationship on a diagram canvas using the diagram toolbox." | - |  |  |
