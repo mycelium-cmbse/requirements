@@ -74,3 +74,23 @@ Declaring the geometric Attribute Definitions once — in `Mycelium::Geometry3D`
 
 Because the underlying design philosophy is identical, users migrating from CDP4-COMET-WEB should find the Mycelium 3D viewer immediately familiar: the same kinds of values produce the same kind of picture. The only change is that the values now live on SysML v2 `AttributeUsage`s typed by standard Mycelium Attribute Definitions, instead of on ECSS-E-TM-10-25 `Parameter`s typed by a parameter type library. The migration of a CDP4-COMET `Iteration` into Mycelium preserves the values of the geometric parameters and binds them to the corresponding AttributeUsages in `Mycelium::Geometry3D`, so a project that was renderable in CDP4-COMET-WEB remains renderable in Mycelium after migration.
 
+## [SSS-PA-VIS-C9K](Software-System-Specification.md#52191-graphical-notation-compliance)
+
+### Why custom icons and images matter
+
+The primary audience for a Mycelium diagram is not always a SysML v2 specialist. In a Concurrent Design Facility (CDF) session — Mycelium's primary use case — the room is full of subject-matter experts (thermal, power, propulsion, mechanical, communications) who care about *the system being designed*, not about the modelling language used to express it. The SysML v2 graphical notation, faithful as it is, communicates structure through abstract rectangles, guillemet keywords, and stereotyped lines. To a thermal engineer skimming a diagram during a session, a `«part» battery1` rectangle and a `«part» radio2` rectangle look the same: both are rectangles with text inside. The notation tells them this is a `part`; it does not tell them, at a glance, that one is a battery and the other is a radio.
+
+A small picture closes that gap immediately. A battery icon next to (or in place of) the standard rectangle, a radio icon for the radio, an antenna icon for the antenna — and a non-MBSE participant can read the diagram the way they read a hardware block diagram on a whiteboard. The semantic content is unchanged, the SysML v2 metamodel is untouched; the diagram simply becomes more legible for the people who need to read it.
+
+### Why uploading is required, not a built-in catalogue
+
+Mycelium cannot ship a fixed library of icons that covers every domain its users will model — spacecraft subsystems, terrestrial industrial equipment, robotics, biomedical devices, scientific instruments. Any built-in catalogue is necessarily incomplete and biased toward whatever domain the platform was first built for. Allowing the user to upload or select a custom icon (or full image) per element lets each project team build a visual vocabulary that matches its own domain, without waiting for Mycelium to add support for it.
+
+### Why both Definition and Usage
+
+SysML v2 separates *what something is* (a `Definition`, e.g. `part def Battery`) from *which one we mean* (a `Usage`, e.g. `mainBattery : Battery`). Allowing an icon to be set at either level supports two common authoring patterns:
+
+- **At the Definition** — economical: one upload of a generic battery icon causes every `Usage` of that `Definition` to render with the same picture across every diagram in the project.
+- **At the Usage** — specific: a particular `Usage` can override the inherited icon to show, for example, a distinct picture of the *primary* battery versus the *redundant* battery when the design needs to distinguish them visually.
+
+This upload requirement is paired with the rendering requirement [SSS-PA-VIS-J2R](Software-System-Specification.md#52191-graphical-notation-compliance), which actually places the icon or image on the diagram, and with [SSS-PA-VIS-A6F](Software-System-Specification.md#52191-graphical-notation-compliance), which keeps the element's name and type designator visible alongside the custom icon so that legibility for non-experts does not come at the cost of unambiguous identification for SysML v2 readers.

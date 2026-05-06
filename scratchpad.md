@@ -12,3 +12,4 @@ SSS-PA-TRACE-F5M -> check for sensibility
 SSS-FB-BEH-C7F -> check if this is the right location
 
 resume at line XXX
+When a Definition or Usage has an icon associated to it, show in the tabular browsers
