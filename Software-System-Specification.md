@@ -269,7 +269,7 @@ The following lifecycle states are defined (TBC):
 | SSS-PA-STATE-Q8L | All | Mycelium Bloom shall assign Preparation as the default lifecycle state to a newly created project when "a user creates a new project and the organization has not configured a different default state." | - | H |  |
 | SSS-OA-STATE-Z3W | OA | Mycelium Bloom shall provide a setting to configure the default project lifecycle state for newly created projects within the organization when "the Organization Administrator accesses the organization's project defaults settings." | - | M |  |
 
-##### 5.2.1.3 Live collaboration
+##### 5.2.1.3 Collaboration and awareness
 
 Mycelium is a multi-user platform: in any project, several engineers from different ownerships are typically working on the model at the same time. The requirements in this section cover how Mycelium Bloom and Mycelium Fabric make collaboration *live*, visible, immediate, and lock-free, so that every user has continuous awareness of who else is in the project, what they are working on, and what is changing. Subsections cover project-level presence, per-view co-presence, real-time model updates, and conflict signalling.
 
@@ -286,6 +286,21 @@ When a user opens a project, they should see at a glance who else is currently w
 | SSS-CC-PRESENCE-F8M | All | Mycelium Bloom shall display the connected Account's full display name, identifier, and connected-since timestamp in a tooltip or popover when "a user hovers over or activates an entry in the project presence indicator." | - | M |  |
 | SSS-CC-PRESENCE-G1R | All | Mycelium Bloom shall visually distinguish the local user's own entry in the project presence indicator (e.g. labelled "You" or rendered in a distinct slot) when "the project presence indicator includes the local user." | - | M |  |
 | SSS-CC-PRESENCE-H6T | All | Mycelium Fabric shall publish a project presence event to all clients connected to a project when "an Account connects to or disconnects from the project." | - | H |  |
+
+##### 5.2.1.3b Deep linking and sharing
+
+Engineers need to share specific surfaces of the model — a part, a requirement, a diagram, or an element pinned to a particular view — by copying a URL into email, chat, a comment, or a browser bookmark. The recipient pastes the URL and lands directly on that surface, signed in if necessary. The requirements in this section cover URL addressability of every navigable surface, an in-app "copy link" affordance, and the resolution behavior when a URL is opened (including stability across renames, scoping to a specific view, and graceful handling of missing or inaccessible targets). These requirements are also the technical foundation for future external integrations (chat, email, third-party notification routing) that embed Mycelium URLs.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-CC-LINK-A2P | All | Mycelium Bloom shall expose every project, branch, model element, view, and diagram as a unique URL displayed in the browser address bar when "a user has a project, branch, element, view, or diagram open." | - | H |  |
+| SSS-CC-LINK-B5R | All | Mycelium Bloom shall provide a "copy link" action on the detail panel and on the context (right-click) menu of every model element, view, and diagram that copies the current URL to the clipboard when "a user activates the copy link action." | - | H |  |
+| SSS-CC-LINK-D8K | All | Mycelium Bloom shall navigate the user to the addressed project, branch, element, view, or diagram when "a user opens a Mycelium URL." | - | H |  |
+| SSS-CC-LINK-E3M | All | Mycelium Bloom shall redirect the user through the authentication flow and resume navigation to the originally addressed surface after sign-in when "a user opens a Mycelium URL while not authenticated." | - | H |  |
+| SSS-CC-LINK-F7N | All | Mycelium Bloom shall encode the branch (and optionally the commit) of the model in URLs it generates so that a shared link resolves to the same model state the link author was viewing when "Mycelium Bloom generates a shareable URL." | - | H |  |
+| SSS-CC-LINK-G1V | All | Mycelium Bloom shall construct URLs using stable element identifiers so that the URL remains valid across element renames and namespace moves when "Mycelium Bloom generates a URL referencing a model element." | - | H |  |
+| SSS-CC-LINK-H4T | All | Mycelium Bloom shall accept a URL that scopes a model element to a specific view, open that view, and select and center the addressed element when "a user opens a URL combining a view identifier and an element identifier." | - | M |  |
+| SSS-CC-LINK-J9W | All | Mycelium Bloom shall display an informative message indicating whether the target was deleted, moved, or is inaccessible due to permissions when "a user opens a Mycelium URL whose target cannot be resolved or is not accessible." | - | M |  |
 
 ##### 5.2.1.4 Model navigation and browsing
 
