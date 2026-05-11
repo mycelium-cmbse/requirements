@@ -10,6 +10,7 @@ SSS-PA-REQ-D7V -> reqif import -> using statements
 SSS-PA-REQ-D7W -> reqif import -> using statements
 SSS-PA-TRACE-F5M -> check for sensibility
 SSS-FB-BEH-C7F -> check if this is the right location
+SSS-PT-CDS-I22 -> product tree for a design variant?
 
 resume at line XXX
 When a Definition or Usage has an icon associated to it, show in the tabular browsers

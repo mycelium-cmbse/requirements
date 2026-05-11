@@ -273,7 +273,18 @@ The following lifecycle states are defined (TBC):
 
 Mycelium is a multi-user platform: in any project, several engineers from different ownerships are typically working on the model at the same time. The requirements in this section cover how Mycelium Bloom and Mycelium Fabric make collaboration *live*, visible, immediate, and lock-free, so that every user has continuous awareness of who else is in the project, what they are working on, and what is changing. Subsections cover project-level presence, per-view co-presence, real-time model updates, and conflict signalling.
 
-###### 5.2.1.3a Project-level user presence
+###### 5.2.1.3a User profile
+
+Users have a profile showing their identity, projects, and contributions. The requirements in this section cover the profile page contents — personal details, project list with key metadata, and a contribution heatmap showing activity over time.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-CC-PROF-L6D | All | Mycelium Bloom shall display the user's profile details, a list of all projects the user is a member of, and a contribution heatmap when "a user navigates to their profile page." | - |  |  |
+| SSS-CC-PROF-52O | All | Mycelium Bloom shall display each project in the profile project list with: project name, description, license, last updated date, visibility (private, organization, public), and activity sparkline when "the user views their profile project list." | - |  |  |
+
+---
+
+###### 5.2.1.3b Project-level user presence
 
 When a user opens a project, they should see at a glance who else is currently working in the same project — without having to navigate to a separate panel. This is the equivalent of the avatar cluster Microsoft Word and Google Docs show in a shared document's title bar: a small, always-visible indication that "I am not alone here". The requirements in this subsection cover the **project-level** presence indicator only. Per-diagram presence (who is on a specific diagram and what their pointer is doing) is covered separately by `SSS-PA-VIS-C6F` and `SSS-PA-VIS-C7G`. Per-document, per-table, and other view-level presence indicators are deferred to a later iteration.
 
@@ -287,7 +298,9 @@ When a user opens a project, they should see at a glance who else is currently w
 | SSS-CC-PRESENCE-G1R | All | Mycelium Bloom shall visually distinguish the local user's own entry in the project presence indicator (e.g. labelled "You" or rendered in a distinct slot) when "the project presence indicator includes the local user." | - | M |  |
 | SSS-CC-PRESENCE-H6T | All | Mycelium Fabric shall publish a project presence event to all clients connected to a project when "an Account connects to or disconnects from the project." | - | H |  |
 
-##### 5.2.1.3b Deep linking and sharing
+---
+
+###### 5.2.1.3c Deep linking and sharing
 
 Engineers need to share specific surfaces of the model — a part, a requirement, a diagram, or an element pinned to a particular view — by copying a URL into email, chat, a comment, or a browser bookmark. The recipient pastes the URL and lands directly on that surface, signed in if necessary. The requirements in this section cover URL addressability of every navigable surface, an in-app "copy link" affordance, and the resolution behavior when a URL is opened (including stability across renames, scoping to a specific view, and graceful handling of missing or inaccessible targets). These requirements are also the technical foundation for future external integrations (chat, email, third-party notification routing) that embed Mycelium URLs.
 
@@ -301,6 +314,36 @@ Engineers need to share specific surfaces of the model — a part, a requirement
 | SSS-CC-LINK-G1V | All | Mycelium Bloom shall construct URLs using stable element identifiers so that the URL remains valid across element renames and namespace moves when "Mycelium Bloom generates a URL referencing a model element." | - | H |  |
 | SSS-CC-LINK-H4T | All | Mycelium Bloom shall accept a URL that scopes a model element to a specific view, open that view, and select and center the addressed element when "a user opens a URL combining a view identifier and an element identifier." | - | M |  |
 | SSS-CC-LINK-J9W | All | Mycelium Bloom shall display an informative message indicating whether the target was deleted, moved, or is inaccessible due to permissions when "a user opens a Mycelium URL whose target cannot be resolved or is not accessible." | - | M |  |
+
+---
+
+##### 5.2.1.X Concurrent design sessions
+
+Concurrent design brings 20-30 engineers from different domains into the same room (or video call) to design a system together in real time. Mycelium must handle this scale, propagate changes across all connected users, and present session-aware views that show what is happening across the team. The requirements in this section cover concurrent session participation and the views engineers need during a session.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PT-CDS-RKV | PA, PT | Mycelium Bloom shall support concurrent design sessions with 20-30 Participants from multiple Ownerships working simultaneously when "multiple Participants are connected to the same project and actively modifying model data." | - |  |  |
+| SSS-PT-CDS-I22 | PA, PT, VW | Mycelium Bloom shall display the product tree showing the full system decomposition with ownership indicators when "a user navigates to the product tree view during a design session." | - |  |  |
+| SSS-PT-CDS-9ZA | PA, PT | Mycelium Bloom shall persist updated attribute values to the shared model when "a Participant commits attribute changes during a concurrent design session." | - |  |  |
+| SSS-PT-CDS-YGL | PA, PT, VW | Mycelium Bloom shall display a dashboard tracking design drivers and key attribute evolution across Commits when "a user navigates to the design convergence dashboard." | - |  |  |
+| SSS-PT-CDS-TGV | PA, PT, VW | Mycelium Bloom shall display a comparison of attribute values between Commits or Tags when "a user selects two Commits or Tags for attribute comparison." | - |  |  |
+| SSS-VW-OBS-UZS | VW | Mycelium Bloom shall render a concurrent design session with real-time model updates without editing capability when "a Viewer joins an active design session." | - |  |  |
+| SSS-VW-OBS-GU1 | PA, PT, VW | Mycelium Bloom shall display which Participants are active and which Ownerships they are editing when "a user views the session participant list." | - |  |  |
+
+###### 5.2.1.13a Element history and design convergence
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-HIST-K3R | PA, PT, VW | Mycelium Bloom shall display the value history of one or more selected attributes as a time-series chart plotting the attribute values across Commits or Tags on the active branch when "a user opens the attribute history view and selects one or more attributes." | - |  |  |
+| SSS-PA-HIST-T6W | PA, PT, VW | Mycelium Bloom shall render multiple attributes of different quantity kinds on the same chart using independent Y-axes (one per quantity kind) with distinct colors and a shared Commit/Tag X-axis when "a user selects attributes with different units or quantity kinds for the attribute history view." | - |  |  |
+| SSS-PA-HIST-V2P | PA, PT, VW | Mycelium Bloom shall display the unit and quantity kind label on each Y-axis and provide a legend identifying each plotted attribute by name, element, and unit when "the attribute history chart displays multiple attributes." | - |  |  |
+| SSS-PA-HIST-W8D | PA, PT, VW | Mycelium Bloom shall display the change history of any model element listing all Commits in which the element was created, modified, or deleted, with the commit author, date, and description, when "a user opens the element history view." | - |  |  |
+| SSS-PA-HIST-N5T | PA, PT, VW | Mycelium Bloom shall display the property-level diff of a model element between two Commits, showing which attributes, relationships, and metadata changed and their old vs new values, when "a user selects two Commits in the element history view." | - |  |  |
+| SSS-PA-HIST-D2J | PA, PT, VW | Mycelium Bloom shall display requirements coverage evolution as a chart showing the percentage of requirements with at least one Satisfy relationship across Commits or Tags when "a user opens the requirements coverage trend view." | - |  |  |
+| SSS-PA-HIST-H7F | PA, PT, VW | Mycelium Bloom shall display verification status evolution as a chart showing the count of pass, fail, and inconclusive verdicts across Commits or Tags when "a user opens the verification trend view." | - |  |  |
+| SSS-PA-HIST-M4B | PA, PT, VW | Mycelium Bloom shall display constraint compliance evolution as a chart showing the count of satisfied vs violated constraints across Commits or Tags when "a user opens the constraint compliance trend view." | - |  |  |
+| SSS-PA-HIST-R9G | PA, PT, VW | Mycelium Bloom shall display model growth metrics (total element count, total relationship count, total attribute count) as a chart across Commits or Tags when "a user opens the model growth trend view." | - |  |  |
 
 ##### 5.2.1.4 Model navigation and browsing
 
@@ -316,49 +359,21 @@ Engineers spend most of their time finding, selecting, and understanding model e
 | SSS-PA-NAV-G5X | PA, PT, VW | Mycelium Bloom shall provide a tabular element browser that lists Definitions and Usages for each kind of Definition and Usage in a sortable, filterable table showing element name, namespace path, type, Ownership, and key attributes when "a user opens the tabular element browser." | - | H |  |
 | SSS-PA-NAV-W4B | PA, PT, VW | Mycelium Bloom shall support the hierarchical Browser View and the tabular element browser as independent views that can be open simultaneously when "a user has both views open." | - | H |  |
 
-##### 5.2.1.4a Namespace and package management
+##### 5.2.1.Y Quantities, units, and measurement management
 
-SysML v2 organizes models into Packages and Namespaces. Packages group related elements; Namespaces control naming and visibility; Imports allow reuse without duplication. The requirements in this section ensure users can structure their models hierarchically, share content between packages, and apply visibility rules without leaving the model browser.
+Numerical engineering values must always be expressed with a quantity kind, a measurement unit, and a measurement scale. The SysML v2 Quantities and Units Domain Library provides a normative model of these concepts as Attribute Definitions and Attribute Usages. Mycelium presents this library as user-friendly browsers for quantities, units, and scales, with drag-and-drop assignment of attributes to elements and the ability to import standard or custom libraries.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-PKG-R8W | PA, PT | Mycelium Bloom shall support creating, renaming, moving, and deleting Packages to organize model elements into logical groups when "a user manages packages in the model browser." | SysML 7.5 | H |  |
-| SSS-PA-PKG-V2J | PA, PT | Mycelium Bloom shall support nesting Packages within other Packages to create hierarchical model organization when "a user creates a child package within an existing package." | SysML 7.5 | H |  |
-| SSS-PA-PKG-D4N | PA, PT | Mycelium Bloom shall support importing elements from one Namespace into another using Membership Imports and Namespace Imports when "a user creates an import relationship between namespaces." | SysML 7.5 | H |  |
-| SSS-PA-PKG-J3W | PA, PT | Mycelium Bloom shall create a Filtered Import that imports only elements matching a metadata-based condition (e.g. import only elements annotated with a specific Metadata Usage) when "a user creates a namespace import and specifies a metadata filter expression." | SysML 7.5.4 | H |  |
-| SSS-PA-PKG-H6T | PA, PT | Mycelium Bloom shall support setting member visibility (public, private) on elements within a Namespace when "a user configures the visibility of a model element within its owning namespace." | KerML 7.2.5 | H |  |
-| SSS-PA-PKG-Q1M | PA, PT | Mycelium Bloom shall support creating Alias memberships to provide alternative names for elements within a namespace when "a user assigns an alias to an imported or local element." | KerML 7.5.2 | M |  |
-| SSS-PA-PKG-V8N | PA, PT, VW | Mycelium Bloom shall display the visibility marker (public, private, protected) of every Membership alongside its owning element in the model browser, the detail panel, and tabular views when "a user views a namespace or its members." | KerML 7.2.5 | H |  |
-| SSS-FB-PKG-E3K | - | Mycelium Fabric shall exclude non-public members of a Namespace from the resolved member set returned through imports when "a client requests the members visible to an importing namespace." | KerML 7.2.5 | H |  |
-| SSS-PA-PKG-T5C | PA, PT, VW | Mycelium Bloom shall display the imported members of a Namespace in the model browser, visually distinguished from owned members by a dedicated icon or rendering style, when "a user expands a namespace that declares one or more imports." | KerML 7.5 | H |  |
-| SSS-FB-PKG-W2M | - | Mycelium Fabric shall compute the visible member set of a Namespace as the union of its owned public Memberships and the transitively imported public Memberships of all namespaces it imports, honouring Alias, Filtered Import, and visibility rules, when "a client queries the visible members of a namespace." | KerML 7.2.5 | H |  |
-| SSS-FB-PKG-F4H | - | Mycelium Fabric shall reject any commit that introduces two non-Alias Memberships with the same `memberName` inside a single Namespace and shall return a validation error identifying the conflicting members when "a client submits a commit that would violate KerML `memberName` uniqueness." | KerML 7.2.5 | H |  |
-| SSS-PA-PKG-C7B | PA, PT | Mycelium Bloom shall display the validation error returned by Mycelium Fabric for a duplicate `memberName` conflict, highlighting the conflicting members and blocking the offending edit, when "a commit or edit submitted by a user is rejected by Fabric due to a duplicate `memberName`." | KerML 7.2.5 | H |  |
-| SSS-PA-NAV-S6P | PA, PT, VW | Mycelium Bloom shall provide a global search interface that matches model elements by `name` and by `qualifiedName` across every Namespace in the current project, returning results with their qualified path and navigation link, when "a user enters a search term into the global search bar." | KerML 7.2.5 | H |  |
-| SSS-PA-ELEM-R3G | PA, PT, VW | Mycelium Bloom shall propagate a rename operation to every displayed `qualifiedName` of the renamed element and of its transitive descendants — in the model browser, detail panels, diagram labels, tooltips, breadcrumbs, and tabular views — when "a user renames a Namespace or one of its members." | KerML 7.2.5 | H |  |
-| SSS-PA-ELEM-M9T | PA, PT | Mycelium Bloom shall re-parent a model element to a new owning Namespace, update its `qualifiedName` and those of its transitive descendants, and preserve all incoming references to the moved element when "a user moves an element to a different namespace via drag-and-drop or the move action." | KerML 7.2.5 | H |  |
-| SSS-PA-NAV-B8D | PA, PT, VW | Mycelium Bloom shall display a breadcrumb trail of the `qualifiedName` segments of the currently selected element and shall navigate to the corresponding owning Namespace when "a user clicks a segment in the breadcrumb trail." | KerML 7.2.5 | M |  |
-| SSS-PA-PKG-N4J | PA, PT | Mycelium Bloom shall create a NamespaceImport in the importing Namespace, referencing the imported Namespace, when "a user selects a target Namespace and invokes the 'Import Namespace' action from a package or namespace." | KerML 7.5.3 | H |  |
-| SSS-PA-PKG-M5P | PA, PT | Mycelium Bloom shall create a MembershipImport in the importing Namespace, referencing the imported Membership, when "a user selects a single named element from another Namespace and invokes the 'Import Member' action." | KerML 7.5.3 | H |  |
-| SSS-PA-PKG-R9K | PA, PT | Mycelium Bloom shall set the `isRecursive` flag on a NamespaceImport, causing nested namespaces of the imported Namespace to be imported as well, when "a user toggles the 'include nested namespaces' option on a NamespaceImport." | KerML 7.5.3 | H |  |
-| SSS-PA-PKG-A7Q | PA, PT | Mycelium Bloom shall set the `isImportAll` flag on an Import, causing non-public Memberships to be included in the imported set, when "a user toggles the 'include private members' option on an Import." | KerML 7.5.3 | H |  |
-| SSS-PA-PKG-H3W | PA, PT | Mycelium Bloom shall set the visibility of an Import to public, private, or protected, controlling whether the Import is re-exported through transitive imports, when "a user edits the visibility of an Import." | KerML 7.5.3 | H |  |
-| SSS-PA-PKG-L6D | PA, PT, VW | Mycelium Bloom shall display, in the detail panel of a Namespace, the list of Imports it declares — showing the import kind (NamespaceImport or MembershipImport), the imported target, and the `isRecursive`, `isImportAll`, and visibility values — when "a user views a Namespace that declares one or more Imports." | KerML 7.5.3 | H |  |
-| SSS-PA-PKG-X8C | PA, PT | Mycelium Bloom shall delete an Import from a Namespace when "a user selects an Import in the detail panel and invokes the 'Remove import' action." | KerML 7.5.3 | H |  |
-| SSS-FB-PKG-B3M | - | Mycelium Fabric shall return a validation error identifying any Import whose imported Namespace or imported Membership cannot be resolved when "a client queries the visible members of a Namespace or submits a commit containing an unresolvable Import." | KerML 7.5.3 | H |  |
-| SSS-PA-PKG-X1J | PA, PT | Mycelium Bloom shall detect when a user operation (drag-and-drop from another package or library, type assignment, specialization, reference creation, or any other operation) references an Element whose owning Namespace is not already visible in the current Namespace, and shall create the appropriate Import (a MembershipImport for a single-element reference, or a NamespaceImport when the user chooses to import the whole Namespace) as part of the same user operation, when "a user uses an Element from another Namespace that is not yet imported into the current Namespace." | KerML 7.5.3 | H |  |
-| SSS-PA-PKG-X2K | PA, PT | Mycelium Bloom shall present a confirmation dialog identifying the referenced Element, its owning Namespace, and the proposed Import kind (MembershipImport of the specific Element or NamespaceImport of the owning Namespace), and shall not create the Import or complete the triggering operation until the user confirms the proposed action or selects an alternative, when "Mycelium Bloom is about to auto-create an Import in response to a cross-namespace user operation." | KerML 7.5.3 | H |  |
-| SSS-PA-PKG-X3L | PA, PT | Mycelium Bloom shall not create a new Import when the referenced Element is already resolvable in the current Namespace through an existing MembershipImport, NamespaceImport, transitive NamespaceImport, or AliasMembership of compatible visibility, and shall complete the triggering user operation without modifying the Import set, when "a user uses an Element whose owning Namespace is already imported." | KerML 7.5.3 | H |  |
-| SSS-PA-PKG-X4M | PA | Mycelium Bloom shall provide a per-project preference controlling whether `SSS-PA-PKG-X2K` is enforced on every auto-Import or whether auto-Imports are created silently, with a default value of "always confirm", when "a Project Administrator edits the project settings." | KerML 7.5.3 | M |  |
-| SSS-PA-PKG-P8D | PA | Mycelium Bloom shall convert a Package into a LibraryPackage, or create a new LibraryPackage, when "a user invokes the 'Convert to Library' action on a Package or the 'New Library Package' action in the model browser." | KerML 7.5.5 | H |  |
-| SSS-PA-PKG-S1E | PA | Mycelium Bloom shall set the `isStandard` flag on a LibraryPackage, marking it as a standard library distinct from a user library, when "a user toggles the 'Standard library' option on a LibraryPackage." | KerML 7.5.5 | H |  |
-| SSS-PA-PKG-M3G | PA, PT | Mycelium Bloom shall edit the metadata of a Package or LibraryPackage — version, author, description, license, and tags — via the detail panel when "a user edits any of the metadata fields of a Package or LibraryPackage." | - | H |  |
-| SSS-PA-PKG-V4H | PA, PT, VW | Mycelium Bloom shall render a LibraryPackage in the model browser, tabular views, and diagrams with a distinguishing icon or badge that sets it apart from a regular Package, when "a user views a LibraryPackage." | KerML 7.5.5 | H |  |
-| SSS-FB-PKG-L2F | - | Mycelium Fabric shall reject any commit that modifies the owned content of a LibraryPackage — including creation, modification, deletion, or re-parenting of any of its members — and shall return a validation error identifying the LibraryPackage, when "a client submits a commit that would mutate a LibraryPackage." | KerML 7.5.5 | H |  |
-| SSS-FG-PKG-P7L | - | Mycelium Forge shall publish a LibraryPackage as a versioned, downloadable package — including its metadata, content, and transitive library dependencies — when "a user or CI pipeline submits a LibraryPackage for publication to Mycelium Forge." | - | H |  |
-| SSS-PA-PKG-F8M | PA | Mycelium Bloom shall import a LibraryPackage from Mycelium Forge into the current project, creating the corresponding NamespaceImport and fetching the referenced content, when "a user selects a LibraryPackage from Mycelium Forge and invokes the 'Import Library' action." | - | H |  |
-| SSS-PA-MGMT-YC1 | PA | Mycelium Bloom shall provide operations to create, rename and remove Ownership Usages within the project package when "the Project Administrator accesses the Ownership management interface." | - | H |  |
-| SSS-PA-MGMT-BA7 | PA | Mycelium Bloom shall reassign element ownership by updating the Owner metadata on a model element to a different Ownership when "the Project Administrator selects a model element and changes its Owner annotation." | - | H |  |
+| SSS-PA-QU-T3K | PA, PT, VW | Mycelium Bloom shall provide a tabular view listing all Attribute Definitions available in the project (including those imported from libraries) with their name, quantity kind, default unit, and source library when "a user opens the Attribute Definitions browser." | SysML 9.8 | H |  |
+| SSS-PA-QU-R7N | PA, PT, VW | Mycelium Bloom shall provide a tabular view listing all Measurement Units available in the project with their name, symbol, unit type (simple, derived, prefixed), and associated quantity kind when "a user opens the Measurement Units browser." | SysML 9.8.3 | H |  |
+| SSS-PA-QU-W5J | PA, PT, VW | Mycelium Bloom shall provide a tabular view listing all Measurement Scales available in the project with their name, scale type (ratio, interval, ordinal, cyclic ratio, logarithmic), unit, and value range when "a user opens the Measurement Scales browser." | SysML 9.8.3 | H |  |
+| SSS-PA-QU-D8M | PA, PT, VW | Mycelium Bloom shall provide a tabular view listing all Quantity Kinds available in the project with their name, dimension symbol, and classification (base, derived, specialized) when "a user opens the Quantity Kinds browser." | SysML 9.8.2 | H |  |
+| SSS-PA-QU-H2V | PA, PT | Mycelium Bloom shall support creating, editing, and deleting custom Attribute Definitions typed by a Quantity Kind with an associated Measurement Unit when "a user manages Attribute Definitions in the project or a library." | SysML 9.8 | H |  |
+| SSS-PA-QU-K6F | PA, PT | Mycelium Bloom shall support creating, editing, and deleting custom Measurement Units (simple, derived, prefixed) with conversion factors when "a user manages Measurement Units in the project or a library." | SysML 9.8.3 | H |  |
+| SSS-PA-QU-B4P | PA, PT | Mycelium Bloom shall support creating, editing, and deleting Measurement Scales (ratio, interval, ordinal, cyclic ratio, logarithmic) with their associated unit and value constraints when "a user manages Measurement Scales in the project or a library." | SysML 9.8.3 | H |  |
+| SSS-PA-QU-N9X | PA, PT | Mycelium Bloom shall create an Attribute Usage typed by the dropped Attribute Definition on the target element when "a user drags an Attribute Definition from the Attribute Definitions browser and drops it onto an element Definition or Usage in the model browser or a diagram." | SysML 7.7 | H |  |
+| SSS-PA-QU-G1W | PA, PT | Mycelium Bloom shall support importing Quantity Kinds, Measurement Units, Measurement Scales, and Attribute Definitions from the SysML v2 standard libraries (ISQ, SI, USCustomary) and from Mycelium Forge packages when "a user selects library content for import into a project." | SysML 9.8 | H |  |
 
 ##### 5.2.1.5 System architecture modeling
 
@@ -426,77 +441,59 @@ The core of system modeling is defining the building blocks (Definitions) of the
 | SSS-PA-ELEM-X8T | PA, PT, VW | Mycelium Bloom shall display the result expression of a Calculation or Boolean Expression — derived from its ResultExpressionMembership — in its textual form, in the detail panel, when "a user views a Calculation or Boolean Expression." | KerML 7.12.3 | H |  |
 
 
-##### 5.2.1.5a Quantities, units, and measurement management
 
-Numerical engineering values must always be expressed with a quantity kind, a measurement unit, and a measurement scale. The SysML v2 Quantities and Units Domain Library provides a normative model of these concepts as Attribute Definitions and Attribute Usages. Mycelium presents this library as user-friendly browsers for quantities, units, and scales, with drag-and-drop assignment of attributes to elements and the ability to import standard or custom libraries.
 
-| ID | Roles | Requirement | Ref | Prio | Effort |
-|----|-------|-------------|-----|------|--------|
-| SSS-PA-QU-T3K | PA, PT, VW | Mycelium Bloom shall provide a tabular view listing all Attribute Definitions available in the project (including those imported from libraries) with their name, quantity kind, default unit, and source library when "a user opens the Attribute Definitions browser." | SysML 9.8 | H |  |
-| SSS-PA-QU-R7N | PA, PT, VW | Mycelium Bloom shall provide a tabular view listing all Measurement Units available in the project with their name, symbol, unit type (simple, derived, prefixed), and associated quantity kind when "a user opens the Measurement Units browser." | SysML 9.8.3 | H |  |
-| SSS-PA-QU-W5J | PA, PT, VW | Mycelium Bloom shall provide a tabular view listing all Measurement Scales available in the project with their name, scale type (ratio, interval, ordinal, cyclic ratio, logarithmic), unit, and value range when "a user opens the Measurement Scales browser." | SysML 9.8.3 | H |  |
-| SSS-PA-QU-D8M | PA, PT, VW | Mycelium Bloom shall provide a tabular view listing all Quantity Kinds available in the project with their name, dimension symbol, and classification (base, derived, specialized) when "a user opens the Quantity Kinds browser." | SysML 9.8.2 | H |  |
-| SSS-PA-QU-H2V | PA, PT | Mycelium Bloom shall support creating, editing, and deleting custom Attribute Definitions typed by a Quantity Kind with an associated Measurement Unit when "a user manages Attribute Definitions in the project or a library." | SysML 9.8 | H |  |
-| SSS-PA-QU-K6F | PA, PT | Mycelium Bloom shall support creating, editing, and deleting custom Measurement Units (simple, derived, prefixed) with conversion factors when "a user manages Measurement Units in the project or a library." | SysML 9.8.3 | H |  |
-| SSS-PA-QU-B4P | PA, PT | Mycelium Bloom shall support creating, editing, and deleting Measurement Scales (ratio, interval, ordinal, cyclic ratio, logarithmic) with their associated unit and value constraints when "a user manages Measurement Scales in the project or a library." | SysML 9.8.3 | H |  |
-| SSS-PA-QU-N9X | PA, PT | Mycelium Bloom shall create an Attribute Usage typed by the dropped Attribute Definition on the target element when "a user drags an Attribute Definition from the Attribute Definitions browser and drops it onto an element Definition or Usage in the model browser or a diagram." | SysML 7.7 | H |  |
-| SSS-PA-QU-G1W | PA, PT | Mycelium Bloom shall support importing Quantity Kinds, Measurement Units, Measurement Scales, and Attribute Definitions from the SysML v2 standard libraries (ISQ, SI, USCustomary) and from Mycelium Forge packages when "a user selects library content for import into a project." | SysML 9.8 | H |  |
 
-##### 5.2.1.5b Attachments
 
-Engineering elements often need supporting documentation: thermal analysis PDFs, interface drawings, datasheets, photographs, spreadsheets. Mycelium lets users attach files of any type to any model element and download them later. The requirements in this section cover upload, download, listing, removal, and inline preview for common formats.
+##### 5.2.1.7 Namespace and package management
+
+SysML v2 organizes models into Packages and Namespaces. Packages group related elements; Namespaces control naming and visibility; Imports allow reuse without duplication. The requirements in this section ensure users can structure their models hierarchically, share content between packages, and apply visibility rules without leaving the model browser.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-ATT-W5R | PA, PT | Mycelium Bloom shall support uploading one or more file attachments to any model element when "a user selects a model element and adds attachments via the attachment interface." | - |  |  |
-| SSS-PA-ATT-K3J | PA, PT, VW | Mycelium Bloom shall display a list of all attachments associated with a model element, showing file name, file type, size, upload date, and uploading user, when "a user views the attachments of a model element." | - | H |  |
-| SSS-PA-ATT-M8D | PA, PT, VW | Mycelium Bloom shall support downloading an attachment when "a user selects an attachment from the attachment list of a model element." | - | H |  |
-| SSS-PA-ATT-F2N | PA, PT | Mycelium Bloom shall support removing an attachment from a model element when "a user with write access to the element deletes an attachment from the attachment list." | - | H |  |
-| SSS-PA-ATT-V6H | PA, PT, VW | Mycelium Bloom shall display inline previews for image attachments (PNG, JPG, SVG) and PDF attachments when "a user views the attachment list of a model element." | - | H |  |
+| SSS-PA-PKG-R8W | PA, PT | Mycelium Bloom shall support creating, renaming, moving, and deleting Packages to organize model elements into logical groups when "a user manages packages in the model browser." | SysML 7.5 | H |  |
+| SSS-PA-PKG-V2J | PA, PT | Mycelium Bloom shall support nesting Packages within other Packages to create hierarchical model organization when "a user creates a child package within an existing package." | SysML 7.5 | H |  |
+| SSS-PA-PKG-D4N | PA, PT | Mycelium Bloom shall support importing elements from one Namespace into another using Membership Imports and Namespace Imports when "a user creates an import relationship between namespaces." | SysML 7.5 | H |  |
+| SSS-PA-PKG-J3W | PA, PT | Mycelium Bloom shall create a Filtered Import that imports only elements matching a metadata-based condition (e.g. import only elements annotated with a specific Metadata Usage) when "a user creates a namespace import and specifies a metadata filter expression." | SysML 7.5.4 | H |  |
+| SSS-PA-PKG-H6T | PA, PT | Mycelium Bloom shall support setting member visibility (public, private) on elements within a Namespace when "a user configures the visibility of a model element within its owning namespace." | KerML 7.2.5 | H |  |
+| SSS-PA-PKG-Q1M | PA, PT | Mycelium Bloom shall support creating Alias memberships to provide alternative names for elements within a namespace when "a user assigns an alias to an imported or local element." | KerML 7.5.2 | M |  |
+| SSS-PA-PKG-V8N | PA, PT, VW | Mycelium Bloom shall display the visibility marker (public, private, protected) of every Membership alongside its owning element in the model browser, the detail panel, and tabular views when "a user views a namespace or its members." | KerML 7.2.5 | H |  |
+| SSS-FB-PKG-E3K | - | Mycelium Fabric shall exclude non-public members of a Namespace from the resolved member set returned through imports when "a client requests the members visible to an importing namespace." | KerML 7.2.5 | H |  |
+| SSS-PA-PKG-T5C | PA, PT, VW | Mycelium Bloom shall display the imported members of a Namespace in the model browser, visually distinguished from owned members by a dedicated icon or rendering style, when "a user expands a namespace that declares one or more imports." | KerML 7.5 | H |  |
+| SSS-FB-PKG-W2M | - | Mycelium Fabric shall compute the visible member set of a Namespace as the union of its owned public Memberships and the transitively imported public Memberships of all namespaces it imports, honouring Alias, Filtered Import, and visibility rules, when "a client queries the visible members of a namespace." | KerML 7.2.5 | H |  |
+| SSS-FB-PKG-F4H | - | Mycelium Fabric shall reject any commit that introduces two non-Alias Memberships with the same `memberName` inside a single Namespace and shall return a validation error identifying the conflicting members when "a client submits a commit that would violate KerML `memberName` uniqueness." | KerML 7.2.5 | H |  |
+| SSS-PA-PKG-C7B | PA, PT | Mycelium Bloom shall display the validation error returned by Mycelium Fabric for a duplicate `memberName` conflict, highlighting the conflicting members and blocking the offending edit, when "a commit or edit submitted by a user is rejected by Fabric due to a duplicate `memberName`." | KerML 7.2.5 | H |  |
+| SSS-PA-NAV-S6P | PA, PT, VW | Mycelium Bloom shall provide a global search interface that matches model elements by `name` and by `qualifiedName` across every Namespace in the current project, returning results with their qualified path and navigation link, when "a user enters a search term into the global search bar." | KerML 7.2.5 | H |  |
+| SSS-PA-ELEM-R3G | PA, PT, VW | Mycelium Bloom shall propagate a rename operation to every displayed `qualifiedName` of the renamed element and of its transitive descendants — in the model browser, detail panels, diagram labels, tooltips, breadcrumbs, and tabular views — when "a user renames a Namespace or one of its members." | KerML 7.2.5 | H |  |
+| SSS-PA-ELEM-M9T | PA, PT | Mycelium Bloom shall re-parent a model element to a new owning Namespace, update its `qualifiedName` and those of its transitive descendants, and preserve all incoming references to the moved element when "a user moves an element to a different namespace via drag-and-drop or the move action." | KerML 7.2.5 | H |  |
+| SSS-PA-NAV-B8D | PA, PT, VW | Mycelium Bloom shall display a breadcrumb trail of the `qualifiedName` segments of the currently selected element and shall navigate to the corresponding owning Namespace when "a user clicks a segment in the breadcrumb trail." | KerML 7.2.5 | M |  |
+| SSS-PA-PKG-N4J | PA, PT | Mycelium Bloom shall create a NamespaceImport in the importing Namespace, referencing the imported Namespace, when "a user selects a target Namespace and invokes the 'Import Namespace' action from a package or namespace." | KerML 7.5.3 | H |  |
+| SSS-PA-PKG-M5P | PA, PT | Mycelium Bloom shall create a MembershipImport in the importing Namespace, referencing the imported Membership, when "a user selects a single named element from another Namespace and invokes the 'Import Member' action." | KerML 7.5.3 | H |  |
+| SSS-PA-PKG-R9K | PA, PT | Mycelium Bloom shall set the `isRecursive` flag on a NamespaceImport, causing nested namespaces of the imported Namespace to be imported as well, when "a user toggles the 'include nested namespaces' option on a NamespaceImport." | KerML 7.5.3 | H |  |
+| SSS-PA-PKG-A7Q | PA, PT | Mycelium Bloom shall set the `isImportAll` flag on an Import, causing non-public Memberships to be included in the imported set, when "a user toggles the 'include private members' option on an Import." | KerML 7.5.3 | H |  |
+| SSS-PA-PKG-H3W | PA, PT | Mycelium Bloom shall set the visibility of an Import to public, private, or protected, controlling whether the Import is re-exported through transitive imports, when "a user edits the visibility of an Import." | KerML 7.5.3 | H |  |
+| SSS-PA-PKG-L6D | PA, PT, VW | Mycelium Bloom shall display, in the detail panel of a Namespace, the list of Imports it declares — showing the import kind (NamespaceImport or MembershipImport), the imported target, and the `isRecursive`, `isImportAll`, and visibility values — when "a user views a Namespace that declares one or more Imports." | KerML 7.5.3 | H |  |
+| SSS-PA-PKG-X8C | PA, PT | Mycelium Bloom shall delete an Import from a Namespace when "a user selects an Import in the detail panel and invokes the 'Remove import' action." | KerML 7.5.3 | H |  |
+| SSS-FB-PKG-B3M | - | Mycelium Fabric shall return a validation error identifying any Import whose imported Namespace or imported Membership cannot be resolved when "a client queries the visible members of a Namespace or submits a commit containing an unresolvable Import." | KerML 7.5.3 | H |  |
+| SSS-PA-PKG-X1J | PA, PT | Mycelium Bloom shall detect when a user operation (drag-and-drop from another package or library, type assignment, specialization, reference creation, or any other operation) references an Element whose owning Namespace is not already visible in the current Namespace, and shall create the appropriate Import (a MembershipImport for a single-element reference, or a NamespaceImport when the user chooses to import the whole Namespace) as part of the same user operation, when "a user uses an Element from another Namespace that is not yet imported into the current Namespace." | KerML 7.5.3 | H |  |
+| SSS-PA-PKG-X2K | PA, PT | Mycelium Bloom shall present a confirmation dialog identifying the referenced Element, its owning Namespace, and the proposed Import kind (MembershipImport of the specific Element or NamespaceImport of the owning Namespace), and shall not create the Import or complete the triggering operation until the user confirms the proposed action or selects an alternative, when "Mycelium Bloom is about to auto-create an Import in response to a cross-namespace user operation." | KerML 7.5.3 | H |  |
+| SSS-PA-PKG-X3L | PA, PT | Mycelium Bloom shall not create a new Import when the referenced Element is already resolvable in the current Namespace through an existing MembershipImport, NamespaceImport, transitive NamespaceImport, or AliasMembership of compatible visibility, and shall complete the triggering user operation without modifying the Import set, when "a user uses an Element whose owning Namespace is already imported." | KerML 7.5.3 | H |  |
+| SSS-PA-PKG-X4M | PA | Mycelium Bloom shall provide a per-project preference controlling whether `SSS-PA-PKG-X2K` is enforced on every auto-Import or whether auto-Imports are created silently, with a default value of "always confirm", when "a Project Administrator edits the project settings." | KerML 7.5.3 | M |  |
+| SSS-PA-PKG-P8D | PA | Mycelium Bloom shall convert a Package into a LibraryPackage, or create a new LibraryPackage, when "a user invokes the 'Convert to Library' action on a Package or the 'New Library Package' action in the model browser." | KerML 7.5.5 | H |  |
+| SSS-PA-PKG-S1E | PA | Mycelium Bloom shall set the `isStandard` flag on a LibraryPackage, marking it as a standard library distinct from a user library, when "a user toggles the 'Standard library' option on a LibraryPackage." | KerML 7.5.5 | H |  |
+| SSS-PA-PKG-M3G | PA, PT | Mycelium Bloom shall edit the metadata of a Package or LibraryPackage — version, author, description, license, and tags — via the detail panel when "a user edits any of the metadata fields of a Package or LibraryPackage." | - | H |  |
+| SSS-PA-PKG-V4H | PA, PT, VW | Mycelium Bloom shall render a LibraryPackage in the model browser, tabular views, and diagrams with a distinguishing icon or badge that sets it apart from a regular Package, when "a user views a LibraryPackage." | KerML 7.5.5 | H |  |
+| SSS-FB-PKG-L2F | - | Mycelium Fabric shall reject any commit that modifies the owned content of a LibraryPackage — including creation, modification, deletion, or re-parenting of any of its members — and shall return a validation error identifying the LibraryPackage, when "a client submits a commit that would mutate a LibraryPackage." | KerML 7.5.5 | H |  |
+| SSS-FG-PKG-P7L | - | Mycelium Forge shall publish a LibraryPackage as a versioned, downloadable package — including its metadata, content, and transitive library dependencies — when "a user or CI pipeline submits a LibraryPackage for publication to Mycelium Forge." | - | H |  |
+| SSS-PA-PKG-F8M | PA | Mycelium Bloom shall import a LibraryPackage from Mycelium Forge into the current project, creating the corresponding NamespaceImport and fetching the referenced content, when "a user selects a LibraryPackage from Mycelium Forge and invokes the 'Import Library' action." | - | H |  |
+| SSS-PA-MGMT-YC1 | PA | Mycelium Bloom shall provide operations to create, rename and remove Ownership Usages within the project package when "the Project Administrator accesses the Ownership management interface." | - | H |  |
+| SSS-PA-MGMT-BA7 | PA | Mycelium Bloom shall reassign element ownership by updating the Owner metadata on a model element to a different Ownership when "the Project Administrator selects a model element and changes its Owner annotation." | - | H |  |
 
-##### 5.2.1.5c Glossary
 
-Engineering teams need a shared vocabulary. Acronyms, domain terms, and project-specific definitions should be discoverable wherever they appear. Mycelium models a glossary as a Package of Item Definitions with Documentation, and the user interface highlights terms throughout the application with tooltips and click-through navigation. This makes the glossary live and contextual rather than a forgotten document.
 
-| ID | Roles | Requirement | Ref | Prio | Effort |
-|----|-------|-------------|-----|------|--------|
-| SSS-PA-GLOSS-T5R | PA, PT | Mycelium Bloom shall provide operations to create and manage a Glossary Package containing Item Definitions where each Item Definition represents a glossary term (name = term, short name = abbreviation) with Documentation providing the definition when "a user accesses the glossary management interface." | KerML 7.4 | L |  |
-| SSS-PA-GLOSS-K2W | PA, PT, VW | Mycelium Bloom shall display a tabular view listing all glossary terms with their name, abbreviation, definition, and owning package when "a user opens the glossary browser." | KerML 7.4 |L  |  |
-| SSS-PA-GLOSS-H8N | PA, PT | Mycelium Bloom shall provide operations to create, edit, and delete glossary terms (Item Definitions with Documentation) within a Glossary Package when "a user manages glossary entries." | KerML 7.4 | L |  |
-| SSS-PA-GLOSS-M3J | PA, PT, VW | Mycelium Bloom shall render any occurrence of a glossary term name or abbreviation as highlighted linked text throughout the application (model browser, detail panels, requirement text, diagram labels, comments) when "text content contains a word matching a glossary term name or abbreviation." | KerML 7.4 | L |  |
-| SSS-PA-GLOSS-V9D | PA, PT, VW | Mycelium Bloom shall display a tooltip showing the glossary term definition when "a user hovers over a highlighted glossary term in any view." | KerML 7.4 | L |  |
-| SSS-PA-GLOSS-F6B | PA, PT, VW | Mycelium Bloom shall navigate to the glossary term's Item Definition in the glossary browser when "a user clicks a highlighted glossary term link." | KerML 7.4 | L |  |
 
-##### 5.2.1.5d Constants
 
-Engineering models reference physical and project-specific constants (the speed of light, gravitational acceleration, target margins). Modelling these as named, typed Attribute Definitions with fixed values and source references makes them reusable across the project and traceable to their origin. Users can drag a constant into any constraint or calculation to ensure consistent values.
-
-| ID | Roles | Requirement | Ref | Prio | Effort |
-|----|-------|-------------|-----|------|--------|
-| SSS-PA-CONST-N7K | PA, PT | Mycelium Bloom shall provide operations to create and manage a Constants Package containing Attribute Definitions where each Attribute Definition represents a named constant typed by a Quantity Kind, with a fixed Attribute Usage holding the value and Measurement Unit, and Documentation providing the source or reference, when "a user accesses the constants management interface." | SysML 9.8 | L |  |
-| SSS-PA-CONST-D3V | PA, PT, VW | Mycelium Bloom shall display a tabular view listing all constants with their name, abbreviation, value, unit, and source reference when "a user opens the constants browser." | SysML 9.8 | L |  |
-| SSS-PA-CONST-W8F | PA, PT | Mycelium Bloom shall provide operations to create, edit, and delete constants (Attribute Definitions with fixed Attribute Usages) within a Constants Package when "a user manages constant entries." | SysML 9.8 | L |  |
-| SSS-PA-CONST-J5M | PA, PT | Mycelium Bloom shall insert a reference to a constant's value into a constraint expression or calculation when "a user drags a constant from the constants browser and drops it into a constraint or calculation editor." | SysML 9.8 | L |  |
-| SSS-PA-CONST-R2H | PA, PT, VW | Mycelium Bloom shall display a tooltip showing the constant's value, unit, and source reference when "a user hovers over a constant reference in a constraint expression, calculation, or attribute value." | SysML 9.8 | L |  |
-
-##### 5.2.1.5e Metadata management
-
-SysML v2 Metadata Definitions and Metadata Usages provide a general-purpose mechanism to annotate model elements with structured, user-defined information without altering the element's semantics. Mycelium uses metadata internally for Ownership, Publication, ParameterSubscription, and Attachements (modeled in the Concurrent Design library). This section specifies user-facing capabilities for defining and applying custom metadata for purposes such as categorization, status tracking, maturity assessment, risk tagging, review annotations, and domain-specific process information.
-
-| ID | Roles | Requirement | Ref | Prio | Effort |
-|----|-------|-------------|-----|------|--------|
-| SSS-PA-META-K7R | PA, PT | Mycelium Bloom shall provide operations to create, edit, and delete Metadata Definitions with typed attributes (text, boolean, enumeration, quantity, reference to other elements) when "a user defines a new metadata type in the project or a library." | SysML 7.27 | H |  |
-| SSS-PA-META-W3D | PA, PT | Mycelium Bloom shall apply a Metadata Usage to any model element by instantiating a Metadata Definition and specifying its attribute values when "a user annotates a model element with metadata." | SysML 7.27 | H |  |
-| SSS-PA-META-N8F | PA, PT | Mycelium Bloom shall apply the same Metadata Usage to multiple model elements in a single operation when "a user selects multiple elements and applies a metadata annotation." | SysML 7.27 | H |  |
-| SSS-PA-META-H2T | PA, PT | Mycelium Bloom shall remove a Metadata Usage from a model element when "a user removes a metadata annotation from an element." | SysML 7.27 | H |  |
-| SSS-PA-META-D5J | PA, PT, VW | Mycelium Bloom shall display all Metadata Usages applied to a model element in the detail panel, showing the Metadata Definition name and its attribute values, when "a user views the properties of a model element." | SysML 7.27 | H |  |
-| SSS-PA-META-R9V | PA, PT, VW | Mycelium Bloom shall display a tabular view listing all Metadata Definitions available in the project with their name, attributes, and source (project or library) when "a user opens the metadata definitions browser." | SysML 7.27 | H |  |
-| SSS-PA-META-T4K | PA, PT, VW | Mycelium Bloom shall filter model elements in the model browser, tabular browsers, and Relationship Matrix by Metadata Usage presence and attribute values when "a user applies a metadata-based filter (e.g. show all elements tagged with category 'Equipment', or all elements with maturity status 'Preliminary')." | SysML 7.27 |H  |  |
-| SSS-PA-META-M6W | PA, PT, VW | Mycelium Bloom shall display Metadata Usages as visual badges or color-coded indicators on elements in the model browser and on diagram nodes when "a user enables metadata visualization." | SysML 7.27 | H |  |
-| SSS-PA-META-J1B | PA, PT | Mycelium Bloom shall import Metadata Definitions from external libraries or Mycelium Forge packages when "a user selects metadata definitions for import into a project." | SysML 7.27 |  |  |
-| SSS-PA-META-V8G | PA, PT, VW | Mycelium Bloom shall group and sort model elements by their Metadata Usage values in tabular browsers and the model browser when "a user selects a metadata attribute as a grouping or sorting criterion." | SysML 7.27 | H |  |
-
-##### 5.2.1.5f Comments and documentation
+##### 5.2.1.8 Comments and documentation
 
 SysML v2 defines Comment as an annotating element with a textual body that can describe one or more model elements, and Documentation as a specialized Comment that formally documents its owning element. Comments and Documentation are the primary mechanism for adding explanatory text, rationale, design notes, and review feedback to model elements.
 
@@ -514,23 +511,7 @@ SysML v2 defines Comment as an annotating element with a textual body that can d
 | SSS-PA-CMT-L7X | PA, PT | Mycelium Bloom shall create an AnnotatingElement (Comment, Documentation, Textual Representation, or Metadata Feature) together with its Annotation relationship(s) to one or more target elements in a single user operation when "a user draws a line in a diagram from the annotation tool in the toolbox, or from an existing annotation node, to one or more diagram nodes." | KerML 7.4.1 | H |  |
 | SSS-PA-CMT-Z9K | PA, PT | Mycelium Bloom shall create an AnnotatingElement (Comment, Documentation, Textual Representation, or Metadata Feature) together with its Annotation relationship(s) to the currently selected model element(s) when "a user invokes an 'Add Comment', 'Add Documentation', 'Add Textual Representation', or 'Apply Metadata' action from the context (right-click) menu or from the detail panel of a list or tabular view." | KerML 7.4.1 | H |  |
 
-##### 5.2.1.6 Requirements management
 
-Requirements capture stakeholder-imposed conditions a design must satisfy. SysML v2 models requirements as Constraint Definitions with subjects, actors, stakeholders, assumed and required constraints, and concerns. Requirements can be nested, derived, satisfied by design elements, and verified by Verification Cases. The requirements in this section cover the full SysML v2 requirements metamodel as user-facing operations.
-
-| ID | Roles | Requirement | Ref | Prio | Effort |
-|----|-------|-------------|-----|------|--------|
-| SSS-PA-REQ-QP0 | PA, PT | Mycelium Bloom shall provide operations to create, edit, and organize Requirement Definitions and Requirement Usages in hierarchical specifications with textual statements when "a user accesses the requirements management interface and creates or modifies a requirement." | SysML 7.21 | H |  |
-| SSS-PA-REQ-WD0 | PA, PT | Mycelium Bloom shall nest a Requirement Usage within a parent Requirement Definition or Requirement Usage, where nested requirements automatically become required constraints of the parent, when "a user adds a child requirement to an existing requirement." | SysML 7.21, 8.3.21 | H |  |
-| SSS-PA-REQ-DS6 | PA, PT | Mycelium Bloom shall provide editors for assumed constraints and required constraints on requirements, where the effective requirement logic is "if all assumed constraints hold then all required constraints must be satisfied", when "a user edits a requirement and adds constraint expressions." | SysML 8.3.21.7 | H |  |
-| SSS-PA-REQ-T8K | PA, PT | Mycelium Bloom shall assign a subject to a Requirement Definition or Requirement Usage via Subject Membership, binding the requirement to the system or element it applies to, when "a user specifies the subject of a requirement." | SysML 8.3.21.11 | H |  |
-| SSS-PA-REQ-M3N | PA, PT | Mycelium Bloom shall assign one or more actors to a Requirement Definition or Requirement Usage via Actor Membership, representing external entities necessary for the requirement to be fulfilled, when "a user adds actors to a requirement." | SysML 8.3.21.2 | H |  |
-| SSS-PA-REQ-H6W | PA, PT | Mycelium Bloom shall assign one or more stakeholders to a Requirement Definition or Requirement Usage via Stakeholder Membership, representing entities with concerns about the requirement, when "a user adds stakeholders to a requirement." | SysML 8.3.21.12 | H |  |
-| SSS-PA-REQ-SUC | PA, PT | Mycelium Bloom shall provide operations to create Concern Definitions and Concern Usages representing stakeholder concerns, and frame them in requirements or viewpoints via Framed Concern Membership, when "a user creates a Concern and associates it with a requirement or viewpoint." | SysML 8.3.21.3 | H |  |
-| SSS-PA-REQ-V4J | PA, PT | Mycelium Bloom shall create a Derivation relationship between requirements, linking an original requirement to one or more derived requirements with the semantic constraint that satisfaction of the original implies satisfaction of all derived requirements, when "a user creates a derivation trace between requirements." | SysML 9.6 | H |  |
-| SSS-PA-REQ-W9B | PA, PT | Mycelium Bloom shall link a Verification Case Usage to a Requirement Usage via Requirement Verification Membership, recording which verification cases verify which requirements, when "a user associates a verification case with a requirement." | SysML 8.3.24.2 | H |  |
-| SSS-PA-REQ-D7V | PA | Mycelium Bloom shall import requirements from a ReqIF file when "the Project Administrator initiates an import operation and selects a ReqIF file to import." | - | H |  |
-| SSS-PA-REQ-D7W | PA | Mycelium Bloom shall export requirements to ReqIF format when "the Project Administrator initiates an export operation and selects a target ReqIF file or target location." | - | H |  |
 
 ##### 5.2.1.7 Traceability and allocations
 
@@ -587,6 +568,24 @@ Beyond structure, systems exhibit behavior: actions performed, states held, tran
 | SSS-PA-BEH-W5H | PA, PT | Mycelium Bloom shall create a While Loop Action Usage composed of a Boolean condition Expression and a body Action Usage that executes as long as the condition holds when "a user adds a while-loop to an Action Flow View or to an Action Definition." | SysML 7.16.5 | H |  |
 | SSS-PA-BEH-F6L | PA, PT | Mycelium Bloom shall create a For Loop Action Usage composed of a loop-variable Feature, a collection Expression, and a body Action Usage that executes once for each element of the collection when "a user adds a for-loop to an Action Flow View or to an Action Definition." | SysML 7.16.5 | H |  |
 | SSS-FB-BEH-C7F | - | Mycelium Fabric shall return a validation warning identifying any Decision Node with an outgoing Succession lacking a guard, any Fork Node without a matching Join Node in the same Action, any Action Usage reachable from no Succession source, and any Loop Action Usage whose condition Expression does not terminate in a finite number of iterations under trivial inputs, when "a client runs model validation or submits a commit containing an Action Definition." | SysML 7.16 | H |  |
+
+##### 5.2.1.6 Requirements management
+
+Requirements capture stakeholder-imposed conditions a design must satisfy. SysML v2 models requirements as Constraint Definitions with subjects, actors, stakeholders, assumed and required constraints, and concerns. Requirements can be nested, derived, satisfied by design elements, and verified by Verification Cases. The requirements in this section cover the full SysML v2 requirements metamodel as user-facing operations.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-REQ-QP0 | PA, PT | Mycelium Bloom shall provide operations to create, edit, and organize Requirement Definitions and Requirement Usages in hierarchical specifications with textual statements when "a user accesses the requirements management interface and creates or modifies a requirement." | SysML 7.21 | H |  |
+| SSS-PA-REQ-WD0 | PA, PT | Mycelium Bloom shall nest a Requirement Usage within a parent Requirement Definition or Requirement Usage, where nested requirements automatically become required constraints of the parent, when "a user adds a child requirement to an existing requirement." | SysML 7.21, 8.3.21 | H |  |
+| SSS-PA-REQ-DS6 | PA, PT | Mycelium Bloom shall provide editors for assumed constraints and required constraints on requirements, where the effective requirement logic is "if all assumed constraints hold then all required constraints must be satisfied", when "a user edits a requirement and adds constraint expressions." | SysML 8.3.21.7 | H |  |
+| SSS-PA-REQ-T8K | PA, PT | Mycelium Bloom shall assign a subject to a Requirement Definition or Requirement Usage via Subject Membership, binding the requirement to the system or element it applies to, when "a user specifies the subject of a requirement." | SysML 8.3.21.11 | H |  |
+| SSS-PA-REQ-M3N | PA, PT | Mycelium Bloom shall assign one or more actors to a Requirement Definition or Requirement Usage via Actor Membership, representing external entities necessary for the requirement to be fulfilled, when "a user adds actors to a requirement." | SysML 8.3.21.2 | H |  |
+| SSS-PA-REQ-H6W | PA, PT | Mycelium Bloom shall assign one or more stakeholders to a Requirement Definition or Requirement Usage via Stakeholder Membership, representing entities with concerns about the requirement, when "a user adds stakeholders to a requirement." | SysML 8.3.21.12 | H |  |
+| SSS-PA-REQ-SUC | PA, PT | Mycelium Bloom shall provide operations to create Concern Definitions and Concern Usages representing stakeholder concerns, and frame them in requirements or viewpoints via Framed Concern Membership, when "a user creates a Concern and associates it with a requirement or viewpoint." | SysML 8.3.21.3 | H |  |
+| SSS-PA-REQ-V4J | PA, PT | Mycelium Bloom shall create a Derivation relationship between requirements, linking an original requirement to one or more derived requirements with the semantic constraint that satisfaction of the original implies satisfaction of all derived requirements, when "a user creates a derivation trace between requirements." | SysML 9.6 | H |  |
+| SSS-PA-REQ-W9B | PA, PT | Mycelium Bloom shall link a Verification Case Usage to a Requirement Usage via Requirement Verification Membership, recording which verification cases verify which requirements, when "a user associates a verification case with a requirement." | SysML 8.3.24.2 | H |  |
+| SSS-PA-REQ-D7V | PA | Mycelium Bloom shall import requirements from a ReqIF file when "the Project Administrator initiates an import operation and selects a ReqIF file to import." | - | H |  |
+| SSS-PA-REQ-D7W | PA | Mycelium Bloom shall export requirements to ReqIF format when "the Project Administrator initiates an export operation and selects a target ReqIF file or target location." | - | H |  |
 
 ##### 5.2.1.9 Analysis and verification
 
@@ -845,34 +844,6 @@ Early-phase design explores multiple solutions before committing to one. Myceliu
 | SSS-PA-VAR-G8X | PA, PT | Mycelium Bloom shall provide a configuration selector where the user selects one active variant per variation point to define a complete system configuration when "the model contains multiple variation points." | SysML 7.9.6 |  |  |
 | SSS-PA-VAR-C5H | PA, PT, VW | Mycelium Bloom shall display a resolved product tree showing the full system decomposition with only the selected variants included, as if the configuration were the actual design, when "a user applies a variant configuration." | SysML 7.9.6 |  |  |
 
-##### 5.2.1.13 Concurrent design sessions
-
-Concurrent design brings 20-30 engineers from different domains into the same room (or video call) to design a system together in real time. Mycelium must handle this scale, propagate changes across all connected users, and present session-aware views that show what is happening across the team. The requirements in this section cover concurrent session participation and the views engineers need during a session.
-
-| ID | Roles | Requirement | Ref | Prio | Effort |
-|----|-------|-------------|-----|------|--------|
-| SSS-PT-CDS-RKV | PA, PT | Mycelium Bloom shall support concurrent design sessions with 20-30 Participants from multiple Ownerships working simultaneously when "multiple Participants are connected to the same project and actively modifying model data." | - |  |  |
-| SSS-PT-CDS-I22 | PA, PT, VW | Mycelium Bloom shall display the product tree showing the full system decomposition with ownership indicators when "a user navigates to the product tree view during a design session." | - |  |  |
-| SSS-PT-CDS-9ZA | PA, PT | Mycelium Bloom shall persist updated attribute values to the shared model when "a Participant commits attribute changes during a concurrent design session." | - |  |  |
-| SSS-PT-CDS-YGL | PA, PT, VW | Mycelium Bloom shall display a dashboard tracking design drivers and key attribute evolution across Commits when "a user navigates to the design convergence dashboard." | - |  |  |
-| SSS-PT-CDS-TGV | PA, PT, VW | Mycelium Bloom shall display a comparison of attribute values between Commits or Tags when "a user selects two Commits or Tags for attribute comparison." | - |  |  |
-| SSS-VW-OBS-UZS | VW | Mycelium Bloom shall render a concurrent design session with real-time model updates without editing capability when "a Viewer joins an active design session." | - |  |  |
-| SSS-VW-OBS-GU1 | PA, PT, VW | Mycelium Bloom shall display which Participants are active and which Ownerships they are editing when "a user views the session participant list." | - |  |  |
-
-###### 5.2.1.13a Element history and design convergence
-
-| ID | Roles | Requirement | Ref | Prio | Effort |
-|----|-------|-------------|-----|------|--------|
-| SSS-PA-HIST-K3R | PA, PT, VW | Mycelium Bloom shall display the value history of one or more selected attributes as a time-series chart plotting the attribute values across Commits or Tags on the active branch when "a user opens the attribute history view and selects one or more attributes." | - |  |  |
-| SSS-PA-HIST-T6W | PA, PT, VW | Mycelium Bloom shall render multiple attributes of different quantity kinds on the same chart using independent Y-axes (one per quantity kind) with distinct colors and a shared Commit/Tag X-axis when "a user selects attributes with different units or quantity kinds for the attribute history view." | - |  |  |
-| SSS-PA-HIST-V2P | PA, PT, VW | Mycelium Bloom shall display the unit and quantity kind label on each Y-axis and provide a legend identifying each plotted attribute by name, element, and unit when "the attribute history chart displays multiple attributes." | - |  |  |
-| SSS-PA-HIST-W8D | PA, PT, VW | Mycelium Bloom shall display the change history of any model element listing all Commits in which the element was created, modified, or deleted, with the commit author, date, and description, when "a user opens the element history view." | - |  |  |
-| SSS-PA-HIST-N5T | PA, PT, VW | Mycelium Bloom shall display the property-level diff of a model element between two Commits, showing which attributes, relationships, and metadata changed and their old vs new values, when "a user selects two Commits in the element history view." | - |  |  |
-| SSS-PA-HIST-D2J | PA, PT, VW | Mycelium Bloom shall display requirements coverage evolution as a chart showing the percentage of requirements with at least one Satisfy relationship across Commits or Tags when "a user opens the requirements coverage trend view." | - |  |  |
-| SSS-PA-HIST-H7F | PA, PT, VW | Mycelium Bloom shall display verification status evolution as a chart showing the count of pass, fail, and inconclusive verdicts across Commits or Tags when "a user opens the verification trend view." | - |  |  |
-| SSS-PA-HIST-M4B | PA, PT, VW | Mycelium Bloom shall display constraint compliance evolution as a chart showing the count of satisfied vs violated constraints across Commits or Tags when "a user opens the constraint compliance trend view." | - |  |  |
-| SSS-PA-HIST-R9G | PA, PT, VW | Mycelium Bloom shall display model growth metrics (total element count, total relationship count, total attribute count) as a chart across Commits or Tags when "a user opens the model growth trend view." | - |  |  |
-
 ##### 5.2.1.14 Collaboration and subscriptions
 
 When one engineer's work depends on another's outputs, they need to know when those outputs change. Mycelium models these dependencies as ParameterSubscriptions: a subscriber expresses interest in an attribute owned by another Ownership, and the system notifies them of updates. The requirements in this section cover subscription management, ownership visibility, and presence indicators showing who is active.
@@ -997,17 +968,42 @@ Branch protection rules can require designated Reviewers to approve merges befor
 |----|-------|-------------|-----|------|--------|
 | SSS-PT-VC-JPL | PA, PT, VW | Mycelium Bloom shall provide a review interface to approve or request changes on merges to protected branches when "a user has been designated as a Reviewer and a merge is proposed." | - |  |  |
 
+##### 5.2.1.21 Attachments
 
-##### 5.2.1.20 User profile
-
-Users have a profile showing their identity, projects, and contributions. The requirements in this section cover the profile page contents — personal details, project list with key metadata, and a contribution heatmap showing activity over time.
+Engineering elements often need supporting documentation: thermal analysis PDFs, interface drawings, datasheets, photographs, spreadsheets. Mycelium lets users attach files of any type to any model element and download them later. The requirements in this section cover upload, download, listing, removal, and inline preview for common formats.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-CC-PROF-L6D | All | Mycelium Bloom shall display the user's profile details, a list of all projects the user is a member of, and a contribution heatmap when "a user navigates to their profile page." | - |  |  |
-| SSS-CC-PROF-52O | All | Mycelium Bloom shall display each project in the profile project list with: project name, description, license, last updated date, visibility (private, organization, public), and activity sparkline when "the user views their profile project list." | - |  |  |
+| SSS-PA-ATT-W5R | PA, PT | Mycelium Bloom shall support uploading one or more file attachments to any model element when "a user selects a model element and adds attachments via the attachment interface." | - |  |  |
+| SSS-PA-ATT-K3J | PA, PT, VW | Mycelium Bloom shall display a list of all attachments associated with a model element, showing file name, file type, size, upload date, and uploading user, when "a user views the attachments of a model element." | - | H |  |
+| SSS-PA-ATT-M8D | PA, PT, VW | Mycelium Bloom shall support downloading an attachment when "a user selects an attachment from the attachment list of a model element." | - | H |  |
+| SSS-PA-ATT-F2N | PA, PT | Mycelium Bloom shall support removing an attachment from a model element when "a user with write access to the element deletes an attachment from the attachment list." | - | H |  |
+| SSS-PA-ATT-V6H | PA, PT, VW | Mycelium Bloom shall display inline previews for image attachments (PNG, JPG, SVG) and PDF attachments when "a user views the attachment list of a model element." | - | H |  |
 
----
+##### 5.2.1.22 Glossary of Terms
+
+Engineering teams need a shared vocabulary. Acronyms, domain terms, and project-specific definitions should be discoverable wherever they appear. Mycelium models a glossary as a Package of Item Definitions with Documentation, and the user interface highlights terms throughout the application with tooltips and click-through navigation. This makes the glossary live and contextual rather than a forgotten document.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-GLOSS-T5R | PA, PT | Mycelium Bloom shall provide operations to create and manage a Glossary Package containing Item Definitions where each Item Definition represents a glossary term (name = term, short name = abbreviation) with Documentation providing the definition when "a user accesses the glossary management interface." | KerML 7.4 | L |  |
+| SSS-PA-GLOSS-K2W | PA, PT, VW | Mycelium Bloom shall display a tabular view listing all glossary terms with their name, abbreviation, definition, and owning package when "a user opens the glossary browser." | KerML 7.4 |L  |  |
+| SSS-PA-GLOSS-H8N | PA, PT | Mycelium Bloom shall provide operations to create, edit, and delete glossary terms (Item Definitions with Documentation) within a Glossary Package when "a user manages glossary entries." | KerML 7.4 | L |  |
+| SSS-PA-GLOSS-M3J | PA, PT, VW | Mycelium Bloom shall render any occurrence of a glossary term name or abbreviation as highlighted linked text throughout the application (model browser, detail panels, requirement text, diagram labels, comments) when "text content contains a word matching a glossary term name or abbreviation." | KerML 7.4 | L |  |
+| SSS-PA-GLOSS-V9D | PA, PT, VW | Mycelium Bloom shall display a tooltip showing the glossary term definition when "a user hovers over a highlighted glossary term in any view." | KerML 7.4 | L |  |
+| SSS-PA-GLOSS-F6B | PA, PT, VW | Mycelium Bloom shall navigate to the glossary term's Item Definition in the glossary browser when "a user clicks a highlighted glossary term link." | KerML 7.4 | L |  |
+
+##### 5.2.1.23 Constants
+
+Engineering models reference physical and project-specific constants (the speed of light, gravitational acceleration, target margins). Modelling these as named, typed Attribute Definitions with fixed values and source references makes them reusable across the project and traceable to their origin. Users can drag a constant into any constraint or calculation to ensure consistent values.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-CONST-N7K | PA, PT | Mycelium Bloom shall provide operations to create and manage a Constants Package containing Attribute Definitions where each Attribute Definition represents a named constant typed by a Quantity Kind, with a fixed Attribute Usage holding the value and Measurement Unit, and Documentation providing the source or reference, when "a user accesses the constants management interface." | SysML 9.8 | L |  |
+| SSS-PA-CONST-D3V | PA, PT, VW | Mycelium Bloom shall display a tabular view listing all constants with their name, abbreviation, value, unit, and source reference when "a user opens the constants browser." | SysML 9.8 | L |  |
+| SSS-PA-CONST-W8F | PA, PT | Mycelium Bloom shall provide operations to create, edit, and delete constants (Attribute Definitions with fixed Attribute Usages) within a Constants Package when "a user manages constant entries." | SysML 9.8 | L |  |
+| SSS-PA-CONST-J5M | PA, PT | Mycelium Bloom shall insert a reference to a constant's value into a constraint expression or calculation when "a user drags a constant from the constants browser and drops it into a constraint or calculation editor." | SysML 9.8 | L |  |
+| SSS-PA-CONST-R2H | PA, PT, VW | Mycelium Bloom shall display a tooltip showing the constant's value, unit, and source reference when "a user hovers over a constant reference in a constraint expression, calculation, or attribute value." | SysML 9.8 | L |  |
 
 #### 5.2.2 Mycelium Fabric
 
