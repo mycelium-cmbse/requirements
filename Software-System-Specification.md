@@ -228,6 +228,15 @@ Mycelium is built around organizations as tenant boundaries. Users self-register
 | SSS-IA-SYS-W9D | IA | Mycelium Bloom shall display installation-wide metrics including total users, total organizations, total projects, storage usage, and active sessions when "an Installation Administrator navigates to the installation dashboard." | - | H |  |
 | SSS-IA-SYS-E3T | IA | Mycelium Bloom shall display an installation-wide audit log of administrative actions (organization creation/deletion, user creation/deactivation, role changes) when "an Installation Administrator navigates to the installation audit log view." | - | H |  |
 
+###### 5.2.1.1a User profile
+
+Users have a profile showing their identity, projects, and contributions. The requirements in this section cover the profile page contents — personal details, project list with key metadata, and a contribution heatmap showing activity over time.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-CC-PROF-L6D | All | Mycelium Bloom shall display the user's profile details, a list of all projects the user is a member of, and a contribution heatmap when "a user navigates to their profile page." | - |  |  |
+| SSS-CC-PROF-52O | All | Mycelium Bloom shall display each project in the profile project list with: project name, description, license, last updated date, visibility (private, organization, public), and activity sparkline when "the user views their profile project list." | - |  |  |
+
 ##### 5.2.1.2 Project management
 
 A project is the unit of collaboration in Mycelium. Each project owns a SysML v2 model, a team, branches, and Ownership assignments. The Project Administrator (typically the study lead) configures the project, assigns roles, defines Ownerships, and oversees the model's structural integrity. The requirements in this section cover project creation, configuration, team management, and Ownership administration. Owner administration is only relevant in case the project is a Concurrent Design project.
@@ -274,18 +283,7 @@ The following lifecycle states are defined (TBC):
 
 Mycelium is a multi-user platform: in any project, several engineers from different ownerships are typically working on the model at the same time. The requirements in this section cover how Mycelium Bloom and Mycelium Fabric make collaboration *live*, visible, immediate, and lock-free, so that every user has continuous awareness of who else is in the project, what they are working on, and what is changing.
 
-###### 5.2.1.3a User profile
-
-Users have a profile showing their identity, projects, and contributions. The requirements in this section cover the profile page contents — personal details, project list with key metadata, and a contribution heatmap showing activity over time.
-
-| ID | Roles | Requirement | Ref | Prio | Effort |
-|----|-------|-------------|-----|------|--------|
-| SSS-CC-PROF-L6D | All | Mycelium Bloom shall display the user's profile details, a list of all projects the user is a member of, and a contribution heatmap when "a user navigates to their profile page." | - |  |  |
-| SSS-CC-PROF-52O | All | Mycelium Bloom shall display each project in the profile project list with: project name, description, license, last updated date, visibility (private, organization, public), and activity sparkline when "the user views their profile project list." | - |  |  |
-
----
-
-###### 5.2.1.3b Project-level user presence
+###### 5.2.1.3a Project-level user presence
 
 When a user opens a project, they should see at a glance who else is currently working in the same project — without having to navigate to a separate panel. This is the equivalent of the avatar cluster Microsoft Word and Google Docs show in a shared document's title bar: a small, always-visible indication that "I am not alone here". The requirements in this subsection cover the **project-level** presence indicator only. Per-diagram presence (who is on a specific diagram and what their pointer is doing) is covered separately by `SSS-PA-VIS-C6F` and `SSS-PA-VIS-C7G`. Per-document, per-table, and other view-level presence indicators are deferred to a later iteration.
 
@@ -301,7 +299,7 @@ When a user opens a project, they should see at a glance who else is currently w
 
 ---
 
-###### 5.2.1.3c Deep linking and sharing
+###### 5.2.1.3b Deep linking and sharing
 
 Engineers need to share specific surfaces of the model — a part, a requirement, a diagram, or an element pinned to a particular view — by copying a URL into email, chat, a comment, or a browser bookmark. The recipient pastes the URL and lands directly on that surface, signed in if necessary. The requirements in this section cover URL addressability of every navigable surface, an in-app "copy link" affordance, and the resolution behavior when a URL is opened (including stability across renames, scoping to a specific view, and graceful handling of missing or inaccessible targets). These requirements are also the technical foundation for future external integrations (chat, email, third-party notification routing) that embed Mycelium URLs.
 
