@@ -263,7 +263,7 @@ The following lifecycle states are defined (TBC):
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
 | SSS-PA-STATE-H5J | All | Mycelium Fabric shall reject all create, modify, and delete operations on model elements when "the project is in the Review or Archived state." | - | H |  |
-| SSS-PA-STATE-M8T | PA | Mycelium Bloom shall transition a project from Archived back to Open when "the Project Administrator reopens an archived project." | - | H |  |
+| SSS-PA-STATE-M8T | PA | Mycelium Bloom shall transition a project from its current lifecycle state to any other lifecycle state (Preparation, Open, Review, Archived) when "the Project Administrator selects a target lifecycle state for the project." | - | H |  |
 | SSS-PA-STATE-F3B | PA, OA | Mycelium Bloom shall create a new project pre-populated with the content of an Archived project when "a user creates a new project using an archived project as a template." | - | H |  |
 | SSS-PA-STATE-R6G | PA, PT, VW | Mycelium Bloom shall display a visual indicator (e.g. banner, badge, or icon) distinguishing projects in Review or Archived state from active projects when "a user views a project in a non-editable state." | - | M |  |
 | SSS-PA-STATE-Q8L | All | Mycelium Bloom shall assign Preparation as the default lifecycle state to a newly created project when "a user creates a new project and the organization has not configured a different default state." | - | H |  |
