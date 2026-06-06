@@ -150,6 +150,7 @@ The Mycelium platform provides the following high-level capabilities:
 - Model export in a variety or formats inlcuding CSV, SVG, the SysML2 Textual Notation
 - Self-service organization and project creation.
 - SysML v2 library package management via Mycelium Forge based on kerml kpar.
+- Mycelium Bloom must work not only with Mycelium Fabric but with any backend that implements the OMG Systems Modelling API.
 
 ### 4.3 General constraints
 
@@ -344,14 +345,14 @@ Mycelium Bloom operates in two persistence modes. In immediate mode, each edit i
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-PERSIST-K4R | PA, PT | Mycelium Bloom shall persist each model edit (create, update, delete) to Mycelium Fabric as an individual Commit on the active branch in immediate mode when "a user completes an edit and immediate persistence mode is active." | API 7.2.3 |  |  |
-| SSS-PA-PERSIST-W8N | PA, PT | Mycelium Bloom shall accumulate model edits locally without persisting them to Mycelium Fabric in batch mode when "a user performs edits and batch persistence mode is active." | API 7.2.3 |  |  |
-| SSS-PA-PERSIST-D3J | PA, PT | Mycelium Bloom shall persist all accumulated local edits to Mycelium Fabric as a single atomic Commit on the active branch when "a user submits the batch with a commit description in batch mode." | API 7.2.3 |  |  |
-| SSS-PA-PERSIST-H7T | PA, PT | Mycelium Bloom shall provide a toggle to switch between immediate mode and batch mode when "a user changes the persistence mode in the application settings or toolbar." | - |  |  |
-| SSS-PA-PERSIST-M2F | PA, PT | Mycelium Bloom shall display a pending changes indicator showing the number of uncommitted local edits when "the user is in batch mode and has accumulated local changes." | - |  |  |
-| SSS-PA-PERSIST-R5V | PA, PT | Mycelium Bloom shall display a list of all pending local changes with element name, change type (created, updated, deleted), and changed properties when "the user reviews the pending changes before committing a batch." | - |  |  |
-| SSS-PA-PERSIST-N9B | PA, PT | Mycelium Bloom shall discard all pending local changes and revert to the last committed model state when "the user cancels a batch in batch mode." | - |  |  |
-| SSS-PA-PERSIST-T1G | PA, PT | Mycelium Bloom shall warn the user about unsaved local changes when "the user attempts to close the application, switch projects, or switch branches while in batch mode with pending changes." | - |  |  |
+| SSS-PA-PERSIST-K4R | PA, PT | Mycelium Bloom shall persist each model edit (create, update, delete) to Mycelium Fabric as an individual Commit on the active branch in immediate mode when "a user completes an edit and immediate persistence mode is active." | API 7.2.3 | H |  |
+| SSS-PA-PERSIST-W8N | PA, PT | Mycelium Bloom shall accumulate model edits locally without persisting them to Mycelium Fabric in batch mode when "a user performs edits and batch persistence mode is active." | API 7.2.3 | H |  |
+| SSS-PA-PERSIST-D3J | PA, PT | Mycelium Bloom shall persist all accumulated local edits to Mycelium Fabric as a single atomic Commit on the active branch when "a user submits the batch with a commit description in batch mode." | API 7.2.3 | H |  |
+| SSS-PA-PERSIST-H7T | PA, PT | Mycelium Bloom shall provide a toggle to switch between immediate mode and batch mode when "a user changes the persistence mode in the application settings or toolbar." | - | H |  |
+| SSS-PA-PERSIST-M2F | PA, PT | Mycelium Bloom shall display a pending changes indicator showing the number of uncommitted local edits when "the user is in batch mode and has accumulated local changes." | - | H |  |
+| SSS-PA-PERSIST-R5V | PA, PT | Mycelium Bloom shall display a list of all pending local changes with element name, change type (created, updated, deleted), and changed properties when "the user reviews the pending changes before committing a batch." | - | H |  |
+| SSS-PA-PERSIST-N9B | PA, PT | Mycelium Bloom shall discard all pending local changes and revert to the last committed model state when "the user cancels a batch in batch mode." | - | H |  |
+| SSS-PA-PERSIST-T1G | PA, PT | Mycelium Bloom shall warn the user about unsaved local changes when "the user attempts to close the application, switch projects, or switch branches while in batch mode with pending changes." | - | H |  |
 
 ##### 5.2.1.6 Concurrent Design
 
