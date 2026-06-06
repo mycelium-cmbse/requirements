@@ -81,7 +81,7 @@ The following table lists the SysML v2 Definition types (and their corresponding
 | PartDefinition | PartUsage | Structural building block of a system (system, subsystem, equipment, component) | 5.2.1.5 |
 | ItemDefinition | ItemUsage | Non-structural element representing data, signals, energy, or resources | 5.2.1.5 |
 | AttributeDefinition | AttributeUsage | Data characteristic (quantity, text, boolean) with optional unit and measurement scale | 5.2.1.5 |
-| EnumerationDefinition | EnumerationUsage | Fixed set of allowed values restricting an attribute | 5.2.1.5 |
+| EnumerationDefinition | EnumerationUsage | Fixed set of allowed values restricting an attribute | 5.2.1.14 |
 | PortDefinition | PortUsage | Interaction point on a part with directional features (in, out, inout) | 5.2.1.5 |
 | ConnectionDefinition | ConnectionUsage | Link between parts or items (physical, logical, or data) | 5.2.1.5 |
 | InterfaceDefinition | InterfaceUsage | Standardized connection between ports with compatibility rules | 5.2.1.5 |
@@ -487,18 +487,12 @@ The core of system modeling is defining the building blocks (Definitions) of the
 |----|-------|-------------|-----|------|--------|
 | SSS-PA-ARCH-JQH | PA, PT | Mycelium Bloom shall support defining Part Definitions as reusable building blocks and instantiating them as Part Usages within the system hierarchy when "a user creates a new Part Definition or instantiates an existing one." | SysML 7.9 | H |  |
 | SSS-PA-ARCH-TB2 | PA, PT | Mycelium Bloom shall support decomposing the system into hierarchical levels (e.g. System, Subsystem, Equipment, Component) when "a user adds child parts to an existing part in the model hierarchy." | SysML 7.9 | H |  |
+| SSS-PA-ARCH-97Z | PA, PT | Mycelium Bloom shall support defining Attribute Definitions and instantiating them as Attribute Usages on any element definition or usage, with quantities, units, and measurement scales consistent with the SysML v2 Quantities and Units library, when "a user adds or edits an attribute on a model element." | SysML 7.7 | H |  |
 | SSS-PA-ARCH-5RR | PA, PT | Mycelium Bloom shall support defining Port Definitions and instantiating them as Port Usages on parts to specify interaction points with direction (in, out, inout) when "a user adds a port to a selected part." | SysML 7.11 | H |  |
 | SSS-PA-ARCH-IGA | PA, PT | Mycelium Bloom shall support creating Connection Definitions, Connection Usages, Interface Definitions, and Interface Usages between parts to model integration and data flow when "a user selects two compatible ports and creates a connection or interface." | SysML 7.12, 7.13 | H |  |
 | SSS-PA-ARCH-Y2D | PA, PT | Mycelium Bloom shall create a Binding Connector that asserts equality between two compatible features of model elements when "a user selects two features and creates a binding between them." | KerML 7.13.3 | H |  |
 | SSS-PA-ARCH-K7M | PA, PT | Mycelium Bloom shall create a conjugated Port Usage with reversed feature directions (in becomes out, out becomes in) when "a user designates a Port Usage as the conjugate of an existing Port Definition." | KerML 7.6 | M |  |
 | SSS-PA-ARCH-N5W | PA, PT | Mycelium Bloom shall create a Featuring relationship establishing that one type features another type when "a user explicitly specifies a featuring relationship between two types." | KerML 7.6 | M |  |
-| SSS-PA-ARCH-97Z | PA, PT | Mycelium Bloom shall support defining Attribute Definitions and instantiating them as Attribute Usages on any element definition or usage, with quantities, units, and measurement scales consistent with the SysML v2 Quantities and Units library, when "a user adds or edits an attribute on a model element." | SysML 7.7 | H |  |
-| SSS-PA-ARCH-9W5 | PA, PT | Mycelium Bloom shall support defining Enumeration Definitions to restrict attribute values to specified sets when "a user creates an Enumeration Definition and specifies its literal values." | SysML 7.7.4 | H |  |
-| SSS-PA-ARCH-E1A | PA, PT | Mycelium Bloom shall add, rename, and remove Enumeration Literals of an Enumeration Definition — with optional Documentation per literal — when "a user edits the literal set of an Enumeration Definition in the detail panel." | SysML 7.7.4 | H |  |
-| SSS-PA-ARCH-E2B | PA, PT | Mycelium Bloom shall reorder the Enumeration Literals of an Enumeration Definition when "a user changes the position in the literal list." | SysML 7.7.4 | H |  |
-| SSS-PA-VIS-E3C | PA, PT, VW | Mycelium Bloom shall display the literal set of an Enumeration Definition in its detail panel, showing each literal's `name`, its ordinal position, and its Documentation, when "a user views an Enumeration Definition." | SysML 7.7.4 | H |  |
-| SSS-PA-ARCH-E4D | PA, PT | Mycelium Bloom shall present the allowed literals of the typing Enumeration Definition as a dropdown selection when "a user edits the value of an Attribute Usage whose type is an Enumeration Definition." | SysML 7.7.4 | H |  |
-| SSS-FB-ARCH-E5F | - | Mycelium Fabric shall reject any commit that assigns to an Attribute Usage typed by an Enumeration Definition a value that is not one of the Definition's Enumeration Literals, and shall return a validation error identifying the offending assignment, when "a client submits such a commit." | SysML 7.7.4 | H |  |
 | SSS-PA-ARCH-B2D | PA, PT | Mycelium Bloom shall support defining Item Definitions to represent non-structural elements (data types, signals, resources) when "a user creates a new Item Definition." | SysML 7.10 | H |  |
 | SSS-PT-DATA-N7O | PT | Mycelium Bloom shall display and enable editing of model elements within the user's assigned Ownership when "the Participant navigates to a model element annotated with their Ownership as Owner." | - | H |  |
 | SSS-PT-DATA-D5I | PT | Mycelium Bloom shall provide a selector to set attribute value sources as Manual (hand-entered), Computed (calculated), or Reference (sourced from another element) when "the Participant edits an attribute value." (TBC) | SysML 7.7 | M |  |
@@ -604,7 +598,20 @@ Numerical engineering values must always be expressed with a quantity kind, a me
 | SSS-PA-QU-N9X | PA, PT | Mycelium Bloom shall create an Attribute Usage typed by the dropped Attribute Definition on the target element when "a user drags an Attribute Definition from the Attribute Definitions browser and drops it onto an element Definition or Usage in the model browser or a diagram." | SysML 7.7 | H |  |
 | SSS-PA-QU-G1W | PA, PT | Mycelium Bloom shall support importing Quantity Kinds, Measurement Units, Measurement Scales, and Attribute Definitions from the SysML v2 standard libraries (ISQ, SI, USCustomary) and from Mycelium Forge packages when "a user selects library content for import into a project." | SysML 9.8 | H |  |
 
-##### 5.2.1.14 Behavior modeling
+##### 5.2.1.14 Enumerations
+
+An Enumeration Definition is a value type whose instances are restricted to a fixed set of named literals — the non-numeric counterpart to the quantity-kind-and-unit typing of numeric attributes. Engineers use enumerations to constrain an attribute to a controlled vocabulary (e.g. operational mode, criticality class). The requirements in this section cover defining enumerations and their literals, displaying them, constraining attribute values to them, and validating those values.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-ARCH-9W5 | PA, PT | Mycelium Bloom shall support defining Enumeration Definitions to restrict attribute values to specified sets when "a user creates an Enumeration Definition and specifies its literal values." | SysML 7.7.4 | H |  |
+| SSS-PA-ARCH-E1A | PA, PT | Mycelium Bloom shall add, rename, and remove Enumeration Literals of an Enumeration Definition — with optional Documentation per literal — when "a user edits the literal set of an Enumeration Definition in the detail panel." | SysML 7.7.4 | H |  |
+| SSS-PA-ARCH-E2B | PA, PT | Mycelium Bloom shall reorder the Enumeration Literals of an Enumeration Definition when "a user changes the position in the literal list." | SysML 7.7.4 | H |  |
+| SSS-PA-VIS-E3C | PA, PT, VW | Mycelium Bloom shall display the literal set of an Enumeration Definition in its detail panel, showing each literal's `name`, its ordinal position, and its Documentation, when "a user views an Enumeration Definition." | SysML 7.7.4 | H |  |
+| SSS-PA-ARCH-E4D | PA, PT | Mycelium Bloom shall present the allowed literals of the typing Enumeration Definition as a dropdown selection when "a user edits the value of an Attribute Usage whose type is an Enumeration Definition." | SysML 7.7.4 | H |  |
+| SSS-FB-ARCH-E5F | - | Mycelium Fabric shall reject any commit that assigns to an Attribute Usage typed by an Enumeration Definition a value that is not one of the Definition's Enumeration Literals, and shall return a validation error identifying the offending assignment, when "a client submits such a commit." | SysML 7.7.4 | H |  |
+
+##### 5.2.1.15 Behavior modeling
 
 Beyond structure, systems exhibit behavior: actions performed, states held, transitions triggered, flows of items and data. SysML v2 provides Action Definitions, State Definitions, Flow Connections, and Use Case Definitions. The requirements in this section cover the behavioral modeling capabilities engineers need to describe what the system does and how its behavior depends on context.
 
@@ -637,7 +644,7 @@ Beyond structure, systems exhibit behavior: actions performed, states held, tran
 | SSS-PA-BEH-F6L | PA, PT | Mycelium Bloom shall create a For Loop Action Usage composed of a loop-variable Feature, a collection Expression, and a body Action Usage that executes once for each element of the collection when "a user adds a for-loop to an Action Flow View or to an Action Definition." | SysML 7.16.5 | H |  |
 | SSS-FB-BEH-C7F | - | Mycelium Fabric shall return a validation warning identifying any Decision Node with an outgoing Succession lacking a guard, any Fork Node without a matching Join Node in the same Action, any Action Usage reachable from no Succession source, and any Loop Action Usage whose condition Expression does not terminate in a finite number of iterations under trivial inputs, when "a client runs model validation or submits a commit containing an Action Definition." | SysML 7.16 | H |  |
 
-##### 5.2.1.15 Analysis and verification
+##### 5.2.1.16 Analysis and verification
 
 Engineers need to evaluate design quality and verify that requirements are met. Mycelium supports Analysis Cases (evaluating system properties), Verification Cases (verifying requirements with methods and verdicts), Constraint Definitions (validation rules), and Calculation Definitions (domain-specific computations). The requirements in this section cover the analytical capabilities that turn the model into a basis for design decisions.
 
@@ -652,7 +659,7 @@ Engineers need to evaluate design quality and verify that requirements are met. 
 | SSS-PT-ANALYSIS-EAJ | PA, PT, VW | Mycelium Bloom shall display constraint evaluation results showing which constraints pass or violate when "a user navigates to the constraint evaluation view or triggers constraint evaluation." | SysML 7.20 | H |  |
 | SSS-PA-AV-2RG | PA, PT, VW | Mycelium Bloom shall display a validation dashboard showing model quality, constraint violations, and verification status when "a user navigates to the validation dashboard view." | - | H |  |
 
-##### 5.2.1.16 In-browser scripting
+##### 5.2.1.17 In-browser scripting
 
 Some analyses cannot be expressed declaratively and require imperative computation. Mass budgets, power budgets, and complex requirements verification often need iteration and aggregation across the product tree. The requirements in this section describe a desirable in-browser scripting environment that runs computational analyses against model data without leaving the application.
 
@@ -669,9 +676,9 @@ Some analyses cannot be expressed declaratively and require imperative computati
 | SSS-PA-SCRIPT-K8B | PA, PT | Mycelium Bloom should evaluate Constraint Usages against model attribute values and report pass/fail/inconclusive verdicts when "a user executes a requirements verification script." | - | M |  |
 | SSS-PA-SCRIPT-R6P | PA, PT | Mycelium Bloom should save and version scripts as part of the project so they are available to all project members when "a user saves a script in the scripting environment." | - | M |  |
 
-##### 5.2.1.17 Diagrams and visualization
+##### 5.2.1.18 Diagrams and visualization
 
-###### 5.2.1.17.1 Graphical notation compliance
+###### 5.2.1.18.1 Graphical notation compliance
 
 Mycelium Bloom must render model elements using the symbols defined in SysML v2 Part 1 section 8.2.3. This ensures that diagrams produced in and with Mycelium are immediately recognizable to anyone familiar with SysML v2 and exchangeable with other SysML v2 tools. The requirements in this section also cover diagram annotations, custom icons, and drag-and-drop interactions that apply to all diagram types.
 
@@ -696,7 +703,7 @@ Mycelium Bloom must render model elements using the symbols defined in SysML v2 
 
 
 
-###### 5.2.1.17.2 Interconnection View
+###### 5.2.1.18.2 Interconnection View
 
 An Interconnection View shows the structural composition of a system: parts, the ports through which they interact, and the connections between those ports. This is the most common diagram type for system architecture work and the entry point for most reviews of the physical decomposition.
 
@@ -709,7 +716,7 @@ An Interconnection View shows the structural composition of a system: parts, the
 | SSS-PA-VIS-I5S | PA, PT, VW | Mycelium Bloom shall render Item Usages on a structural diagram as rounded-corner nodes using the SysML v2 graphical notation and shall support creating an Item Usage on the canvas by dragging an Item Definition from the model browser or the Item tool from the toolbox when "a user adds or views an Item Usage on a structural diagram." | SysML 8.2.3.12 |  |  |
 | SSS-PA-VIS-I6T | PA, PT, VW | Mycelium Bloom shall render the payload Item Usage of a Flow Connection Usage alongside the flow connection line on a diagram, displaying the Item Usage name, its typing Item Definition, and its multiplicity, when "a user views a Flow Connection Usage that carries an Item." | SysML 8.2.3.15 |  |  |
 
-###### 5.2.1.17.3 Action Flow View
+###### 5.2.1.18.3 Action Flow View
 
 An Action Flow View shows the behavior of the system as a sequence of actions with control flow between them. Engineers use it to describe how the system performs its functions, including parallelism (forks/joins), decisions, and loops. The notation closely follows UML activity diagrams.
 
@@ -720,7 +727,7 @@ An Action Flow View shows the behavior of the system as a sequence of actions wi
 | SSS-PA-VIS-J6N | PA, PT, VW | Mycelium Bloom shall render input/output parameters as small rectangles on action node boundaries with directional indicators (in, out, inout) per the SysML v2 graphical notation (section 8.2.3.17) when "an Action Flow View displays actions with parameters." | SysML 8.2.3.17 |  |  |
 | SSS-PA-VIS-M1Z | PA, PT, VW | Mycelium Bloom shall render send action nodes, accept action nodes, while-loop action nodes, for-loop action nodes, and if-else action nodes using the SysML v2 standard symbols (section 8.2.3.17) when "an Action Flow View displays these action types." | SysML 8.2.3.17 |  |  |
 
-###### 5.2.1.17.4 State Transition View
+###### 5.2.1.18.4 State Transition View
 
 A State Transition View shows the states a system or part can be in and the transitions between them, triggered by events with optional guards and effects. This is essential for modeling operational modes, fault handling, and any behavior that depends on context.
 
@@ -730,7 +737,7 @@ A State Transition View shows the states a system or part can be in and the tran
 | SSS-PA-VIS-B8V | PA, PT, VW | Mycelium Bloom shall render State Usages as rounded-corner rectangles with «state» headers containing entry/do/exit action compartments, and Transition Usages as arrows labeled with trigger [guard] / effect, using the SysML v2 graphical notation (section 8.2.3.18) when "a State Transition View displays state-based model content." | SysML 8.2.3.18 |  |  |
 | SSS-PA-VIS-F2C | PA, PT, VW | Mycelium Bloom shall render parallel state regions using the «parallel» designator per the SysML v2 graphical notation (section 8.2.3.18) when "a State Transition View displays concurrent state regions." | SysML 8.2.3.18 |  |  |
 
-###### 5.2.1.17.5 Sequence View
+###### 5.2.1.18.5 Sequence View
 
 A Sequence View shows interactions between parts over time as messages exchanged along lifelines. Engineers use it to capture protocol flows, scenario walkthroughs, and timing-sensitive behaviors.
 
@@ -739,7 +746,7 @@ A Sequence View shows interactions between parts over time as messages exchanged
 | SSS-PA-VIS-FA5 | PA, PT | Mycelium Bloom shall provide an editor for creating and editing Sequence Views showing interactions between parts over time when "a user opens or creates a Sequence View for a selected interaction context." | SysML 8.2.3.9 |  |  |
 | SSS-PA-VIS-A9H | PA, PT, VW | Mycelium Bloom shall render lifelines as vertical dashed lines below part/port header nodes, and messages as horizontal arrows between lifelines with message labels, using the SysML v2 graphical notation (section 8.2.3.9) when "a Sequence View displays interaction model content." | SysML 8.2.3.9 |  |  |
 
-###### 5.2.1.17.6 Requirement View
+###### 5.2.1.18.6 Requirement View
 
 A Requirement View displays requirements and their satisfaction relationships graphically. Stakeholders can see which design elements satisfy which requirements at a glance, supporting reviews and impact analysis.
 
@@ -747,7 +754,7 @@ A Requirement View displays requirements and their satisfaction relationships gr
 |----|-------|-------------|-----|------|--------|
 | SSS-PA-VIS-C3D | PA, PT, VW | Mycelium Bloom shall render Requirement Usages as rectangles with «requirement» headers containing the requirement text, and Satisfy Requirement Usages as dashed arrows labeled «satisfy», using the SysML v2 graphical notation (section 8.2.3.21) when "a diagram displays requirements and their satisfaction relationships." | SysML 8.2.3.21 |  |  |
 
-###### 5.2.1.17.7 General View
+###### 5.2.1.18.7 General View
 
 A General View is an unconstrained canvas where engineers can place any model element type and freely arrange it. It supports brainstorming, mixed concept exploration, and stakeholder-facing presentations that don't fit a single standard diagram type.
 
@@ -756,7 +763,7 @@ A General View is an unconstrained canvas where engineers can place any model el
 | SSS-PA-VIS-BB9 | PA, PT | Mycelium Bloom shall provide an editor for creating General Views for unconstrained graphical model exploration when "a user creates a new General View and adds model elements to its canvas." | SysML 8.2.3.5 |  |  |
 | SSS-PA-VIS-P5W | PA, PT, VW | Mycelium Bloom shall support placing any model element type on a General View canvas using its SysML v2 graphical notation symbol when "a user adds an element to a General View." | SysML 8.2.3 |  |  |
 
-###### 5.2.1.17.8 Grid View
+###### 5.2.1.18.8 Grid View
 
 A Grid View presents model data in tabular or matrix form. Engineers use it to compare attributes across many elements at once, or to view two-dimensional relationships between element sets.
 
@@ -764,7 +771,7 @@ A Grid View presents model data in tabular or matrix form. Engineers use it to c
 |----|-------|-------------|-----|------|--------|
 | SSS-PA-VIS-JPW | PA, PT | Mycelium Bloom shall provide a Grid View for tabular and matrix representations of model data when "a user creates a Grid View and selects the element types and properties to display." | SysML 7.26 |  |  |
 
-###### 5.2.1.17.9 Custom Views and Viewpoints
+###### 5.2.1.18.9 Custom Views and Viewpoints
 
 Different stakeholders have different concerns: a power engineer wants a power-focused view, a thermal engineer wants thermal data, a customer wants high-level summaries. SysML v2 Viewpoint Definitions and View Definitions let users formalize these stakeholder concerns and create reusable filtered views. The requirements in this section cover defining and managing custom views and viewpoints.
 
@@ -773,7 +780,7 @@ Different stakeholders have different concerns: a power engineer wants a power-f
 | SSS-PA-VIS-T2V | PA, PT | Mycelium Bloom shall support defining custom View Definitions, View Usages, Viewpoint Definitions, and Viewpoint Usages filtered to specific stakeholder concerns when "a user creates a Viewpoint Definition, specifies its concerns, and creates a conforming View Definition." | SysML 7.26 |  |  |
 | SSS-PA-VIS-K9R | PA, PT | Mycelium Bloom shall create an Expose relationship that imports filtered model content into a View, with optional metadata-based or query-based filter conditions, when "a user adds exposed model content to a View Definition." | SysML 7.26.2 |  |  |
 
-###### 5.2.1.17.10 Textual notation
+###### 5.2.1.18.10 Textual notation
 
 SysML v2 has a textual notation that some engineers prefer for editing, reviewing or sharing model content. Mycelium generates this notation read-only from the model, providing a reference representation without requiring users to edit text directly.
 
@@ -781,7 +788,7 @@ SysML v2 has a textual notation that some engineers prefer for editing, reviewin
 |----|-------|-------------|-----|------|--------|
 | SSS-PA-VIS-IXL | PA, PT, VW | Mycelium Bloom shall generate and display the SysML v2 textual notation representation of model elements (read-only) when "a user selects one or more model elements and requests textual notation view." | SysML 8.2.2 | H |  |
 
-###### 5.2.1.17.11 Diagram export
+###### 5.2.1.18.11 Diagram export
 
 Diagrams need to leave Mycelium for reports, presentations, and external tools. The requirements in this section cover export to SVG (vector), PNG (raster, configurable resolution), and JPG (compressed raster) formats.
 
@@ -791,7 +798,7 @@ Diagrams need to leave Mycelium for reports, presentations, and external tools. 
 | SSS-PA-VIS-T1N | PA, PT, VW | Mycelium Bloom shall export a diagram to PNG format at a user-specified resolution when "a user selects PNG as the export format for a diagram." | - |  |  |
 | SSS-PA-VIS-G4L | PA, PT, VW | Mycelium Bloom shall export a diagram to JPG format at a user-specified resolution and quality when "a user selects JPG as the export format for a diagram." | - |  |  |
 
-##### 5.2.1.18. Diagram persistence and real-time collaboration
+##### 5.2.1.19 Diagram persistence and real-time collaboration
 
 A diagram in Mycelium is more than a transient rendering of the underlying model: it is a durable, first-class artifact with its own identity, layout, and collaboration state. KerML and SysML v2 do not (yet) define an abstract syntax for diagram layout persistence — there is no standard metaclass describing node positions, routing waypoints, or custom per-diagram rendering overrides. OMG is working on definining a standard library using SysML2 constructs to exchange diagrams, once this is available this will be used to exchange diagram related information. The requirements in this section also state that diagrams participate in Mycelium's lock-free collaboration model and display live presence and activity indicators for every user currently working on the same diagram.
 
@@ -806,7 +813,7 @@ A diagram in Mycelium is more than a transient rendering of the underlying model
 | SSS-PA-VIS-C8H | PA, PT, VW | Mycelium Bloom shall briefly highlight on the local diagram, using an animated outline or flash in the originator's collaborator colour, every node or edge that has just been created, deleted, moved, resized, or otherwise modified by another user, so that the local user notices the change, when "a real-time update from another user modifies a diagram element." | - | M |  |
 | SSS-PA-VIS-C9J | PA, PT | Mycelium Bloom shall grant interactive editing control over any single diagram node or relationship to at most one user at a time, shall reject a second user's attempt to move, resize, reroute, relabel, or otherwise interactively modify a diagram element that another user is currently manipulating, shall render the element as busy (greyed-out or locked-cursor) with the holding user's display name and collaborator colour, and shall release the exclusive control as soon as the first user completes or cancels the interaction, when "two or more users attempt to interactively modify the same diagram element concurrently." This element-level, short-lived exclusion applies only to the in-flight interactive gesture on a diagram element and does not constitute a lock on the underlying model element; it therefore does not conflict with the lock-free collaboration principle in `SSS-CC-COLLAB-62C`. | - | M |  |
 
-##### 5.2.1.19 3D model viewer
+##### 5.2.1.20 3D model viewer
 
 Spatial decomposition is most intuitive in 3D. Mycelium offers an interactive 3D viewer whose **primary** source of geometry is a set of SysML v2 Attribute Usages on each Part Usage — centre of gravity, orientation, basic shape, and dimensions — sourced from Attribute Definitions that live in a dedicated Mycelium Library Package. As a deferred capability, a Part Usage may additionally carry an attached STEP file, which Mycelium can use as the authoritative rendering source. Users can navigate the scene, select elements to inspect properties, and see Ownership-based colour coding to understand who is responsible for what. When the attribute values are updated (location, orientation, dimensions, shape) the interactive 3D viewer updates as well.
 
@@ -825,7 +832,7 @@ Spatial decomposition is most intuitive in 3D. Mycelium offers an interactive 3D
 | SSS-PA-VIS-G5E | - | The `Mycelium::Geometry3D` Library Package shall import the necessary quantity-kind, unit, and scale definitions from the SysML v2 Quantities and Units standard library (ISO 80000) via a Namespace Import so that `centerOfGravity`, `orientation`, and `dimensions` are typed by standard quantity kinds and do not redefine units, when "the Library Package is authored or published to Mycelium Forge." | SysML 7.5.3, 9.8 |  |  |
 | SSS-PA-VIS-G6F | PA, PT, VW | Mycelium Bloom shall render a neutral placeholder shape — labelled with the Part Usage name and its typing Part Definition — when a Part Usage lacks a complete set of geometric Attribute Usages per `SSS-PA-VIS-G2B`, when "the 3D viewer attempts to render a Part Usage that has no geometric information." | - |  |  |
 
-##### 5.2.1.20 Queries
+##### 5.2.1.21 Queries
 
 Engineers need to ask questions of their models: list all elements categorized as Equipment, find all requirements with no Satisfy relationship, retrieve all parts above a mass threshold. Mycelium offers a query interface based on the Systems Modelling API query operations, with the ability to save and re-execute queries against any commit.
 
@@ -834,7 +841,7 @@ Engineers need to ask questions of their models: list all elements categorized a
 | SSS-PA-QRY-L11 | PA, PT | Mycelium Bloom shall provide a query interface supporting select, scope, where, and orderBy clauses, with the ability to save and re-execute queries, when "a user composes a query and submits it for execution." | API 7.3 |  |  |
 | SSS-PA-QRY-JYA | PA, PT, VW | Mycelium Bloom shall execute queries against any commit to retrieve historical model state when "a user specifies a target Commit identifier before executing a query." | API 7.3 |  |  |
 
-##### 5.2.1.21 Reporting and dashboards
+##### 5.2.1.22 Reporting and dashboards
 
 Beyond raw data, engineers and stakeholders need summary views showing model health, progress, and metrics. Mycelium provides dashboards for system monitoring, validation, and project model health, with click-through navigation from summary metrics to underlying elements.
 
@@ -842,7 +849,7 @@ Beyond raw data, engineers and stakeholders need summary views showing model hea
 |----|-------|-------------|-----|------|--------|
 | SSS-OA-SYS-IEJ | OA | Mycelium Bloom shall display active user sessions and system health metrics when "the Organization Administrator navigates to the system monitoring dashboard." | - |  |  |
 
-###### 5.2.1.21a Project model dashboard
+###### 5.2.1.22a Project model dashboard
 
 The project model dashboard gives the study lead and team a single view of model health: how many attributes are published vs unpublished, how many elements are unused, what the distribution of element types and Ownerships looks like, and how requirements coverage and constraint compliance are progressing. The requirements in this section cover histograms, pie charts, summary metrics, filtering, and click-through navigation, inspired by the equivalent CDP4-COMET-WEB dashboard.
 
@@ -870,7 +877,7 @@ The project model dashboard gives the study lead and team a single view of model
 | SSS-PA-HIST-M4B | PA, PT, VW | Mycelium Bloom shall display constraint compliance evolution as a chart showing the count of satisfied vs violated constraints across Commits or Tags when "a user opens the constraint compliance trend view." | - |  |  |
 | SSS-PA-HIST-R9G | PA, PT, VW | Mycelium Bloom shall display model growth metrics (total element count, total relationship count, total attribute count) as a chart across Commits or Tags when "a user opens the model growth trend view." | - |  |  |
 
-##### 5.2.1.22 User interface adaptation
+##### 5.2.1.23 User interface adaptation
 
 Mycelium supports novice, intermediate, and expert users. The interface should adapt to the user's role and Ownership, surface commonly-used features prominently, and provide context-aware help. The requirements in this section cover role-aware interface adaptation, workspace customization, and the About dialog.
 
@@ -883,7 +890,7 @@ Mycelium supports novice, intermediate, and expert users. The interface should a
 | SSS-PT-UI-256 | PT | Mycelium Bloom shall present a selector to switch the active Ownership when "the Participant is assigned to multiple Ownerships and selects a different active Ownership from the Ownership selector." | - |  |  |
 | SSS-PT-UI-G4M | All | Mycelium Bloom shall display an About window showing the application name, version number, license information, copyright notice, and links to documentation and source code when "a user opens the About dialog." | - |  |  |
 
-##### 5.2.1.23 Import, export and migration
+##### 5.2.1.24 Import, export and migration
 
 Mycelium must interoperate with the broader MBSE ecosystem. Models can be imported and exported in SysML v2 JSON, requirements in ReqIF, content in HTML for documentation. CDP4-COMET ECSS-E-TM-10-25 models can be migrated to SysML v2 via a semi-automated converter. The requirements in this section cover all import, export, and migration capabilities.
 
@@ -897,7 +904,7 @@ Mycelium must interoperate with the broader MBSE ecosystem. Models can be import
 | SSS-PA-IE-B5W | PA, PT, VW | Mycelium Bloom shall export a Requirements Specification as a navigable HTML document preserving the hierarchical structure, requirement text, categories, and constraint details when "a user selects HTML as the export format for a Requirements Specification." | - |  |  |
 | SSS-PA-IE-N8G | PA, PT, VW | Mycelium Bloom shall export a user-selected set of model elements (e.g. a Package, a Part Definition with its decomposition, or a filtered query result) as a navigable HTML document showing element properties, attributes, relationships, and Documentation when "a user selects HTML as the export format for a model element selection." | - |  |  |
 
-##### 5.2.1.24 Comments and documentation
+##### 5.2.1.25 Comments and documentation
 
 SysML v2 defines Comment as an annotating element with a textual body that can describe one or more model elements, and Documentation as a specialized Comment that formally documents its owning element. Comments and Documentation are the primary mechanism for adding explanatory text, rationale, design notes, and review feedback to model elements.
 
@@ -915,7 +922,7 @@ SysML v2 defines Comment as an annotating element with a textual body that can d
 | SSS-PA-CMT-L7X | PA, PT | Mycelium Bloom shall create an AnnotatingElement (Comment, Documentation, Textual Representation, or Metadata Feature) together with its Annotation relationship(s) to one or more target elements in a single user operation when "a user draws a line in a diagram from the annotation tool in the toolbox, or from an existing annotation node, to one or more diagram nodes." | KerML 7.4.1 | H |  |
 | SSS-PA-CMT-Z9K | PA, PT | Mycelium Bloom shall create an AnnotatingElement (Comment, Documentation, Textual Representation, or Metadata Feature) together with its Annotation relationship(s) to the currently selected model element(s) when "a user invokes an 'Add Comment', 'Add Documentation', 'Add Textual Representation', or 'Apply Metadata' action from the context (right-click) menu or from the detail panel of a list or tabular view." | KerML 7.4.1 | H |  |
 
-##### 5.2.1.25 Review workflow
+##### 5.2.1.26 Review workflow
 
 Branch protection rules can require designated Reviewers to approve merges before they enter the default branch. The requirements in this section cover the reviewer interface for approving or requesting changes on protected branch merges, supporting the gatekeeper model for design baselines.
 
@@ -923,7 +930,7 @@ Branch protection rules can require designated Reviewers to approve merges befor
 |----|-------|-------------|-----|------|--------|
 | SSS-PT-VC-JPL | PA, PT, VW | Mycelium Bloom shall provide a review interface to approve or request changes on merges to protected branches when "a user has been designated as a Reviewer and a merge is proposed." | - |  |  |
 
-##### 5.2.1.26 Attachments
+##### 5.2.1.27 Attachments
 
 Engineering elements often need supporting documentation: thermal analysis PDFs, interface drawings, datasheets, photographs, spreadsheets. Mycelium lets users attach files of any type to any model element and download them later. The requirements in this section cover upload, download, listing, removal, and inline preview for common formats.
 
@@ -935,7 +942,7 @@ Engineering elements often need supporting documentation: thermal analysis PDFs,
 | SSS-PA-ATT-F2N | PA, PT | Mycelium Bloom shall support removing an attachment from a model element when "a user with write access to the element deletes an attachment from the attachment list." | - | H |  |
 | SSS-PA-ATT-V6H | PA, PT, VW | Mycelium Bloom shall display inline previews for image attachments (PNG, JPG, SVG) and PDF attachments when "a user views the attachment list of a model element." | - | H |  |
 
-##### 5.2.1.27 Glossary of Terms
+##### 5.2.1.28 Glossary of Terms
 
 Engineering teams need a shared vocabulary. Acronyms, domain terms, and project-specific definitions should be discoverable wherever they appear. Mycelium models a glossary as a Package of Item Definitions with Documentation, and the user interface highlights terms throughout the application with tooltips and click-through navigation. This makes the glossary live and contextual rather than a forgotten document.
 
@@ -948,7 +955,7 @@ Engineering teams need a shared vocabulary. Acronyms, domain terms, and project-
 | SSS-PA-GLOSS-V9D | PA, PT, VW | Mycelium Bloom shall display a tooltip showing the glossary term definition when "a user hovers over a highlighted glossary term in any view." | KerML 7.4 | L |  |
 | SSS-PA-GLOSS-F6B | PA, PT, VW | Mycelium Bloom shall navigate to the glossary term's Item Definition in the glossary browser when "a user clicks a highlighted glossary term link." | KerML 7.4 | L |  |
 
-##### 5.2.1.28 Constants
+##### 5.2.1.29 Constants
 
 Engineering models reference physical and project-specific constants (the speed of light, gravitational acceleration, target margins). Modelling these as named, typed Attribute Definitions with fixed values and source references makes them reusable across the project and traceable to their origin. Users can drag a constant into any constraint or calculation to ensure consistent values.
 
@@ -960,7 +967,7 @@ Engineering models reference physical and project-specific constants (the speed 
 | SSS-PA-CONST-J5M | PA, PT | Mycelium Bloom shall insert a reference to a constant's value into a constraint expression or calculation when "a user drags a constant from the constants browser and drops it into a constraint or calculation editor." | SysML 9.8 | L |  |
 | SSS-PA-CONST-R2H | PA, PT, VW | Mycelium Bloom shall display a tooltip showing the constant's value, unit, and source reference when "a user hovers over a constant reference in a constraint expression, calculation, or attribute value." | SysML 9.8 | L |  |
 
-##### 5.2.1.29 Version control and branching
+##### 5.2.1.30 Version control and branching
 
 Mycelium models are versioned like source code. Every change becomes a Commit; alternatives live on Branches; milestones are marked with Tags; merges combine work from different lines. The requirements in this section cover the full Systems Modelling API version control model adapted to a collaborative MBSE context, including a Git-style history graph for navigating commits and branches.
 
@@ -991,7 +998,7 @@ Mycelium models are versioned like source code. Every change becomes a Commit; a
 | SSS-PA-OPT-DNI | PA, PT, VW | Mycelium Bloom shall display a comparison of design alternatives by diffing Commits across Branches when "a user selects Commits from different Branches for cross-branch comparison." | API 7.2.6 |  |  |
 | SSS-PA-OPT-W7T | PA | Mycelium Bloom shall merge a selected design alternative Branch into the default Branch when "the Project Administrator initiates a merge of the alternative Branch and resolves any conflicts." | API 7.2.5 |  |  |
 
-##### 5.2.1.30 Multi-backend support and polling
+##### 5.2.1.31 Multi-backend support and polling
 
 Mycelium Bloom must work not only with Mycelium Fabric but with any backend that implements the OMG Systems Modelling API. Some backends support push notifications (SignalR/WebSocket); others do not. The requirements in this section cover backend portability and a polling fallback for backends without push capability.
 
