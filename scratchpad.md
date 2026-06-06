@@ -14,3 +14,5 @@ SSS-PT-CDS-I22 -> product tree for a design variant?
 
 resume at line XXX
 When a Definition or Usage has an icon associated to it, show in the tabular browsers
+
+5.2.1.4a Subscriptions -> add requirements to bulk subscribe
