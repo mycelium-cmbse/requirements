@@ -404,7 +404,7 @@ In Concurrent Design Mode, attribute owners edit their own values (OwnedValue) w
 
 ##### 5.2.1.7 Model navigation and browsing
 
-Engineers spend most of their time finding, selecting, and understanding model elements. Mycelium offers complementary navigation views: a hierarchical tree for structural exploration and a tabular browser for flat searching with namespace path columns. The requirements in this section ensure that users can find any element quickly, see its qualified context, and follow relationships to related elements without losing their place.
+Engineers spend a lot of of their time finding, selecting, and understanding model elements. Mycelium offers complementary navigation views: a hierarchical tree for structural exploration and a tabular browser for flat searching with namespace path columns. The requirements in this section ensure that users can find any element quickly, see its qualified context, and follow relationships to related elements without losing their place.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
@@ -415,6 +415,7 @@ Engineers spend most of their time finding, selecting, and understanding model e
 | SSS-PA-NAV-F3K | PA, PT, VW | Mycelium Bloom shall display the qualified name (namespace path) of each model element when "a user views an element's properties in the detail panel." | - | H |  |
 | SSS-PA-NAV-G5X | PA, PT, VW | Mycelium Bloom shall provide a tabular element browser that lists Definitions and Usages for each kind of Definition and Usage in a sortable, filterable table showing element name, namespace path, type, Ownership, and key attributes when "a user opens the tabular element browser." | - | H |  |
 | SSS-PA-NAV-W4B | PA, PT, VW | Mycelium Bloom shall support the hierarchical Browser View and the tabular element browser as independent views that can be open simultaneously when "a user has both views open." | - | H |  |
+| SSS-PA-NAV-M2C | PA, PT, VW | Mycelium Bloom shall open and display multiple hierarchical Browser Views and multiple tabular element browsers at the same time, without limiting the user to a single instance of either, each maintaining its own scope, filters, sorting, and selection, when "a user opens an additional Browser View or tabular element browser." | - | H |  |
 
 ##### 5.2.1.8 Namespace and package management
 
