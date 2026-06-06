@@ -461,13 +461,13 @@ SysML v2 organizes models into Packages and Namespaces. Packages group related e
 | SSS-PA-MGMT-YC1 | PA | Mycelium Bloom shall provide operations to create, rename and remove Ownership Usages within the project package when "the Project Administrator accesses the Ownership management interface." | - | H |  |
 | SSS-PA-MGMT-BA7 | PA | Mycelium Bloom shall reassign element ownership by updating the Owner metadata on a model element to a different Ownership when "the Project Administrator selects a model element and changes its Owner annotation." | - | H |  |
 
-##### 5.2.1.9 Requirements management
+##### 5.2.1.9 Requirements modeling
 
-Requirements capture stakeholder-imposed conditions that a design must satisfy. SysML v2 models requirements as Constraint Definitions with subjects, actors, stakeholders, assumed and required constraints, and concerns. Requirements can be nested, derived, satisfied by design elements, and verified by Verification Cases. The requirements in this section cover the full SysML v2 requirements metamodel as user-facing operations.
+Requirements capture stakeholder-imposed conditions that a design must satisfy. SysML v2 models requirements as Constraint Definitions with subjects, actors, stakeholders, assumed and required constraints, and concerns. Requirements can be nested, derived, satisfied by design elements, and verified by Verification Cases. The requirements in this section cover modeling the full SysML v2 requirements metamodel as first-class model elements through user-facing operations.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-REQ-QP0 | PA, PT | Mycelium Bloom shall provide operations to create, edit, and organize Requirement Definitions and Requirement Usages in hierarchical specifications with textual statements when "a user accesses the requirements management interface and creates or modifies a requirement." | SysML 7.21 | H |  |
+| SSS-PA-REQ-QP0 | PA, PT | Mycelium Bloom shall provide operations to create, edit, and organize Requirement Definitions and Requirement Usages in hierarchical specifications with textual statements when "a user accesses the requirements modeling interface and creates or modifies a requirement." | SysML 7.21 | H |  |
 | SSS-PA-REQ-WD0 | PA, PT | Mycelium Bloom shall nest a Requirement Usage within a parent Requirement Definition or Requirement Usage, where nested requirements automatically become required constraints of the parent, when "a user adds a child requirement to an existing requirement." | SysML 7.21, 8.3.21 | H |  |
 | SSS-PA-REQ-DS6 | PA, PT | Mycelium Bloom shall provide editors for assumed constraints and required constraints on requirements, where the effective requirement logic is "if all assumed constraints hold then all required constraints must be satisfied", when "a user edits a requirement and adds constraint expressions." | SysML 8.3.21.7 | H |  |
 | SSS-PA-REQ-T8K | PA, PT | Mycelium Bloom shall assign a subject to a Requirement Definition or Requirement Usage via Subject Membership, binding the requirement to the system or element it applies to, when "a user specifies the subject of a requirement." | SysML 8.3.21.11 | H |  |
