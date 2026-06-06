@@ -364,7 +364,7 @@ Concurrent design brings 20-30 engineers from different domains into the same ro
 
 ###### 5.2.1.6a Subscriptions
 
-When one engineer's work depends on another's outputs, they need to know when those outputs change. Mycelium models these dependencies as ParameterSubscriptions: a subscriber expresses interest in an attribute owned by another Ownership, and the system notifies them of updates. The requirements in this section cover subscription management, ownership visibility, and presence indicators showing who is active.
+When one engineer's work depends on another's outputs, they need to track those outputs and decide how changes propagate into their own work. Mycelium models these dependencies as ParameterSubscriptions: a subscriber's Ownership expresses interest in an attribute owned by another Ownership and is notified when its value is published. The requirements in this section cover creating subscriptions individually, in bulk (by attribute kind, by element, or by owner), and through standing rules that automatically subscribe to matching attributes created later; choosing how each subscription sources its value (the owner's published value or the subscriber's own override); reviewing subscriptions and their up-to-date status; and keeping subscription sets consistent as the model changes.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
@@ -372,6 +372,18 @@ When one engineer's work depends on another's outputs, they need to know when th
 | SSS-PT-COLLAB-12K | PT | Mycelium Bloom shall deliver a near real-time notification when "an attribute that the Participant has subscribed to is published by another Ownership." | - |  |  |
 | SSS-PT-COLLAB-7U5 | PA, PT, VW | Mycelium Bloom shall display the Ownership of each element and attribute when "a user views a model element's properties or browses the model tree." | - |  |  |
 | SSS-PT-COLLAB-JB0 | PA, PT, VW | Mycelium Bloom shall display which Participants are currently active in the project when "a user views the collaboration status indicator." | - |  |  |
+| SSS-PT-SUB-A1K | PT | Mycelium Bloom shall create a standing subscription rule that subscribes the Participant's Ownership to every existing and future AttributeUsage typed by a selected AttributeDefinition kind (e.g. mass, mass margin) and owned by another Ownership when "the Participant defines a standing subscription rule for one or more attribute kinds." | - | H |  |
+| SSS-PT-SUB-B4R | PT | Mycelium Bloom shall scope a standing subscription rule to all other Ownerships or to one or more selected Ownerships when "the Participant configures the owner scope of a standing subscription rule." | - | M |  |
+| SSS-PT-SUB-C7M | PT | Mycelium Bloom shall display, edit, enable, disable, and delete the Participant's standing subscription rules when "the Participant opens the standing subscription rules manager." | - | M |  |
+| SSS-PT-SUB-D9T | All | Mycelium Fabric shall evaluate the applicable standing subscription rules and create the corresponding ParameterSubscription when "an AttributeUsage matching a standing rule's attribute kind and owner scope is created or becomes owned by another Ownership." | - | H |  |
+| SSS-PT-SUB-E2F | PT | Mycelium Bloom shall create ParameterSubscriptions on all existing AttributeUsages typed by one or more selected AttributeDefinition kinds and owned by other Ownerships, optionally restricted to selected Ownerships or a selected package subtree, in a single operation when "the Participant selects one or more attribute kinds and invokes batch subscribe." | - | H |  |
+| SSS-PT-SUB-F5J | PT | Mycelium Bloom shall delete all of the Participant's ParameterSubscriptions in the project in a single confirmed operation when "the Participant invokes delete-all-subscriptions and confirms." | - | M |  |
+| SSS-PT-SUB-G8P | PT | Mycelium Bloom shall delete all of the Participant's ParameterSubscriptions to attributes owned by one or more selected Ownerships in a single operation when "the Participant selects one or more owning Ownerships and invokes batch unsubscribe." | - | H |  |
+| SSS-PT-SUB-H3W | PT | Mycelium Bloom shall delete all of the Participant's ParameterSubscriptions on AttributeUsages typed by one or more selected AttributeDefinition kinds in a single operation when "the Participant selects one or more attribute kinds and invokes batch unsubscribe." | - | M |  |
+| SSS-PT-SUB-L4G | PT | Mycelium Bloom shall display a Subscriptions view listing every ParameterSubscription held by the Participant's Ownership — showing the subscribed attribute and its owning element, the owning Ownership, the latest published value, the subscriber's effective value and value source, and the subscription status — when "the Participant opens the Subscriptions view." | - | H |  |
+| SSS-PT-SUB-P7K | PT | Mycelium Bloom shall create ParameterSubscriptions on all AttributeUsages of a selected element that are owned by another Ownership in a single operation when "the Participant selects an element and invokes subscribe-to-element." | - | M |  |
+| SSS-PT-SUB-Q5R | PT | Mycelium Bloom shall create ParameterSubscriptions on all AttributeUsages owned by a selected Ownership in a single operation when "the Participant selects an Ownership and invokes subscribe-to-owner." | - | M |  |
+| SSS-PT-SUB-V3J | PT | Mycelium Bloom shall re-evaluate and notify the subscriber when the Ownership of a subscribed AttributeUsage is reassigned, removing the subscription if the attribute becomes owned by the subscriber's own Ownership, when "the Ownership of a subscribed attribute is reassigned." | - | M |  |
 
 ###### 5.2.1.6b Publication workflow
 
@@ -1023,6 +1035,7 @@ Ownership-based access control is enforced server-side by Mycelium Fabric — Bl
 | SSS-CC-COLLAB-KOR | All | Mycelium Fabric shall enforce ownership-based access control using Owner metadata annotations on model elements when "a user attempts to create, modify, or delete a model element." | - |  |  |
 | SSS-PT-COLLAB-G8G | All | Mycelium Fabric shall prevent modification of elements and attributes not owned by the user when "a Participant attempts to edit an element whose Owner metadata does not match their assigned Ownership." | - |  |  |
 | SSS-FB-ATT-T4X | All | Mycelium Fabric shall enforce ownership-based access control on attachment operations (upload, delete) consistent with the element's Owner metadata when "a user attempts to modify attachments on a model element." | - |  |  |
+| SSS-PT-SUB-R8M | All | Mycelium Fabric shall reject creation of a ParameterSubscription on an AttributeUsage owned by the subscriber's own Ownership when "a Participant attempts to subscribe to an attribute owned by their own Ownership." | - | M |  |
 
 ##### 5.2.2.4 Real-time notifications
 
