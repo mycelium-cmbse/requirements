@@ -228,16 +228,23 @@ Mycelium is built around organizations as tenant boundaries. Users self-register
 | SSS-IA-SYS-W9D | IA | Mycelium Bloom shall display installation-wide metrics including total users, total organizations, total projects, storage usage, and active sessions when "an Installation Administrator navigates to the installation dashboard." | - | H |  |
 | SSS-IA-SYS-E3T | IA | Mycelium Bloom shall display an installation-wide audit log of administrative actions (organization creation/deletion, user creation/deactivation, role changes) when "an Installation Administrator navigates to the installation audit log view." | - | H |  |
 
-###### 5.2.1.1a User profile
+##### 5.2.1.2 User profile
 
-Users have a profile showing their identity, projects, and contributions. The requirements in this section cover the profile page contents — personal details, project list with key metadata, and a contribution heatmap showing activity over time.
+Users have a profile showing their identity, projects, and contributions, and is where they manage how they appear to others across the platform. The requirements in this section cover the profile page contents — personal details, project list with key metadata, and a contribution heatmap showing activity over time — and the editing of the user's own personal details and appearance (avatar and collaborator colour). Where identity is federated through an external identity provider, IdP-sourced attributes (such as email address) are displayed read-only and managed in the identity provider; the appearance attributes (avatar, collaborator colour) are always managed within Mycelium.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-CC-PROF-L6D | All | Mycelium Bloom shall display the user's profile details, a list of all projects the user is a member of, and a contribution heatmap when "a user navigates to their profile page." | - |  |  |
-| SSS-CC-PROF-52O | All | Mycelium Bloom shall display each project in the profile project list with: project name, description, license, last updated date, visibility (private, organization, public), and activity sparkline when "the user views their profile project list." | - |  |  |
+| SSS-CC-PROF-L6D | All | Mycelium Bloom shall display the user's profile details, a list of all projects the user is a member of, and a contribution heatmap when "a user navigates to their profile page." | - | H |  |
+| SSS-CC-PROF-52O | All | Mycelium Bloom shall display each project in the profile project list with: project name, description, license, last updated date, visibility (private, organization, public), and activity sparkline when "the user views their profile project list." | - | H |  |
+| SSS-CC-PROF-K7B | All | Mycelium Bloom shall update the user's profile personal details — display name, job title, and biography — and persist the change when "a user edits their personal details on their profile page and saves." | - | H |  |
+| SSS-CC-PROF-M2F | All | Mycelium Bloom shall upload a profile avatar image, validating its format (PNG, JPG, WebP, or SVG) and maximum file size and offering a square crop, when "a user uploads or replaces their profile avatar." | - | M |  |
+| SSS-CC-PROF-P9R | All | Mycelium Bloom shall remove the user's uploaded avatar and revert to a generated avatar derived from the user's initials when "a user removes their profile avatar." | - | M |  |
+| SSS-CC-PROF-T4H | All | Mycelium Bloom shall display the user's assigned collaborator colour and provide a picker to change it from a palette constrained for legibility and contrast when "a user views or edits the appearance settings on their profile page." | - | M |  |
+| SSS-CC-PROF-W1N | All | Mycelium Bloom shall propagate an updated display name, avatar, or collaborator colour to every surface that renders it — the project presence indicator, diagram co-presence indicators, comments, and contribution views — in near real-time when "a user changes their display name, avatar, or collaborator colour." | - | H |  |
+| SSS-CC-PROF-B8C | All | Mycelium Fabric shall persist a user's avatar image and expose it through a stable avatar URL referenced by the presence and co-presence indicators when "a user uploads or removes their profile avatar." | - | M |  |
+| SSS-CC-PROF-D5G | All | Mycelium Fabric shall assign a unique default collaborator colour to an Account on creation and persist any subsequent change to that colour when "an Account is created or its collaborator colour is changed." | - | M |  |
 
-##### 5.2.1.2 Project management
+##### 5.2.1.3 Project management
 
 A project is the unit of collaboration in Mycelium. Each project owns a SysML v2 model, a team, branches, and Ownership assignments. The Project Administrator (typically the study lead) configures the project, assigns roles, defines Ownerships, and oversees the model's structural integrity. The requirements in this section cover project creation, configuration, team management, and Ownership administration. Owner administration is only relevant in case the project is a Concurrent Design project.
 
@@ -252,7 +259,7 @@ A project is the unit of collaboration in Mycelium. Each project owns a SysML v2
 | SSS-PA-MGMT-KYM | PA | Mycelium Bloom shall transfer the Project Administrator role to another team member when "the current Project Administrator selects a team member and confirms the transfer." | - | H |  |
 | SSS-PA-MGMT-73C | PA | Mycelium Bloom shall provide a setting to configure the project mode (Regular or Concurrent Design) when "the Project Administrator accesses the project mode settings." | - | H |  |
 
-###### 5.2.1.2a Project lifecycle state
+##### 5.2.1.4 Project lifecycle state
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
@@ -285,7 +292,7 @@ Mycelium is a multi-user platform: in any project, several engineers from differ
 
 ###### 5.2.1.3a Project-level user presence
 
-When a user opens a project, they should see at a glance who else is currently working in the same project — without having to navigate to a separate panel. This is the equivalent of the avatar cluster Microsoft Word and Google Docs show in a shared document's title bar: a small, always-visible indication that "I am not alone here". The requirements in this subsection cover the **project-level** presence indicator only. Per-diagram presence (who is on a specific diagram and what their pointer is doing) is covered separately by `SSS-PA-VIS-C6F` and `SSS-PA-VIS-C7G`. Per-document, per-table, and other view-level presence indicators are deferred to a later iteration.
+When a user opens a project, they should see at a glance who else is currently working in the same project — without having to navigate to a separate panel. This is the equivalent of the avatar cluster Microsoft Word and Google Docs show in a shared document's title bar: a small, always-visible indication that "I am not alone here". The requirements in this subsection cover the **project-level** presence indicator only.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
