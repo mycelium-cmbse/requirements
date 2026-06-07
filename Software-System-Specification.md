@@ -914,7 +914,16 @@ A Sequence View shows interactions between parts over time as messages exchanged
 | SSS-PA-VIS-FA5 | PA, PT | Mycelium Bloom shall provide an editor for creating and editing Sequence Views showing interactions between parts over time when "a user opens or creates a Sequence View for a selected interaction context." | SysML 8.2.3.9 | H |  |
 | SSS-PA-VIS-A9H | PA, PT, VW | Mycelium Bloom shall render lifelines as vertical dashed lines below part/port header nodes, and messages as horizontal arrows between lifelines with message labels, using the SysML v2 graphical notation (section 8.2.3.9) when "a Sequence View displays interaction model content." | SysML 8.2.3.9 | H |  |
 
-###### 5.2.1.18.6 Requirement View
+###### 5.2.1.18.6 Use Case View
+
+A Use Case View shows the use cases a system supports, the actors that interact with them, and the system boundary (subject), together with the include and extend relationships between use cases. Engineers and stakeholders use it to frame system functionality from an external, goal-oriented perspective.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-VIS-UC1 | PA, PT | Mycelium Bloom shall provide an editor for creating and editing Use Case Views showing use cases, actors, the subject boundary, and their relationships when "a user opens or creates a Use Case View for a selected subject." | SysML 8.2.3.25 | H |  |
+| SSS-PA-VIS-UC2 | PA, PT, VW | Mycelium Bloom shall render Use Case Usages as ovals enclosed within the subject boundary rectangle, Actors as stick figures connected by association lines, and «include» and «extend» relationships as dashed arrows, using the SysML v2 graphical notation (section 8.2.3.25), when "a Use Case View displays use case model content." | SysML 8.2.3.25 | H |  |
+
+###### 5.2.1.18.7 Requirement View
 
 A Requirement View displays requirements and their satisfaction relationships graphically. Stakeholders can see which design elements satisfy which requirements at a glance, supporting reviews and impact analysis.
 
@@ -922,7 +931,7 @@ A Requirement View displays requirements and their satisfaction relationships gr
 |----|-------|-------------|-----|------|--------|
 | SSS-PA-VIS-C3D | PA, PT, VW | Mycelium Bloom shall render Requirement Usages as rectangles with «requirement» headers containing the requirement text, and Satisfy Requirement Usages as dashed arrows labeled «satisfy», using the SysML v2 graphical notation (section 8.2.3.21) when "a diagram displays requirements and their satisfaction relationships." | SysML 8.2.3.21 | H |  |
 
-###### 5.2.1.18.7 General View
+###### 5.2.1.18.8 General View
 
 A General View is an unconstrained canvas where engineers can place any model element type and freely arrange it. It supports brainstorming, mixed concept exploration, and stakeholder-facing presentations that don't fit a single standard diagram type.
 
@@ -931,7 +940,7 @@ A General View is an unconstrained canvas where engineers can place any model el
 | SSS-PA-VIS-BB9 | PA, PT | Mycelium Bloom shall provide an editor for creating General Views for unconstrained graphical model exploration when "a user creates a new General View and adds model elements to its canvas." | SysML 8.2.3 | H |  |
 | SSS-PA-VIS-P5W | PA, PT, VW | Mycelium Bloom shall create a graphical node for any model element type placed on a General View canvas, using its SysML v2 graphical notation symbol, when "a user adds an element to a General View." | SysML 8.2.3 | H |  |
 
-###### 5.2.1.18.8 Grid View
+###### 5.2.1.18.9 Grid View
 
 A Grid View presents model data in tabular or matrix form. Engineers use it to compare attributes across many elements at once, or to view two-dimensional relationships between element sets.
 
@@ -939,7 +948,7 @@ A Grid View presents model data in tabular or matrix form. Engineers use it to c
 |----|-------|-------------|-----|------|--------|
 | SSS-PA-VIS-JPW | PA, PT | Mycelium Bloom shall provide a Grid View for tabular and matrix representations of model data when "a user creates a Grid View and selects the element types and properties to display." | SysML 7.26 | H |  |
 
-###### 5.2.1.18.9 Custom Views and Viewpoints
+###### 5.2.1.18.10 Custom Views and Viewpoints
 
 Different stakeholders have different concerns: a power engineer wants a power-focused view, a thermal engineer wants thermal data, a customer wants high-level summaries. SysML v2 Viewpoint Definitions and View Definitions let users formalize these stakeholder concerns and create reusable filtered views. The requirements in this section cover defining and managing custom views and viewpoints.
 
@@ -948,7 +957,7 @@ Different stakeholders have different concerns: a power engineer wants a power-f
 | SSS-PA-VIS-T2V | PA, PT | Mycelium Bloom shall create custom View Definitions, View Usages, Viewpoint Definitions, and Viewpoint Usages filtered to specific stakeholder concerns when "a user creates a Viewpoint Definition, specifies its concerns, and creates a conforming View Definition." | SysML 7.26 | M |  |
 | SSS-PA-VIS-K9R | PA, PT | Mycelium Bloom shall create an Expose relationship that imports filtered model content into a View, with optional metadata-based or query-based filter conditions, when "a user adds exposed model content to a View Definition." | SysML 7.26.2 | M |  |
 
-###### 5.2.1.18.10 Textual notation
+###### 5.2.1.18.11 Textual notation
 
 SysML v2 has a textual notation that some engineers prefer for editing, reviewing or sharing model content. Mycelium generates this notation read-only from the model, providing a reference representation without requiring users to edit text directly.
 
@@ -956,7 +965,7 @@ SysML v2 has a textual notation that some engineers prefer for editing, reviewin
 |----|-------|-------------|-----|------|--------|
 | SSS-PA-VIS-IXL | PA, PT, VW | Mycelium Bloom shall generate and display the SysML v2 textual notation representation of model elements (read-only) when "a user selects one or more model elements and requests textual notation view." | SysML 8.2.2 | H |  |
 
-###### 5.2.1.18.11 Diagram export
+###### 5.2.1.18.12 Diagram export
 
 Diagrams need to leave Mycelium for reports, presentations, and external tools. The requirements in this section cover export to SVG (vector), PNG (raster, configurable resolution), and JPG (compressed raster) formats.
 
@@ -966,7 +975,7 @@ Diagrams need to leave Mycelium for reports, presentations, and external tools. 
 | SSS-PA-VIS-T1N | PA, PT, VW | Mycelium Bloom shall export a diagram to PNG format at a user-specified resolution when "a user selects PNG as the export format for a diagram." | - | H |  |
 | SSS-PA-VIS-G4L | PA, PT, VW | Mycelium Bloom shall export a diagram to JPG format at a user-specified resolution and quality when "a user selects JPG as the export format for a diagram." | - | H |  |
 
-###### 5.2.1.18.12 Diagram management and canvas operations
+###### 5.2.1.18.13 Diagram management and canvas operations
 
 Beyond rendering, engineers need to manage diagrams as artifacts and arrange their content. The requirements in this subsection cover the lifecycle of a diagram and the canvas operations common to every diagram type. Diagram persistence and real-time collaboration are covered separately in 5.2.1.19.
 
