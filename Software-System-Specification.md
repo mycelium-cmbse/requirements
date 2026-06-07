@@ -488,6 +488,7 @@ A requirement is framed by what it applies to and who cares about it. SysML v2 b
 | SSS-PA-REQ-M3N | PA, PT | Mycelium Bloom shall assign one or more actors to a Requirement Definition or Requirement Usage via Actor Membership, representing external entities necessary for the requirement to be fulfilled, when "a user adds actors to a requirement." | SysML 8.3.21.2 | H |  |
 | SSS-PA-REQ-H6W | PA, PT | Mycelium Bloom shall assign one or more stakeholders to a Requirement Definition or Requirement Usage via Stakeholder Membership, representing entities with concerns about the requirement, when "a user adds stakeholders to a requirement." | SysML 8.3.21.12 | H |  |
 | SSS-PA-REQ-SUC | PA, PT | Mycelium Bloom shall provide operations to create Concern Definitions and Concern Usages representing stakeholder concerns, and frame them in requirements or viewpoints via Framed Concern Membership, when "a user creates a Concern and associates it with a requirement or viewpoint." | SysML 8.3.21.3 | H |  |
+| SSS-PA-REQ-RF1 | PA, PT, VW | Mycelium Bloom shall display, in the detail panel of a Requirement Definition or Requirement Usage, its subject, actors, stakeholders, and framed concerns, each navigable to the referenced element, when "a user views a requirement." | SysML 8.3.21 | H |  |
 
 ###### 5.2.1.9.c Requirement relationships and coverage
 
@@ -499,6 +500,7 @@ Requirements are connected to the rest of the model through trace relationships:
 | SSS-PA-REQ-W9B | PA, PT | Mycelium Bloom shall link a Verification Case Usage to a Requirement Usage via Requirement Verification Membership, recording which verification cases verify which requirements, when "a user associates a verification case with a requirement." | SysML 8.3.24.2 | H |  |
 | SSS-PA-TRACE-Q72 | PA, PT | Mycelium Bloom shall create a SatisfyRequirementUsage recording that a design element satisfies a requirement when "a user selects a design element and a requirement and creates a satisfy relationship." | SysML 8.3.21.10 | H |  |
 | SSS-PA-TRACE-N19 | PA | Mycelium Bloom shall identify and report requirements that are neither satisfied by a design element nor derived to a further requirement when "the Project Administrator executes a requirements coverage analysis." | - | H |  |
+| SSS-PA-REQ-RF2 | PA, PT, VW | Mycelium Bloom shall display, in the detail panel of a requirement, its assumed and required constraints, the design elements that satisfy it, the verification cases that verify it, and its derivation relationships, each navigable to the referenced element, when "a user views a requirement." | SysML 8.3.21 | H |  |
 
 ###### 5.2.1.9.d Use cases
 
