@@ -952,14 +952,16 @@ A Grid View presents model data in tabular or matrix form. Engineers use it to c
 |----|-------|-------------|-----|------|--------|
 | SSS-PA-VIS-JPW | PA, PT | Mycelium Bloom shall provide a Grid View for tabular and matrix representations of model data when "a user creates a Grid View and selects the element types and properties to display." | SysML 7.26 | H |  |
 
-###### 5.2.1.18.10 Custom Views and Viewpoints
+###### 5.2.1.18.10 Custom Views, Viewpoints, and Rendering
 
-Different stakeholders have different concerns: a power engineer wants a power-focused view, a thermal engineer wants thermal data, a customer wants high-level summaries. SysML v2 Viewpoint Definitions and View Definitions let users formalize these stakeholder concerns and create reusable filtered views. The requirements in this section cover defining and managing custom views and viewpoints.
+Different stakeholders have different concerns: a power engineer wants a power-focused view, a thermal engineer wants thermal data, a customer wants high-level summaries. SysML v2 Viewpoint Definitions and View Definitions let users formalize these stakeholder concerns and create reusable filtered views, and Rendering Definitions control how a view presents its exposed content. The requirements in this section cover defining and managing custom views and viewpoints, and selecting how a view renders its content.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
 | SSS-PA-VIS-T2V | PA, PT | Mycelium Bloom shall create custom View Definitions, View Usages, Viewpoint Definitions, and Viewpoint Usages filtered to specific stakeholder concerns when "a user creates a Viewpoint Definition, specifies its concerns, and creates a conforming View Definition." | SysML 7.26 | M |  |
 | SSS-PA-VIS-K9R | PA, PT | Mycelium Bloom shall create an Expose relationship that imports filtered model content into a View, with optional metadata-based or query-based filter conditions, when "a user adds exposed model content to a View Definition." | SysML 7.26.2 | M |  |
+| SSS-PA-VIS-RD1 | PA, PT | Mycelium Bloom shall apply a RenderingDefinition to a View, controlling how the view's exposed content is presented (for example as a tree, table, textual, or graphical rendering), when "a user selects a rendering for a View." | SysML 7.26.4 | M |  |
+| SSS-PA-VIS-RD2 | PA, PT | Mycelium Bloom shall provide the standard SysML v2 rendering kinds and create custom RenderingDefinitions and RenderingUsages when "a user defines a custom rendering or selects a standard rendering kind." | SysML 7.26.4 | L |  |
 
 ###### 5.2.1.18.11 Textual notation
 
