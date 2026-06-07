@@ -581,8 +581,10 @@ connection ends to associate them with the particular usages to be connected. A 
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-ARCH-IGA | PA, PT | Mycelium Bloom shall create Connection Definitions, Connection Usages, Interface Definitions, and Interface Usages between parts to model integration and data flow when "a user selects two compatible ports and creates a connection or interface." | SysML 7.12, 7.13 | H |  |
+| SSS-PA-ARCH-CD1 | PA, PT | Mycelium Bloom shall create a Connection Definition that classifies connections between related things, with at least two connection ends, when "a user creates a new Connection Definition." | SysML 7.13 | H |  |
+| SSS-PA-ARCH-IGA | PA, PT | Mycelium Bloom shall create a Connection Usage that connects two or more participating part or item usages, associating each of its connection ends with a participating usage, when "a user selects two compatible elements and creates a connection." | SysML 7.13 | H |  |
 | SSS-PA-ARCH-Y2D | PA, PT | Mycelium Bloom shall create a Binding Connector that asserts equality between two compatible features of model elements when "a user selects two features and creates a binding between them." | KerML 7.13.3 | H |  |
+| SSS-PA-ARCH-CR9 | PA, PT | Mycelium Bloom shall refine a logical Connection Usage into a physical connection by modeling the connecting medium as a part and routing the connection through it, when "a user converts a logical connection into a physical connection." | SysML 7.13 | M |  |
 
 ###### 5.2.1.10.f Interfaces
 
