@@ -801,14 +801,20 @@ Engineers need to evaluate design quality and verify that requirements are met. 
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-AV-QII | PA, PT | Mycelium Bloom shall support defining Analysis Case Definitions and instantiating them as Analysis Case Usages to evaluate system properties with subject binding and objective requirements when "a user creates an Analysis Case Definition and specifies its subject and objectives." | SysML 7.23 | H |  |
-| SSS-PA-AV-UCQ | PA, PT | Mycelium Bloom shall support defining Verification Case Definitions and instantiating them as Verification Case Usages with specified verification methods (test, analysis, inspection, demonstration) and tracking verdicts (pass, fail, inconclusive) when "a user creates a Verification Case Definition and assigns a method and records a verdict." | SysML 7.24 | H |  |
-| SSS-PA-AV-LSX | PA, PT | Mycelium Bloom shall support defining Constraint Definitions and instantiating them as Constraint Usages asserted against model elements for automated validation when "a user creates a Constraint Definition and applies it to one or more model elements." | SysML 7.20 | H |  |
-| SSS-PA-AV-LLI | PA | Mycelium Bloom shall support setting up Trade Studies to compare design alternatives using evaluation functions and objectives (maximize/minimize) when "the Project Administrator creates a Trade Study and specifies alternatives, criteria, and objective functions." | - | H |  |
-| SSS-PA-AV-O9U | PA, PT | Mycelium Bloom shall link a Case (Use Case, Analysis Case, or Verification Case) to its objective Requirement by creating an ObjectiveMembership referencing the target Requirement Usage when "a user sets the objective of a Case from a selected Requirement." | SysML 8.3.14 | H |  |
-| SSS-PT-ANALYSIS-4W2 | PT | Mycelium Bloom shall support defining Calculation Definitions and instantiating them as Calculation Usages to express domain-specific computations over model attributes when "the Participant creates a Calculation Definition and specifies input parameters, output parameters, and the computation expression." | SysML 7.19 | H |  |
-| SSS-PT-ANALYSIS-EAJ | PA, PT, VW | Mycelium Bloom shall display constraint evaluation results showing which constraints pass or violate when "a user navigates to the constraint evaluation view or triggers constraint evaluation." | SysML 7.20 | H |  |
-| SSS-PA-AV-2RG | PA, PT, VW | Mycelium Bloom shall display a validation dashboard showing model quality, constraint violations, and verification status when "a user navigates to the validation dashboard view." | - | H |  |
+| SSS-PA-AV-QII | PA, PT | Mycelium Bloom shall create an Analysis Case Definition with a subject and objective requirements when "a user creates an Analysis Case Definition and specifies its subject and objectives." | SysML 7.23 | H |  |
+| SSS-PA-AV-AU1 | PA, PT | Mycelium Bloom shall instantiate an Analysis Case Definition as an Analysis Case Usage to evaluate system properties when "a user instantiates an Analysis Case." | SysML 7.23 | H |  |
+| SSS-PA-AV-UCQ | PA, PT | Mycelium Bloom shall create a Verification Case Definition specifying a verification method (test, analysis, inspection, or demonstration) when "a user creates a Verification Case Definition and assigns a method." | SysML 7.24 | H |  |
+| SSS-PA-AV-VU2 | PA, PT | Mycelium Bloom shall instantiate a Verification Case Definition as a Verification Case Usage and record its verdict (pass, fail, or inconclusive) when "a user runs a verification case and records a verdict." | SysML 7.24 | H |  |
+| SSS-PA-AV-LSX | PA, PT | Mycelium Bloom shall create a Constraint Definition expressing a Boolean condition when "a user creates a Constraint Definition." | SysML 7.20 | H |  |
+| SSS-PA-AV-CU3 | PA, PT | Mycelium Bloom shall instantiate a Constraint Definition as a Constraint Usage asserted against one or more model elements for automated validation when "a user applies a constraint to model elements." | SysML 7.20 | H |  |
+| SSS-PA-AV-CN5 | PA, PT | Mycelium Bloom shall assert or negate a Constraint Usage, where an asserted constraint must hold and a negated constraint must not hold, when "a user marks a Constraint Usage as asserted or negated." | SysML 7.20 | M |  |
+| SSS-PA-AV-LLI | PA | Mycelium Bloom shall create a Trade Study that compares design alternatives using evaluation functions and objectives (maximise or minimise) when "the Project Administrator creates a Trade Study and specifies alternatives, criteria, and objective functions." | - | H |  |
+| SSS-PA-AV-O9U | PA, PT | Mycelium Bloom shall link a Case (Use Case, Analysis Case, or Verification Case) to its objective Requirement by creating an ObjectiveMembership referencing the target Requirement Usage when "a user sets the objective of a Case from a selected Requirement." | SysML 8.3.22 | H |  |
+| SSS-PT-ANALYSIS-4W2 | PT | Mycelium Bloom shall create a Calculation Definition with input parameters, output parameters, and a computation expression when "the Participant creates a Calculation Definition." | SysML 7.19 | H |  |
+| SSS-PT-ANALYSIS-KU4 | PT | Mycelium Bloom shall instantiate a Calculation Definition as a Calculation Usage over model attributes when "the Participant instantiates a Calculation." | SysML 7.19 | H |  |
+| SSS-PT-ANALYSIS-KE6 | PT | Mycelium Bloom shall evaluate a Calculation Usage to compute its result from its input values when "a user evaluates a Calculation Usage." | SysML 7.19 | M |  |
+| SSS-PT-ANALYSIS-EAJ | PA, PT, VW | Mycelium Bloom shall display constraint evaluation results showing which constraints pass or violate when "a user navigates to the constraint evaluation view or triggers constraint evaluation." | SysML 7.20 | M |  |
+| SSS-PA-AV-2RG | PA, PT, VW | Mycelium Bloom shall display a validation dashboard showing model quality, constraint violations, and verification status when "a user navigates to the validation dashboard view." | - | M |  |
 
 ##### 5.2.1.17 In-browser scripting
 
@@ -1564,9 +1570,9 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | Concept | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- |
 | CalculationDefinition | In | SSS-PT-ANALYSIS-4W2 | TBC |
-| CalculationUsage | In | SSS-PT-ANALYSIS-4W2 | TBC |
+| CalculationUsage | In | SSS-PT-ANALYSIS-KU4, SSS-PT-ANALYSIS-KE6 | TBC |
 | ConstraintDefinition | In | SSS-PA-AV-LSX, SSS-PT-ANALYSIS-NWL | TBC |
-| ConstraintUsage | In | SSS-PA-AV-LSX, SSS-PT-ANALYSIS-NWL, SSS-PT-ANALYSIS-EAJ, SSS-PA-SCRIPT-K8B | TBC |
+| ConstraintUsage | In | SSS-PA-AV-CU3, SSS-PA-AV-CN5, SSS-PT-ANALYSIS-NWL, SSS-PT-ANALYSIS-EAJ, SSS-PA-SCRIPT-K8B | TBC |
 | AssumeConstraintUsage | In | TBC | TBC |
 | RequireConstraintUsage | In | TBC | TBC |
 
@@ -1597,9 +1603,9 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | IncludeUseCaseUsage | In | SSS-PA-BEH-T7P | TBC |
 | ExtendUseCaseUsage | In | SSS-PA-BEH-J3F | TBC |
 | AnalysisCaseDefinition | In | SSS-PA-AV-QII | TBC |
-| AnalysisCaseUsage | In | SSS-PA-AV-QII | TBC |
+| AnalysisCaseUsage | In | SSS-PA-AV-AU1 | TBC |
 | VerificationCaseDefinition | In | SSS-PA-AV-UCQ | TBC |
-| VerificationCaseUsage | In | SSS-PA-AV-UCQ, SSS-PA-REQ-W9B | TBC |
+| VerificationCaseUsage | In | SSS-PA-AV-VU2, SSS-PA-REQ-W9B | TBC |
 | ObjectiveMembership | In | SSS-PA-AV-O9U | SSS-PA-ELEM-O2K |
 
 ### 8.10 SysML v2 — Views, Viewpoints, Rendering
