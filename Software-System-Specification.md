@@ -1585,7 +1585,7 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | ReturnParameterMembership | In | SSS-PA-ELEM-R7S | SSS-PA-ELEM-R7S, SSS-PA-ELEM-O2K |
 | ResultExpressionMembership | In | SSS-PA-ELEM-X8T | SSS-PA-ELEM-X8T, SSS-PA-ELEM-O2K |
 | TypeFeaturing | In | SSS-PA-ARCH-N5W | TBC |
-| FeatureChaining | In | TBC | TBC |
+| FeatureChaining | In | SSS-PA-EXPR-X2B | SSS-PA-EXPR-X3C |
 | FeatureInverting | Deferred | TBC | TBC |
 | Multiplicity | In | SSS-PA-ELEM-V7K, SSS-PA-ELEM-O1Q, SSS-PA-ELEM-V3W | SSS-PA-VIS-U7M |
 | MultiplicityRange | In | SSS-PA-ELEM-V7K, SSS-PA-ELEM-N8P, SSS-FB-ELEM-B2R | SSS-PA-VIS-U7M |
@@ -1604,7 +1604,7 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | ItemUsage | In | SSS-PA-ARCH-B2D | SSS-PA-VIS-I4R, SSS-PA-VIS-I5S, SSS-PA-VIS-I6T |
 | AttributeDefinition | In | SSS-PA-ARCH-97Z, SSS-PA-QU-H2V, SSS-PA-QU-K6F, SSS-PA-CONST-N7K, SSS-PA-CONST-D3V, SSS-PA-CONST-W8F, SSS-PA-META-K7R, SSS-PA-GLOSS-T5R | SSS-PA-QU-T3K, SSS-PA-QU-R7N, SSS-PA-QU-W5J, SSS-PA-QU-D8M, SSS-PA-CONST-D3V, SSS-PA-CONST-J5M, SSS-PA-CONST-R2H |
 | AttributeUsage | In | SSS-PA-ARCH-97Z, SSS-PT-DATA-I9M, SSS-PT-DATA-OH2, SSS-PT-DATA-492, SSS-PA-QU-N9X, SSS-PT-COLLAB-8U9, SSS-PT-PUB-K4W, SSS-PT-PUB-R7N, SSS-PT-PUB-H8J | SSS-PA-NAV-ZRW, SSS-PA-HIST-K3R, SSS-PA-HIST-T6W, SSS-PA-HIST-V2P |
-| ReferenceUsage | In | TBC | TBC |
+| ReferenceUsage | In | SSS-PA-ELEM-RU1, SSS-PA-ELEM-U3G | SSS-PA-ELEM-RU2 |
 | EnumerationDefinition | In | SSS-PA-ARCH-9W5, SSS-PA-ARCH-E1A, SSS-PA-ARCH-E2B, SSS-FB-ARCH-E5F | SSS-PA-VIS-E3C |
 | EnumerationUsage | In | SSS-PA-ARCH-9W5, SSS-PA-ARCH-E4D, SSS-FB-ARCH-E5F | SSS-PA-VIS-E3C, SSS-PA-ARCH-E4D |
 
@@ -1658,12 +1658,14 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 
 | Concept | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- |
-| CalculationDefinition | In | SSS-PT-ANALYSIS-4W2 | TBC |
-| CalculationUsage | In | SSS-PT-ANALYSIS-KU4, SSS-PT-ANALYSIS-KE6 | TBC |
-| ConstraintDefinition | In | SSS-PA-AV-LSX, SSS-PT-ANALYSIS-NWL | TBC |
-| ConstraintUsage | In | SSS-PA-AV-CU3, SSS-PA-AV-CN5, SSS-PT-ANALYSIS-NWL, SSS-PT-ANALYSIS-EAJ, SSS-PA-SCRIPT-K8B | TBC |
-| AssumeConstraintUsage | In | TBC | TBC |
-| RequireConstraintUsage | In | TBC | TBC |
+| CalculationDefinition | In | SSS-PT-ANALYSIS-4W2 | SSS-PA-EXPR-X1A, SSS-PA-EXPR-X3C |
+| CalculationUsage | In | SSS-PT-ANALYSIS-KU4, SSS-PT-ANALYSIS-KE6 | SSS-PA-EXPR-X3C, SSS-PA-EXPR-X5E |
+| ConstraintDefinition | In | SSS-PA-AV-LSX, SSS-PT-ANALYSIS-NWL | SSS-PA-EXPR-X1A, SSS-PA-EXPR-X3C |
+| ConstraintUsage | In | SSS-PA-AV-CU3, SSS-PA-AV-CN5, SSS-PT-ANALYSIS-NWL, SSS-PT-ANALYSIS-EAJ, SSS-PA-SCRIPT-K8B | SSS-PT-ANALYSIS-EAJ, SSS-PA-EXPR-X3C |
+| AssumeConstraintUsage | In | SSS-PA-REQ-DS6 | SSS-PA-REQ-DS6, SSS-PA-REQ-RF2 |
+| RequireConstraintUsage | In | SSS-PA-REQ-DS6 | SSS-PA-REQ-DS6, SSS-PA-REQ-RF2 |
+| Expression | In | SSS-PA-EXPR-X1A, SSS-PA-EXPR-X2B, SSS-FB-EXPR-X4D, SSS-PA-EXPR-X5E | SSS-PA-EXPR-X3C |
+| FeatureReferenceExpression | In | SSS-PA-EXPR-X2B | SSS-PA-EXPR-X3C |
 
 ### 8.8 SysML v2 — Requirements and Concerns
 
@@ -1671,15 +1673,15 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | --- | --- | --- | --- |
 | RequirementDefinition | In | SSS-PA-REQ-QP0, SSS-PA-REQ-WD0, SSS-PA-REQ-T8K, SSS-PA-REQ-M3N, SSS-PA-REQ-H6W | SSS-PA-VIS-C3D, SSS-PA-IE-B5W |
 | RequirementUsage | In | SSS-PA-REQ-QP0, SSS-PA-REQ-WD0, SSS-PA-REQ-DS6, SSS-PA-REQ-T8K, SSS-PA-REQ-M3N, SSS-PA-REQ-H6W, SSS-PA-REQ-V4J, SSS-PA-REQ-W9B | SSS-PA-VIS-C3D, SSS-PA-IE-B5W |
-| ConcernDefinition | In | SSS-PA-REQ-SUC | TBC |
-| ConcernUsage | In | SSS-PA-REQ-SUC | TBC |
-| StakeholderMembership | In | SSS-PA-REQ-H6W | TBC |
-| ActorMembership | In | SSS-PA-REQ-M3N | TBC |
-| SubjectMembership | In | SSS-PA-REQ-T8K | TBC |
-| FramedConcernMembership | In | SSS-PA-REQ-SUC | TBC |
-| RequirementConstraintMembership | In | SSS-PA-REQ-DS6 | TBC |
-| RequirementVerificationMembership | In | SSS-PA-REQ-W9B | TBC |
-| SatisfyRequirementUsage | In | SSS-PA-TRACE-Q72 | TBC |
+| ConcernDefinition | In | SSS-PA-REQ-SUC | SSS-PA-REQ-RF1 |
+| ConcernUsage | In | SSS-PA-REQ-SUC | SSS-PA-REQ-RF1 |
+| StakeholderMembership | In | SSS-PA-REQ-H6W | SSS-PA-REQ-RF1 |
+| ActorMembership | In | SSS-PA-REQ-M3N | SSS-PA-REQ-RF1 |
+| SubjectMembership | In | SSS-PA-REQ-T8K | SSS-PA-REQ-RF1 |
+| FramedConcernMembership | In | SSS-PA-REQ-SUC | SSS-PA-REQ-RF1 |
+| RequirementConstraintMembership | In | SSS-PA-REQ-DS6 | SSS-PA-REQ-RF2 |
+| RequirementVerificationMembership | In | SSS-PA-REQ-W9B | SSS-PA-REQ-RF2 |
+| SatisfyRequirementUsage | In | SSS-PA-TRACE-Q72 | SSS-PA-VIS-C3D, SSS-PA-REQ-RF2 |
 
 ### 8.9 SysML v2 — Cases (Use, Analysis, Verification)
 
@@ -1687,14 +1689,14 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | --- | --- | --- | --- |
 | CaseDefinition | In | TBC | TBC |
 | CaseUsage | In | TBC | TBC |
-| UseCaseDefinition | In | SSS-PA-BEH-IX9 | TBC |
-| UseCaseUsage | In | SSS-PA-BEH-IX9, SSS-PA-BEH-T7P, SSS-PA-BEH-J3F | TBC |
-| IncludeUseCaseUsage | In | SSS-PA-BEH-T7P | TBC |
-| ExtendUseCaseUsage | In | SSS-PA-BEH-J3F | TBC |
+| UseCaseDefinition | In | SSS-PA-BEH-IX9 | SSS-PA-VIS-UC1, SSS-PA-VIS-UC2 |
+| UseCaseUsage | In | SSS-PA-BEH-IX9, SSS-PA-BEH-T7P, SSS-PA-BEH-J3F | SSS-PA-VIS-UC1, SSS-PA-VIS-UC2 |
+| IncludeUseCaseUsage | In | SSS-PA-BEH-T7P | SSS-PA-VIS-UC2 |
+| ExtendUseCaseUsage | In | SSS-PA-BEH-J3F | SSS-PA-VIS-UC2 |
 | AnalysisCaseDefinition | In | SSS-PA-AV-QII | TBC |
 | AnalysisCaseUsage | In | SSS-PA-AV-AU1 | TBC |
 | VerificationCaseDefinition | In | SSS-PA-AV-UCQ | TBC |
-| VerificationCaseUsage | In | SSS-PA-AV-VU2, SSS-PA-REQ-W9B | TBC |
+| VerificationCaseUsage | In | SSS-PA-AV-VU2, SSS-PA-REQ-W9B | SSS-PA-AV-2RG |
 | ObjectiveMembership | In | SSS-PA-AV-O9U | SSS-PA-ELEM-O2K |
 
 ### 8.10 SysML v2 — Views, Viewpoints, Rendering
@@ -1705,8 +1707,8 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | ViewUsage | In | SSS-PA-VIS-T2V | SSS-PA-VIS-T2V, SSS-PA-VIS-BB9, SSS-PA-VIS-JPW |
 | ViewpointDefinition | In | SSS-PA-VIS-T2V | SSS-PA-VIS-T2V |
 | ViewpointUsage | In | SSS-PA-VIS-T2V | SSS-PA-VIS-T2V |
-| RenderingDefinition | In | TBC | TBC |
-| RenderingUsage | In | TBC | TBC |
+| RenderingDefinition | In | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 |
+| RenderingUsage | In | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 |
 | ExposeMembership | In | SSS-PA-VIS-K9R | TBC |
 
 ### 8.11 SysML v2 — Metadata
@@ -1720,18 +1722,18 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 
 | Concept | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- |
-| OccurrenceDefinition | In | TBC | TBC |
-| OccurrenceUsage | In | TBC | TBC |
+| OccurrenceDefinition | In | SSS-PA-OCC-H0, SSS-PA-OCC-D1, SSS-PA-OCC-L3, SSS-PA-OCC-T5, SSS-PA-OCC-S6, SSS-PA-OCC-V8 | SSS-PA-OCC-R9 |
+| OccurrenceUsage | In | SSS-PA-OCC-U2, SSS-PA-OCC-T5, SSS-PA-OCC-S6, SSS-PA-OCC-V8 | SSS-PA-OCC-R9 |
 | LifeClass | Deferred | TBC | TBC |
-| IndividualDefinition | In | TBC | TBC |
-| IndividualUsage | In | TBC | TBC |
+| IndividualDefinition | In | SSS-PA-OCC-I7 | SSS-PA-OCC-R9 |
+| IndividualUsage | In | SSS-PA-OCC-I7 | SSS-PA-OCC-R9 |
 
 ### 8.13 SysML v2 — Allocations
 
 | Concept | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- |
-| AllocationDefinition | In | SSS-PA-TRACE-AD1 | TBC |
-| AllocationUsage | In | SSS-PA-TRACE-YWQ, SSS-PA-TRACE-NA2 | TBC |
+| AllocationDefinition | In | SSS-PA-TRACE-AD1 | SSS-PA-TRACE-AR4, SSS-PA-TRACE-IKS |
+| AllocationUsage | In | SSS-PA-TRACE-YWQ, SSS-PA-TRACE-NA2 | SSS-PA-TRACE-AR4, SSS-PA-TRACE-AP5, SSS-PA-TRACE-IKS |
 
 ### 8.14 SysML v2 — Packaging, Imports, Variants
 
@@ -1740,12 +1742,12 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | Package (SysML) | In | SSS-PA-PKG-R8W, SSS-PA-PKG-V2J, SSS-PA-PKG-M3G | SSS-PA-PKG-L6D |
 | LibraryPackage (SysML) | In | SSS-PA-QU-G1W, SSS-PA-IE-OYJ, SSS-PA-PKG-P8D, SSS-PA-PKG-S1E, SSS-FB-PKG-L2F, SSS-PA-PKG-F8M, SSS-FG-PKG-P7L | SSS-PA-PKG-V4H, SSS-PA-PKG-M3G |
 | FilteredImport | In | SSS-PA-PKG-J3W | TBC |
-| VariantMembership | In | SSS-PA-VAR-R7W, SSS-PA-VAR-J9K, SSS-PA-VAR-F1P | TBC |
-| VariationMembership | In | SSS-PA-VAR-R7W | TBC |
+| VariantMembership | In | SSS-PA-VAR-R7W, SSS-PA-VAR-J9K, SSS-PA-VAR-F1P | SSS-PA-VAR-M8F, SSS-PA-VAR-H2J |
+| VariationMembership | In | SSS-PA-VAR-R7W | SSS-PA-VAR-H2J, SSS-PA-VAR-M8F |
 
 ### 8.15 SysML v2 — Requirement / trace relationships
 
 | Concept | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- |
 | Dependency | In | SSS-PA-TRACE-V8K | TBC |
-| DeriveRequirementUsage | In | SSS-PA-REQ-V4J | TBC |
+| DeriveRequirementUsage | In | SSS-PA-REQ-V4J | SSS-PA-REQ-RF2 |
