@@ -555,10 +555,10 @@ A Part Definition represents a modular unit of structure, such as a system, a sy
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-ARCH-JQH | PA, PT | Mycelium Bloom shall create a Part Definition as a reusable building block and instantiate it as a Part Usage within the system hierarchy when "a user creates a new Part Definition or instantiates an existing one." | SysML 7.11 | H |  |
+| SSS-PA-ARCH-JQH | PA, PT | Mycelium Bloom shall create a Part Definition as a reusable building block when "a user creates a new Part Definition." | SysML 7.11 | H |  |
 | SSS-PA-ARCH-TB2 | PA, PT | Mycelium Bloom shall create a nested Part Usage within the selected parent Part, extending the system decomposition hierarchy (e.g. System, Subsystem, Equipment, Component), when "a user adds a child part to an existing part in the model hierarchy." | SysML 7.11 | H |  |
 | SSS-PA-ARCH-PR4 | PA, PT | Mycelium Bloom shall instantiate the same Part Definition as multiple Part Usages in one or more containing parts, so that a single definition is reused across the system structure, when "a user instantiates an existing Part Definition more than once." | SysML 7.11 | H |  |
-| SSS-PA-ARCH-PT5 | PA, PT | Mycelium Bloom shall type a Part Usage by one or more Part Definitions, and optionally by item definitions that are not part definitions, when "a user assigns one or more types to a Part Usage." | SysML 7.11 | M |  |
+| SSS-PA-ARCH-PT5 | PA, PT | Mycelium Bloom shall create a Part Usage typed by one or more Part Definitions, and optionally by item definitions that are not part definitions, as a feature of a containing part, when "a user adds a part to a containing part." | SysML 7.11 | H |  |
 | SSS-PA-ARCH-PD6 | PA, PT, VW | Mycelium Bloom shall display the composite decomposition of a selected Part, showing its nested Part Usages, their multiplicities, and their typing Part Definitions, when "a user views the structure of a Part." | SysML 7.11 | M |  |
 
 ###### 5.2.1.10.d Ports
@@ -567,8 +567,12 @@ A Port Definition is a kind of occurrence definition that defines a connection p
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-ARCH-5RR | PA, PT | Mycelium Bloom shall create a Port Definition and instantiate it as a Port Usage on a part, specifying its interaction direction (in, out, inout), when "a user adds a port to a selected part." | SysML 7.11 | H |  |
-| SSS-PA-ARCH-K7M | PA, PT | Mycelium Bloom shall create a conjugated Port Usage with reversed feature directions (in becomes out, out becomes in) when "a user designates a Port Usage as the conjugate of an existing Port Definition." | KerML 7.6 | M |  |
+| SSS-PA-ARCH-5RR | PA, PT | Mycelium Bloom shall create a Port Definition when "a user creates a new Port Definition." | SysML 7.12 | H |  |
+| SSS-PA-ARCH-PU8 | PA, PT | Mycelium Bloom shall create a Port Usage on a part, typed by a Port Definition, when "a user adds a port to a part." | SysML 7.12 | H |  |
+| SSS-PA-ARCH-PF1 | PA, PT | Mycelium Bloom shall define the features of a Port, representing the items, attributes, or signals that can be exchanged, each with a direction of in, out, or inout, when "a user adds or edits a feature of a Port Definition or Port Usage." | SysML 7.12 | H |  |
+| SSS-PA-ARCH-PN2 | PA, PT | Mycelium Bloom shall nest a Port Usage within a Port Definition or Port Usage, forming a compound port, when "a user adds a nested port to a port." | SysML 7.12 | M |  |
+| SSS-PA-ARCH-K7M | PA, PT | Mycelium Bloom shall create a conjugated Port Usage with reversed feature directions (in becomes out, out becomes in) when "a user designates a Port Usage as the conjugate of an existing Port Definition." | SysML 7.12 | M |  |
+| SSS-PA-ARCH-PV3 | PA, PT, VW | Mycelium Bloom shall display, for a Port, its directed features with their directions and whether it is a conjugate of another Port, in the detail panel, when "a user views a Port." | SysML 7.12 | M |  |
 
 ###### 5.2.1.10.e Connections
 
