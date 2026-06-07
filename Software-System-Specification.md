@@ -715,6 +715,7 @@ An allocation is a mapping across the structures and hierarchies of a system mod
 | SSS-PA-TRACE-8ZB | PA, PT | Mycelium Bloom shall create a typed relationship between any two model elements when "a user selects source and target elements and specifies a relationship type." | KerML 7.8 | H |  |
 | SSS-PA-TRACE-V8K | PA, PT | Mycelium Bloom shall create a Dependency relationship between two model elements, asserting that the source element depends on the target element, when "a user creates a generic dependency between two model elements." | KerML 7.3 | H |  |
 | SSS-CC-EXT-5DV | PA, PT | Mycelium Bloom shall support External Relationships linking model elements to external web resources via IRIs when "a user creates a relationship targeting an external resource identified by an IRI." | SysML 7.3 | M |  |
+| SSS-PA-TRACE-RX1 | PA, PT, VW | Mycelium Bloom shall display, in the detail panel of an element, the typed relationships, dependencies, and featurings in which it participates, each navigable to the related element, when "a user views an element that participates in relationships." | KerML 7.3 | M |  |
 
 ##### 5.2.1.13 Quantities, units, and measurement management
 
@@ -827,6 +828,7 @@ Engineers need to evaluate design quality and verify that requirements are met. 
 | SSS-PA-EXPR-X5E | PA, PT, VW | Mycelium Bloom shall evaluate a model-level-evaluable Expression over the current attribute values and display its computed result when "a user requests evaluation of an expression." | KerML 8.3.4 | L |  |
 | SSS-PT-ANALYSIS-EAJ | PA, PT, VW | Mycelium Bloom shall display constraint evaluation results showing which constraints pass or violate when "a user navigates to the constraint evaluation view or triggers constraint evaluation." | SysML 7.20 | M |  |
 | SSS-PA-AV-2RG | PA, PT, VW | Mycelium Bloom shall display a validation dashboard showing model quality, constraint violations, and verification status when "a user navigates to the validation dashboard view." | - | M |  |
+| SSS-PA-AV-CR1 | PA, PT, VW | Mycelium Bloom shall display the results of an Analysis Case or Verification Case, showing its subject, its objective or verification method, and its computed outputs or recorded verdict, when "a user views a case or its evaluation completes." | SysML 7.23 | M |  |
 
 ##### 5.2.1.17 In-browser scripting
 
@@ -1549,8 +1551,8 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 
 | Concept | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- |
-| Element | In | TBC | TBC |
-| Relationship | In | SSS-PA-TRACE-8ZB, SSS-PA-TRACE-V8K | TBC |
+| Element † | In | NA | NA |
+| Relationship | In | SSS-PA-TRACE-8ZB, SSS-PA-TRACE-V8K | SSS-PA-TRACE-RX1, SSS-PA-TRACE-IKS |
 | AnnotatingElement | In | SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
 | Annotation | In | SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
 | Comment | In | SSS-PA-CMT-R4K, SSS-PA-CMT-M6J, SSS-PA-CMT-T9F, SSS-PA-CMT-K2B, SSS-PA-CMT-D5P, SSS-PA-CMT-N8V, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-VIS-F8Q, SSS-PA-VIS-B2M, SSS-PA-VIS-T1J, SSS-PA-VIS-G5R, SSS-PA-CMT-L7X |
@@ -1562,13 +1564,13 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | Import | In | SSS-PA-PKG-D4N, SSS-PA-PKG-A7Q, SSS-PA-PKG-H3W, SSS-PA-PKG-X8C, SSS-PA-PKG-X1J, SSS-PA-PKG-X2K, SSS-PA-PKG-X3L, SSS-PA-PKG-X4M, SSS-FB-PKG-B3M | SSS-PA-PKG-L6D, SSS-PA-PKG-X2K |
 | NamespaceImport | In | SSS-PA-PKG-D4N, SSS-PA-PKG-N4J, SSS-PA-PKG-R9K, SSS-PA-PKG-X1J | SSS-PA-PKG-L6D, SSS-PA-PKG-X2K |
 | MembershipImport | In | SSS-PA-PKG-D4N, SSS-PA-PKG-M5P, SSS-PA-PKG-X1J | SSS-PA-PKG-L6D, SSS-PA-PKG-X2K |
-| AliasMembership | In | SSS-PA-PKG-Q1M | TBC |
+| AliasMembership | In | SSS-PA-PKG-Q1M | SSS-PA-ELEM-O2K |
 
 ### 8.2 KerML — Core
 
 | Concept | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- |
-| Feature | In | TBC | TBC |
+| Feature † | In | NA | NA |
 | Type † | In | NA | NA |
 | Classifier † | In | NA | NA |
 | Specialization | In | SSS-PA-ELEM-M4J, SSS-PA-ELEM-L9P, SSS-FB-ELEM-C6V | SSS-PA-ELEM-R6F, SSS-PA-ELEM-D8K |
@@ -1584,7 +1586,7 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | ParameterMembership | In | SSS-PA-ELEM-P6Q | SSS-PA-ELEM-P6Q, SSS-PA-ELEM-O2K |
 | ReturnParameterMembership | In | SSS-PA-ELEM-R7S | SSS-PA-ELEM-R7S, SSS-PA-ELEM-O2K |
 | ResultExpressionMembership | In | SSS-PA-ELEM-X8T | SSS-PA-ELEM-X8T, SSS-PA-ELEM-O2K |
-| TypeFeaturing | In | SSS-PA-ARCH-N5W | TBC |
+| TypeFeaturing | In | SSS-PA-ARCH-N5W | SSS-PA-TRACE-RX1 |
 | FeatureChaining | In | SSS-PA-EXPR-X2B | SSS-PA-EXPR-X3C |
 | FeatureInverting | Deferred | TBC | TBC |
 | Multiplicity | In | SSS-PA-ELEM-V7K, SSS-PA-ELEM-O1Q, SSS-PA-ELEM-V3W | SSS-PA-VIS-U7M |
@@ -1687,16 +1689,16 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 
 | Concept | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- |
-| CaseDefinition | In | TBC | TBC |
-| CaseUsage | In | TBC | TBC |
+| CaseDefinition † | In | NA | NA |
+| CaseUsage † | In | NA | NA |
 | UseCaseDefinition | In | SSS-PA-BEH-IX9 | SSS-PA-VIS-UC1, SSS-PA-VIS-UC2 |
 | UseCaseUsage | In | SSS-PA-BEH-IX9, SSS-PA-BEH-T7P, SSS-PA-BEH-J3F | SSS-PA-VIS-UC1, SSS-PA-VIS-UC2 |
 | IncludeUseCaseUsage | In | SSS-PA-BEH-T7P | SSS-PA-VIS-UC2 |
 | ExtendUseCaseUsage | In | SSS-PA-BEH-J3F | SSS-PA-VIS-UC2 |
-| AnalysisCaseDefinition | In | SSS-PA-AV-QII | TBC |
-| AnalysisCaseUsage | In | SSS-PA-AV-AU1 | TBC |
-| VerificationCaseDefinition | In | SSS-PA-AV-UCQ | TBC |
-| VerificationCaseUsage | In | SSS-PA-AV-VU2, SSS-PA-REQ-W9B | SSS-PA-AV-2RG |
+| AnalysisCaseDefinition | In | SSS-PA-AV-QII | SSS-PA-AV-CR1 |
+| AnalysisCaseUsage | In | SSS-PA-AV-AU1 | SSS-PA-AV-CR1 |
+| VerificationCaseDefinition | In | SSS-PA-AV-UCQ | SSS-PA-AV-CR1, SSS-PA-AV-2RG |
+| VerificationCaseUsage | In | SSS-PA-AV-VU2, SSS-PA-REQ-W9B | SSS-PA-AV-2RG, SSS-PA-AV-CR1 |
 | ObjectiveMembership | In | SSS-PA-AV-O9U | SSS-PA-ELEM-O2K |
 
 ### 8.10 SysML v2 — Views, Viewpoints, Rendering
@@ -1709,7 +1711,7 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | ViewpointUsage | In | SSS-PA-VIS-T2V | SSS-PA-VIS-T2V |
 | RenderingDefinition | In | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 |
 | RenderingUsage | In | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 |
-| ExposeMembership | In | SSS-PA-VIS-K9R | TBC |
+| ExposeMembership | In | SSS-PA-VIS-K9R | SSS-PA-ELEM-O2K |
 
 ### 8.11 SysML v2 — Metadata
 
@@ -1741,7 +1743,7 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | --- | --- | --- | --- |
 | Package (SysML) | In | SSS-PA-PKG-R8W, SSS-PA-PKG-V2J, SSS-PA-PKG-M3G | SSS-PA-PKG-L6D |
 | LibraryPackage (SysML) | In | SSS-PA-QU-G1W, SSS-PA-IE-OYJ, SSS-PA-PKG-P8D, SSS-PA-PKG-S1E, SSS-FB-PKG-L2F, SSS-PA-PKG-F8M, SSS-FG-PKG-P7L | SSS-PA-PKG-V4H, SSS-PA-PKG-M3G |
-| FilteredImport | In | SSS-PA-PKG-J3W | TBC |
+| FilteredImport | In | SSS-PA-PKG-J3W | SSS-PA-PKG-L6D |
 | VariantMembership | In | SSS-PA-VAR-R7W, SSS-PA-VAR-J9K, SSS-PA-VAR-F1P | SSS-PA-VAR-M8F, SSS-PA-VAR-H2J |
 | VariationMembership | In | SSS-PA-VAR-R7W | SSS-PA-VAR-H2J, SSS-PA-VAR-M8F |
 
@@ -1749,5 +1751,5 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 
 | Concept | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- |
-| Dependency | In | SSS-PA-TRACE-V8K | TBC |
+| Dependency | In | SSS-PA-TRACE-V8K | SSS-PA-TRACE-RX1, SSS-PA-TRACE-IKS |
 | DeriveRequirementUsage | In | SSS-PA-REQ-V4J | SSS-PA-REQ-RF2 |
