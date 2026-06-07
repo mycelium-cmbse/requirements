@@ -1154,11 +1154,14 @@ Engineering elements often need supporting documentation: thermal analysis PDFs,
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-ATT-W5R | PA, PT | Mycelium Bloom shall support uploading one or more file attachments to any model element when "a user selects a model element and adds attachments via the attachment interface." | - |  |  |
+| SSS-PA-ATT-W5R | PA, PT | Mycelium Bloom shall upload one or more file attachments to any model element when "a user selects a model element and adds attachments via the attachment interface." | - |  |  |
 | SSS-PA-ATT-K3J | PA, PT, VW | Mycelium Bloom shall display a list of all attachments associated with a model element, showing file name, file type, size, upload date, and uploading user, when "a user views the attachments of a model element." | - | H |  |
-| SSS-PA-ATT-M8D | PA, PT, VW | Mycelium Bloom shall support downloading an attachment when "a user selects an attachment from the attachment list of a model element." | - | H |  |
-| SSS-PA-ATT-F2N | PA, PT | Mycelium Bloom shall support removing an attachment from a model element when "a user with write access to the element deletes an attachment from the attachment list." | - | H |  |
-| SSS-PA-ATT-V6H | PA, PT, VW | Mycelium Bloom shall display inline previews for image attachments (PNG, JPG, SVG) and PDF attachments when "a user views the attachment list of a model element." | - | H |  |
+| SSS-PA-ATT-M8D | PA, PT, VW | Mycelium Bloom shall download an attachment when "a user selects an attachment from the attachment list of a model element." | - | H |  |
+| SSS-PA-ATT-F2N | PA, PT | Mycelium Bloom shall remove an attachment from a model element when "a user with write access to the element deletes an attachment from the attachment list." | - | H |  |
+| SSS-PA-ATT-V6H | PA, PT, VW | Mycelium Bloom shall display inline previews for image attachments (PNG, JPG, SVG) and PDF attachments when "a user views the attachment list of a model element." | - | L |  |
+| SSS-PA-ATT-VR1 | PA, PT | Mycelium Bloom shall upload a new revision of an existing attachment, preserving prior revisions, when "a user replaces an attachment with an updated file." | - | H |  |
+| SSS-FB-ATT-VAL2 | - | Mycelium Fabric shall reject an attachment upload that exceeds the configured maximum file size or whose type is not permitted, returning an error, when "a client uploads an attachment." | - | M |  |
+| SSS-FB-ATT-SCAN3 | - | Mycelium Fabric shall scan uploaded attachments for malware and reject or quarantine any attachment that fails the scan when "an attachment is uploaded." | - | M |  |
 
 ##### 5.2.1.28 Glossary of Terms
 
@@ -1211,7 +1214,6 @@ Mycelium models are versioned like source code. Every change becomes a Commit; a
 | SSS-PA-VC-J6K | PA, PT, VW | Mycelium Bloom shall display a visual indicator (e.g. banner or badge) stating the Commit identifier and date, making clear the user is viewing a historical snapshot and not the current head, when "the model is loaded at a historical Commit." | - |  |  |
 | SSS-PA-VC-T3P | PA, PT | Mycelium Bloom shall create a new Branch from a selected historical Commit when "a user chooses to branch from a historical Commit to continue development from that point in time." | API 7.2.2 |  |  |
 | SSS-PA-VC-B8W | PA, PT, VW | Mycelium Bloom shall return to the head Commit of the active branch when "a user exits the historical snapshot view." | - |  |  |
-
 | SSS-PA-OPT-09P | PA, PT | Mycelium Bloom shall support exploring design alternatives using Branches, where each Branch represents an independent line of development for a candidate solution, when "a user creates a Branch for a design alternative from an existing Commit." | API 7.2.2 |  |  |
 | SSS-PA-OPT-DNI | PA, PT, VW | Mycelium Bloom shall display a comparison of design alternatives by diffing Commits across Branches when "a user selects Commits from different Branches for cross-branch comparison." | API 7.2.6 |  |  |
 | SSS-PA-OPT-W7T | PA | Mycelium Bloom shall merge a selected design alternative Branch into the default Branch when "the Project Administrator initiates a merge of the alternative Branch and resolves any conflicts." | API 7.2.5 |  |  |
@@ -1222,11 +1224,11 @@ Mycelium Bloom must work not only with Mycelium Fabric but with any backend that
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-CC-BACK-R5W | All | Mycelium Bloom shall connect to any backend server that implements the OMG Systems Modelling API and Services specification (REST/HTTP PSM), not only Mycelium Fabric, when "a user provides the URL of a compliant model server." | API 7 |  |  |
-| SSS-CC-BACK-K8N | All | Mycelium Bloom shall detect whether the connected backend supports push-based change notifications (e.g. SignalR/WebSocket) and fall back to a polling mechanism when "the backend does not offer push-based notifications." | - |  |  |
-| SSS-CC-BACK-D3T | All | Mycelium Bloom shall poll the connected backend for model changes at a user-configurable interval when "the polling mechanism is active." | - |  |  |
-| SSS-CC-BACK-H7J | All | Mycelium Bloom shall provide a setting to configure the polling interval (in seconds) and to enable or disable polling when "a user accesses the connection settings for a backend." | - |  |  |
-| SSS-CC-BACK-M1V | All | Mycelium Bloom shall provide a manual refresh operation that retrieves the complete current model state from the connected backend when "a user initiates a manual refresh." | - |  |  |
+| SSS-CC-BACK-R5W | All | Mycelium Bloom shall connect to any backend server that implements the OMG Systems Modelling API and Services specification (REST/HTTP PSM), not only Mycelium Fabric, when "a user provides the URL of a compliant model server." | API 7 | H |  |
+| SSS-CC-BACK-K8N | All | Mycelium Bloom shall detect whether the connected backend supports push-based change notifications (e.g. SignalR/WebSocket) and fall back to a polling mechanism when "the backend does not offer push-based notifications." | - | H |  |
+| SSS-CC-BACK-D3T | All | Mycelium Bloom shall poll the connected backend for model changes at a user-configurable interval when "the polling mechanism is active." | - | H |  |
+| SSS-CC-BACK-H7J | All | Mycelium Bloom shall provide a setting to configure the polling interval (in seconds) and to enable or disable polling when "a user accesses the connection settings for a backend." | - | H |  |
+| SSS-CC-BACK-M1V | All | Mycelium Bloom shall provide a manual refresh operation that retrieves the complete current model state from the connected backend when "a user initiates a manual refresh." | - | H |  |
 
 #### 5.2.2 Mycelium Fabric
 
