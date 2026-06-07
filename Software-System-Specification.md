@@ -832,6 +832,9 @@ Some analyses cannot be expressed declaratively and require imperative computati
 | SSS-PA-SCRIPT-W3F | PA, PT | Mycelium Bloom should write computed values back to model attributes as Computed value sources when "a script assigns a result to a model attribute and the user confirms the update." | - | L |  |
 | SSS-PA-SCRIPT-K8B | PA, PT | Mycelium Bloom should evaluate Constraint Usages against model attribute values and report pass/fail/inconclusive verdicts when "a user executes a requirements verification script." | - | M |  |
 | SSS-PA-SCRIPT-R6P | PA, PT | Mycelium Bloom should save and version scripts as part of the project so they are available to all project members when "a user saves a script in the scripting environment." | - | M |  |
+| SSS-PA-SCRIPT-SB1 | PA, PT | Mycelium Bloom should execute user scripts in a sandboxed environment that isolates them from other projects, from other users' sessions, and from the host application, and limits their access to the model data the authenticated user is permitted to see, when "a script runs in the scripting environment." | - | M |  |
+| SSS-PA-SCRIPT-OW2 | PA, PT | Mycelium Bloom should subject script writes to model attributes to the same ownership and validation rules as manual edits, rejecting writes to attributes the user is not permitted to modify, when "a script assigns a result to a model attribute." | - | M |  |
+| SSS-PA-SCRIPT-CT3 | PA, PT | Mycelium Bloom should provide a cancel action for a running script and terminate any script that exceeds a configurable execution time or resource limit when "a script runs longer than permitted or the user requests cancellation." | - | L |  |
 
 ##### 5.2.1.18 Diagrams and visualization
 
