@@ -1140,7 +1140,13 @@ Branch protection rules can require designated Reviewers to approve merges befor
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PT-VC-JPL | PA, PT, VW | Mycelium Bloom shall provide a review interface to approve or request changes on merges to protected branches when "a user has been designated as a Reviewer and a merge is proposed." | - |  |  |
+| SSS-PT-VC-BP1 | PA | Mycelium Bloom shall provide operations to configure branch protection for a branch, requiring a number of approving reviews and designating the eligible Reviewers, when "the Project Administrator edits the protection rules of a branch." | - | L |  |
+| SSS-PT-VC-MR2 | PA, PT | Mycelium Bloom shall propose a merge to a protected branch and request review from the designated Reviewers when "a user submits a merge into a protected branch." | - | L |  |
+| SSS-PT-VC-DV3 | PA, PT, VW | Mycelium Bloom shall display the diff of a proposed merge, showing the added, modified, and deleted model elements and diagrams with their old and new values, when "a Reviewer opens a proposed merge." | - | L |  |
+| SSS-PT-VC-JPL | PA, PT, VW | Mycelium Bloom shall provide a review interface to approve or request changes on merges to protected branches when "a user has been designated as a Reviewer and a merge is proposed." | - | L |  |
+| SSS-PT-VC-IC7 | PA, PT, VW | Mycelium Bloom shall add review comments on specific elements or changes within a proposed merge when "a Reviewer comments on a change in a proposed merge." | - | L |  |
+| SSS-FB-VC-EN5 | - | Mycelium Fabric shall reject completion of a merge into a protected branch until the required number of approving reviews has been recorded when "a client attempts to complete a merge into a protected branch." | - | L |  |
+| SSS-PT-VC-CM6 | PA, PT | Mycelium Bloom shall complete the merge once the required approvals are recorded when "a user completes an approved merge into a protected branch." | - | L |  |
 
 ##### 5.2.1.27 Attachments
 
