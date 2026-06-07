@@ -459,6 +459,7 @@ SysML v2 organizes models into Packages and Namespaces. Packages group related e
 | SSS-FB-PKG-L2F | - | Mycelium Fabric shall reject any commit that modifies the owned content of a LibraryPackage — including creation, modification, deletion, or re-parenting of any of its members — and shall return a validation error identifying the LibraryPackage, when "a client submits a commit that would mutate a LibraryPackage." | KerML 7.5.5 | H |  |
 | SSS-FG-PKG-P7L | - | Mycelium Forge shall publish a LibraryPackage as a versioned, downloadable package — including its metadata, content, and transitive library dependencies — when "a user or CI pipeline submits a LibraryPackage for publication to Mycelium Forge." | - | H |  |
 | SSS-PA-PKG-F8M | PA | Mycelium Bloom shall import a LibraryPackage from Mycelium Forge into the current project, creating the corresponding NamespaceImport and fetching the referenced content, when "a user selects a LibraryPackage from Mycelium Forge and invokes the 'Import Library' action." | - | H |  |
+| SSS-PA-IE-GYP | PA | Mycelium Bloom shall provide operations to create and manage Project Usages to reference elements from one Project within another, consistent with the Systems Modelling API ProjectUsageService, when "the Project Administrator creates a Project Usage and selects the target project to reference." | API 7.4 | H |  |
 | SSS-PA-MGMT-YC1 | PA | Mycelium Bloom shall provide operations to create, rename and remove Ownership Usages within the project package when "the Project Administrator accesses the Ownership management interface." | - | H |  |
 | SSS-PA-MGMT-BA7 | PA | Mycelium Bloom shall reassign element ownership by updating the Owner metadata on a model element to a different Ownership when "the Project Administrator selects a model element and changes its Owner annotation." | - | H |  |
 | SSS-PA-ELEM-O2K | PA, PT, VW | Mycelium Bloom shall display, in the detail panel of any Namespace or Type, the complete list of its Memberships grouped by kind (OwningMembership, FeatureMembership, AliasMembership, imported Membership, VariantMembership, StakeholderMembership, ActorMembership, SubjectMembership, FramedConcernMembership, RequirementConstraintMembership, RequirementVerificationMembership, ExposeMembership, ObjectiveMembership), showing each member's `memberName`, visibility, and the source of the membership, when "a user views the detail panel of a Namespace or Type." | KerML 7.2 | M |  |
@@ -1083,17 +1084,35 @@ Mycelium supports novice, intermediate, and expert users. The interface should a
 
 Mycelium must interoperate with the broader MBSE ecosystem. Models can be imported and exported in SysML v2 JSON, requirements in ReqIF, content in HTML for documentation. CDP4-COMET ECSS-E-TM-10-25 models can be migrated to SysML v2 via a semi-automated converter. The requirements in this section cover all import, export, and migration capabilities.
 
+###### 5.2.1.24.a Model interchange
+
+Mycelium exchanges model content with other tools and projects. SysML v2 abstract syntax is interchanged as JSON or XMI, requirements as ReqIF, and elements can be referenced live across projects. The requirements in this subsection cover importing and exporting model content and referencing elements from other projects.
+
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-IE-QWN | PA | Mycelium Bloom shall import and export models in standard SysML v2 JSON format compliant with the OMG Systems Modelling API when "the Project Administrator initiates an import or export operation and selects the target file or endpoint." | API 7 |  |  |
+| SSS-PA-IE-QWN | PA | Mycelium Bloom shall import and export models in the standard SysML v2 JSON or XMI serialisation of the abstract syntax, with the JSON serialisation compliant with the OMG Systems Modelling API, when "the Project Administrator initiates an import or export operation and selects the format and the target file or endpoint." | API 7 | H |  |
 | SSS-PA-REQ-D7V | PA | Mycelium Bloom shall import requirements from a ReqIF file when "the Project Administrator initiates an import operation and selects a ReqIF file to import." | - | H |  |
 | SSS-PA-REQ-D7W | PA | Mycelium Bloom shall export requirements to ReqIF format when "the Project Administrator initiates an export operation and selects a target ReqIF file or target location." | - | H |  |
-| SSS-PA-IE-ZLQ | PA | Mycelium Bloom shall migrate existing ECSS-E-TM-10-25 models from CDP4-COMET into SysML v2 using a semi-automated converter when "the Project Administrator uploads an ECSS-E-TM-10-25 model and initiates the migration process." | - |  |  |
-| SSS-PA-IE-YSY | PA | Mycelium Bloom shall present mapping ambiguities for user resolution during ECSS-to-SysML v2 migration when "the converter encounters ECSS-E-TM-10-25 elements that do not have a deterministic SysML v2 mapping." | - |  |  |
-| SSS-PA-IE-GYP | PA | Mycelium Bloom shall support creating and managing Project Usages to reference elements from one Project within another, consistent with the Systems Modelling API ProjectUsageService, when "the Project Administrator creates a Project Usage and selects the target project to reference." | API 7.4 |  |  |
-| SSS-VW-EXP-KVK | PA, PT, VW | Mycelium Bloom shall export views, diagrams, and reports to standard formats (e.g. PDF, image) when "a user initiates an export from a view or dashboard." | - |  |  |
-| SSS-PA-IE-B5W | PA, PT, VW | Mycelium Bloom shall export a Requirements Specification as a navigable HTML document preserving the hierarchical structure, requirement text, categories, and constraint details when "a user selects HTML as the export format for a Requirements Specification." | - |  |  |
-| SSS-PA-IE-N8G | PA, PT, VW | Mycelium Bloom shall export a user-selected set of model elements (e.g. a Package, a Part Definition with its decomposition, or a filtered query result) as a navigable HTML document showing element properties, attributes, relationships, and Documentation when "a user selects HTML as the export format for a model element selection." | - |  |  |
+
+###### 5.2.1.24.b Migration from CDP4-COMET
+
+Existing CDP4-COMET models, based on ECSS-E-TM-10-25, can be brought into Mycelium and converted to SysML v2 by a semi-automated converter. The requirements in this subsection cover the migration process, the resolution of mapping ambiguities, and the migration report.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-IE-ZLQ | PA | Mycelium Bloom shall migrate existing ECSS-E-TM-10-25 models from CDP4-COMET into SysML v2 using a semi-automated converter when "the Project Administrator uploads an ECSS-E-TM-10-25 model and initiates the migration process." | - | H |  |
+| SSS-PA-IE-YSY | PA | Mycelium Bloom shall present mapping ambiguities for user resolution during ECSS-to-SysML v2 migration when "the converter encounters ECSS-E-TM-10-25 elements that do not have a deterministic SysML v2 mapping." | - | H |  |
+| SSS-PA-IE-MR1 | PA | Mycelium Bloom shall produce a migration report listing the ECSS-E-TM-10-25 elements that were migrated, skipped, or failed, together with their resolved SysML v2 mapping and a reference to the original source element, when "an ECSS-to-SysML v2 migration completes." | - | H |  |
+
+###### 5.2.1.24.c Document and view export
+
+Model content leaves Mycelium as human-readable documents for reports, reviews, and stakeholders. The requirements in this subsection cover export of views, diagrams, and reports to standard formats and the generation of navigable HTML documents from requirements and model element selections.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-VW-EXP-KVK | PA, PT, VW | Mycelium Bloom shall export views, diagrams, and reports to standard formats (e.g. PDF, image) when "a user initiates an export from a view or dashboard." | - | L |  |
+| SSS-PA-IE-B5W | PA, PT, VW | Mycelium Bloom shall export a Requirements Specification as a navigable HTML document preserving the hierarchical structure, requirement text, categories, and constraint details when "a user selects HTML as the export format for a Requirements Specification." | - | L |  |
+| SSS-PA-IE-N8G | PA, PT, VW | Mycelium Bloom shall export a user-selected set of model elements (e.g. a Package, a Part Definition with its decomposition, or a filtered query result) as a navigable HTML document showing element properties, attributes, relationships, and Documentation when "a user selects HTML as the export format for a model element selection." | - | M |  |
 
 ##### 5.2.1.25 Comments and documentation
 
