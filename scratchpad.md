@@ -16,3 +16,9 @@ resume at line XXX
 When a Definition or Usage has an icon associated to it, show in the tabular browsers
 
 5.2.1.4a Subscriptions -> add requirements to bulk subscribe
+
+add requirements to support drag-n-drop of Definitions from hierarchical, tablular and diagram to create usage of a definition in another definition
+
+abstract vs concrete; readonly; ordered nonunique
+
+add requirements for BOM and attested docker images
