@@ -477,8 +477,10 @@ Requirements capture stakeholder-imposed conditions that a design must satisfy. 
 | SSS-PA-REQ-SUC | PA, PT | Mycelium Bloom shall provide operations to create Concern Definitions and Concern Usages representing stakeholder concerns, and frame them in requirements or viewpoints via Framed Concern Membership, when "a user creates a Concern and associates it with a requirement or viewpoint." | SysML 8.3.21.3 | H |  |
 | SSS-PA-REQ-V4J | PA, PT | Mycelium Bloom shall create a Derivation relationship between requirements, linking an original requirement to one or more derived requirements with the semantic constraint that satisfaction of the original implies satisfaction of all derived requirements, when "a user creates a derivation trace between requirements." | SysML 9.6 | H |  |
 | SSS-PA-REQ-W9B | PA, PT | Mycelium Bloom shall link a Verification Case Usage to a Requirement Usage via Requirement Verification Membership, recording which verification cases verify which requirements, when "a user associates a verification case with a requirement." | SysML 8.3.24.2 | H |  |
+| SSS-PA-TRACE-Q72 | PA, PT | Mycelium Bloom shall create a SatisfyRequirementUsage recording that a design element satisfies a requirement when "a user selects a design element and a requirement and creates a satisfy relationship." | SysML 8.3.21.10 | H |  |
 | SSS-PA-REQ-D7V | PA | Mycelium Bloom shall import requirements from a ReqIF file when "the Project Administrator initiates an import operation and selects a ReqIF file to import." | - | H |  |
 | SSS-PA-REQ-D7W | PA | Mycelium Bloom shall export requirements to ReqIF format when "the Project Administrator initiates an export operation and selects a target ReqIF file or target location." | - | H |  |
+| SSS-PA-TRACE-N19 | PA | Mycelium Bloom shall identify and report requirements that are neither satisfied by a design element nor derived to a further requirement when "the Project Administrator executes a requirements coverage analysis." | - | H |  |
 
 ##### 5.2.1.10 System architecture modeling
 
@@ -657,14 +659,15 @@ Early-phase design explores a family of possible solutions before committing to 
 | SSS-PA-VAR-SC9 | PA, PT | Mycelium Bloom shall list, rename, apply, compare, and delete saved configurations, when "a user manages the project's saved configurations." | SysML 7.6 | M |  |
 | SSS-PA-VAR-SCA | PA, PT | Mycelium Bloom shall restore the user's most recently applied configuration selection when "a user reopens a project that contains variation points." | SysML 7.6 | L |  |
 
-##### 5.2.1.12 Traceability and allocations
+##### 5.2.1.12 Allocations and relationships
 
-MBSE relies on traceability: every requirement traces to design elements that satisfy it; every functional element allocates to physical elements that realize it. Mycelium offers Allocation, Satisfy, and typed relationships, plus a Relationship Matrix for visualizing and editing trace links across element sets. The requirements in this section cover relationship creation, the matrix view, and coverage analysis.
+An allocation is a mapping across the structures and hierarchies of a system model, asserting that a target element is responsible for realising some or all of the intent of a source element, for example a function allocated to a component. Beyond allocation, Mycelium supports the generic KerML and SysML v2 relationship constructs (typed relationships, dependencies, and external relationships) and a Relationship Matrix for visualising and editing relationships of any type across sets of elements. The requirements in this section cover allocation, generic relationships, and the matrix view. Requirement-specific trace relationships such as Satisfy, Derive, and Verify are covered in the Requirements modeling section.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-TRACE-Q72 | PA, PT | Mycelium Bloom shall support creating Satisfy Requirement Usages to trace which design elements satisfy which requirements when "a user selects a design element and a requirement and creates a satisfy relationship." | SysML 8.3.21.10 | H |  |
-| SSS-PA-TRACE-YWQ | PA, PT | Mycelium Bloom shall support creating Allocation Definitions and instantiating them as Allocation Usages to map functional elements to physical elements across the system hierarchy when "a user selects source and target elements and creates an allocation." | SysML 7.14 | H |  |
+| SSS-PA-TRACE-AD1 | PA, PT | Mycelium Bloom shall create an Allocation Definition specifying that a target element realises the intent of a source element when "a user creates a new Allocation Definition." | SysML 7.15 | H |  |
+| SSS-PA-TRACE-YWQ | PA, PT | Mycelium Bloom shall create an Allocation Usage, typed by one or more Allocation Definitions, that maps a source element to a target element responsible for realising it, when "a user selects source and target elements and creates an allocation." | SysML 7.15 | H |  |
+| SSS-PA-TRACE-NA2 | PA, PT | Mycelium Bloom shall refine an Allocation Usage with nested Allocation Usages that decompose it into finer-grained mappings when "a user adds a nested allocation to an allocation." | SysML 7.15 | M |  |
 | SSS-PA-TRACE-IKS | PA, PT, VW | Mycelium Bloom shall display a Relationship Matrix showing binary relationships between element sets (e.g. requirements vs. parts) when "a user opens the Relationship Matrix view and selects the element sets and relationship type." | - | H |  |
 | SSS-PA-TRACE-V3H | PA, PT, VW | Mycelium Bloom shall populate the Relationship Matrix rows and columns from user-selected element types, packages, or query results when "a user configures the row source and column source of a Relationship Matrix." | - | H |  |
 | SSS-PA-TRACE-K7W | PA, PT, VW | Mycelium Bloom shall indicate the presence and direction of relationships in each matrix cell using visual markers (e.g. filled cell, arrow, relationship count) when "the Relationship Matrix renders cells where relationships exist between the row and column elements." | - | H |  |
@@ -675,10 +678,9 @@ MBSE relies on traceability: every requirement traces to design elements that sa
 | SSS-PA-TRACE-B6C | PA, PT, VW | Mycelium Bloom shall display multiple relationship types simultaneously in the Relationship Matrix using distinct visual markers per type when "a user selects more than one relationship type for display." | - | M |  |
 | SSS-PA-TRACE-H4P | PA, PT, VW | Mycelium Bloom shall navigate to the detail panel of the related elements when "a user double-clicks an occupied cell in the Relationship Matrix." | - | H |  |
 | SSS-PA-TRACE-R1X | PA, PT, VW | Mycelium Bloom shall export the Relationship Matrix to CSV and PDF formats when "a user initiates an export from the Relationship Matrix view." | - | M |  |
-| SSS-PA-TRACE-N19 | PA | Mycelium Bloom shall identify and report requirements that are not allocated to any design element or derived requirement when "the Project Administrator executes a requirements coverage analysis." | - | H |  |
-| SSS-PA-TRACE-8ZB | PA, PT | Mycelium Bloom shall support creating and navigating typed relationships between any model elements when "a user selects source and target elements and specifies a relationship type." | KerML 7.8 | H |  |
+| SSS-PA-TRACE-8ZB | PA, PT | Mycelium Bloom shall create a typed relationship between any two model elements when "a user selects source and target elements and specifies a relationship type." | KerML 7.8 | H |  |
 | SSS-PA-TRACE-V8K | PA, PT | Mycelium Bloom shall create a Dependency relationship between two model elements, asserting that the source element depends on the target element, when "a user creates a generic dependency between two model elements." | KerML 7.3 | H |  |
-| SSS-CC-EXT-5DV | PA, PT | Mycelium Bloom shall support External Relationships linking model elements to external web resources via IRIs when "a user creates a relationship targeting an external resource identified by an IRI." | SysML 7.3 | H |  |
+| SSS-CC-EXT-5DV | PA, PT | Mycelium Bloom shall support External Relationships linking model elements to external web resources via IRIs when "a user creates a relationship targeting an external resource identified by an IRI." | SysML 7.3 | M |  |
 
 ##### 5.2.1.13 Quantities, units, and measurement management
 
@@ -1578,8 +1580,8 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 
 | Concept | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- |
-| AllocationDefinition | In | SSS-PA-TRACE-YWQ | TBC |
-| AllocationUsage | In | SSS-PA-TRACE-YWQ | TBC |
+| AllocationDefinition | In | SSS-PA-TRACE-AD1 | TBC |
+| AllocationUsage | In | SSS-PA-TRACE-YWQ, SSS-PA-TRACE-NA2 | TBC |
 
 ### 8.14 SysML v2 — Packaging, Imports, Variants
 
