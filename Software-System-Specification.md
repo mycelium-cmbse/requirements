@@ -1231,6 +1231,9 @@ Mycelium Bloom must work not only with Mycelium Fabric but with any backend that
 | SSS-CC-BACK-D3T | All | Mycelium Bloom shall poll the connected backend for model changes at a user-configurable interval when "the polling mechanism is active." | - | H |  |
 | SSS-CC-BACK-H7J | All | Mycelium Bloom shall provide a setting to configure the polling interval (in seconds) and to enable or disable polling when "a user accesses the connection settings for a backend." | - | H |  |
 | SSS-CC-BACK-M1V | All | Mycelium Bloom shall provide a manual refresh operation that retrieves the complete current model state from the connected backend when "a user initiates a manual refresh." | - | H |  |
+| SSS-CC-BACK-AU1 | All | Mycelium Bloom shall authenticate to a connected backend using the credentials or token configured for that backend when "a user connects to a backend that requires authentication." | - | H |  |
+| SSS-CC-BACK-CD2 | All | Mycelium Bloom shall detect the capabilities offered by the connected backend (such as ownership enforcement, concurrent design support, and diagram-layout persistence) and disable or adapt the features the backend does not support, indicating the limitation to the user, when "Bloom connects to a backend." | - | H |  |
+| SSS-CC-BACK-ER3 | All | Mycelium Bloom shall indicate a lost backend connection and attempt to reconnect, resuming push or polling once the connection is restored, when "the connection to the backend is interrupted." | - | M |  |
 
 #### 5.2.2 Mycelium Fabric
 
