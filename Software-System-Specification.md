@@ -555,8 +555,11 @@ A Part Definition represents a modular unit of structure, such as a system, a sy
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-ARCH-JQH | PA, PT | Mycelium Bloom shall create a Part Definition as a reusable building block and instantiate it as a Part Usage within the system hierarchy when "a user creates a new Part Definition or instantiates an existing one." | SysML 7.9 | H |  |
-| SSS-PA-ARCH-TB2 | PA, PT | Mycelium Bloom shall create a nested Part Usage within the selected parent Part, extending the system decomposition hierarchy (e.g. System, Subsystem, Equipment, Component), when "a user adds a child part to an existing part in the model hierarchy." | SysML 7.9 | H |  |
+| SSS-PA-ARCH-JQH | PA, PT | Mycelium Bloom shall create a Part Definition as a reusable building block and instantiate it as a Part Usage within the system hierarchy when "a user creates a new Part Definition or instantiates an existing one." | SysML 7.11 | H |  |
+| SSS-PA-ARCH-TB2 | PA, PT | Mycelium Bloom shall create a nested Part Usage within the selected parent Part, extending the system decomposition hierarchy (e.g. System, Subsystem, Equipment, Component), when "a user adds a child part to an existing part in the model hierarchy." | SysML 7.11 | H |  |
+| SSS-PA-ARCH-PR4 | PA, PT | Mycelium Bloom shall instantiate the same Part Definition as multiple Part Usages in one or more containing parts, so that a single definition is reused across the system structure, when "a user instantiates an existing Part Definition more than once." | SysML 7.11 | H |  |
+| SSS-PA-ARCH-PT5 | PA, PT | Mycelium Bloom shall type a Part Usage by one or more Part Definitions, and optionally by item definitions that are not part definitions, when "a user assigns one or more types to a Part Usage." | SysML 7.11 | M |  |
+| SSS-PA-ARCH-PD6 | PA, PT, VW | Mycelium Bloom shall display the composite decomposition of a selected Part, showing its nested Part Usages, their multiplicities, and their typing Part Definitions, when "a user views the structure of a Part." | SysML 7.11 | M |  |
 
 ###### 5.2.1.10.d Ports
 
