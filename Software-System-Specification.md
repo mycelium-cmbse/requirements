@@ -1016,8 +1016,10 @@ Engineers need to ask questions of their models: list all elements categorized a
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-QRY-L11 | PA, PT | Mycelium Bloom shall provide a query interface supporting select, scope, where, and orderBy clauses, with the ability to save and re-execute queries, when "a user composes a query and submits it for execution." | API 7.3 |  |  |
-| SSS-PA-QRY-JYA | PA, PT, VW | Mycelium Bloom shall execute queries against any commit to retrieve historical model state when "a user specifies a target Commit identifier before executing a query." | API 7.3 |  |  |
+| SSS-PA-QRY-L11 | PA, PT | Mycelium Bloom shall provide a query interface supporting select, scope, where, and orderBy clauses when "a user composes a query and submits it for execution." | API 7.3 | M |  |
+| SSS-PA-QRY-JYA | PA, PT, VW | Mycelium Bloom shall execute queries against any commit to retrieve historical model state when "a user specifies a target Commit identifier before executing a query." | API 7.3 | M |  |
+| SSS-PA-QRY-QR1 | PA, PT, VW | Mycelium Bloom shall display query results as a sortable, filterable table from which the user can navigate to any matching element when "a query completes execution." | API 7.3 | M |  |
+| SSS-PA-QRY-QR2 | PA, PT | Mycelium Bloom shall provide operations to save, list, rename, delete, re-execute, and share queries within the project when "a user accesses the saved queries list." | - | M |  |
 
 ##### 5.2.1.22 Reporting and dashboards
 
