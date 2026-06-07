@@ -361,6 +361,7 @@ Concurrent design brings 20-30 engineers from different domains into the same ro
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
 | SSS-PT-CDS-RKV | PA, PT | Mycelium Bloom shall support concurrent design sessions with at least 20-30 Participants from multiple Ownerships working simultaneously when "multiple Participants are connected to the same project and actively modifying model data." | - |  |  |
+| SSS-PT-UI-256 | PT | Mycelium Bloom shall present a selector to switch the active Ownership when "the Participant is assigned to multiple Ownerships and selects a different active Ownership from the Ownership selector." | - | H |  |
 
 ###### 5.2.1.6a Subscriptions
 
@@ -1071,11 +1072,12 @@ Mycelium supports novice, intermediate, and expert users. The interface should a
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
 | SSS-PT-UI-NLJ | All | Mycelium Bloom shall provide a role-aware interface that surfaces information and tools relevant to the user's assigned Ownership and tasks when "a user logs in and the application loads their role and Ownership assignments." | - |  |  |
-| SSS-PT-UI-L3Q | PA, PT, VW | Mycelium Bloom shall provide workspace customization for dashboard layouts and favorite views when "a user accesses workspace customization settings." | - |  |  |
-| SSS-PT-UI-YJL | All | Mycelium Bloom shall present commonly used features first and advanced capabilities on demand (progressive disclosure) when "a user interacts with any feature area of the application." | - |  |  |
-| SSS-PT-UI-2BM | PA, PT, VW | Mycelium Bloom shall display context-aware panels showing related diagrams, constraints, and verification results when "a user selects a model element in any view." | - |  |  |
-| SSS-PT-UI-256 | PT | Mycelium Bloom shall present a selector to switch the active Ownership when "the Participant is assigned to multiple Ownerships and selects a different active Ownership from the Ownership selector." | - |  |  |
-| SSS-PT-UI-G4M | All | Mycelium Bloom shall display an About window showing the application name, version number, license information, copyright notice, and links to documentation and source code when "a user opens the About dialog." | - |  |  |
+| SSS-PT-UI-L3Q | PA, PT, VW | Mycelium Bloom shall provide workspace customization for dashboard layouts and favourite views when "a user accesses workspace customization settings." | - | L |  |
+| SSS-PT-UI-YJL | All | Mycelium Bloom shall present commonly used features first and advanced capabilities on demand (progressive disclosure) when "a user interacts with any feature area of the application." | - | L |  |
+| SSS-PT-UI-2BM | PA, PT, VW | Mycelium Bloom shall display context-aware panels showing related diagrams, constraints, and verification results when "a user selects a model element in any view." | - | M |  |
+| SSS-PT-UI-G4M | All | Mycelium Bloom shall display an About window showing the application name, version number, license information, copyright notice, and links to documentation and source code when "a user opens the About dialog." | - | H |  |
+| SSS-PT-UI-TH1 | All | Mycelium Bloom shall provide a setting to switch the interface theme (light, dark, or high-contrast) when "a user selects a theme in their preferences." | - | L |  |
+| SSS-PT-UI-KB3 | All | Mycelium Bloom shall provide keyboard shortcuts for common operations, configurable by the user, when "a user invokes or customises a keyboard shortcut." | - | L |  |
 
 ##### 5.2.1.24 Import, export and migration
 
@@ -1405,9 +1407,10 @@ TBD — Availability targets, data durability, backup and recovery requirements.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PT-UI-YJL | All | Mycelium Bloom shall present commonly used features first and advanced capabilities on demand (progressive disclosure) when "a user interacts with any feature area of the application." | - |  |  |
+| SSS-PT-UI-YJL | All | Mycelium Bloom shall present commonly used features first and advanced capabilities on demand (progressive disclosure) when "a user interacts with any feature area of the application." | - | L |  |
+| SSS-CC-QUAL-AX2 | All | Mycelium Bloom shall conform to WCAG 2.1 AA, providing keyboard navigation and screen-reader-accessible labels for its primary interface controls, when "a user navigates the interface with a keyboard or assistive technology." | - | L |  |
 
-Additional quality requirements (accessibility, internationalization, usability standards): TBD.
+Additional quality requirements (internationalization, usability standards): TBD.
 
 ### 5.10 Design requirements and constraints
 
