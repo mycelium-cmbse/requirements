@@ -657,7 +657,7 @@ An Attribute Definition defines a set of data values, such as numbers, quantitat
 | SSS-PA-ARCH-97Z | PA, PT | Mycelium Bloom shall create an Attribute Usage on any Definition or Usage, typed by an Attribute Definition or a primitive data type and expressed with its measurement unit where applicable, when "a user adds an attribute to a Definition or Usage, irrespective of the assigned Ownership of the target Definition or Usage." | SysML 7.7 | H |  |
 | SSS-PA-ARCH-AV5 | PA, PT | Mycelium Bloom shall set the value of an Attribute Usage, expressed with its measurement unit where applicable, when "a user edits an attribute value." | SysML 7.7 | H |  |
 | SSS-PT-DATA-OH2 | PA, PT | Mycelium Bloom shall override an attribute value on a specific element usage without changing the parent definition when "a user edits an attribute value on a usage that inherits from a definition." | KerML 7.6 | H |  |
-| SSS-PT-DATA-492 | PA, PT | Mycelium Bloom shall assign attribute values that vary by exhibited State Usage (e.g. operational mode) when "a user associates attribute values with specific states on an element." | SysML 7.17 | H |  |
+| SSS-PT-DATA-492 | PA, PT | Mycelium Bloom shall assign attribute values that vary by exhibited State Usage (e.g. operational mode) when "a user associates attribute values with specific states on an element." | SysML 7.18 | H |  |
 | SSS-PT-DATA-D5I | PT | Mycelium Bloom shall provide a selector to set attribute value sources as Manual (hand-entered), Computed (calculated), or Reference (sourced from another element) when "the Participant edits an attribute value." (TBC) | SysML 7.7 | M |  |
 
 ##### 5.2.1.11 Variation point and variant modeling
