@@ -512,6 +512,7 @@ The requirements in this section apply to every kind of Definition and Usage. Th
 | SSS-PA-ELEM-V7K | PA, PT | Mycelium Bloom shall set the multiplicity (lower bound, upper bound) on any Usage when "a user edits the multiplicity of a Usage in the detail panel or on a diagram." | KerML 7.6.6 | H |  |
 | SSS-PA-ELEM-N8P | PA, PT | Mycelium Bloom shall set the lower and upper bounds of a Multiplicity Range as either a literal non-negative integer, the unbounded symbol `*`, or an Expression referencing other Features, when "a user edits the bounds of a Multiplicity Range in the detail panel or on a diagram." | KerML 7.6.6 | H |  |
 | SSS-PA-ELEM-O1Q | PA, PT | Mycelium Bloom shall set the `isOrdered` and `isUnique` flags of a Feature, controlling whether its values are ordered and whether duplicates are permitted, when "a user toggles the ordering or uniqueness of a Feature in the detail panel." | KerML 7.6.6 | H |  |
+| SSS-PA-ELEM-U3G | PA, PT | Mycelium Bloom shall set whether a Usage is composite, meaning owned by its containing element, or referential, meaning a reference to an element owned elsewhere, when "a user marks a Usage as composite or reference." | KerML 7.6 | H |  |
 | SSS-PA-VIS-U7M | PA, PT, VW | Mycelium Bloom shall render the Multiplicity of a Feature or Usage in the model browser, tabular views, detail panel, and diagram labels using the textual notation `[lower..upper]` — displaying `*` for an unbounded upper, `[n]` when lower equals upper, and the expression text when a bound is an Expression — when "a user views an element that declares a Multiplicity." | KerML 7.6.6 | H |  |
 | SSS-PA-ARCH-N5W | PA, PT | Mycelium Bloom shall create a Featuring relationship establishing that one type features another type when "a user explicitly specifies a featuring relationship between two types." | KerML 7.6 | M |  |
 | SSS-PA-ELEM-D2N | PA, PT | Mycelium Bloom shall create a subsetting relationship between a feature and another feature of a compatible type when "a user designates a feature as a subset of another feature." | KerML 7.6.5 | H |  |
@@ -542,8 +543,11 @@ An Item Definition is a kind of occurrence definition representing a class of id
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-ARCH-B2D | PA, PT | Mycelium Bloom shall create an Item Definition representing a non-structural element (e.g. data type, signal, resource) when "a user creates a new Item Definition." | SysML 7.10 | H |  |
-| SSS-PA-ARCH-B2E | PA, PT | Mycelium Bloom shall support the user to create an Item Definition from the hierarchical and tabular browser, as well on a Diagram when "a user invokes the create a new Item Definition action." | SysML 7.10 | H |  |
+| SSS-PA-ARCH-B2D | PA, PT | Mycelium Bloom shall create an Item Definition representing a class of identifiable objects that may be acted upon over time, such as a data type, signal, or resource, when "a user creates a new Item Definition." | SysML 7.10 | H |  |
+| SSS-PA-ARCH-B2F | PA, PT | Mycelium Bloom shall create an Item Usage typed by one or more Item Definitions as a feature of any Definition or Usage, representing an input, output, stored item, or flowing item, when "a user adds an item to a Definition or Usage." | SysML 7.10 | H |  |
+| SSS-PA-ARCH-B2G | PA, PT | Mycelium Bloom shall nest an Item Usage within an Item Definition or Item Usage when "a user adds a nested item to an item." | SysML 7.10 | H |  |
+| SSS-PA-ARCH-B2J | PA, PT, VW | Mycelium Bloom shall display, for an Item Usage, its typing Item Definitions and whether it is composite or referential, in the detail panel, when "a user views an Item Usage." | SysML 7.10 | H |  |
+| SSS-PA-ARCH-B2K | PA, PT | Mycelium Bloom shall change the kind of a usage between item and part, retyping it with a compatible Part Definition when an Item Usage becomes a Part Usage, while preserving its name, nested features, and references, when "a user changes the kind of a usage between item and part." | SysML 7.11 | H |  |
 
 ###### 5.2.1.10.c Parts
 
