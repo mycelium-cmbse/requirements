@@ -838,7 +838,9 @@ Some analyses cannot be expressed declaratively and require imperative computati
 
 ##### 5.2.1.18 Diagrams and visualization
 
-###### 5.2.1.18.1 Graphical notation compliance
+Mycelium presents the model through a set of SysML v2 diagram types, each tailored to a modelling concern: structure, behaviour, requirements, and free-form exploration. All diagram types share a common graphical notation, drag-and-drop interaction with the model browser, and a round-trip in which editing a diagram updates the underlying model and editing the model updates every open diagram. The subsections below cover the shared diagramming and notation capabilities first, then each standard view, custom views and viewpoints, textual notation, and diagram export.
+
+###### 5.2.1.18.1 General diagramming and notation
 
 Mycelium Bloom must render model elements using the symbols defined in SysML v2 Part 1 section 8.2.3. This ensures that diagrams produced in and with Mycelium are immediately recognizable to anyone familiar with SysML v2 and exchangeable with other SysML v2 tools. The requirements in this section also cover diagram annotations, custom icons, and drag-and-drop interactions that apply to all diagram types.
 
@@ -862,8 +864,6 @@ Mycelium Bloom must render model elements using the symbols defined in SysML v2 
 | SSS-PA-VIS-B2M | PA, PT | Mycelium Bloom shall attach a note to a specific model element on the diagram via a dashed anchor line when "a user links a note to a diagram element." | KerML 7.4 | H |  |
 | SSS-PA-VIS-G5R | PA, PT | Mycelium Bloom shall provide callout annotations that can point to a specific location on the diagram canvas when "a user creates a callout on a diagram." | KerML 7.4 | H |  |
 | SSS-PA-VIS-T1J | PA, PT | Mycelium Bloom shall persist diagram notes and callouts as SysML v2 Comment elements annotating the relevant model elements when "a user saves a diagram containing notes or callouts." | KerML 7.4 | H |  |
-
-
 
 ###### 5.2.1.18.2 Interconnection View
 
@@ -922,7 +922,7 @@ A General View is an unconstrained canvas where engineers can place any model el
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-VIS-BB9 | PA, PT | Mycelium Bloom shall provide an editor for creating General Views for unconstrained graphical model exploration when "a user creates a new General View and adds model elements to its canvas." | SysML 8.2.3.5 | H |  |
+| SSS-PA-VIS-BB9 | PA, PT | Mycelium Bloom shall provide an editor for creating General Views for unconstrained graphical model exploration when "a user creates a new General View and adds model elements to its canvas." | SysML 8.2.3 | H |  |
 | SSS-PA-VIS-P5W | PA, PT, VW | Mycelium Bloom shall create a graphical node for any model element type placed on a General View canvas, using its SysML v2 graphical notation symbol, when "a user adds an element to a General View." | SysML 8.2.3 | H |  |
 
 ###### 5.2.1.18.8 Grid View
@@ -959,6 +959,20 @@ Diagrams need to leave Mycelium for reports, presentations, and external tools. 
 | SSS-PA-VIS-V7S | PA, PT, VW | Mycelium Bloom shall export a diagram to SVG format preserving vector graphics fidelity when "a user selects SVG as the export format for a diagram." | - | H |  |
 | SSS-PA-VIS-T1N | PA, PT, VW | Mycelium Bloom shall export a diagram to PNG format at a user-specified resolution when "a user selects PNG as the export format for a diagram." | - | H |  |
 | SSS-PA-VIS-G4L | PA, PT, VW | Mycelium Bloom shall export a diagram to JPG format at a user-specified resolution and quality when "a user selects JPG as the export format for a diagram." | - | H |  |
+
+###### 5.2.1.18.12 Diagram management and canvas operations
+
+Beyond rendering, engineers need to manage diagrams as artifacts and arrange their content. The requirements in this subsection cover the lifecycle of a diagram and the canvas operations common to every diagram type. Diagram persistence and real-time collaboration are covered separately in 5.2.1.19.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-VIS-DM1 | PA, PT | Mycelium Bloom shall provide operations to create, open, rename, and delete diagrams and to list the diagrams of a project with their name and type when "a user accesses the project's diagram list." | - | H |  |
+| SSS-PA-VIS-ZP3 | PA, PT, VW | Mycelium Bloom shall zoom, pan, and fit the diagram to the view when "a user zooms, pans, or invokes fit-to-view on a diagram." | - | H |  |
+| SSS-PA-VIS-LY2 | PA, PT | Mycelium Bloom shall apply an automatic layout that arranges the nodes and routes the relationships of a diagram when "a user invokes auto-layout on a diagram." | - | L |  |
+| SSS-PA-VIS-AL4 | PA, PT | Mycelium Bloom shall align and distribute selected diagram nodes when "a user invokes an alignment or distribution action on a multi-element selection." | - | L |  |
+| SSS-PA-VIS-SE5 | PA, PT | Mycelium Bloom shall select multiple diagram elements and cut, copy, and paste them within or between diagrams when "a user performs a multi-selection and a clipboard operation." | - | M |  |
+| SSS-PA-VIS-UR6 | PA, PT | Mycelium Bloom shall undo and redo diagram editing operations when "a user invokes undo or redo in a diagram editor." | - | M |  |
+| SSS-PA-VIS-RT7 | PA, PT | Mycelium Bloom shall edit the routing of a relationship by adding, moving, and removing waypoints when "a user reroutes a relationship on a diagram." | - | M |  |
 
 ##### 5.2.1.19 Diagram persistence and real-time collaboration
 
