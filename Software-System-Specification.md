@@ -815,6 +815,10 @@ Engineers need to evaluate design quality and verify that requirements are met. 
 | SSS-PT-ANALYSIS-4W2 | PT | Mycelium Bloom shall create a Calculation Definition with input parameters, output parameters, and a computation expression when "the Participant creates a Calculation Definition." | SysML 7.19 | H |  |
 | SSS-PT-ANALYSIS-KU4 | PT | Mycelium Bloom shall instantiate a Calculation Definition as a Calculation Usage over model attributes when "the Participant instantiates a Calculation." | SysML 7.19 | H |  |
 | SSS-PT-ANALYSIS-KE6 | PT | Mycelium Bloom shall evaluate a Calculation Usage to compute its result from its input values when "a user evaluates a Calculation Usage." | SysML 7.19 | M |  |
+| SSS-PA-EXPR-X1A | PA, PT | Mycelium Bloom shall provide an editor to author an Expression composed of literal values, operators, references to model features, and invocations of Functions or Calculations, in any context that admits an Expression (constraint body, calculation computation, transition guard, action condition, multiplicity bound, or feature value), when "a user edits an expression." | KerML 8.3.4 | L |  |
+| SSS-PA-EXPR-X2B | PA, PT | Mycelium Bloom shall insert a reference to a model feature into an Expression, including a feature chain that navigates nested features (for example, engine.cylinder.diameter), when "a user adds a feature reference to an expression." | KerML 8.3.4 | L |  |
+| SSS-PA-EXPR-X3C | PA, PT, VW | Mycelium Bloom shall display an Expression in its SysML v2 textual notation wherever the expression appears, including the detail panel of its owning element, when "a user views an element that owns an Expression." | KerML 8.2.5 | L |  |
+| SSS-PA-EXPR-X5E | PA, PT, VW | Mycelium Bloom shall evaluate a model-level-evaluable Expression over the current attribute values and display its computed result when "a user requests evaluation of an expression." | KerML 8.3.4 | L |  |
 | SSS-PT-ANALYSIS-EAJ | PA, PT, VW | Mycelium Bloom shall display constraint evaluation results showing which constraints pass or violate when "a user navigates to the constraint evaluation view or triggers constraint evaluation." | SysML 7.20 | M |  |
 | SSS-PA-AV-2RG | PA, PT, VW | Mycelium Bloom shall display a validation dashboard showing model quality, constraint violations, and verification status when "a user navigates to the validation dashboard view." | - | M |  |
 
@@ -1282,6 +1286,7 @@ Ownership-based access control is enforced server-side by Mycelium Fabric — Bl
 | SSS-FB-VAR-V3 | - | Mycelium Fabric shall reject a commit in which a variant is not a valid usage of the variation's type, returning a validation error identifying the non-conforming variant, when "a client submits such a commit." | SysML 7.6 | H |  |
 | SSS-FB-ARCH-E5F | - | Mycelium Fabric shall reject any commit that assigns to an Attribute Usage typed by an Enumeration Definition a value that is not one of the Definition's Enumeration Literals, and shall return a validation error identifying the offending assignment, when "a client submits such a commit." | SysML 7.8 | H |  |
 | SSS-FB-ARCH-E7H | - | Mycelium Fabric shall reject a commit in which an Enumeration Definition specialises another Enumeration Definition, returning a validation error identifying the offending specialisation, when "a client submits such a commit." | SysML 7.8 | H |  |
+| SSS-FB-EXPR-X4D | - | Mycelium Fabric shall reject a commit containing an Expression that is syntactically malformed or whose result type is incompatible with its context, returning a validation error that identifies the offending Expression, when "a client submits such a commit." | KerML 8.3.4 | H |  |
 
 ##### 5.2.2.5 Real-time notifications
 
