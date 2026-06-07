@@ -1027,7 +1027,7 @@ Beyond raw data, engineers and stakeholders need summary views showing model hea
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-OA-SYS-IEJ | OA | Mycelium Bloom shall display active user sessions and system health metrics when "the Organization Administrator navigates to the system monitoring dashboard." | - |  |  |
+| SSS-OA-SYS-IEJ | OA | Mycelium Bloom shall display active user sessions and system health metrics when "the Organization Administrator navigates to the system monitoring dashboard." | - | H |  |
 
 ###### 5.2.1.22a Project model dashboard
 
@@ -1035,27 +1035,34 @@ The project model dashboard gives the study lead and team a single view of model
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-DASH-K7R | PA, PT, VW | Mycelium Bloom shall display a project model dashboard presenting an overview of model health and completeness when "a user opens the project model dashboard." | - |  |  |
-| SSS-PA-DASH-W3D | PA, PT, VW | Mycelium Bloom shall display a histogram and summary count of published vs unpublished attributes per Ownership when "the project model dashboard renders the publication status section." | - |  |  |
-| SSS-PA-DASH-N8F | PA, PT, VW | Mycelium Bloom shall display a histogram and summary count of attributes with missing values (no value assigned) grouped by Ownership when "the project model dashboard renders the missing values section." | - |  |  |
-| SSS-PA-DASH-H2T | PA, PT, VW | Mycelium Bloom shall display a histogram and summary count of unused Definitions (Definitions with no Usages in the model) grouped by element type when "the project model dashboard renders the unused definitions section." | - |  |  |
-| SSS-PA-DASH-D5J | PA, PT, VW | Mycelium Bloom shall display a histogram and summary count of unreferenced Usages (Usages not connected via any relationship, port, or connection to other elements) grouped by element type when "the project model dashboard renders the unreferenced elements section." | - |  |  |
-| SSS-PA-DASH-R9V | PA, PT, VW | Mycelium Bloom shall display a pie chart showing the distribution of model elements by element type (Part, Item, Action, State, Requirement, Constraint, etc.) when "the project model dashboard renders the element composition section." | - |  |  |
-| SSS-PA-DASH-T4K | PA, PT, VW | Mycelium Bloom shall display a pie chart showing the distribution of model elements by Ownership when "the project model dashboard renders the ownership distribution section." | - |  |  |
-| SSS-PA-DASH-M6W | PA, PT, VW | Mycelium Bloom shall display a summary of requirements coverage showing the count and percentage of requirements with Satisfy relationships, Verification Case links, and unallocated requirements when "the project model dashboard renders the requirements coverage section." | - |  |  |
-| SSS-PA-DASH-J1B | PA, PT, VW | Mycelium Bloom shall display a summary of constraint compliance showing the count of satisfied, violated, and unevaluated constraints when "the project model dashboard renders the constraint compliance section." | - |  |  |
-| SSS-PA-DASH-V8G | PA, PT, VW | Mycelium Bloom shall display a summary of subscription activity showing the count of active ParameterSubscriptions and the count of subscribed attributes with stale (unpublished) values when "the project model dashboard renders the subscription status section." | - |  |  |
-| SSS-PA-DASH-F3K | PA, PT, VW | Mycelium Bloom shall filter all project model dashboard sections by Ownership, element type, metadata annotation, and variant configuration when "a user applies filters to the project model dashboard." | - |  |  |
-| SSS-PA-DASH-B7N | PA, PT, VW | Mycelium Bloom shall navigate to the list of matching model elements when "a user clicks a bar in a histogram or a segment in a pie chart on the project model dashboard." | - |  |  |
-| SSS-PA-HIST-K3R | PA, PT, VW | Mycelium Bloom shall display the value history of one or more selected attributes as a time-series chart plotting the attribute values across Commits or Tags on the active branch when "a user opens the attribute history view and selects one or more attributes." | - |  |  |
-| SSS-PA-HIST-T6W | PA, PT, VW | Mycelium Bloom shall render multiple attributes of different quantity kinds on the same chart using independent Y-axes (one per quantity kind) with distinct colors and a shared Commit/Tag X-axis when "a user selects attributes with different units or quantity kinds for the attribute history view." | - |  |  |
-| SSS-PA-HIST-V2P | PA, PT, VW | Mycelium Bloom shall display the unit and quantity kind label on each Y-axis and provide a legend identifying each plotted attribute by name, element, and unit when "the attribute history chart displays multiple attributes." | - |  |  |
-| SSS-PA-HIST-W8D | PA, PT, VW | Mycelium Bloom shall display the change history of any model element listing all Commits in which the element was created, modified, or deleted, with the commit author, date, and description, when "a user opens the element history view." | - |  |  |
-| SSS-PA-HIST-N5T | PA, PT, VW | Mycelium Bloom shall display the property-level diff of a model element between two Commits, showing which attributes, relationships, and metadata changed and their old vs new values, when "a user selects two Commits in the element history view." | - |  |  |
-| SSS-PA-HIST-D2J | PA, PT, VW | Mycelium Bloom shall display requirements coverage evolution as a chart showing the percentage of requirements with at least one Satisfy relationship across Commits or Tags when "a user opens the requirements coverage trend view." | - |  |  |
-| SSS-PA-HIST-H7F | PA, PT, VW | Mycelium Bloom shall display verification status evolution as a chart showing the count of pass, fail, and inconclusive verdicts across Commits or Tags when "a user opens the verification trend view." | - |  |  |
-| SSS-PA-HIST-M4B | PA, PT, VW | Mycelium Bloom shall display constraint compliance evolution as a chart showing the count of satisfied vs violated constraints across Commits or Tags when "a user opens the constraint compliance trend view." | - |  |  |
-| SSS-PA-HIST-R9G | PA, PT, VW | Mycelium Bloom shall display model growth metrics (total element count, total relationship count, total attribute count) as a chart across Commits or Tags when "a user opens the model growth trend view." | - |  |  |
+| SSS-PA-DASH-K7R | PA, PT, VW | Mycelium Bloom shall display a project model dashboard presenting an overview of model health and completeness when "a user opens the project model dashboard." | - | H |  |
+| SSS-PA-DASH-W3D | PA, PT, VW | Mycelium Bloom shall display a histogram and summary count of published vs unpublished attributes per Ownership when "the project model dashboard renders the publication status section." | - | H |  |
+| SSS-PA-DASH-N8F | PA, PT, VW | Mycelium Bloom shall display a histogram and summary count of attributes with missing values (no value assigned) grouped by Ownership when "the project model dashboard renders the missing values section." | - | H |  |
+| SSS-PA-DASH-H2T | PA, PT, VW | Mycelium Bloom shall display a histogram and summary count of unused Definitions (Definitions with no Usages in the model) grouped by element type when "the project model dashboard renders the unused definitions section." | - | H |  |
+| SSS-PA-DASH-D5J | PA, PT, VW | Mycelium Bloom shall display a histogram and summary count of unreferenced Usages (Usages not connected via any relationship, port, or connection to other elements) grouped by element type when "the project model dashboard renders the unreferenced elements section." | - | H |  |
+| SSS-PA-DASH-R9V | PA, PT, VW | Mycelium Bloom shall display a pie chart showing the distribution of model elements by element type (Part, Item, Action, State, Requirement, Constraint, etc.) when "the project model dashboard renders the element composition section." | - | H |  |
+| SSS-PA-DASH-T4K | PA, PT, VW | Mycelium Bloom shall display a pie chart showing the distribution of model elements by Ownership when "the project model dashboard renders the ownership distribution section." | - | H |  |
+| SSS-PA-DASH-M6W | PA, PT, VW | Mycelium Bloom shall display a summary of requirements coverage showing the count and percentage of requirements with Satisfy relationships, Verification Case links, and unallocated requirements when "the project model dashboard renders the requirements coverage section." | - | M |  |
+| SSS-PA-DASH-J1B | PA, PT, VW | Mycelium Bloom shall display a summary of constraint compliance showing the count of satisfied, violated, and unevaluated constraints when "the project model dashboard renders the constraint compliance section." | - | M |  |
+| SSS-PA-DASH-V8G | PA, PT, VW | Mycelium Bloom shall display a summary of subscription activity showing the count of active ParameterSubscriptions and the count of subscribed attributes with stale (unpublished) values when "the project model dashboard renders the subscription status section." | - | H |  |
+| SSS-PA-DASH-F3K | PA, PT, VW | Mycelium Bloom shall filter all project model dashboard sections by Ownership, element type, metadata annotation, and variant configuration when "a user applies filters to the project model dashboard." | - | M |  |
+| SSS-PA-DASH-B7N | PA, PT, VW | Mycelium Bloom shall navigate to the list of matching model elements when "a user clicks a bar in a histogram or a segment in a pie chart on the project model dashboard." | - | H |  |
+
+###### 5.2.1.22b History and trends
+
+Beyond a snapshot of current model health, engineers track how the model evolves over time. Mycelium plots attribute values, element change history, and project-level metrics across the Commits and Tags of a branch. The requirements in this subsection cover attribute value history, per-element change history and diffs, and trend charts for requirements coverage, verification status, constraint compliance, and model growth.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-HIST-K3R | PA, PT, VW | Mycelium Bloom shall display the value history of one or more selected attributes as a time-series chart plotting the attribute values across Commits or Tags on the active branch when "a user opens the attribute history view and selects one or more attributes." | - | H |  |
+| SSS-PA-HIST-T6W | PA, PT, VW | Mycelium Bloom shall render multiple attributes of different quantity kinds on the same chart using independent Y-axes (one per quantity kind) with distinct colours and a shared Commit/Tag X-axis when "a user selects attributes with different units or quantity kinds for the attribute history view." | - | H |  |
+| SSS-PA-HIST-V2P | PA, PT, VW | Mycelium Bloom shall display the unit and quantity kind label on each Y-axis and provide a legend identifying each plotted attribute by name, element, and unit when "the attribute history chart displays multiple attributes." | - | H |  |
+| SSS-PA-HIST-W8D | PA, PT, VW | Mycelium Bloom shall display the change history of any model element listing all Commits in which the element was created, modified, or deleted, with the commit author, date, and description, when "a user opens the element history view." | - | M |  |
+| SSS-PA-HIST-N5T | PA, PT, VW | Mycelium Bloom shall display the property-level diff of a model element between two Commits, showing which attributes, relationships, and metadata changed and their old vs new values, when "a user selects two Commits in the element history view." | - | M |  |
+| SSS-PA-HIST-D2J | PA, PT, VW | Mycelium Bloom shall display requirements coverage evolution as a chart showing the percentage of requirements with at least one Satisfy relationship across Commits or Tags when "a user opens the requirements coverage trend view." | - | M |  |
+| SSS-PA-HIST-H7F | PA, PT, VW | Mycelium Bloom shall display verification status evolution as a chart showing the count of pass, fail, and inconclusive verdicts across Commits or Tags when "a user opens the verification trend view." | - | M |  |
+| SSS-PA-HIST-M4B | PA, PT, VW | Mycelium Bloom shall display constraint compliance evolution as a chart showing the count of satisfied vs violated constraints across Commits or Tags when "a user opens the constraint compliance trend view." | - | M |  |
+| SSS-PA-HIST-R9G | PA, PT, VW | Mycelium Bloom shall display model growth metrics (total element count, total relationship count, total attribute count) as a chart across Commits or Tags when "a user opens the model growth trend view." | - | H |  |
 
 ##### 5.2.1.23 User interface adaptation
 
