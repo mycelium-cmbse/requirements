@@ -466,21 +466,47 @@ SysML v2 organizes models into Packages and Namespaces. Packages group related e
 
 Requirements capture stakeholder-imposed conditions that a design must satisfy. SysML v2 models requirements as Constraint Definitions with subjects, actors, stakeholders, assumed and required constraints, and concerns. Requirements can be nested, derived, satisfied by design elements, and verified by Verification Cases. The requirements in this section cover modeling the full SysML v2 requirements metamodel as first-class model elements through user-facing operations.
 
+###### 5.2.1.9.a Requirement definitions and constraints
+
+A Requirement Definition captures a stakeholder-imposed condition as a textual statement together with the assumed and required constraints that formalise it. Requirements can be organised into hierarchical specifications, where nested requirements become required constraints of their parent. The requirements in this subsection cover creating, editing, organising, and nesting requirements and editing their constraint expressions.
+
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
 | SSS-PA-REQ-QP0 | PA, PT | Mycelium Bloom shall provide operations to create, edit, and organize Requirement Definitions and Requirement Usages in hierarchical specifications with textual statements when "a user accesses the requirements modeling interface and creates or modifies a requirement." | SysML 7.21 | H |  |
 | SSS-PA-REQ-WD0 | PA, PT | Mycelium Bloom shall nest a Requirement Usage within a parent Requirement Definition or Requirement Usage, where nested requirements automatically become required constraints of the parent, when "a user adds a child requirement to an existing requirement." | SysML 7.21, 8.3.21 | H |  |
 | SSS-PA-REQ-DS6 | PA, PT | Mycelium Bloom shall provide editors for assumed constraints and required constraints on requirements, where the effective requirement logic is "if all assumed constraints hold then all required constraints must be satisfied", when "a user edits a requirement and adds constraint expressions." | SysML 8.3.21.7 | H |  |
+
+###### 5.2.1.9.b Subjects, actors, stakeholders, and concerns
+
+A requirement is framed by what it applies to and who cares about it. SysML v2 binds a requirement to its subject, to the actors needed to fulfil it, and to the stakeholders whose concerns it addresses. The requirements in this subsection cover assigning subjects, actors, and stakeholders, and modelling stakeholder concerns.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
 | SSS-PA-REQ-T8K | PA, PT | Mycelium Bloom shall assign a subject to a Requirement Definition or Requirement Usage via Subject Membership, binding the requirement to the system or element it applies to, when "a user specifies the subject of a requirement." | SysML 8.3.21.11 | H |  |
 | SSS-PA-REQ-M3N | PA, PT | Mycelium Bloom shall assign one or more actors to a Requirement Definition or Requirement Usage via Actor Membership, representing external entities necessary for the requirement to be fulfilled, when "a user adds actors to a requirement." | SysML 8.3.21.2 | H |  |
 | SSS-PA-REQ-H6W | PA, PT | Mycelium Bloom shall assign one or more stakeholders to a Requirement Definition or Requirement Usage via Stakeholder Membership, representing entities with concerns about the requirement, when "a user adds stakeholders to a requirement." | SysML 8.3.21.12 | H |  |
 | SSS-PA-REQ-SUC | PA, PT | Mycelium Bloom shall provide operations to create Concern Definitions and Concern Usages representing stakeholder concerns, and frame them in requirements or viewpoints via Framed Concern Membership, when "a user creates a Concern and associates it with a requirement or viewpoint." | SysML 8.3.21.3 | H |  |
+
+###### 5.2.1.9.c Requirement relationships and coverage
+
+Requirements are connected to the rest of the model through trace relationships: derivation between requirements, satisfaction by design elements, and verification by verification cases. The requirements in this subsection cover these trace relationships and the coverage analysis that reports requirements lacking satisfaction or derivation.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
 | SSS-PA-REQ-V4J | PA, PT | Mycelium Bloom shall create a Derivation relationship between requirements, linking an original requirement to one or more derived requirements with the semantic constraint that satisfaction of the original implies satisfaction of all derived requirements, when "a user creates a derivation trace between requirements." | SysML 9.6 | H |  |
 | SSS-PA-REQ-W9B | PA, PT | Mycelium Bloom shall link a Verification Case Usage to a Requirement Usage via Requirement Verification Membership, recording which verification cases verify which requirements, when "a user associates a verification case with a requirement." | SysML 8.3.24.2 | H |  |
 | SSS-PA-TRACE-Q72 | PA, PT | Mycelium Bloom shall create a SatisfyRequirementUsage recording that a design element satisfies a requirement when "a user selects a design element and a requirement and creates a satisfy relationship." | SysML 8.3.21.10 | H |  |
-| SSS-PA-REQ-D7V | PA | Mycelium Bloom shall import requirements from a ReqIF file when "the Project Administrator initiates an import operation and selects a ReqIF file to import." | - | H |  |
-| SSS-PA-REQ-D7W | PA | Mycelium Bloom shall export requirements to ReqIF format when "the Project Administrator initiates an export operation and selects a target ReqIF file or target location." | - | H |  |
 | SSS-PA-TRACE-N19 | PA | Mycelium Bloom shall identify and report requirements that are neither satisfied by a design element nor derived to a further requirement when "the Project Administrator executes a requirements coverage analysis." | - | H |  |
+
+###### 5.2.1.9.d Use cases
+
+A Use Case Definition captures required system behaviour from the perspective of an external actor pursuing a goal, complementing the textual requirements with an actor-and-goal view of what the system must do. Use cases can include the behaviour of other use cases and be extended with optional behaviour. The requirements in this subsection cover defining use cases and the include and extend relationships between them.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-BEH-IX9 | PA, PT | Mycelium Bloom shall create a Use Case Definition specifying system behavior from an external actor perspective when "a user creates a Use Case Definition and specifies actors and subjects." | SysML 7.25 | H |  |
+| SSS-PA-BEH-T7P | PA, PT | Mycelium Bloom shall create an Include Use Case Usage that includes one Use Case as part of another Use Case when "a user designates one Use Case as included by another." | SysML 7.25 | H |  |
+| SSS-PA-BEH-J3F | PA, PT | Mycelium Bloom shall create an Extend Use Case Usage that extends one Use Case with the optional behavior of another Use Case when "a user designates one Use Case as extending another." | SysML 7.25 | H |  |
 
 ##### 5.2.1.10 System architecture modeling
 
@@ -716,36 +742,58 @@ An Enumeration Definition is a value type whose instances are restricted to a fi
 
 ##### 5.2.1.15 Behavior modeling
 
-Beyond structure, systems exhibit behavior: actions performed, states held, transitions triggered, flows of items and data. SysML v2 provides Action Definitions, State Definitions, Flow Connections, and Use Case Definitions. The requirements in this section cover the behavioral modeling capabilities engineers need to describe what the system does and how its behavior depends on context.
+Beyond structure, systems exhibit behavior: actions performed, states held, transitions triggered, flows of items and data. SysML v2 provides Action Definitions, State Definitions, and Flow Connections. The requirements in this section cover the behavioral modeling capabilities engineers need to describe what the system does and how its behavior depends on context. Subsections cover actions, states, flows, and performing and exhibiting behaviour on parts.
+
+###### 5.2.1.15.a Actions
+
+Actions define what a system does. An Action Definition specifies a behaviour with input and output parameters that can be decomposed into sub-actions and sequenced by control flow. Mycelium covers action definitions, the control nodes (succession, guard, fork, join, decision, merge), and the primitive and structured action nodes (accept, send, assignment, if, while, for). The requirements in this subsection cover defining actions, composing their control flow, and the individual action node kinds, together with server-side validation of action well-formedness.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-BEH-N5Z | PA, PT | Mycelium Bloom shall support defining Action Definitions with input/output parameters and decomposing them into sub-actions when "a user creates or edits an Action Definition." | SysML 7.16 | H |  |
-| SSS-PA-BEH-WG5 | PA, PT | Mycelium Bloom shall support modeling control flow between actions using successions, guards, forks, joins, decisions, and merges when "a user creates control flow elements between existing actions." | SysML 7.16 | H |  |
+| SSS-PA-BEH-N5Z | PA, PT | Mycelium Bloom shall create an Action Definition with input and output parameters and decompose it into sub-actions when "a user creates or edits an Action Definition." | SysML 7.17 | H |  |
+| SSS-PA-BEH-WG5 | PA, PT | Mycelium Bloom shall create control flow between actions using successions, guards, forks, joins, decisions, and merges when "a user creates control flow elements between existing actions." | SysML 7.17 | H |  |
 | SSS-PA-BEH-Q4N | PA, PT | Mycelium Bloom shall create a generic Succession between two features (e.g. two actions, two states, or two arbitrary occurrences) establishing that the second feature follows the first when "a user creates a succession between two features outside the context of a state machine." | KerML 7.13.5 | H |  |
-| SSS-PA-BEH-RPK | PA, PT | Mycelium Bloom shall support defining State Definitions with entry, do, and exit actions and connecting them via Transition Usages with triggers, guards, and effects when "a user creates or edits a State Definition." | SysML 7.17 | H |  |
-| SSS-PA-BEH-PC7 | PA, PT | Mycelium Bloom shall support defining Flow Connection Definitions and instantiating them as Flow Connection Usages to model the transfer of items, energy, or data between parts when "a user creates a Flow Connection Definition and specifies the flow type and endpoints." | SysML 7.15 | H |  |
+| SSS-PA-BEH-A1C | PA, PT | Mycelium Bloom shall create an Accept Action Usage that waits for an incoming payload matching a specified trigger Feature, optionally typed and guarded, when "a user adds an accept-action node to an Action Flow View or to an Action Definition in the detail panel." | SysML 7.17.5 | H |  |
+| SSS-PA-BEH-S2N | PA, PT | Mycelium Bloom shall create a Send Action Usage that emits a payload Expression to a target Feature when "a user adds a send-action node to an Action Flow View or to an Action Definition in the detail panel." | SysML 7.17.5 | H |  |
+| SSS-PA-BEH-A3S | PA, PT | Mycelium Bloom shall create an Assignment Action Usage that assigns the value of a source Expression to a target Feature when "a user adds an assignment-action node to an Action Flow View or to an Action Definition in the detail panel." | SysML 7.17.5 | H |  |
+| SSS-PA-BEH-I4F | PA, PT | Mycelium Bloom shall create an If Action Usage composed of a Boolean condition Expression, a then-branch Action Usage, and an optional else-branch Action Usage when "a user adds an if-action to an Action Flow View or to an Action Definition." | SysML 7.17.5 | H |  |
+| SSS-PA-BEH-W5H | PA, PT | Mycelium Bloom shall create a While Loop Action Usage composed of a Boolean condition Expression and a body Action Usage that executes as long as the condition holds when "a user adds a while-loop to an Action Flow View or to an Action Definition." | SysML 7.17.5 | H |  |
+| SSS-PA-BEH-F6L | PA, PT | Mycelium Bloom shall create a For Loop Action Usage composed of a loop-variable Feature, a collection Expression, and a body Action Usage that executes once for each element of the collection when "a user adds a for-loop to an Action Flow View or to an Action Definition." | SysML 7.17.5 | H |  |
+| SSS-FB-BEH-C7F | - | Mycelium Fabric shall return a validation warning identifying any Decision Node with an outgoing Succession lacking a guard, any Fork Node without a matching Join Node in the same Action, any Action Usage reachable from no Succession source, and any Loop Action Usage whose condition Expression does not terminate in a finite number of iterations under trivial inputs, when "a client runs model validation or submits a commit containing an Action Definition." | SysML 7.17 | H |  |
+
+###### 5.2.1.15.b States
+
+A State Definition models the conditions or modes a system holds over time, each with entry, do, and exit behaviour and transitions to other states. Mycelium supports composite states with nested states and parallel (orthogonal) regions, transitions of every kind with triggers, guards, and effects, and validation of state-machine well-formedness. The requirements in this subsection cover defining state machines, their states and transitions, and how they are displayed and validated.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-BEH-RPK | PA, PT | Mycelium Bloom shall create a State Definition with entry, do, and exit actions and connect its states via Transition Usages with triggers, guards, and effects when "a user creates or edits a State Definition." | SysML 7.18 | H |  |
+| SSS-PA-BEH-SD1 | PA, PT | Mycelium Bloom shall designate one State Usage inside a composite State Definition as the default (initial) state entered when the containing state is entered, when "a user marks a State Usage as the default state of its parent State Definition." | SysML 7.18 | H |  |
+| SSS-PA-BEH-SC2 | PA, PT | Mycelium Bloom shall define nested State Usages within a State Definition, producing a composite state machine in which each nested State Usage has its own entry, do, and exit Action, when "a user adds a child State Usage to a State Definition." | SysML 7.18 | H |  |
+| SSS-PA-BEH-SP3 | PA, PT | Mycelium Bloom shall define parallel regions (orthogonal state machines) inside a State Definition, each with its own set of State Usages and Transition Usages, when "a user adds one or more parallel regions to a State Definition." | SysML 7.18 | H |  |
+| SSS-PA-BEH-SE4 | PA, PT | Mycelium Bloom shall attach, replace, and remove an Entry Action, a Do Action, and an Exit Action on any State Usage, each realised as an Action Usage owned via the corresponding Feature Membership, when "a user edits the entry, do, or exit behavior of a State Usage." | SysML 7.18 | H |  |
+| SSS-PA-BEH-TR5 | PA, PT | Mycelium Bloom shall create a Transition Usage of any of the following kinds: normal (between distinct source and target states), self (source and target are the same state), internal (no state exit or entry), or completion (no trigger, fires when the source state's Do Action completes), when "a user creates a transition in a State Transition View or via the detail panel." | SysML 7.18 | H |  |
+| SSS-PA-BEH-TG6 | PA, PT | Mycelium Bloom shall set the trigger (an Accept Action Usage), the guard (a Boolean Expression), and the effect (an Action Usage) of a Transition Usage when "a user edits the trigger, guard, or effect of a Transition Usage." | SysML 7.18 | H |  |
+| SSS-PA-VIS-SH7 | PA, PT, VW | Mycelium Bloom shall display the state-machine structure of a State Definition in its detail panel, showing the default state, the nested State Usages, the parallel regions, the Entry, Do, and Exit Actions on each State Usage, and the outgoing Transition Usages with their triggers, guards, and effects, when "a user views a State Definition that owns at least one State Usage or Transition Usage." | SysML 7.18 | H |  |
+| SSS-FB-BEH-SV8 | - | Mycelium Fabric shall return a validation warning identifying any State Usage that is unreachable from the default state of its owning State Definition, and any State Usage that has two or more outgoing Transition Usages with the same trigger and an overlapping guard, when "a client runs model validation or submits a commit containing a State Definition." | SysML 7.18 | H |  |
+
+###### 5.2.1.15.c Flows
+
+A flow models the transfer of items, energy, or data between parts. SysML v2 expresses this with Flow Connections and, where ordering matters, Succession Item Flows. The requirements in this subsection cover defining flow connections and the sequenced item flows used, for example, to convey messages between lifelines in a Sequence View.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-BEH-PC7 | PA, PT | Mycelium Bloom shall create a Flow Connection Definition and instantiate it as a Flow Connection Usage to model the transfer of items, energy, or data between parts when "a user creates a Flow Connection Definition and specifies the flow type and endpoints." | SysML 7.16 | H |  |
 | SSS-PA-BEH-X9V | PA, PT | Mycelium Bloom shall create a Succession Item Flow that conveys items between two features and establishes that the receiving end occurs after the sending end when "a user creates a sequenced flow between two features (e.g. a message between lifelines in a Sequence View, or an ordered item transfer between actions)." | KerML 7.13.6 | H |  |
 | SSS-PA-BEH-D6L | PA, PT | Mycelium Bloom shall create the corresponding Succession Item Flow in the underlying model when "a user draws a message arrow between two lifelines in a Sequence View." | KerML 7.13.6, SysML 8.2.3.9 | H |  |
-| SSS-PA-BEH-H83 | PA, PT | Mycelium Bloom shall support assigning behaviors to parts using Perform Action Usages and Exhibit State Usages when "a user selects a part and associates an action or state behavior with it." | SysML 7.16, 7.17 | H |  |
-| SSS-PA-BEH-IX9 | PA, PT | Mycelium Bloom shall support defining Use Case Definitions specifying system behavior from an external actor perspective when "a user creates a Use Case Definition and specifies actors and subjects." | SysML 7.25 | H |  |
-| SSS-PA-BEH-T7P | PA, PT | Mycelium Bloom shall create an Include Use Case Usage that includes one Use Case as part of another Use Case when "a user designates one Use Case as included by another." | SysML 7.25 | H |  |
-| SSS-PA-BEH-J3F | PA, PT | Mycelium Bloom shall create an Extend Use Case Usage that extends one Use Case with the optional behavior of another Use Case when "a user designates one Use Case as extending another." | SysML 7.25 | H |  |
-| SSS-PA-BEH-SD1 | PA, PT | Mycelium Bloom shall designate one State Usage inside a composite State Definition as the default (initial) state entered when the containing state is entered, when "a user marks a State Usage as the default state of its parent State Definition." | SysML 7.17 | H |  |
-| SSS-PA-BEH-SC2 | PA, PT | Mycelium Bloom shall define nested State Usages within a State Definition, producing a composite state machine in which each nested State Usage has its own entry, do, and exit Action, when "a user adds a child State Usage to a State Definition." | SysML 7.17 | H |  |
-| SSS-PA-BEH-SP3 | PA, PT | Mycelium Bloom shall define parallel regions (orthogonal state machines) inside a State Definition, each with its own set of State Usages and Transition Usages, when "a user adds one or more parallel regions to a State Definition." | SysML 7.17 | H |  |
-| SSS-PA-BEH-SE4 | PA, PT | Mycelium Bloom shall attach, replace, and remove an Entry Action, a Do Action, and an Exit Action on any State Usage, each realised as an Action Usage owned via the corresponding Feature Membership, when "a user edits the entry, do, or exit behavior of a State Usage." | KerML 7.17, SysML 7.17 | H |  |
-| SSS-PA-BEH-TR5 | PA, PT | Mycelium Bloom shall create a Transition Usage of any of the kinds — normal (between distinct source and target states), self (source and target are the same state), internal (no state exit or entry), or completion (no trigger, fires when the source state's Do Action completes) — when "a user creates a transition in a State Transition View or via the detail panel." | SysML 7.17 | H |  |
-| SSS-PA-BEH-TG6 | PA, PT | Mycelium Bloom shall set the trigger (an Accept Action Usage), the guard (a Boolean Expression), and the effect (an Action Usage) of a Transition Usage when "a user edits the trigger, guard, or effect of a Transition Usage." | SysML 7.17 | H |  |
-| SSS-PA-VIS-SH7 | PA, PT, VW | Mycelium Bloom shall display the state-machine structure of a State Definition in its detail panel — showing the default state, the nested State Usages, the parallel regions, the Entry / Do / Exit Actions on each State Usage, and the outgoing Transition Usages with their triggers, guards, and effects — when "a user views a State Definition that owns at least one State Usage or Transition Usage." | SysML 7.17 | H |  |
-| SSS-FB-BEH-SV8 | - | Mycelium Fabric shall return a validation warning identifying any State Usage that is unreachable from the default state of its owning State Definition, and any State Usage that has two or more outgoing Transition Usages with the same trigger and an overlapping guard, when "a client runs model validation or submits a commit containing a State Definition." | SysML 7.17 | H |  |
-| SSS-PA-BEH-A1C | PA, PT | Mycelium Bloom shall create an Accept Action Usage that waits for an incoming payload matching a specified trigger Feature, optionally typed and guarded, when "a user adds an accept-action node to an Action Flow View or to an Action Definition in the detail panel." | SysML 7.16.5 | H |  |
-| SSS-PA-BEH-S2N | PA, PT | Mycelium Bloom shall create a Send Action Usage that emits a payload Expression to a target Feature when "a user adds a send-action node to an Action Flow View or to an Action Definition in the detail panel." | SysML 7.16.5 | H |  |
-| SSS-PA-BEH-A3S | PA, PT | Mycelium Bloom shall create an Assignment Action Usage that assigns the value of a source Expression to a target Feature when "a user adds an assignment-action node to an Action Flow View or to an Action Definition in the detail panel." | SysML 7.16.5 | H |  |
-| SSS-PA-BEH-I4F | PA, PT | Mycelium Bloom shall create an If Action Usage composed of a Boolean condition Expression, a then-branch Action Usage, and an optional else-branch Action Usage when "a user adds an if-action to an Action Flow View or to an Action Definition." | SysML 7.16.5 | H |  |
-| SSS-PA-BEH-W5H | PA, PT | Mycelium Bloom shall create a While Loop Action Usage composed of a Boolean condition Expression and a body Action Usage that executes as long as the condition holds when "a user adds a while-loop to an Action Flow View or to an Action Definition." | SysML 7.16.5 | H |  |
-| SSS-PA-BEH-F6L | PA, PT | Mycelium Bloom shall create a For Loop Action Usage composed of a loop-variable Feature, a collection Expression, and a body Action Usage that executes once for each element of the collection when "a user adds a for-loop to an Action Flow View or to an Action Definition." | SysML 7.16.5 | H |  |
-| SSS-FB-BEH-C7F | - | Mycelium Fabric shall return a validation warning identifying any Decision Node with an outgoing Succession lacking a guard, any Fork Node without a matching Join Node in the same Action, any Action Usage reachable from no Succession source, and any Loop Action Usage whose condition Expression does not terminate in a finite number of iterations under trivial inputs, when "a client runs model validation or submits a commit containing an Action Definition." | SysML 7.16 | H |  |
+
+###### 5.2.1.15.d Performing and exhibiting behaviour
+
+Behaviour is connected to structure by performing actions and exhibiting states on the parts that carry them. The requirements in this subsection cover assigning behaviour to parts via Perform Action Usages and Exhibit State Usages.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-BEH-H83 | PA, PT | Mycelium Bloom shall assign behaviors to parts using Perform Action Usages and Exhibit State Usages when "a user selects a part and associates an action or state behavior with it." | SysML 7.17, 7.18 | H |  |
 
 ##### 5.2.1.16 Analysis and verification
 
@@ -1000,6 +1048,8 @@ Mycelium must interoperate with the broader MBSE ecosystem. Models can be import
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
 | SSS-PA-IE-QWN | PA | Mycelium Bloom shall import and export models in standard SysML v2 JSON format compliant with the OMG Systems Modelling API when "the Project Administrator initiates an import or export operation and selects the target file or endpoint." | API 7 |  |  |
+| SSS-PA-REQ-D7V | PA | Mycelium Bloom shall import requirements from a ReqIF file when "the Project Administrator initiates an import operation and selects a ReqIF file to import." | - | H |  |
+| SSS-PA-REQ-D7W | PA | Mycelium Bloom shall export requirements to ReqIF format when "the Project Administrator initiates an export operation and selects a target ReqIF file or target location." | - | H |  |
 | SSS-PA-IE-ZLQ | PA | Mycelium Bloom shall migrate existing ECSS-E-TM-10-25 models from CDP4-COMET into SysML v2 using a semi-automated converter when "the Project Administrator uploads an ECSS-E-TM-10-25 model and initiates the migration process." | - |  |  |
 | SSS-PA-IE-YSY | PA | Mycelium Bloom shall present mapping ambiguities for user resolution during ECSS-to-SysML v2 migration when "the converter encounters ECSS-E-TM-10-25 elements that do not have a deterministic SysML v2 mapping." | - |  |  |
 | SSS-PA-IE-GYP | PA | Mycelium Bloom shall support creating and managing Project Usages to reference elements from one Project within another, consistent with the Systems Modelling API ProjectUsageService, when "the Project Administrator creates a Project Usage and selects the target project to reference." | API 7.4 |  |  |
