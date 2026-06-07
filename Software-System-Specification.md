@@ -486,8 +486,18 @@ The core of system modeling is defining the building blocks (Definitions) of the
 
 ###### 5.2.1.10.a General
 
-| SSS-PT-DATA-XHY | PA, PT | Mycelium Bloom shall create, modify and delete elements (parts, items, attributes, etc.) throughout a Project when "a user creates, modifies or delets elements annotated with their Ownership." | - |  |  |
+The requirements in this section apply to every kind of Definition and Usage. They cover the operations common to all model elements, namely creating and instantiating them, reading and inspecting their details, updating their properties and relationships, deleting them, and navigating to and between them across the hierarchical browser, the tabular browser, and diagrams. Type-specific behaviour is covered in the dedicated subsections that follow.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PT-DATA-XHY | PA, PT | Mycelium Bloom shall create, modify and delete elements (parts, items, attributes, etc.) throughout a Project when "a user creates, modifies or deletes elements annotated with their Ownership." | - |  |  |
+| SSS-PA-ELEM-C1A | PA, PT | Mycelium Bloom shall create a Definition of any kind from the hierarchical browser, the tabular browser, or a diagram when "a user invokes a create action for a Definition in any of these views." | - | H |  |
+| SSS-PA-ELEM-C2B | PA, PT | Mycelium Bloom shall instantiate a Usage from an existing Definition, establishing the FeatureTyping to that Definition, when "a user instantiates a Definition as a Usage in any view." | - | H |  |
+| SSS-PA-ELEM-C3C | PA, PT | Mycelium Bloom shall create a Usage together with a new Definition in a single operation when "a user creates a Usage without selecting an existing Definition." | - | H |  |
 | SSS-PT-DATA-N7O | PT | Mycelium Bloom shall display and enable editing of model elements within the user's assigned Ownership when "the Participant navigates to a model element annotated with their Ownership as Owner." | - | H |  |
+| SSS-PA-ELEM-R1D | PA, PT, VW | Mycelium Bloom shall display the full details of a selected element, including its name, short name, type, multiplicity, Ownership, documentation, attributes, and relationships, in the detail panel when "a user selects an element in any view." | - | H |  |
+| SSS-PA-ELEM-U1E | PA, PT | Mycelium Bloom shall edit the declared name and declared short name of any element when "a user renames an element in the detail panel, the browser, a tabular view, or a diagram." | - | H |  |
+| SSS-PA-ELEM-U2F | PA, PT | Mycelium Bloom shall edit the documentation of any element when "a user edits the documentation text of an element in the detail panel." | - | H |  |
 | SSS-PT-DATA-M6H | PT | Mycelium Bloom shall automatically annotate newly created model elements with the Participant's active Ownership as Owner when "the Participant creates a new model element and the Model is a Concurrent Desing Model." | - | H |  |
 | SSS-PA-ELEM-K4T | PA, PT | Mycelium Bloom shall present a duplicate dialog offering the user three independent options — preserve original Ownership (yes/no), copy attribute values (yes/no), copy nested children recursively (yes/no) — when "a user initiates the duplication of a model element." | - | M |  |
 | SSS-PA-ELEM-R8V | PA, PT | Mycelium Bloom shall duplicate a Definition or Usage with the user's active Ownership assigned as Owner on the copy when "a user duplicates a model element with the preserve-ownership option set to no." | - | M |  |
@@ -521,6 +531,10 @@ The core of system modeling is defining the building blocks (Definitions) of the
 | SSS-PA-ELEM-P6Q | PA, PT, VW | Mycelium Bloom shall display the parameter Features of an Action, Calculation, Function, or Case — derived from their ParameterMemberships — with each parameter's direction, type, and multiplicity, in the detail panel, when "a user views an Action, Calculation, Function, or Case." | KerML 7.12.3 | H |  |
 | SSS-PA-ELEM-R7S | PA, PT, VW | Mycelium Bloom shall display the return Feature of a Function or Calculation — derived from its ReturnParameterMembership — with its type and multiplicity, in the detail panel, when "a user views a Function or Calculation." | KerML 7.12.3 | H |  |
 | SSS-PA-ELEM-X8T | PA, PT, VW | Mycelium Bloom shall display the result expression of a Calculation or Boolean Expression — derived from its ResultExpressionMembership — in its textual form, in the detail panel, when "a user views a Calculation or Boolean Expression." | KerML 7.12.3 | H |  |
+| SSS-PA-ELEM-N1G | PA, PT, VW | Mycelium Bloom shall reveal and select an element in the hierarchical browser when "a user invokes reveal-in-browser on an element selected in a tabular view or a diagram." | - | H |  |
+| SSS-PA-ELEM-N2H | PA, PT, VW | Mycelium Bloom shall locate and select an element in an open tabular browser when "a user invokes locate-in-table on an element selected in another view." | - | M |  |
+| SSS-PA-ELEM-N3J | PA, PT, VW | Mycelium Bloom shall reveal and select an element on every open diagram that contains it when "a user invokes show-on-diagram on an element selected in the browser or a tabular view." | - | M |  |
+| SSS-PA-ELEM-N4K | PA, PT, VW | Mycelium Bloom shall navigate from a Usage to its defining Definition and from a Definition to its Usages when "a user invokes go-to-definition or find-usages on an element." | - | H |  |
 
 ###### 5.2.1.10.b Items
 
