@@ -854,8 +854,10 @@ Mycelium Bloom must render model elements using the symbols defined in SysML v2 
 | SSS-PA-VIS-D5B | PA, PT, VW | Mycelium Bloom shall display multiplicity, property modifiers (ordered, nonunique, abstract, derived, readonly), and subsetting/redefinition markers on graphical elements per the SysML v2 notation when "a diagram renders elements with these properties." | SysML 8.2.3 | H |  |
 | SSS-PA-VIS-C9K | PA, PT | Mycelium Bloom shall provide an interface to upload or select a custom icon and image for any Definition or Usage element when "a user accesses the icon settings of a model element." | - | H |  |
 | SSS-PA-VIS-J2R | PA, PT, VW | Mycelium Bloom shall render the custom icon next to or in place of the standard SysML v2 graphical notation symbol on all diagrams containing the element when "a model element has a custom icon associated with it and the settings of the element are configured such that the icon shall be visualized." | - | H |  |
-| SSS-PA-VIS-J2R | PA, PT, VW | Mycelium Bloom shall render the custom image in place of the standard SysML v2 graphical notation symbol on all diagrams containing the element when "a model element has a custom image associated with it and the settings of the element are configured such that the image shall be visualized." | - | H |  |
+| SSS-PA-VIS-J9M | PA, PT, VW | Mycelium Bloom shall render the custom image in place of the standard SysML v2 graphical notation symbol on all diagrams containing the element when "a model element has a custom image associated with it and the settings of the element are configured such that the image shall be visualized." | - | H |  |
 | SSS-PA-VIS-A6F | PA, PT, VW | Mycelium Bloom shall display the element name and type designator alongside the custom icon when "a diagram renders an element with a custom icon." | - | H |  |
+| SSS-PA-VIS-CL1 | PA, PT | Mycelium Bloom shall provide a colour picker to set the fill and line colour of one or more selected diagram elements when "a user opens the colour settings of a selected diagram element." | - | M |  |
+| SSS-PA-VIS-CL2 | PA, PT | Mycelium Bloom shall persist the colour selected for a diagram element so that it is restored when the diagram is reopened when "a user saves a diagram containing elements with a custom colour." | - | M |  |
 | SSS-PA-VIS-F8Q | PA, PT | Mycelium Bloom shall provide operations to place free-text notes on the diagram canvas, with optional formatting (bold, italic, color), when "a user creates a note on a diagram." | KerML 7.4 | H |  |
 | SSS-PA-VIS-B2M | PA, PT | Mycelium Bloom shall attach a note to a specific model element on the diagram via a dashed anchor line when "a user links a note to a diagram element." | KerML 7.4 | H |  |
 | SSS-PA-VIS-G5R | PA, PT | Mycelium Bloom shall provide callout annotations that can point to a specific location on the diagram canvas when "a user creates a callout on a diagram." | KerML 7.4 | H |  |
@@ -872,9 +874,9 @@ An Interconnection View shows the structural composition of a system: parts, the
 | SSS-PA-VIS-G8N | PA, PT | Mycelium Bloom shall provide an editor for creating and editing Interconnection Views showing parts, ports, and connections when "a user opens or creates an Interconnection View for a selected model scope." | SysML 8.2.3.11 | H |  |
 | SSS-PA-VIS-W3T | PA, PT, VW | Mycelium Bloom shall render Part Usages as rectangular nodes with «part» headers, Port Usages as small squares on part boundaries with directional indicators (in, out, inout), and Connection Usages as lines between ports, using the SysML v2 graphical notation (section 8.2.3.11-14) when "an Interconnection View displays structural model content." | SysML 8.2.3.11-14 | H |  |
 | SSS-PA-VIS-Q7K | PA, PT, VW | Mycelium Bloom shall render Interface Usages as connection lines between ports with the «interface» label and optional constraint compartments using the SysML v2 graphical notation (section 8.2.3.14) when "an Interconnection View displays interface connections." | SysML 8.2.3.14 | H |  |
-| SSS-PA-VIS-I4R | PA, PT, VW | Mycelium Bloom shall render an Item Usage in the model browser, tabular views, and diagrams with a distinguishing icon and the «item» stereotype label, visually distinct from a Part Usage, showing its name, its typing Item Definition, and its multiplicity, when "a user views an Item Usage." | SysML 8.2.3.12 | H |  |
-| SSS-PA-VIS-I5S | PA, PT, VW | Mycelium Bloom shall render Item Usages on a structural diagram as rounded-corner nodes using the SysML v2 graphical notation and shall support creating an Item Usage on the canvas by dragging an Item Definition from the model browser or the Item tool from the toolbox when "a user adds or views an Item Usage on a structural diagram." | SysML 8.2.3.12 |  |  |
-| SSS-PA-VIS-I6T | PA, PT, VW | Mycelium Bloom shall render the payload Item Usage of a Flow Connection Usage alongside the flow connection line on a diagram, displaying the Item Usage name, its typing Item Definition, and its multiplicity, when "a user views a Flow Connection Usage that carries an Item." | SysML 8.2.3.15 |  |  |
+| SSS-PA-VIS-I4R | PA, PT, VW | Mycelium Bloom shall render an Item Usage in the model browser, tabular views, and diagrams with a distinguishing icon and the «item» stereotype label, visually distinct from a Part Usage, showing its name, its typing Item Definition, and its multiplicity, when "a user views an Item Usage." | SysML 8.2.3.10 | H |  |
+| SSS-PA-VIS-I5S | PA, PT, VW | Mycelium Bloom shall render Item Usages on a structural diagram as rounded-corner nodes using the SysML v2 graphical notation, and shall create an Item Usage on the canvas by dragging an Item Definition from the model browser or the Item tool from the toolbox, when "a user adds or views an Item Usage on a structural diagram." | SysML 8.2.3.10 | H |  |
+| SSS-PA-VIS-I6T | PA, PT, VW | Mycelium Bloom shall render the payload Item Usage of a Flow Connection Usage alongside the flow connection line on a diagram, displaying the Item Usage name, its typing Item Definition, and its multiplicity, when "a user views a Flow Connection Usage that carries an Item." | SysML 8.2.3.16 | H |  |
 
 ###### 5.2.1.18.3 Action Flow View
 
@@ -882,10 +884,10 @@ An Action Flow View shows the behavior of the system as a sequence of actions wi
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-VIS-SMC | PA, PT | Mycelium Bloom shall provide an editor for creating and editing Action Flow Views showing action sequencing, control flow, and swim lanes when "a user opens or creates an Action Flow View for a selected action hierarchy." | SysML 8.2.3.17 |  |  |
-| SSS-PA-VIS-E4R | PA, PT, VW | Mycelium Bloom shall render Action Usages as rounded-corner rectangles with «action» headers, and control flow using the SysML v2 standard symbols: start node (filled circle), done node (circled filled circle), fork/join nodes (bars), decision/merge nodes (diamonds), and succession arrows, per section 8.2.3.17, when "an Action Flow View displays behavioral model content." | SysML 8.2.3.17 |  |  |
-| SSS-PA-VIS-J6N | PA, PT, VW | Mycelium Bloom shall render input/output parameters as small rectangles on action node boundaries with directional indicators (in, out, inout) per the SysML v2 graphical notation (section 8.2.3.17) when "an Action Flow View displays actions with parameters." | SysML 8.2.3.17 |  |  |
-| SSS-PA-VIS-M1Z | PA, PT, VW | Mycelium Bloom shall render send action nodes, accept action nodes, while-loop action nodes, for-loop action nodes, and if-else action nodes using the SysML v2 standard symbols (section 8.2.3.17) when "an Action Flow View displays these action types." | SysML 8.2.3.17 |  |  |
+| SSS-PA-VIS-SMC | PA, PT | Mycelium Bloom shall provide an editor for creating and editing Action Flow Views showing action sequencing, control flow, and swim lanes when "a user opens or creates an Action Flow View for a selected action hierarchy." | SysML 8.2.3.17 | H |  |
+| SSS-PA-VIS-E4R | PA, PT, VW | Mycelium Bloom shall render Action Usages as rounded-corner rectangles with «action» headers, and control flow using the SysML v2 standard symbols: start node (filled circle), done node (circled filled circle), fork/join nodes (bars), decision/merge nodes (diamonds), and succession arrows, per section 8.2.3.17, when "an Action Flow View displays behavioral model content." | SysML 8.2.3.17 | H |  |
+| SSS-PA-VIS-J6N | PA, PT, VW | Mycelium Bloom shall render input/output parameters as small rectangles on action node boundaries with directional indicators (in, out, inout) per the SysML v2 graphical notation (section 8.2.3.17) when "an Action Flow View displays actions with parameters." | SysML 8.2.3.17 | H |  |
+| SSS-PA-VIS-M1Z | PA, PT, VW | Mycelium Bloom shall render send action nodes, accept action nodes, while-loop action nodes, for-loop action nodes, and if-else action nodes using the SysML v2 standard symbols (section 8.2.3.17) when "an Action Flow View displays these action types." | SysML 8.2.3.17 | H |  |
 
 ###### 5.2.1.18.4 State Transition View
 
@@ -893,9 +895,9 @@ A State Transition View shows the states a system or part can be in and the tran
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-VIS-DP2 | PA, PT | Mycelium Bloom shall provide an editor for creating and editing State Transition Views showing states and transitions when "a user opens or creates a State Transition View for a selected state machine." | SysML 8.2.3.18 |  |  |
-| SSS-PA-VIS-B8V | PA, PT, VW | Mycelium Bloom shall render State Usages as rounded-corner rectangles with «state» headers containing entry/do/exit action compartments, and Transition Usages as arrows labeled with trigger [guard] / effect, using the SysML v2 graphical notation (section 8.2.3.18) when "a State Transition View displays state-based model content." | SysML 8.2.3.18 |  |  |
-| SSS-PA-VIS-F2C | PA, PT, VW | Mycelium Bloom shall render parallel state regions using the «parallel» designator per the SysML v2 graphical notation (section 8.2.3.18) when "a State Transition View displays concurrent state regions." | SysML 8.2.3.18 |  |  |
+| SSS-PA-VIS-DP2 | PA, PT | Mycelium Bloom shall provide an editor for creating and editing State Transition Views showing states and transitions when "a user opens or creates a State Transition View for a selected state machine." | SysML 8.2.3.18 | H |  |
+| SSS-PA-VIS-B8V | PA, PT, VW | Mycelium Bloom shall render State Usages as rounded-corner rectangles with «state» headers containing entry/do/exit action compartments, and Transition Usages as arrows labeled with trigger [guard] / effect, using the SysML v2 graphical notation (section 8.2.3.18) when "a State Transition View displays state-based model content." | SysML 8.2.3.18 | H |  |
+| SSS-PA-VIS-F2C | PA, PT, VW | Mycelium Bloom shall render parallel state regions using the «parallel» designator per the SysML v2 graphical notation (section 8.2.3.18) when "a State Transition View displays concurrent state regions." | SysML 8.2.3.18 | H |  |
 
 ###### 5.2.1.18.5 Sequence View
 
@@ -903,8 +905,8 @@ A Sequence View shows interactions between parts over time as messages exchanged
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-VIS-FA5 | PA, PT | Mycelium Bloom shall provide an editor for creating and editing Sequence Views showing interactions between parts over time when "a user opens or creates a Sequence View for a selected interaction context." | SysML 8.2.3.9 |  |  |
-| SSS-PA-VIS-A9H | PA, PT, VW | Mycelium Bloom shall render lifelines as vertical dashed lines below part/port header nodes, and messages as horizontal arrows between lifelines with message labels, using the SysML v2 graphical notation (section 8.2.3.9) when "a Sequence View displays interaction model content." | SysML 8.2.3.9 |  |  |
+| SSS-PA-VIS-FA5 | PA, PT | Mycelium Bloom shall provide an editor for creating and editing Sequence Views showing interactions between parts over time when "a user opens or creates a Sequence View for a selected interaction context." | SysML 8.2.3.9 | H |  |
+| SSS-PA-VIS-A9H | PA, PT, VW | Mycelium Bloom shall render lifelines as vertical dashed lines below part/port header nodes, and messages as horizontal arrows between lifelines with message labels, using the SysML v2 graphical notation (section 8.2.3.9) when "a Sequence View displays interaction model content." | SysML 8.2.3.9 | H |  |
 
 ###### 5.2.1.18.6 Requirement View
 
@@ -912,7 +914,7 @@ A Requirement View displays requirements and their satisfaction relationships gr
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-VIS-C3D | PA, PT, VW | Mycelium Bloom shall render Requirement Usages as rectangles with «requirement» headers containing the requirement text, and Satisfy Requirement Usages as dashed arrows labeled «satisfy», using the SysML v2 graphical notation (section 8.2.3.21) when "a diagram displays requirements and their satisfaction relationships." | SysML 8.2.3.21 |  |  |
+| SSS-PA-VIS-C3D | PA, PT, VW | Mycelium Bloom shall render Requirement Usages as rectangles with «requirement» headers containing the requirement text, and Satisfy Requirement Usages as dashed arrows labeled «satisfy», using the SysML v2 graphical notation (section 8.2.3.21) when "a diagram displays requirements and their satisfaction relationships." | SysML 8.2.3.21 | H |  |
 
 ###### 5.2.1.18.7 General View
 
@@ -920,8 +922,8 @@ A General View is an unconstrained canvas where engineers can place any model el
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-VIS-BB9 | PA, PT | Mycelium Bloom shall provide an editor for creating General Views for unconstrained graphical model exploration when "a user creates a new General View and adds model elements to its canvas." | SysML 8.2.3.5 |  |  |
-| SSS-PA-VIS-P5W | PA, PT, VW | Mycelium Bloom shall support placing any model element type on a General View canvas using its SysML v2 graphical notation symbol when "a user adds an element to a General View." | SysML 8.2.3 |  |  |
+| SSS-PA-VIS-BB9 | PA, PT | Mycelium Bloom shall provide an editor for creating General Views for unconstrained graphical model exploration when "a user creates a new General View and adds model elements to its canvas." | SysML 8.2.3.5 | H |  |
+| SSS-PA-VIS-P5W | PA, PT, VW | Mycelium Bloom shall create a graphical node for any model element type placed on a General View canvas, using its SysML v2 graphical notation symbol, when "a user adds an element to a General View." | SysML 8.2.3 | H |  |
 
 ###### 5.2.1.18.8 Grid View
 
@@ -929,7 +931,7 @@ A Grid View presents model data in tabular or matrix form. Engineers use it to c
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-VIS-JPW | PA, PT | Mycelium Bloom shall provide a Grid View for tabular and matrix representations of model data when "a user creates a Grid View and selects the element types and properties to display." | SysML 7.26 |  |  |
+| SSS-PA-VIS-JPW | PA, PT | Mycelium Bloom shall provide a Grid View for tabular and matrix representations of model data when "a user creates a Grid View and selects the element types and properties to display." | SysML 7.26 | H |  |
 
 ###### 5.2.1.18.9 Custom Views and Viewpoints
 
@@ -937,8 +939,8 @@ Different stakeholders have different concerns: a power engineer wants a power-f
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-VIS-T2V | PA, PT | Mycelium Bloom shall support defining custom View Definitions, View Usages, Viewpoint Definitions, and Viewpoint Usages filtered to specific stakeholder concerns when "a user creates a Viewpoint Definition, specifies its concerns, and creates a conforming View Definition." | SysML 7.26 |  |  |
-| SSS-PA-VIS-K9R | PA, PT | Mycelium Bloom shall create an Expose relationship that imports filtered model content into a View, with optional metadata-based or query-based filter conditions, when "a user adds exposed model content to a View Definition." | SysML 7.26.2 |  |  |
+| SSS-PA-VIS-T2V | PA, PT | Mycelium Bloom shall create custom View Definitions, View Usages, Viewpoint Definitions, and Viewpoint Usages filtered to specific stakeholder concerns when "a user creates a Viewpoint Definition, specifies its concerns, and creates a conforming View Definition." | SysML 7.26 | M |  |
+| SSS-PA-VIS-K9R | PA, PT | Mycelium Bloom shall create an Expose relationship that imports filtered model content into a View, with optional metadata-based or query-based filter conditions, when "a user adds exposed model content to a View Definition." | SysML 7.26.2 | M |  |
 
 ###### 5.2.1.18.10 Textual notation
 
@@ -954,9 +956,9 @@ Diagrams need to leave Mycelium for reports, presentations, and external tools. 
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-VIS-V7S | PA, PT, VW | Mycelium Bloom shall export a diagram to SVG format preserving vector graphics fidelity when "a user selects SVG as the export format for a diagram." | - |  |  |
-| SSS-PA-VIS-T1N | PA, PT, VW | Mycelium Bloom shall export a diagram to PNG format at a user-specified resolution when "a user selects PNG as the export format for a diagram." | - |  |  |
-| SSS-PA-VIS-G4L | PA, PT, VW | Mycelium Bloom shall export a diagram to JPG format at a user-specified resolution and quality when "a user selects JPG as the export format for a diagram." | - |  |  |
+| SSS-PA-VIS-V7S | PA, PT, VW | Mycelium Bloom shall export a diagram to SVG format preserving vector graphics fidelity when "a user selects SVG as the export format for a diagram." | - | H |  |
+| SSS-PA-VIS-T1N | PA, PT, VW | Mycelium Bloom shall export a diagram to PNG format at a user-specified resolution when "a user selects PNG as the export format for a diagram." | - | H |  |
+| SSS-PA-VIS-G4L | PA, PT, VW | Mycelium Bloom shall export a diagram to JPG format at a user-specified resolution and quality when "a user selects JPG as the export format for a diagram." | - | H |  |
 
 ##### 5.2.1.19 Diagram persistence and real-time collaboration
 
