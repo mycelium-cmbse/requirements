@@ -460,6 +460,7 @@ SysML v2 organizes models into Packages and Namespaces. Packages group related e
 | SSS-PA-PKG-F8M | PA | Mycelium Bloom shall import a LibraryPackage from Mycelium Forge into the current project, creating the corresponding NamespaceImport and fetching the referenced content, when "a user selects a LibraryPackage from Mycelium Forge and invokes the 'Import Library' action." | - | H |  |
 | SSS-PA-MGMT-YC1 | PA | Mycelium Bloom shall provide operations to create, rename and remove Ownership Usages within the project package when "the Project Administrator accesses the Ownership management interface." | - | H |  |
 | SSS-PA-MGMT-BA7 | PA | Mycelium Bloom shall reassign element ownership by updating the Owner metadata on a model element to a different Ownership when "the Project Administrator selects a model element and changes its Owner annotation." | - | H |  |
+| SSS-PA-ELEM-O2K | PA, PT, VW | Mycelium Bloom shall display, in the detail panel of any Namespace or Type, the complete list of its Memberships grouped by kind (OwningMembership, FeatureMembership, AliasMembership, imported Membership, VariantMembership, StakeholderMembership, ActorMembership, SubjectMembership, FramedConcernMembership, RequirementConstraintMembership, RequirementVerificationMembership, ExposeMembership, ObjectiveMembership), showing each member's `memberName`, visibility, and the source of the membership, when "a user views the detail panel of a Namespace or Type." | KerML 7.2 | M |  |
 
 ##### 5.2.1.9 Requirements modeling
 
@@ -483,23 +484,10 @@ Requirements capture stakeholder-imposed conditions that a design must satisfy. 
 
 The core of system modeling is defining the building blocks (Definitions) of the system and instantiating them in a hierarchy (Usages). Engineers compose parts, items, ports, connections, and interfaces into a decomposed system architecture. The requirements in this section cover the SysML v2 structural concepts that engineers use to capture the what and how of a system, plus the everyday operations to duplicate, move, delete, and refine these elements.
 
-| ID | Roles | Requirement | Ref | Prio | Effort |
-|----|-------|-------------|-----|------|--------|
-| SSS-PA-ARCH-JQH | PA, PT | Mycelium Bloom shall support defining Part Definitions as reusable building blocks and instantiating them as Part Usages within the system hierarchy when "a user creates a new Part Definition or instantiates an existing one." | SysML 7.9 | H |  |
-| SSS-PA-ARCH-TB2 | PA, PT | Mycelium Bloom shall support decomposing the system into hierarchical levels (e.g. System, Subsystem, Equipment, Component) when "a user adds child parts to an existing part in the model hierarchy." | SysML 7.9 | H |  |
-| SSS-PA-ARCH-97Z | PA, PT | Mycelium Bloom shall support defining Attribute Definitions and instantiating them as Attribute Usages on any element definition or usage, with quantities, units, and measurement scales consistent with the SysML v2 Quantities and Units library, when "a user adds or edits an attribute on a model element." | SysML 7.7 | H |  |
-| SSS-PA-ARCH-5RR | PA, PT | Mycelium Bloom shall support defining Port Definitions and instantiating them as Port Usages on parts to specify interaction points with direction (in, out, inout) when "a user adds a port to a selected part." | SysML 7.11 | H |  |
-| SSS-PA-ARCH-IGA | PA, PT | Mycelium Bloom shall support creating Connection Definitions, Connection Usages, Interface Definitions, and Interface Usages between parts to model integration and data flow when "a user selects two compatible ports and creates a connection or interface." | SysML 7.12, 7.13 | H |  |
-| SSS-PA-ARCH-Y2D | PA, PT | Mycelium Bloom shall create a Binding Connector that asserts equality between two compatible features of model elements when "a user selects two features and creates a binding between them." | KerML 7.13.3 | H |  |
-| SSS-PA-ARCH-K7M | PA, PT | Mycelium Bloom shall create a conjugated Port Usage with reversed feature directions (in becomes out, out becomes in) when "a user designates a Port Usage as the conjugate of an existing Port Definition." | KerML 7.6 | M |  |
-| SSS-PA-ARCH-N5W | PA, PT | Mycelium Bloom shall create a Featuring relationship establishing that one type features another type when "a user explicitly specifies a featuring relationship between two types." | KerML 7.6 | M |  |
-| SSS-PA-ARCH-B2D | PA, PT | Mycelium Bloom shall support defining Item Definitions to represent non-structural elements (data types, signals, resources) when "a user creates a new Item Definition." | SysML 7.10 | H |  |
+###### 5.2.1.10.a General
+
+| SSS-PT-DATA-XHY | PA, PT | Mycelium Bloom shall create, modify and delete elements (parts, items, attributes, etc.) throughout a Project when "a user creates, modifies or delets elements annotated with their Ownership." | - |  |  |
 | SSS-PT-DATA-N7O | PT | Mycelium Bloom shall display and enable editing of model elements within the user's assigned Ownership when "the Participant navigates to a model element annotated with their Ownership as Owner." | - | H |  |
-| SSS-PT-DATA-D5I | PT | Mycelium Bloom shall provide a selector to set attribute value sources as Manual (hand-entered), Computed (calculated), or Reference (sourced from another element) when "the Participant edits an attribute value." (TBC) | SysML 7.7 | M |  |
-| SSS-PT-DATA-I9M | PA, PT | Mycelium Bloom shall support defining new attributes on element definitions when "a user adds an attribute to an element definition regardless of their assigned Ownership." | SysML 7.7 | H |  |
-| SSS-PT-DATA-OH2 | PA, PT | Mycelium Bloom shall support overriding attribute values on specific element usages without changing the parent definition when "a user edits an attribute value on a usage that inherits from a definition." | KerML 7.6 | H |  |
-| SSS-PT-DATA-492 | PA, PT | Mycelium Bloom shall support defining attribute values that vary by exhibited State Usage (e.g. operational mode) when "a user associates attribute values with specific states on an element." | SysML 7.17 | H |  |
-| SSS-PT-DATA-XHY | PA, PT | Mycelium Bloom shall support creating and modifying elements (parts, items, attributes, etc.) throughout a Project "a user creates or modifies elements annotated with their Ownership." | - |  |  |
 | SSS-PT-DATA-M6H | PT | Mycelium Bloom shall automatically annotate newly created model elements with the Participant's active Ownership as Owner when "the Participant creates a new model element and the Model is a Concurrent Desing Model." | - | H |  |
 | SSS-PA-ELEM-K4T | PA, PT | Mycelium Bloom shall present a duplicate dialog offering the user three independent options — preserve original Ownership (yes/no), copy attribute values (yes/no), copy nested children recursively (yes/no) — when "a user initiates the duplication of a model element." | - | M |  |
 | SSS-PA-ELEM-R8V | PA, PT | Mycelium Bloom shall duplicate a Definition or Usage with the user's active Ownership assigned as Owner on the copy when "a user duplicates a model element with the preserve-ownership option set to no." | - | M |  |
@@ -515,28 +503,77 @@ The core of system modeling is defining the building blocks (Definitions) of the
 | SSS-PA-ELEM-N8P | PA, PT | Mycelium Bloom shall set the lower and upper bounds of a Multiplicity Range as either a literal non-negative integer, the unbounded symbol `*`, or an Expression referencing other Features, when "a user edits the bounds of a Multiplicity Range in the detail panel or on a diagram." | KerML 7.6.6 | H |  |
 | SSS-PA-ELEM-O1Q | PA, PT | Mycelium Bloom shall set the `isOrdered` and `isUnique` flags of a Feature, controlling whether its values are ordered and whether duplicates are permitted, when "a user toggles the ordering or uniqueness of a Feature in the detail panel." | KerML 7.6.6 | H |  |
 | SSS-PA-VIS-U7M | PA, PT, VW | Mycelium Bloom shall render the Multiplicity of a Feature or Usage in the model browser, tabular views, detail panel, and diagram labels using the textual notation `[lower..upper]` — displaying `*` for an unbounded upper, `[n]` when lower equals upper, and the expression text when a bound is an Expression — when "a user views an element that declares a Multiplicity." | KerML 7.6.6 | H |  |
-| SSS-FB-ELEM-B2R | - | Mycelium Fabric shall reject any commit that introduces a Multiplicity Range whose lower bound is negative, whose upper bound is negative, or whose lower bound exceeds its upper bound, and shall return a validation error identifying the offending Multiplicity Range, when "a client submits a commit containing an invalid Multiplicity Range." | KerML 7.6.6 | H |  |
-| SSS-PA-ELEM-V3W | PA, PT, VW | Mycelium Bloom shall display, in the validation dashboard and in the detail panel of the owning element, a warning for any Feature whose actual value count falls outside the literal bounds of its Multiplicity Range when "a user runs model validation or opens the detail panel of such a Feature." | KerML 7.6.6 | M |  |
+| SSS-PA-ARCH-N5W | PA, PT | Mycelium Bloom shall create a Featuring relationship establishing that one type features another type when "a user explicitly specifies a featuring relationship between two types." | KerML 7.6 | M |  |
 | SSS-PA-ELEM-D2N | PA, PT | Mycelium Bloom shall create a subsetting relationship between a feature and another feature of a compatible type when "a user designates a feature as a subset of another feature." | KerML 7.6.5 | H |  |
 | SSS-PA-ELEM-H9W | PA, PT | Mycelium Bloom shall create a redefinition relationship where a feature in a specializing type replaces a feature inherited from a general type when "a user designates a feature as a redefinition of an inherited feature." | KerML 7.6.5 | H |  |
 | SSS-PA-ELEM-M4J | PA, PT | Mycelium Bloom shall create a Specialization relationship between two Definitions, where the specializing Definition inherits all features of the general Definition and can add or redefine features, when "a user designates one Definition as a specialization of another." | KerML 7.6 | H |  |
-| SSS-PA-ELEM-R6F | PA, PT, VW | Mycelium Bloom shall display the generalization/specialization hierarchy of a selected Definition, showing its general types and all its specializations, when "a user views the type hierarchy of a Definition." | KerML 7.6 | H |  |
 | SSS-PA-ELEM-F3T | PA, PT | Mycelium Bloom shall create a FeatureTyping relationship between a Usage and its typing Definition when "a user sets or changes the type of a Usage via the detail panel or by dragging a Definition onto a Usage." | KerML 7.6.4 | H |  |
 | SSS-PA-ELEM-R4S | PA, PT | Mycelium Bloom shall create a ReferenceSubsetting on a reference Feature of a Connection end, Flow end, or Interface end, identifying the participating Feature that the end refers to, when "a user sets the referent of a connector, flow, or interface end." | KerML 7.6.5 | H |  |
 | SSS-PA-ELEM-C5X | PA, PT | Mycelium Bloom shall create a CrossSubsetting on a cross Feature of an Association Definition when "a user designates a Feature as the cross-feature of an Association between two participating Types." | KerML 7.6.5 | H |  |
+| SSS-PA-ELEM-R6F | PA, PT, VW | Mycelium Bloom shall display the generalization/specialization hierarchy of a selected Definition, showing its general types and all its specializations, when "a user views the type hierarchy of a Definition." | KerML 7.6 | H |  |
 | SSS-PA-ELEM-D8K | PA, PT, VW | Mycelium Bloom shall display, in the detail panel of any Type or Feature, all incoming and outgoing Specialization relationships grouped by kind (Subclassification, FeatureTyping, Subsetting, ReferenceSubsetting, Redefinition, CrossSubsetting, Conjugation) when "a user views the detail panel of a Type or Feature." | KerML 7.6 | H |  |
-| SSS-PA-ELEM-L9P | PA, PT | Mycelium Bloom shall delete a Specialization of any concrete kind (Subclassification, FeatureTyping, Subsetting, ReferenceSubsetting, Redefinition, CrossSubsetting, Conjugation) when "a user selects a Specialization in the detail panel and invokes the 'Remove' action." | KerML 7.6 | H |  |
-| SSS-FB-ELEM-C6V | - | Mycelium Fabric shall reject any commit that introduces a cycle in the Subclassification or Subsetting chain of a Type or Feature and shall return a validation error identifying the cycle when "a client submits a commit that would produce a specialization cycle." | KerML 7.6 | H |  |
-| SSS-FB-ELEM-T7B | - | Mycelium Fabric shall reject any commit in which a Redefinition assigns a type or multiplicity to the specializing Feature that is incompatible with the redefined Feature, and shall return a validation error identifying the incompatibility, when "a client submits a commit containing an incompatible Redefinition." | KerML 7.6.5 | H |  |
 | SSS-PA-ELEM-J4K | PA, PT | Mycelium Bloom shall create a Conjugation relationship between two Types — designating one as the conjugating Type whose inherited Features have inverted directions relative to the original Type — when "a user designates a Type as the conjugate of another Type, either via the detail panel or via `~` notation when typing a Usage." | KerML 7.6.3 | H |  |
+| SSS-PA-ELEM-L9P | PA, PT | Mycelium Bloom shall delete a Specialization of any concrete kind (Subclassification, FeatureTyping, Subsetting, ReferenceSubsetting, Redefinition, CrossSubsetting, Conjugation) when "a user selects a Specialization in the detail panel and invokes the 'Remove' action." | KerML 7.6 | H |  |
 | SSS-PA-ELEM-M6N | PA, PT, VW | Mycelium Bloom shall display the inherited Features of a conjugating Type with their directions shown inverted relative to the original Type, `in` rendered as `out`, `out` rendered as `in`, `inout` preserved, in the detail panel, the model browser, and on diagrams, when "a user views a Type that is the conjugate of another Type." | KerML 7.6.3 | H |  |
-| SSS-FB-ELEM-N7P | - | Mycelium Fabric shall reject any commit in which a conjugating Type owns Features other than those inherited with inverted direction from its conjugated Type, and shall return a validation error identifying the offending Features, when "a client submits a commit that would violate the KerML Conjugation well-formedness rule." | KerML 7.6.3 | H |  |
-| SSS-PA-ELEM-O2K | PA, PT, VW | Mycelium Bloom shall display, in the detail panel of any Namespace or Type, the complete list of its Memberships grouped by kind (OwningMembership, FeatureMembership, AliasMembership, imported Membership, VariantMembership, StakeholderMembership, ActorMembership, SubjectMembership, FramedConcernMembership, RequirementConstraintMembership, RequirementVerificationMembership, ExposeMembership, ObjectiveMembership), showing each member's `memberName`, visibility, and the source of the membership, when "a user views the detail panel of a Namespace or Type." | KerML 7.2 | M |  |
-| SSS-PA-ELEM-F4M | PA, PT, VW | Mycelium Bloom shall display the owned Features of a Type — derived from its FeatureMemberships — with their visibility, multiplicity, direction, and type, in the detail panel of the Type, when "a user views a Type that owns one or more Features." | KerML 7.6.1 | M |  |
+| SSS-PA-ELEM-V3W | PA, PT, VW | Mycelium Bloom shall display, in the detail panel of the owning element, a warning for any Feature whose actual value count falls outside the literal bounds of its Multiplicity Range when "a user runs model validation or opens the detail panel of such a Feature." | KerML 7.6.6 | M |  |
+| SSS-PA-ELEM-F4M | PA, PT, VW | Mycelium Bloom shall display the owned Features of a Type — derived from its FeatureMemberships — with their visibility, multiplicity, direction, and type, in the detail panel of the Type, when "a user views a Type that owns one or more Features." | KerML 7.6.1 | H |  |
 | SSS-PA-ELEM-E5N | PA, PT, VW | Mycelium Bloom shall display the end Features of a Connector, Connection, Interaction, Association, or Flow Connection, derived from their EndFeatureMemberships, showing each end's referent Feature and multiplicity, in the detail panel, when "a user views a relationship element with end features." | KerML 7.13.2 | H |  |
 | SSS-PA-ELEM-P6Q | PA, PT, VW | Mycelium Bloom shall display the parameter Features of an Action, Calculation, Function, or Case — derived from their ParameterMemberships — with each parameter's direction, type, and multiplicity, in the detail panel, when "a user views an Action, Calculation, Function, or Case." | KerML 7.12.3 | H |  |
 | SSS-PA-ELEM-R7S | PA, PT, VW | Mycelium Bloom shall display the return Feature of a Function or Calculation — derived from its ReturnParameterMembership — with its type and multiplicity, in the detail panel, when "a user views a Function or Calculation." | KerML 7.12.3 | H |  |
 | SSS-PA-ELEM-X8T | PA, PT, VW | Mycelium Bloom shall display the result expression of a Calculation or Boolean Expression — derived from its ResultExpressionMembership — in its textual form, in the detail panel, when "a user views a Calculation or Boolean Expression." | KerML 7.12.3 | H |  |
+
+###### 5.2.1.10.b Items
+
+An Item Definition is a kind of occurrence definition representing a class of identifiable objects that can be acted upon over time without necessarily performing actions themselves; an Item Usage is a usage of one or more Item Definitions. Items typically capture the inputs, outputs, and flows of a system, such as water, fuel, electrical signals, or data, that may flow through, be stored by, or be transported by the system, and an item may carry attributes, states, and nested item usages. An item that performs actions is normally modeled as a part: all parts are items, but not all items are necessarily parts. The same object, for example an engine, may be treated as an inert item or an active part at different stages of its lifetime.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-ARCH-B2D | PA, PT | Mycelium Bloom shall create an Item Definition representing a non-structural element (e.g. data type, signal, resource) when "a user creates a new Item Definition." | SysML 7.10 | H |  |
+| SSS-PA-ARCH-B2E | PA, PT | Mycelium Bloom shall support the user to create an Item Definition from the hierarchical and tabular browser, as well on a Diagram when "a user invokes the create a new Item Definition action." | SysML 7.10 | H |  |
+
+###### 5.2.1.10.c Parts
+
+A Part Definition represents a modular unit of structure, such as a system, a system component, or an external entity that may interact with the system. A Part Definition is a kind of Item Definition, so it defines a class of part objects that are occurrences with temporal and possibly spatial extent, while a Part Usage is a usage of one or more Part Definitions (and may also use item definitions that are not parts, allowing the same element to be treated as an item in some situations, for example an engine flowing along an assembly line, and as a part in others, for example that engine once installed in a vehicle). A system is modeled as a composite part whose part usages may themselves have further composite structure. Parts may carry attributes representing performance, physical, and other quality characteristics, expose ports that define where they interconnect, perform actions that cause items to flow across their connections, and exhibit states that enable different actions. A part can represent any level of abstraction, from a purely logical component to a physical component with a part number, and may model hardware, software, facilities, organizations, or users of a system.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-ARCH-JQH | PA, PT | Mycelium Bloom shall create a Part Definition as a reusable building block and instantiate it as a Part Usage within the system hierarchy when "a user creates a new Part Definition or instantiates an existing one." | SysML 7.9 | H |  |
+| SSS-PA-ARCH-TB2 | PA, PT | Mycelium Bloom shall create a nested Part Usage within the selected parent Part, extending the system decomposition hierarchy (e.g. System, Subsystem, Equipment, Component), when "a user adds a child part to an existing part in the model hierarchy." | SysML 7.9 | H |  |
+
+###### 5.2.1.10.d Ports
+
+A Port Definition is a kind of occurrence definition that defines a connection point enabling interactions between occurrences, most commonly parts, and a Port Usage is a usage of a Port Definition. A port usage may be connected to one or more other port usages, and these connections enable interactions between the occurrences that own the ports, with the features of the port usages (whether inherited from the definition or declared locally) specifying what can be exchanged. Because ports are themselves occurrences, port definitions and usages can contain nested port usages. A feature of a port may be directed as in, out, or inout, and flows nested in a connection between ports model transfers between matching directed features, where two features match if they have conforming definitions and either both have no direction or they have conjugate directions (the conjugate of in is out and vice versa, while inout is its own conjugate). A transfer can occur from the out features of one port to the matching in features of connected ports, and in both directions between matching inout features. Two ports conform when each feature of one port has a matching feature on the other, so that a connection allows a flow between every directed feature and its match. Each Port Definition also has a conjugated Port Definition whose directed features are reversed, and a conjugated Port Usage automatically conforms to a usage of the corresponding original Port Definition.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-ARCH-5RR | PA, PT | Mycelium Bloom shall create a Port Definition and instantiate it as a Port Usage on a part, specifying its interaction direction (in, out, inout), when "a user adds a port to a selected part." | SysML 7.11 | H |  |
+| SSS-PA-ARCH-K7M | PA, PT | Mycelium Bloom shall create a conjugated Port Usage with reversed feature directions (in becomes out, out becomes in) when "a user designates a Port Usage as the conjugate of an existing Port Definition." | KerML 7.6 | M |  |
+
+###### 5.2.1.10.e Connections
+
+A Connection Definition is both a relationship and a kind of Part Definition that classifies connections between related things, such as items and parts. Unless it is abstract, a connection definition has at least two connection ends, which specify the things being related, and a connection with exactly two ends is a binary connection. Any other features of a connection definition characterize the connection itself, separately from the connected things, and because a connection is a part, those values may change over the lifetime of the connection while the connected ends do not. A Connection Usage is a part usage of a connection definition that connects specific usage elements, such as item and part usages, by redefining the
+connection ends to associate them with the particular usages to be connected. A connection usage between parts is often a logical connection that abstracts away how the parts are physically connected, but it can also be refined into a physical connection by modeling the connecting medium itself as a part.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-ARCH-IGA | PA, PT | Mycelium Bloom shall create Connection Definitions, Connection Usages, Interface Definitions, and Interface Usages between parts to model integration and data flow when "a user selects two compatible ports and creates a connection or interface." | SysML 7.12, 7.13 | H |  |
+| SSS-PA-ARCH-Y2D | PA, PT | Mycelium Bloom shall create a Binding Connector that asserts equality between two compatible features of model elements when "a user selects two features and creates a binding between them." | KerML 7.13.3 | H |  |
+
+###### 5.2.1.10.f Interfaces
+
+An Interface Definition is a kind of Connection Definition whose ends are restricted to port definitions, and an Interface Usage is a usage of an interface definition whose ends are restricted to port usages. In other words, an interface is simply a connection all of whose ends are ports, which lets compatible connections between parts be specified once and reused. For example, a Power interface between an appliance and wall power exposes a power port on one end and an outlet port on the other, and the same interface can connect many different appliances to wall power. When modeling physical interactions, an interface definition or usage may carry constraints on the features of its port ends.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+
+
+###### 5.2.1.10.g Attributes
+
+
+| SSS-PA-ARCH-97Z | PA, PT | Mycelium Bloom shall create an Attribute Definition and instantiate it as an Attribute Usage on any Definition or Usage — with quantities, units, and measurement scales drawn from the SysML v2 Quantities and Units library or from user-defined extensions and custom libraries when "a user adds an attribute on a Definition or Usage, irrespective of the assigned Ownership of the target Definition or Usage." | SysML 7.7 | H |  |
+| SSS-PT-DATA-OH2 | PA, PT | Mycelium Bloom shall override an attribute value on a specific element usage without changing the parent definition when "a user edits an attribute value on a usage that inherits from a definition." | KerML 7.6 | H |  |
+| SSS-PT-DATA-492 | PA, PT | Mycelium Bloom shall assign attribute values that vary by exhibited State Usage (e.g. operational mode) when "a user associates attribute values with specific states on an element." | SysML 7.17 | H |  |
+| SSS-PT-DATA-D5I | PT | Mycelium Bloom shall provide a selector to set attribute value sources as Manual (hand-entered), Computed (calculated), or Reference (sourced from another element) when "the Participant edits an attribute value." (TBC) | SysML 7.7 | M |  |
 
 ##### 5.2.1.11 Variation point and variant modeling
 
@@ -1045,7 +1082,14 @@ Ownership-based access control is enforced server-side by Mycelium Fabric — Bl
 | SSS-FB-ATT-T4X | All | Mycelium Fabric shall enforce ownership-based access control on attachment operations (upload, delete) consistent with the element's Owner metadata when "a user attempts to modify attachments on a model element." | - |  |  |
 | SSS-PT-SUB-R8M | All | Mycelium Fabric shall reject creation of a ParameterSubscription on an AttributeUsage owned by the subscriber's own Ownership when "a Participant attempts to subscribe to an attribute owned by their own Ownership." | - | M |  |
 
-##### 5.2.2.4 Real-time notifications
+##### 5.2.2.4 Model Validation and Commit Rejection
+
+| SSS-FB-ELEM-B2R | - | Mycelium Fabric shall reject any commit that introduces a Multiplicity Range whose lower bound is negative, whose upper bound is negative, or whose lower bound exceeds its upper bound, and shall return a validation error identifying the offending Multiplicity Range, when "a client submits a commit containing an invalid Multiplicity Range." | KerML 7.6.6 | H |  |
+| SSS-FB-ELEM-C6V | - | Mycelium Fabric shall reject any commit that introduces a cycle in the Subclassification or Subsetting chain of a Type or Feature and shall return a validation error identifying the cycle when "a client submits a commit that would produce a specialization cycle." | KerML 7.6 | H |  |
+| SSS-FB-ELEM-T7B | - | Mycelium Fabric shall reject any commit in which a Redefinition assigns a type or multiplicity to the specializing Feature that is incompatible with the redefined Feature, and shall return a validation error identifying the incompatibility, when "a client submits a commit containing an incompatible Redefinition." | KerML 7.6.5 | H |  |
+| SSS-FB-ELEM-N7P | - | Mycelium Fabric shall reject any commit in which a conjugating Type owns Features other than those inherited with inverted direction from its conjugated Type, and shall return a validation error identifying the offending Features, when "a client submits a commit that would violate the KerML Conjugation well-formedness rule." | KerML 7.6.3 | H |  |
+
+##### 5.2.2.5 Real-time notifications
 
 Mycelium Fabric is responsible for propagating model changes to all connected clients in near real-time, enabling the live update behavior in Bloom. The requirements in this section cover the server-side notification mechanism using SignalR.
 
@@ -1053,7 +1097,7 @@ Mycelium Fabric is responsible for propagating model changes to all connected cl
 |----|-------|-------------|-----|------|--------|
 | SSS-CC-COLLAB-TLB | All | Mycelium Fabric shall propagate model changes to all connected users in near real-time when "a user commits changes to the shared model." | API 7 |  |  |
 
-##### 5.2.2.5 Model persistence and versioning
+##### 5.2.2.6 Model persistence and versioning
 
 Mycelium Fabric persists model data in a relational (TBC) database with auto-generated schemas from the SysML v2 metamodel. The requirements in this section cover persistence performance and API responsiveness targets.
 
@@ -1062,7 +1106,7 @@ Mycelium Fabric persists model data in a relational (TBC) database with auto-gen
 | SSS-CC-PERF-6HL | All | Mycelium Fabric shall persist models with up to 50,000 (TBC) elements within a responsive timeframe (target TBD) when "a user commits changes to a model containing up to 50,000 (TBC) elements." | - |  |  |
 | SSS-CC-PERF-WTU | All | Mycelium Fabric shall respond to standard REST API requests within a responsive timeframe (target TBD) when "an external client or the web application issues an API request to the model server." | - |  |  |
 
-##### 5.2.2.6 Concurrent design support
+##### 5.2.2.7 Concurrent design support
 
 Lock-free collaboration is fundamental to concurrent design — no user can block others from editing the model. The requirements in this section anchor the server-side support for lock-free collaboration with optimistic concurrency.
 
