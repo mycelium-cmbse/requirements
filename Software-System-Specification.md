@@ -592,7 +592,10 @@ An Interface Definition is a kind of Connection Definition whose ends are restri
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-
+| SSS-PA-ARCH-ID1 | PA, PT | Mycelium Bloom shall create an Interface Definition whose ends are restricted to port definitions, when "a user creates a new Interface Definition." | SysML 7.14 | H |  |
+| SSS-PA-ARCH-IU2 | PA, PT | Mycelium Bloom shall create an Interface Usage connecting two or more ports by associating its port ends with the participating port usages, when "a user selects two compatible ports and creates an interface." | SysML 7.14 | H |  |
+| SSS-PA-ARCH-IR3 | PA, PT | Mycelium Bloom shall instantiate the same Interface Definition as multiple Interface Usages connecting different pairs of ports, so that a single interface specification is reused across the model, when "a user instantiates an existing Interface Definition more than once." | SysML 7.14 | M |  |
+| SSS-PA-ARCH-IC4 | PA, PT | Mycelium Bloom shall add constraints to an Interface Definition or Usage that relate the features of its port ends, such as conservation laws across the interface, when "a user adds a constraint to an interface." | SysML 7.14 | H |  |
 
 ###### 5.2.1.10.g Attributes
 
