@@ -1,10 +1,10 @@
 # Introduction
 
-This document provides a justification or contextual description for the requirements expressed in the [Software-System-Specitication]
+This document provides a justification or contextual description for the requirements expressed in the [Software-System-Specification](Software-System-Specification.md).
 
-Each justification that is present in this document provides context and rationale for the requirement. The requiremetns are not repeated in this document, only there unique identifier.
+Each justification that is present in this document provides context and rationale for the requirement. The requirements are not repeated in this document, only their unique identifier.
 
-# Requriements
+# Requirements
 
 ## [SSS-OA-PROJ-PZ9](Software-System-Specification.md#5213-project-management)
 
