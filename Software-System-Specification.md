@@ -504,13 +504,12 @@ Requirements are connected to the rest of the model through trace relationships:
 
 ###### 5.2.1.10.d Use cases
 
-A Use Case Definition captures required system behaviour from the perspective of an external actor pursuing a goal, complementing the textual requirements with an actor-and-goal view of what the system must do. Use cases can include the behaviour of other use cases and be extended with optional behaviour. The requirements in this subsection cover defining use cases and the include and extend relationships between them.
+A Use Case Definition captures required system behaviour from the perspective of an external actor pursuing a goal, complementing the textual requirements with an actor-and-goal view of what the system must do. Use cases can include the behaviour of other use cases. The requirements in this subsection cover defining use cases and the include relationships between them.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
 | SSS-PA-BEH-IX9 | PA, PT | Mycelium Bloom shall create a Use Case Definition specifying system behavior from an external actor perspective when "a user creates a Use Case Definition and specifies actors and subjects." | SysML 7.25 | H |  |
 | SSS-PA-BEH-T7P | PA, PT | Mycelium Bloom shall create an Include Use Case Usage that includes one Use Case as part of another Use Case when "a user designates one Use Case as included by another." | SysML 7.25 | H |  |
-| SSS-PA-BEH-J3F | PA, PT | Mycelium Bloom shall create an Extend Use Case Usage that extends one Use Case with the optional behavior of another Use Case when "a user designates one Use Case as extending another." | SysML 7.25 | H |  |
 
 ##### 5.2.1.11 System architecture modeling
 
@@ -929,7 +928,7 @@ A Use Case View shows the use cases a system supports, the actors that interact 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
 | SSS-PA-VIS-UC1 | PA, PT | Mycelium Bloom shall provide an editor for creating and editing Use Case Views showing use cases, actors, the subject boundary, and their relationships when "a user opens or creates a Use Case View for a selected subject." | SysML 8.2.3.25 | H |  |
-| SSS-PA-VIS-UC2 | PA, PT, VW | Mycelium Bloom shall render Use Case Usages as ovals enclosed within the subject boundary rectangle, Actors as stick figures connected by association lines, and «include» and «extend» relationships as dashed arrows, using the SysML v2 graphical notation (section 8.2.3.25), when "a Use Case View displays use case model content." | SysML 8.2.3.25 | H |  |
+| SSS-PA-VIS-UC2 | PA, PT, VW | Mycelium Bloom shall render Use Case Usages as ovals enclosed within the subject boundary rectangle, Actors as stick figures connected by association lines, and «include» relationships as dashed arrows, using the SysML v2 graphical notation (section 8.2.3.25), when "a Use Case View displays use case model content." | SysML 8.2.3.25 | H |  |
 
 ###### 5.2.1.19.7 Requirement View
 
@@ -1691,9 +1690,8 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | CaseDefinition † | In | NA | NA |
 | CaseUsage † | In | NA | NA |
 | UseCaseDefinition | In | SSS-PA-BEH-IX9 | SSS-PA-VIS-UC1, SSS-PA-VIS-UC2 |
-| UseCaseUsage | In | SSS-PA-BEH-IX9, SSS-PA-BEH-T7P, SSS-PA-BEH-J3F | SSS-PA-VIS-UC1, SSS-PA-VIS-UC2 |
+| UseCaseUsage | In | SSS-PA-BEH-IX9, SSS-PA-BEH-T7P | SSS-PA-VIS-UC1, SSS-PA-VIS-UC2 |
 | IncludeUseCaseUsage | In | SSS-PA-BEH-T7P | SSS-PA-VIS-UC2 |
-| ExtendUseCaseUsage | In | SSS-PA-BEH-J3F | SSS-PA-VIS-UC2 |
 | AnalysisCaseDefinition | In | SSS-PA-AV-QII | SSS-PA-AV-CR1 |
 | AnalysisCaseUsage | In | SSS-PA-AV-AU1 | SSS-PA-AV-CR1 |
 | VerificationCaseDefinition | In | SSS-PA-AV-UCQ | SSS-PA-AV-CR1, SSS-PA-AV-2RG |
