@@ -1539,8 +1539,8 @@ This appendix mirrors the complete KerML and SysML v2 metamodel and cross-refere
 
 - **Concept**: the KerML or SysML v2 metaclass name as published in the OMG specifications (KerML formal/25-09-01, SysML v2 formal/25-09-03) and the UML model.
 - **Package**: the metaclass's owning package in the metamodel, for example `SysML::Systems::Flows`.
-- **Scope**: whether the concept is In scope for Mycelium, Deferred (planned beyond early-phase MBSE), or Out (not intended to be surfaced). Because Mycelium implements the SysML v2 metamodel natively (`SSS-CC-STD-UZA`), every metaclass is persisted and queryable; the coverage columns record how far it is additionally surfaced and specifically required.
-- **Abstract syntax**: SSS requirement identifiers covering the metaclass at the abstract-syntax level (representation, persistence, query, creation, modification, deletion, validation). `TBC` means no requirement targets the metaclass specifically; it is still covered generically by the native metamodel implementation.
+- **Scope**: In (surfaced in Bloom and covered by one or more requirements), Deferred (planned beyond early-phase MBSE), or Out (implemented in the native metamodel per `SSS-CC-STD-UZA`, and therefore persisted and queryable, but not surfaced as a distinct concept in Bloom; users work with the concrete Definition/Usage pairs that specialise these foundational classes). Out rows carry `-` in both coverage columns, or `NA` when the class is also an abstract anchor.
+- **Abstract syntax**: SSS requirement identifiers covering the metaclass at the abstract-syntax level (representation, persistence, query, creation, modification, deletion, validation).
 - **UX / notation**: SSS requirement identifiers covering the user-facing surface area (browsers, tabular views, diagrams and diagram notation per SysML v2 section 8.2.3, dashboards, property editors, tooltips).
 
 Multiple requirement identifiers are comma-separated.
@@ -1556,24 +1556,24 @@ Multiple requirement identifiers are comma-separated.
 | Comment | KerML::Root::Annotations | In | SSS-PA-CMT-R4K, SSS-PA-CMT-M6J, SSS-PA-CMT-T9F, SSS-PA-CMT-K2B, SSS-PA-CMT-D5P, SSS-PA-CMT-N8V, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-VIS-F8Q, SSS-PA-VIS-B2M, SSS-PA-VIS-T1J, SSS-PA-VIS-G5R, SSS-PA-CMT-L7X |
 | Documentation | KerML::Root::Annotations | In | SSS-PA-CMT-W7N, SSS-PA-CMT-H3D, SSS-PA-CMT-M6J, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
 | TextualRepresentation | KerML::Root::Annotations | In | SSS-PA-CMT-Y6L, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
-| Element † | KerML::Root::Elements | In | NA | NA |
+| Element † | KerML::Root::Elements | Out | NA | NA |
 | Relationship † | KerML::Root::Elements | In | SSS-PA-TRACE-8ZB, SSS-PA-TRACE-V8K | SSS-PA-TRACE-RX1, SSS-PA-TRACE-IKS |
 | Import † | KerML::Root::Namespaces | In | SSS-PA-PKG-D4N, SSS-PA-PKG-A7Q, SSS-PA-PKG-H3W, SSS-PA-PKG-X8C, SSS-PA-PKG-X1J, SSS-PA-PKG-X2K, SSS-PA-PKG-X3L, SSS-PA-PKG-X4M, SSS-FB-PKG-B3M | SSS-PA-PKG-L6D, SSS-PA-PKG-X2K |
 | Membership | KerML::Root::Namespaces | In | SSS-PA-PKG-H6T, SSS-PA-PKG-Q1M | SSS-PA-ELEM-O2K |
 | MembershipImport | KerML::Root::Namespaces | In | SSS-PA-PKG-D4N, SSS-PA-PKG-M5P, SSS-PA-PKG-X1J | SSS-PA-PKG-L6D, SSS-PA-PKG-X2K |
 | Namespace | KerML::Root::Namespaces | In | SSS-PA-PKG-H6T, SSS-PA-PKG-V8N, SSS-FB-PKG-E3K, SSS-PA-PKG-T5C, SSS-FB-PKG-W2M, SSS-FB-PKG-F4H, SSS-PA-PKG-C7B, SSS-PA-ELEM-R3G, SSS-PA-ELEM-M9T | SSS-PA-NAV-F3K, SSS-PA-PKG-V8N, SSS-PA-PKG-T5C, SSS-PA-NAV-S6P, SSS-PA-NAV-B8D |
 | NamespaceImport | KerML::Root::Namespaces | In | SSS-PA-PKG-D4N, SSS-PA-PKG-N4J, SSS-PA-PKG-R9K, SSS-PA-PKG-X1J | SSS-PA-PKG-L6D, SSS-PA-PKG-X2K |
-| OwningMembership | KerML::Root::Namespaces | In | TBC | TBC |
+| OwningMembership | KerML::Root::Namespaces | Out | - | - |
 
 ### 8.2 KerML - Core and Kernel types
 
 | Concept | Package | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- | --- |
-| Classifier | KerML::Core::Classifiers | In | TBC | TBC |
+| Classifier | KerML::Core::Classifiers | Out | - | - |
 | Subclassification | KerML::Core::Classifiers | In | SSS-PA-ELEM-M4J | SSS-PA-ELEM-R6F, SSS-PA-ELEM-D8K |
 | CrossSubsetting | KerML::Core::Features | In | SSS-PA-ELEM-C5X | SSS-PA-ELEM-D8K |
 | EndFeatureMembership | KerML::Core::Features | In | SSS-PA-ELEM-E5N | SSS-PA-ELEM-E5N, SSS-PA-ELEM-O2K |
-| Feature | KerML::Core::Features | In | TBC | TBC |
+| Feature | KerML::Core::Features | Out | - | - |
 | FeatureChaining | KerML::Core::Features | In | SSS-PA-EXPR-X2B | SSS-PA-EXPR-X3C |
 | FeatureInverting | KerML::Core::Features | Deferred | TBC | TBC |
 | FeatureTyping | KerML::Core::Features | In | SSS-PA-ELEM-F3T | SSS-PA-ELEM-D8K |
@@ -1582,19 +1582,19 @@ Multiple requirement identifiers are comma-separated.
 | Subsetting | KerML::Core::Features | In | SSS-PA-ELEM-D2N | SSS-PA-ELEM-D8K |
 | TypeFeaturing | KerML::Core::Features | In | SSS-PA-ARCH-N5W | SSS-PA-TRACE-RX1 |
 | Conjugation | KerML::Core::Types | In | SSS-PA-ARCH-K7M, SSS-PA-ELEM-J4K, SSS-FB-ELEM-N7P | SSS-PA-ELEM-D8K, SSS-PA-ELEM-M6N |
-| Differencing | KerML::Core::Types | In | TBC | TBC |
-| Disjoining | KerML::Core::Types | In | TBC | TBC |
+| Differencing | KerML::Core::Types | Out | - | - |
+| Disjoining | KerML::Core::Types | Out | - | - |
 | FeatureMembership | KerML::Core::Types | In | SSS-PA-ELEM-F4M | SSS-PA-ELEM-F4M, SSS-PA-ELEM-O2K |
-| Intersecting | KerML::Core::Types | In | TBC | TBC |
+| Intersecting | KerML::Core::Types | Out | - | - |
 | Multiplicity | KerML::Core::Types | In | SSS-PA-ELEM-V7K, SSS-PA-ELEM-O1Q, SSS-PA-ELEM-V3W | SSS-PA-VIS-U7M |
 | Specialization | KerML::Core::Types | In | SSS-PA-ELEM-M4J, SSS-PA-ELEM-L9P, SSS-FB-ELEM-C6V | SSS-PA-ELEM-R6F, SSS-PA-ELEM-D8K |
-| Type | KerML::Core::Types | In | TBC | TBC |
-| Unioning | KerML::Core::Types | In | TBC | TBC |
-| Class | KerML::Kernel::Classes | In | TBC | TBC |
-| DataType | KerML::Kernel::DataTypes | In | TBC | TBC |
-| FeatureValue | KerML::Kernel::FeatureValues | In | TBC | TBC |
+| Type | KerML::Core::Types | Out | - | - |
+| Unioning | KerML::Core::Types | Out | - | - |
+| Class | KerML::Kernel::Classes | Out | - | - |
+| DataType | KerML::Kernel::DataTypes | Out | - | - |
+| FeatureValue | KerML::Kernel::FeatureValues | Out | - | - |
 | MultiplicityRange | KerML::Kernel::Multiplicities | In | SSS-PA-ELEM-V7K, SSS-PA-ELEM-N8P, SSS-FB-ELEM-B2R | SSS-PA-VIS-U7M |
-| Structure | KerML::Kernel::Structures | In | TBC | TBC |
+| Structure | KerML::Kernel::Structures | Out | - | - |
 
 ### 8.3 SysML v2 - Structure (Definition/Usage, Part, Item, Attribute, Enumeration)
 
@@ -1602,9 +1602,9 @@ Multiple requirement identifiers are comma-separated.
 | --- | --- | --- | --- | --- |
 | AttributeDefinition | SysML::Systems::Attributes | In | SSS-PA-ARCH-97Z, SSS-PA-QU-H2V, SSS-PA-QU-K6F, SSS-PA-CONST-N7K, SSS-PA-CONST-D3V, SSS-PA-CONST-W8F, SSS-PA-META-K7R, SSS-PA-GLOSS-T5R | SSS-PA-QU-T3K, SSS-PA-QU-R7N, SSS-PA-QU-W5J, SSS-PA-QU-D8M, SSS-PA-CONST-D3V, SSS-PA-CONST-J5M, SSS-PA-CONST-R2H |
 | AttributeUsage | SysML::Systems::Attributes | In | SSS-PA-ARCH-97Z, SSS-PT-DATA-I9M, SSS-PT-DATA-OH2, SSS-PT-DATA-492, SSS-PA-QU-N9X, SSS-PT-COLLAB-8U9, SSS-PT-PUB-K4W, SSS-PT-PUB-R7N, SSS-PT-PUB-H8J | SSS-PA-NAV-ZRW, SSS-PA-HIST-K3R, SSS-PA-HIST-T6W, SSS-PA-HIST-V2P |
-| Definition | SysML::Systems::DefinitionAndUsage | In | TBC | TBC |
+| Definition | SysML::Systems::DefinitionAndUsage | Out | - | - |
 | ReferenceUsage | SysML::Systems::DefinitionAndUsage | In | SSS-PA-ELEM-RU1, SSS-PA-ELEM-U3G | SSS-PA-ELEM-RU2 |
-| Usage | SysML::Systems::DefinitionAndUsage | In | TBC | TBC |
+| Usage | SysML::Systems::DefinitionAndUsage | Out | - | - |
 | VariantMembership | SysML::Systems::DefinitionAndUsage | In | SSS-PA-VAR-R7W, SSS-PA-VAR-J9K, SSS-PA-VAR-F1P | SSS-PA-VAR-M8F, SSS-PA-VAR-H2J |
 | EnumerationDefinition | SysML::Systems::Enumerations | In | SSS-PA-ARCH-9W5, SSS-PA-ARCH-E1A, SSS-PA-ARCH-E2B, SSS-FB-ARCH-E5F | SSS-PA-VIS-E3C |
 | EnumerationUsage | SysML::Systems::Enumerations | In | SSS-PA-ARCH-9W5, SSS-PA-ARCH-E4D, SSS-FB-ARCH-E5F | SSS-PA-VIS-E3C, SSS-PA-ARCH-E4D |
@@ -1617,29 +1617,29 @@ Multiple requirement identifiers are comma-separated.
 
 | Concept | Package | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- | --- |
-| Association | KerML::Kernel::Associations | In | TBC | TBC |
-| AssociationStructure | KerML::Kernel::Associations | In | TBC | TBC |
-| BindingConnector | KerML::Kernel::Connectors | In | TBC | TBC |
-| Connector | KerML::Kernel::Connectors | In | TBC | TBC |
-| Succession | KerML::Kernel::Connectors | In | TBC | TBC |
-| Flow | KerML::Kernel::Interactions | In | TBC | TBC |
-| FlowEnd | KerML::Kernel::Interactions | In | TBC | TBC |
-| Interaction | KerML::Kernel::Interactions | In | TBC | TBC |
-| PayloadFeature | KerML::Kernel::Interactions | In | TBC | TBC |
-| SuccessionFlow | KerML::Kernel::Interactions | In | TBC | TBC |
-| BindingConnectorAsUsage | SysML::Systems::Connections | In | TBC | TBC |
+| Association | KerML::Kernel::Associations | Out | - | - |
+| AssociationStructure | KerML::Kernel::Associations | Out | - | - |
+| BindingConnector | KerML::Kernel::Connectors | Out | - | - |
+| Connector | KerML::Kernel::Connectors | Out | - | - |
+| Succession | KerML::Kernel::Connectors | Out | - | - |
+| Flow | KerML::Kernel::Interactions | Out | - | - |
+| FlowEnd | KerML::Kernel::Interactions | Out | - | - |
+| Interaction | KerML::Kernel::Interactions | Out | - | - |
+| PayloadFeature | KerML::Kernel::Interactions | In | SSS-PA-BEH-PC7 | SSS-PA-VIS-I6T |
+| SuccessionFlow | KerML::Kernel::Interactions | Out | - | - |
+| BindingConnectorAsUsage | SysML::Systems::Connections | Out | - | - |
 | ConnectionDefinition | SysML::Systems::Connections | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
 | ConnectionUsage | SysML::Systems::Connections | In | SSS-PA-ARCH-IGA, SSS-PA-ARCH-Y2D | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
-| ConnectorAsUsage † | SysML::Systems::Connections | In | NA | NA |
-| SuccessionAsUsage | SysML::Systems::Connections | In | TBC | TBC |
+| ConnectorAsUsage † | SysML::Systems::Connections | Out | NA | NA |
+| SuccessionAsUsage | SysML::Systems::Connections | In | SSS-PA-BEH-WG5 | SSS-PA-VIS-E4R |
 | FlowDefinition | SysML::Systems::Flows | In | SSS-PA-BEH-PC7 | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
 | FlowUsage | SysML::Systems::Flows | In | SSS-PA-BEH-PC7, SSS-PA-BEH-Q4N, SSS-PA-BEH-D6L, SSS-PA-BEH-X9V | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N, SSS-PA-VIS-I6T |
-| SuccessionFlowUsage | SysML::Systems::Flows | In | TBC | TBC |
+| SuccessionFlowUsage | SysML::Systems::Flows | Out | - | - |
 | InterfaceDefinition | SysML::Systems::Interfaces | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-Q7K |
 | InterfaceUsage | SysML::Systems::Interfaces | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-Q7K |
 | ConjugatedPortDefinition | SysML::Systems::Ports | In | SSS-PA-ARCH-K7M, SSS-FB-ELEM-N7P | SSS-PA-ELEM-M6N |
-| ConjugatedPortTyping | SysML::Systems::Ports | In | TBC | TBC |
-| PortConjugation | SysML::Systems::Ports | In | TBC | TBC |
+| ConjugatedPortTyping | SysML::Systems::Ports | Out | - | - |
+| PortConjugation | SysML::Systems::Ports | Out | - | - |
 | PortDefinition | SysML::Systems::Ports | In | SSS-PA-ARCH-5RR | SSS-PA-VIS-W3T |
 | PortUsage | SysML::Systems::Ports | In | SSS-PA-ARCH-5RR, SSS-PA-ARCH-K7M, SSS-PA-VAR-K3T | SSS-PA-VIS-W3T |
 
@@ -1647,9 +1647,9 @@ Multiple requirement identifiers are comma-separated.
 
 | Concept | Package | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- | --- |
-| Behavior | KerML::Kernel::Behaviors | In | TBC | TBC |
+| Behavior | KerML::Kernel::Behaviors | Out | - | - |
 | ParameterMembership | KerML::Kernel::Behaviors | In | SSS-PA-ELEM-P6Q | SSS-PA-ELEM-P6Q, SSS-PA-ELEM-O2K |
-| Step | KerML::Kernel::Behaviors | In | TBC | TBC |
+| Step | KerML::Kernel::Behaviors | Out | - | - |
 | AcceptActionUsage | SysML::Systems::Actions | In | SSS-PA-BEH-A1C | SSS-PA-VIS-M1Z |
 | ActionDefinition | SysML::Systems::Actions | In | SSS-PA-BEH-N5Z | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R, SSS-PA-VIS-M1Z |
 | ActionUsage | SysML::Systems::Actions | In | SSS-PA-BEH-N5Z, SSS-PA-BEH-WG5, SSS-PA-BEH-H83 | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R, SSS-PA-VIS-J6N, SSS-PA-VIS-M1Z |
@@ -1660,12 +1660,12 @@ Multiple requirement identifiers are comma-separated.
 | ForLoopActionUsage | SysML::Systems::Actions | In | SSS-PA-BEH-F6L | SSS-PA-VIS-M1Z |
 | IfActionUsage | SysML::Systems::Actions | In | SSS-PA-BEH-I4F | SSS-PA-VIS-M1Z |
 | JoinNode | SysML::Systems::Actions | In | SSS-PA-BEH-WG5, SSS-FB-BEH-C7F | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
-| LoopActionUsage † | SysML::Systems::Actions | In | NA | NA |
+| LoopActionUsage † | SysML::Systems::Actions | Out | NA | NA |
 | MergeNode | SysML::Systems::Actions | In | SSS-PA-BEH-WG5 | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
 | PerformActionUsage | SysML::Systems::Actions | In | SSS-PA-BEH-H83 | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
 | SendActionUsage | SysML::Systems::Actions | In | SSS-PA-BEH-S2N | SSS-PA-VIS-M1Z |
 | TerminateActionUsage | SysML::Systems::Actions | Deferred | TBC | TBC |
-| TriggerInvocationExpression | SysML::Systems::Actions | In | TBC | TBC |
+| TriggerInvocationExpression | SysML::Systems::Actions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
 | WhileLoopActionUsage | SysML::Systems::Actions | In | SSS-PA-BEH-W5H | SSS-PA-VIS-M1Z |
 
 ### 8.6 SysML v2 - States and Transitions
@@ -1676,40 +1676,40 @@ Multiple requirement identifiers are comma-separated.
 | StateDefinition | SysML::Systems::States | In | SSS-PA-BEH-RPK, SSS-PT-DATA-492, SSS-PA-BEH-SD1, SSS-PA-BEH-SC2, SSS-PA-BEH-SP3, SSS-FB-BEH-SV8 | SSS-PA-VIS-DP2, SSS-PA-VIS-B8V, SSS-PA-VIS-SH7 |
 | StateSubactionMembership | SysML::Systems::States | In | SSS-PA-BEH-SE4 | SSS-PA-VIS-SH7 |
 | StateUsage | SysML::Systems::States | In | SSS-PA-BEH-RPK, SSS-PA-BEH-H83, SSS-PA-BEH-SD1, SSS-PA-BEH-SC2, SSS-PA-BEH-SE4 | SSS-PA-VIS-DP2, SSS-PA-VIS-B8V, SSS-PA-VIS-F2C, SSS-PA-VIS-SH7 |
-| TransitionFeatureMembership | SysML::Systems::States | In | TBC | TBC |
+| TransitionFeatureMembership | SysML::Systems::States | In | SSS-PA-BEH-TG6 | SSS-PA-VIS-SH7 |
 | TransitionUsage | SysML::Systems::States | In | SSS-PA-BEH-RPK, SSS-PA-BEH-TR5, SSS-PA-BEH-TG6, SSS-FB-BEH-SV8 | SSS-PA-VIS-B8V, SSS-PA-VIS-SH7 |
 
 ### 8.7 SysML v2 - Calculations, Constraints, Functions and Expressions
 
 | Concept | Package | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- | --- |
-| CollectExpression | KerML::Kernel::Expressions | In | TBC | TBC |
-| ConstructorExpression | KerML::Kernel::Expressions | In | TBC | TBC |
-| FeatureChainExpression | KerML::Kernel::Expressions | In | TBC | TBC |
+| CollectExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| ConstructorExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| FeatureChainExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
 | FeatureReferenceExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X2B | SSS-PA-EXPR-X3C |
-| IndexExpression | KerML::Kernel::Expressions | In | TBC | TBC |
-| InstantiationExpression † | KerML::Kernel::Expressions | In | NA | NA |
-| InvocationExpression | KerML::Kernel::Expressions | In | TBC | TBC |
-| LiteralBoolean | KerML::Kernel::Expressions | In | TBC | TBC |
-| LiteralExpression | KerML::Kernel::Expressions | In | TBC | TBC |
-| LiteralInfinity | KerML::Kernel::Expressions | In | TBC | TBC |
-| LiteralInteger | KerML::Kernel::Expressions | In | TBC | TBC |
-| LiteralRational | KerML::Kernel::Expressions | In | TBC | TBC |
-| LiteralString | KerML::Kernel::Expressions | In | TBC | TBC |
-| MetadataAccessExpression | KerML::Kernel::Expressions | In | TBC | TBC |
-| NullExpression | KerML::Kernel::Expressions | In | TBC | TBC |
-| OperatorExpression | KerML::Kernel::Expressions | In | TBC | TBC |
-| SelectExpression | KerML::Kernel::Expressions | In | TBC | TBC |
-| BooleanExpression | KerML::Kernel::Functions | In | TBC | TBC |
+| IndexExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| InstantiationExpression † | KerML::Kernel::Expressions | Out | NA | NA |
+| InvocationExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| LiteralBoolean | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| LiteralExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| LiteralInfinity | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| LiteralInteger | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| LiteralRational | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| LiteralString | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| MetadataAccessExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| NullExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| OperatorExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| SelectExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| BooleanExpression | KerML::Kernel::Functions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
 | Expression | KerML::Kernel::Functions | In | SSS-PA-EXPR-X1A, SSS-PA-EXPR-X2B, SSS-FB-EXPR-X4D, SSS-PA-EXPR-X5E | SSS-PA-EXPR-X3C |
-| Function | KerML::Kernel::Functions | In | TBC | TBC |
-| Invariant | KerML::Kernel::Functions | In | TBC | TBC |
-| Predicate | KerML::Kernel::Functions | In | TBC | TBC |
+| Function | KerML::Kernel::Functions | Out | - | - |
+| Invariant | KerML::Kernel::Functions | Out | - | - |
+| Predicate | KerML::Kernel::Functions | Out | - | - |
 | ResultExpressionMembership | KerML::Kernel::Functions | In | SSS-PA-ELEM-X8T | SSS-PA-ELEM-X8T, SSS-PA-ELEM-O2K |
 | ReturnParameterMembership | KerML::Kernel::Functions | In | SSS-PA-ELEM-R7S | SSS-PA-ELEM-R7S, SSS-PA-ELEM-O2K |
 | CalculationDefinition | SysML::Systems::Calculations | In | SSS-PT-ANALYSIS-4W2 | SSS-PA-EXPR-X1A, SSS-PA-EXPR-X3C |
 | CalculationUsage | SysML::Systems::Calculations | In | SSS-PT-ANALYSIS-KU4, SSS-PT-ANALYSIS-KE6 | SSS-PA-EXPR-X3C, SSS-PA-EXPR-X5E |
-| AssertConstraintUsage | SysML::Systems::Constraints | In | TBC | TBC |
+| AssertConstraintUsage | SysML::Systems::Constraints | In | SSS-PA-AV-CU3, SSS-PA-AV-CN5 | SSS-PT-ANALYSIS-EAJ |
 | ConstraintDefinition | SysML::Systems::Constraints | In | SSS-PA-AV-LSX, SSS-PT-ANALYSIS-NWL | SSS-PA-EXPR-X1A, SSS-PA-EXPR-X3C |
 | ConstraintUsage | SysML::Systems::Constraints | In | SSS-PA-AV-CU3, SSS-PA-AV-CN5, SSS-PT-ANALYSIS-NWL, SSS-PT-ANALYSIS-EAJ, SSS-PA-SCRIPT-K8B | SSS-PT-ANALYSIS-EAJ, SSS-PA-EXPR-X3C |
 
@@ -1734,8 +1734,8 @@ Multiple requirement identifiers are comma-separated.
 | --- | --- | --- | --- | --- |
 | AnalysisCaseDefinition | SysML::Systems::AnalysisCases | In | SSS-PA-AV-QII | SSS-PA-AV-CR1 |
 | AnalysisCaseUsage | SysML::Systems::AnalysisCases | In | SSS-PA-AV-AU1 | SSS-PA-AV-CR1 |
-| CaseDefinition | SysML::Systems::Cases | In | TBC | TBC |
-| CaseUsage | SysML::Systems::Cases | In | TBC | TBC |
+| CaseDefinition | SysML::Systems::Cases | Out | - | - |
+| CaseUsage | SysML::Systems::Cases | Out | - | - |
 | ObjectiveMembership | SysML::Systems::Cases | In | SSS-PA-AV-O9U | SSS-PA-ELEM-O2K |
 | IncludeUseCaseUsage | SysML::Systems::UseCases | In | SSS-PA-BEH-T7P | SSS-PA-VIS-UC2 |
 | UseCaseDefinition | SysML::Systems::UseCases | In | SSS-PA-BEH-IX9 | SSS-PA-VIS-UC1, SSS-PA-VIS-UC2 |
@@ -1749,21 +1749,21 @@ Multiple requirement identifiers are comma-separated.
 | Concept | Package | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- | --- |
 | Expose † | SysML::Systems::Views | In | SSS-PA-VIS-K9R | SSS-PA-ELEM-O2K |
-| MembershipExpose | SysML::Systems::Views | In | TBC | TBC |
-| NamespaceExpose | SysML::Systems::Views | In | TBC | TBC |
+| MembershipExpose | SysML::Systems::Views | In | SSS-PA-VIS-K9R | SSS-PA-ELEM-O2K |
+| NamespaceExpose | SysML::Systems::Views | In | SSS-PA-VIS-K9R | SSS-PA-ELEM-O2K |
 | RenderingDefinition | SysML::Systems::Views | In | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 |
 | RenderingUsage | SysML::Systems::Views | In | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 |
 | ViewDefinition | SysML::Systems::Views | In | SSS-PA-VIS-T2V | SSS-PA-VIS-T2V, SSS-PA-VIS-BB9, SSS-PA-VIS-JPW |
 | ViewpointDefinition | SysML::Systems::Views | In | SSS-PA-VIS-T2V | SSS-PA-VIS-T2V |
 | ViewpointUsage | SysML::Systems::Views | In | SSS-PA-VIS-T2V | SSS-PA-VIS-T2V |
-| ViewRenderingMembership | SysML::Systems::Views | In | TBC | TBC |
+| ViewRenderingMembership | SysML::Systems::Views | In | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 | SSS-PA-VIS-RD1 |
 | ViewUsage | SysML::Systems::Views | In | SSS-PA-VIS-T2V | SSS-PA-VIS-T2V, SSS-PA-VIS-BB9, SSS-PA-VIS-JPW |
 
 ### 8.11 SysML v2 - Metadata
 
 | Concept | Package | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- | --- |
-| Metaclass | KerML::Kernel::Metadata | In | TBC | TBC |
+| Metaclass | KerML::Kernel::Metadata | Out | - | - |
 | MetadataFeature | KerML::Kernel::Metadata | In | SSS-PA-META-K7R, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
 | MetadataDefinition | SysML::Systems::Metadata | In | SSS-PA-META-K7R | SSS-PA-META-R9V |
 | MetadataUsage | SysML::Systems::Metadata | In | SSS-PA-META-W3D, SSS-PA-META-N8F, SSS-PA-META-H2T, SSS-PA-META-D5J, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-J1B, SSS-PA-META-V8G, SSS-PT-PUB-B9G | SSS-PA-META-R9V, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-V8G, SSS-PA-VIS-B4F |
@@ -1772,7 +1772,7 @@ Multiple requirement identifiers are comma-separated.
 
 | Concept | Package | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- | --- |
-| EventOccurrenceUsage | SysML::Systems::Occurrences | In | TBC | TBC |
+| EventOccurrenceUsage | SysML::Systems::Occurrences | Out | - | - |
 | OccurrenceDefinition | SysML::Systems::Occurrences | In | SSS-PA-OCC-H0, SSS-PA-OCC-D1, SSS-PA-OCC-L3, SSS-PA-OCC-T5, SSS-PA-OCC-S6, SSS-PA-OCC-V8, SSS-PA-OCC-I7 | SSS-PA-OCC-R9 |
 | OccurrenceUsage | SysML::Systems::Occurrences | In | SSS-PA-OCC-U2, SSS-PA-OCC-T5, SSS-PA-OCC-S6, SSS-PA-OCC-V8, SSS-PA-OCC-I7 | SSS-PA-OCC-R9 |
 
