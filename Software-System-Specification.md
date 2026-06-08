@@ -1573,10 +1573,10 @@ Multiple requirement identifiers are comma-separated.
 | BooleanExpression | KerML::Kernel::Functions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
 | CalculationDefinition | SysML::Systems::Calculations | In | SSS-PT-ANALYSIS-4W2 | SSS-PA-EXPR-X1A, SSS-PA-EXPR-X3C |
 | CalculationUsage | SysML::Systems::Calculations | In | SSS-PT-ANALYSIS-KU4, SSS-PT-ANALYSIS-KE6 | SSS-PA-EXPR-X3C, SSS-PA-EXPR-X5E |
-| CaseDefinition | SysML::Systems::Cases | Out | - | - |
-| CaseUsage | SysML::Systems::Cases | Out | - | - |
+| CaseDefinition | SysML::Systems::Cases | Deferred | TBC | TBC |
+| CaseUsage | SysML::Systems::Cases | Deferred | TBC | TBC |
 | Class | KerML::Kernel::Classes | Out | - | - |
-| Classifier | KerML::Core::Classifiers | In | NA | NA |
+| Classifier | KerML::Core::Classifiers | Out | - | - |
 | CollectExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
 | Comment | KerML::Root::Annotations | In | SSS-PA-CMT-R4K, SSS-PA-CMT-M6J, SSS-PA-CMT-T9F, SSS-PA-CMT-K2B, SSS-PA-CMT-D5P, SSS-PA-CMT-N8V, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-VIS-F8Q, SSS-PA-VIS-B2M, SSS-PA-VIS-T1J, SSS-PA-VIS-G5R, SSS-PA-CMT-L7X |
 | ConcernDefinition | SysML::Systems::Requirements | In | SSS-PA-REQ-SUC | SSS-PA-REQ-RF1 |
@@ -1597,15 +1597,15 @@ Multiple requirement identifiers are comma-separated.
 | DecisionNode | SysML::Systems::Actions | In | SSS-PA-BEH-WG5, SSS-FB-BEH-C7F | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
 | Definition | SysML::Systems::DefinitionAndUsage | Out | - | - |
 | Dependency | KerML::Root::Dependencies | In | SSS-PA-REQ-V4J, SSS-PA-TRACE-V8K | SSS-PA-REQ-RF2, SSS-PA-TRACE-RX1, SSS-PA-TRACE-IKS |
-| Differencing | KerML::Core::Types | Out | - | - |
-| Disjoining | KerML::Core::Types | Out | - | - |
+| Differencing | KerML::Core::Types | Deferred | TBC | TBC |
+| Disjoining | KerML::Core::Types | Deferred | TBC | TBC |
 | Documentation | KerML::Root::Annotations | In | SSS-PA-CMT-W7N, SSS-PA-CMT-H3D, SSS-PA-CMT-M6J, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
 | Element † | KerML::Root::Elements | In | NA | NA |
 | ElementFilterMembership | KerML::Kernel::Packages | In | SSS-PA-PKG-J3W | SSS-PA-PKG-L6D |
 | EndFeatureMembership | KerML::Core::Features | In | SSS-PA-ELEM-E5N | SSS-PA-ELEM-E5N, SSS-PA-ELEM-O2K |
 | EnumerationDefinition | SysML::Systems::Enumerations | In | SSS-PA-ARCH-9W5, SSS-PA-ARCH-E1A, SSS-PA-ARCH-E2B, SSS-FB-ARCH-E5F | SSS-PA-VIS-E3C |
 | EnumerationUsage | SysML::Systems::Enumerations | In | SSS-PA-ARCH-9W5, SSS-PA-ARCH-E4D, SSS-FB-ARCH-E5F | SSS-PA-VIS-E3C, SSS-PA-ARCH-E4D |
-| EventOccurrenceUsage | SysML::Systems::Occurrences | Out | - | - |
+| EventOccurrenceUsage | SysML::Systems::Occurrences | In | SSS-PA-OCC-U2, SSS-PA-BEH-H83 | SSS-PA-OCC-R9 |
 | ExhibitStateUsage | SysML::Systems::States | In | SSS-PA-BEH-H83 | SSS-PA-VIS-SH7 |
 | Expose † | SysML::Systems::Views | In | SSS-PA-VIS-K9R | SSS-PA-ELEM-O2K |
 | Expression | KerML::Kernel::Functions | In | SSS-PA-EXPR-X1A, SSS-PA-EXPR-X2B, SSS-FB-EXPR-X4D, SSS-PA-EXPR-X5E | SSS-PA-EXPR-X3C |
@@ -1616,7 +1616,7 @@ Multiple requirement identifiers are comma-separated.
 | FeatureMembership | KerML::Core::Types | In | SSS-PA-ELEM-F4M | SSS-PA-ELEM-F4M, SSS-PA-ELEM-O2K |
 | FeatureReferenceExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X2B | SSS-PA-EXPR-X3C |
 | FeatureTyping | KerML::Core::Features | In | SSS-PA-ELEM-F3T | SSS-PA-ELEM-D8K |
-| FeatureValue | KerML::Kernel::FeatureValues | Out | - | - |
+| FeatureValue | KerML::Kernel::FeatureValues | In | SSS-PA-ARCH-AV5, SSS-PT-DATA-D5I | SSS-PA-NAV-ZRW |
 | Flow | KerML::Kernel::Interactions | Out | - | - |
 | FlowDefinition | SysML::Systems::Flows | In | SSS-PA-BEH-PC7 | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
 | FlowEnd | KerML::Kernel::Interactions | Out | - | - |
@@ -1633,7 +1633,7 @@ Multiple requirement identifiers are comma-separated.
 | Interaction | KerML::Kernel::Interactions | Out | - | - |
 | InterfaceDefinition | SysML::Systems::Interfaces | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-Q7K |
 | InterfaceUsage | SysML::Systems::Interfaces | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-Q7K |
-| Intersecting | KerML::Core::Types | Out | - | - |
+| Intersecting | KerML::Core::Types | Deferred | TBC | TBC |
 | Invariant | KerML::Kernel::Functions | Out | - | - |
 | InvocationExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
 | ItemDefinition | SysML::Systems::Items | In | SSS-PA-ARCH-B2D, SSS-PA-GLOSS-T5R | SSS-PA-GLOSS-K2W, SSS-PA-GLOSS-M3J, SSS-PA-GLOSS-V9D, SSS-PA-GLOSS-F6B, SSS-PA-VIS-I4R, SSS-PA-VIS-I5S |
@@ -1713,7 +1713,7 @@ Multiple requirement identifiers are comma-separated.
 | TriggerInvocationExpression | SysML::Systems::Actions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
 | Type | KerML::Core::Types | Out | - | - |
 | TypeFeaturing | KerML::Core::Features | In | SSS-PA-ARCH-N5W | SSS-PA-TRACE-RX1 |
-| Unioning | KerML::Core::Types | Out | - | - |
+| Unioning | KerML::Core::Types | Deferred | TBC | TBC |
 | Usage | SysML::Systems::DefinitionAndUsage | Out | - | - |
 | UseCaseDefinition | SysML::Systems::UseCases | In | SSS-PA-BEH-IX9 | SSS-PA-VIS-UC1, SSS-PA-VIS-UC2 |
 | UseCaseUsage | SysML::Systems::UseCases | In | SSS-PA-BEH-IX9, SSS-PA-BEH-T7P | SSS-PA-VIS-UC1, SSS-PA-VIS-UC2 |
