@@ -1281,26 +1281,12 @@ Ownership-based access control is enforced server-side by Mycelium Fabric, Bloom
 
 ##### 5.2.2.4 Model Validation and Commit Rejection
 
-
+Mycelium Fabric is the guardian of model well-formedness. It accepts a commit only if the resulting model conforms to the KerML and SysML v2 abstract syntax (metaclass typing, multiplicities, and containment) and satisfies every OCL well-formedness constraint those specifications define on their metaclasses. Conformance to the specification is captured normatively by the first requirement below; the complete and authoritative set of checks is the abstract syntax together with the named OCL constraints in KerML (formal/25-09-03) and SysML v2 (formal/25-09-03), which this document does not restate. The remaining requirements add Mycelium-specific validation that the specifications do not mandate, such as library-package immutability and model-quality warnings.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-FB-ELEM-B2R | - | Mycelium Fabric shall reject any commit that introduces a Multiplicity Range whose lower bound is negative, whose upper bound is negative, or whose lower bound exceeds its upper bound, and shall return a validation error identifying the offending Multiplicity Range, when "a client submits a commit containing an invalid Multiplicity Range." | KerML 7.6.6 | H |  |
-| SSS-FB-ELEM-C6V | - | Mycelium Fabric shall reject any commit that introduces a cycle in the Subclassification or Subsetting chain of a Type or Feature and shall return a validation error identifying the cycle when "a client submits a commit that would produce a specialization cycle." | KerML 7.6 | H |  |
-| SSS-FB-ELEM-T7B | - | Mycelium Fabric shall reject any commit in which a Redefinition assigns a type or multiplicity to the specializing Feature that is incompatible with the redefined Feature, and shall return a validation error identifying the incompatibility, when "a client submits a commit containing an incompatible Redefinition." | KerML 7.6.5 | H |  |
-| SSS-FB-ELEM-N7P | - | Mycelium Fabric shall reject any commit in which a conjugating Type owns Features other than those inherited with inverted direction from its conjugated Type, and shall return a validation error identifying the offending Features, when "a client submits a commit that would violate the KerML Conjugation well-formedness rule." | KerML 7.6.3 | H |  |
-| SSS-FB-OCC-W1 | - | Mycelium Fabric shall reject a commit in which a composite (nested) feature of an occurrence is not itself an occurrence, returning a validation error identifying the offending feature, when "a client submits such a commit." | SysML 7.9 | H |  |
-| SSS-FB-VAR-V1 | - | Mycelium Fabric shall reject a commit that sets `isVariation = true` on an Enumeration Definition, returning a validation error identifying the offending element, when "a client submits such a commit." | SysML 7.6 | H |  |
-| SSS-FB-VAR-V2 | - | Mycelium Fabric shall reject a commit in which a variant membership is owned by an element that is not a variation, returning a validation error identifying the offending element, when "a client submits such a commit." | SysML 7.6 | H |  |
-| SSS-FB-VAR-V3 | - | Mycelium Fabric shall reject a commit in which a variant is not a valid usage of the variation's type, returning a validation error identifying the non-conforming variant, when "a client submits such a commit." | SysML 7.6 | H |  |
-| SSS-FB-ARCH-E5F | - | Mycelium Fabric shall reject any commit that assigns to an Attribute Usage typed by an Enumeration Definition a value that is not one of the Definition's Enumeration Literals, and shall return a validation error identifying the offending assignment, when "a client submits such a commit." | SysML 7.8 | H |  |
-| SSS-FB-ARCH-E7H | - | Mycelium Fabric shall reject a commit in which an Enumeration Definition specialises another Enumeration Definition, returning a validation error identifying the offending specialisation, when "a client submits such a commit." | SysML 7.8 | H |  |
-| SSS-FB-EXPR-X4D | - | Mycelium Fabric shall reject a commit containing an Expression that is syntactically malformed or whose result type is incompatible with its context, returning a validation error that identifies the offending Expression, when "a client submits such a commit." | KerML 8.3.4 | H |  |
-| SSS-FB-PKG-W2M | - | Mycelium Fabric shall compute the visible member set of a Namespace as the union of its owned public Memberships and the transitively imported public Memberships of all namespaces it imports, honouring Alias, Filtered Import, and visibility rules, when "a client queries the visible members of a namespace." | KerML 7.2.5 | H |  |
-| SSS-FB-PKG-F4H | - | Mycelium Fabric shall reject any commit that introduces two non-Alias Memberships with the same `memberName` inside a single Namespace and shall return a validation error identifying the conflicting members when "a client submits a commit that would violate KerML `memberName` uniqueness." | KerML 7.2.5 | H |  |
-| SSS-FB-PKG-B3M | - | Mycelium Fabric shall return a validation error identifying any Import whose imported Namespace or imported Membership cannot be resolved when "a client queries the visible members of a Namespace or submits a commit containing an unresolvable Import." | KerML 7.5.3 | H |  |
+| SSS-FB-VALID-CNF | - | Mycelium Fabric shall reject any commit whose resulting model would violate the KerML or SysML v2 abstract syntax or any OCL well-formedness constraint defined on the affected metaclasses, returning a validation error that identifies the violated constraint and the offending element, when "a client submits a commit." | KerML 8, SysML 8 | H |  |
 | SSS-FB-PKG-L2F | - | Mycelium Fabric shall reject any commit that modifies the owned content of a LibraryPackage (including creation, modification, deletion, or re-parenting of any of its members) and shall return a validation error identifying the LibraryPackage, when "a client submits a commit that would mutate a LibraryPackage." | KerML 7.5.5 | H |  |
-| SSS-FB-BEH-C7F | - | Mycelium Fabric shall return a validation warning identifying any Decision Node with an outgoing Succession lacking a guard, any Fork Node without a matching Join Node in the same Action, any Action Usage reachable from no Succession source, and any Loop Action Usage whose condition Expression does not terminate in a finite number of iterations under trivial inputs, when "a client runs model validation or submits a commit containing an Action Definition." | SysML 7.17 | H |  |
 
 ##### 5.2.2.5 Real-time notifications
 
@@ -1567,27 +1553,27 @@ Multiple requirement identifiers are comma-separated.
 | Behavior | KerML::Kernel::Behaviors | Out | - | - |
 | BindingConnector | KerML::Kernel::Connectors | Out | - | - |
 | BindingConnectorAsUsage | SysML::Systems::Connections | Out | - | - |
-| BooleanExpression | KerML::Kernel::Functions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| BooleanExpression | KerML::Kernel::Functions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | CalculationDefinition | SysML::Systems::Calculations | In | SSS-PT-ANALYSIS-4W2 | SSS-PA-EXPR-X1A, SSS-PA-EXPR-X3C |
 | CalculationUsage | SysML::Systems::Calculations | In | SSS-PT-ANALYSIS-KU4, SSS-PT-ANALYSIS-KE6 | SSS-PA-EXPR-X3C, SSS-PA-EXPR-X5E |
 | CaseDefinition | SysML::Systems::Cases | Deferred | TBC | TBC |
 | CaseUsage | SysML::Systems::Cases | Deferred | TBC | TBC |
 | Class | KerML::Kernel::Classes | Out | - | - |
 | Classifier | KerML::Core::Classifiers | Out | - | - |
-| CollectExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| CollectExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | Comment | KerML::Root::Annotations | In | SSS-PA-CMT-R4K, SSS-PA-CMT-M6J, SSS-PA-CMT-T9F, SSS-PA-CMT-K2B, SSS-PA-CMT-D5P, SSS-PA-CMT-N8V, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-VIS-F8Q, SSS-PA-VIS-B2M, SSS-PA-VIS-T1J, SSS-PA-VIS-G5R, SSS-PA-CMT-L7X |
 | ConcernDefinition | SysML::Systems::Requirements | In | SSS-PA-REQ-SUC | SSS-PA-REQ-RF1 |
 | ConcernUsage | SysML::Systems::Requirements | In | SSS-PA-REQ-SUC | SSS-PA-REQ-RF1 |
-| ConjugatedPortDefinition | SysML::Systems::Ports | In | SSS-PA-ARCH-K7M, SSS-FB-ELEM-N7P | SSS-PA-ELEM-M6N |
+| ConjugatedPortDefinition | SysML::Systems::Ports | In | SSS-PA-ARCH-K7M, SSS-FB-VALID-CNF | SSS-PA-ELEM-M6N |
 | ConjugatedPortTyping | SysML::Systems::Ports | Out | - | - |
-| Conjugation | KerML::Core::Types | In | SSS-PA-ARCH-K7M, SSS-PA-ELEM-J4K, SSS-FB-ELEM-N7P | SSS-PA-ELEM-D8K, SSS-PA-ELEM-M6N |
+| Conjugation | KerML::Core::Types | In | SSS-PA-ARCH-K7M, SSS-PA-ELEM-J4K, SSS-FB-VALID-CNF | SSS-PA-ELEM-D8K, SSS-PA-ELEM-M6N |
 | ConnectionDefinition | SysML::Systems::Connections | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
 | ConnectionUsage | SysML::Systems::Connections | In | SSS-PA-ARCH-IGA, SSS-PA-ARCH-Y2D | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
 | Connector | KerML::Kernel::Connectors | Out | - | - |
 | ConnectorAsUsage † | SysML::Systems::Connections | Out | NA | NA |
 | ConstraintDefinition | SysML::Systems::Constraints | In | SSS-PA-AV-LSX, SSS-PT-ANALYSIS-NWL | SSS-PA-EXPR-X1A, SSS-PA-EXPR-X3C |
 | ConstraintUsage | SysML::Systems::Constraints | In | SSS-PA-AV-CU3, SSS-PA-AV-CN5, SSS-PT-ANALYSIS-NWL, SSS-PT-ANALYSIS-EAJ, SSS-PA-SCRIPT-K8B | SSS-PT-ANALYSIS-EAJ, SSS-PA-EXPR-X3C |
-| ConstructorExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| ConstructorExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | ControlNode † | SysML::Systems::Actions | In | SSS-PA-BEH-WG5, SSS-FB-BEH-C7F | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
 | CrossSubsetting | KerML::Core::Features | In | SSS-PA-ELEM-C5X | SSS-PA-ELEM-D8K |
 | DataType | KerML::Kernel::DataTypes | Out | - | - |
@@ -1600,14 +1586,14 @@ Multiple requirement identifiers are comma-separated.
 | Element † | KerML::Root::Elements | In | NA | NA |
 | ElementFilterMembership | KerML::Kernel::Packages | In | SSS-PA-PKG-J3W | SSS-PA-PKG-L6D |
 | EndFeatureMembership | KerML::Core::Features | In | SSS-PA-ELEM-E5N | SSS-PA-ELEM-E5N, SSS-PA-ELEM-O2K |
-| EnumerationDefinition | SysML::Systems::Enumerations | In | SSS-PA-ARCH-9W5, SSS-PA-ARCH-E1A, SSS-PA-ARCH-E2B, SSS-FB-ARCH-E5F | SSS-PA-VIS-E3C |
-| EnumerationUsage | SysML::Systems::Enumerations | In | SSS-PA-ARCH-9W5, SSS-PA-ARCH-E4D, SSS-FB-ARCH-E5F | SSS-PA-VIS-E3C, SSS-PA-ARCH-E4D |
+| EnumerationDefinition | SysML::Systems::Enumerations | In | SSS-PA-ARCH-9W5, SSS-PA-ARCH-E1A, SSS-PA-ARCH-E2B, SSS-FB-VALID-CNF | SSS-PA-VIS-E3C |
+| EnumerationUsage | SysML::Systems::Enumerations | In | SSS-PA-ARCH-9W5, SSS-PA-ARCH-E4D, SSS-FB-VALID-CNF | SSS-PA-VIS-E3C, SSS-PA-ARCH-E4D |
 | EventOccurrenceUsage | SysML::Systems::Occurrences | In | SSS-PA-OCC-U2, SSS-PA-BEH-H83 | SSS-PA-OCC-R9 |
 | ExhibitStateUsage | SysML::Systems::States | In | SSS-PA-BEH-H83 | SSS-PA-VIS-SH7 |
 | Expose † | SysML::Systems::Views | In | SSS-PA-VIS-K9R | SSS-PA-ELEM-O2K |
-| Expression | KerML::Kernel::Functions | In | SSS-PA-EXPR-X1A, SSS-PA-EXPR-X2B, SSS-FB-EXPR-X4D, SSS-PA-EXPR-X5E | SSS-PA-EXPR-X3C |
+| Expression | KerML::Kernel::Functions | In | SSS-PA-EXPR-X1A, SSS-PA-EXPR-X2B, SSS-FB-VALID-CNF, SSS-PA-EXPR-X5E | SSS-PA-EXPR-X3C |
 | Feature | KerML::Core::Features | Out | - | - |
-| FeatureChainExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| FeatureChainExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | FeatureChaining | KerML::Core::Features | In | SSS-PA-EXPR-X2B | SSS-PA-EXPR-X3C |
 | FeatureInverting | KerML::Core::Features | Deferred | TBC | TBC |
 | FeatureMembership | KerML::Core::Types | In | SSS-PA-ELEM-F4M | SSS-PA-ELEM-F4M, SSS-PA-ELEM-O2K |
@@ -1623,46 +1609,46 @@ Multiple requirement identifiers are comma-separated.
 | FramedConcernMembership | SysML::Systems::Requirements | In | SSS-PA-REQ-SUC | SSS-PA-REQ-RF1 |
 | Function | KerML::Kernel::Functions | Out | - | - |
 | IfActionUsage | SysML::Systems::Actions | In | SSS-PA-BEH-I4F | SSS-PA-VIS-M1Z |
-| Import † | KerML::Root::Namespaces | In | SSS-PA-PKG-D4N, SSS-PA-PKG-A7Q, SSS-PA-PKG-H3W, SSS-PA-PKG-X8C, SSS-PA-PKG-X1J, SSS-PA-PKG-X2K, SSS-PA-PKG-X3L, SSS-PA-PKG-X4M, SSS-FB-PKG-B3M | SSS-PA-PKG-L6D, SSS-PA-PKG-X2K |
+| Import † | KerML::Root::Namespaces | In | SSS-PA-PKG-D4N, SSS-PA-PKG-A7Q, SSS-PA-PKG-H3W, SSS-PA-PKG-X8C, SSS-PA-PKG-X1J, SSS-PA-PKG-X2K, SSS-PA-PKG-X3L, SSS-PA-PKG-X4M, SSS-FB-VALID-CNF | SSS-PA-PKG-L6D, SSS-PA-PKG-X2K |
 | IncludeUseCaseUsage | SysML::Systems::UseCases | In | SSS-PA-BEH-T7P | SSS-PA-VIS-UC2 |
-| IndexExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| IndexExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | InstantiationExpression † | KerML::Kernel::Expressions | Out | NA | NA |
 | Interaction | KerML::Kernel::Interactions | Out | - | - |
 | InterfaceDefinition | SysML::Systems::Interfaces | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-Q7K |
 | InterfaceUsage | SysML::Systems::Interfaces | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-Q7K |
 | Intersecting | KerML::Core::Types | Deferred | TBC | TBC |
 | Invariant | KerML::Kernel::Functions | Out | - | - |
-| InvocationExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| InvocationExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | ItemDefinition | SysML::Systems::Items | In | SSS-PA-ARCH-B2D, SSS-PA-GLOSS-T5R | SSS-PA-GLOSS-K2W, SSS-PA-GLOSS-M3J, SSS-PA-GLOSS-V9D, SSS-PA-GLOSS-F6B, SSS-PA-VIS-I4R, SSS-PA-VIS-I5S |
 | ItemUsage | SysML::Systems::Items | In | SSS-PA-ARCH-B2D | SSS-PA-VIS-I4R, SSS-PA-VIS-I5S, SSS-PA-VIS-I6T |
 | JoinNode | SysML::Systems::Actions | In | SSS-PA-BEH-WG5, SSS-FB-BEH-C7F | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
 | LibraryPackage | KerML::Kernel::Packages | In | SSS-PA-QU-G1W, SSS-PA-IE-OYJ, SSS-PA-PKG-P8D, SSS-PA-PKG-S1E, SSS-FB-PKG-L2F, SSS-PA-PKG-F8M, SSS-FG-PKG-P7L | SSS-PA-PKG-V4H, SSS-PA-PKG-M3G |
-| LiteralBoolean | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
-| LiteralExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
-| LiteralInfinity | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
-| LiteralInteger | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
-| LiteralRational | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
-| LiteralString | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| LiteralBoolean | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
+| LiteralExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
+| LiteralInfinity | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
+| LiteralInteger | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
+| LiteralRational | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
+| LiteralString | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | LoopActionUsage † | SysML::Systems::Actions | Out | NA | NA |
 | Membership | KerML::Root::Namespaces | In | SSS-PA-PKG-H6T, SSS-PA-PKG-Q1M | SSS-PA-ELEM-O2K |
 | MembershipExpose | SysML::Systems::Views | In | SSS-PA-VIS-K9R | SSS-PA-ELEM-O2K |
 | MembershipImport | KerML::Root::Namespaces | In | SSS-PA-PKG-D4N, SSS-PA-PKG-M5P, SSS-PA-PKG-X1J | SSS-PA-PKG-L6D, SSS-PA-PKG-X2K |
 | MergeNode | SysML::Systems::Actions | In | SSS-PA-BEH-WG5 | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
 | Metaclass | KerML::Kernel::Metadata | Out | - | - |
-| MetadataAccessExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| MetadataAccessExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | MetadataDefinition | SysML::Systems::Metadata | In | SSS-PA-META-K7R | SSS-PA-META-R9V |
 | MetadataFeature | KerML::Kernel::Metadata | In | SSS-PA-META-K7R, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
 | MetadataUsage | SysML::Systems::Metadata | In | SSS-PA-META-W3D, SSS-PA-META-N8F, SSS-PA-META-H2T, SSS-PA-META-D5J, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-J1B, SSS-PA-META-V8G, SSS-PT-PUB-B9G | SSS-PA-META-R9V, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-V8G, SSS-PA-VIS-B4F |
 | Multiplicity | KerML::Core::Types | In | SSS-PA-ELEM-V7K, SSS-PA-ELEM-O1Q, SSS-PA-ELEM-V3W | SSS-PA-VIS-U7M |
-| MultiplicityRange | KerML::Kernel::Multiplicities | In | SSS-PA-ELEM-V7K, SSS-PA-ELEM-N8P, SSS-FB-ELEM-B2R | SSS-PA-VIS-U7M |
-| Namespace | KerML::Root::Namespaces | In | SSS-PA-PKG-H6T, SSS-PA-PKG-V8N, SSS-PA-PKG-T5C, SSS-FB-PKG-W2M, SSS-FB-PKG-F4H, SSS-PA-PKG-C7B, SSS-PA-ELEM-R3G, SSS-PA-ELEM-M9T | SSS-PA-NAV-F3K, SSS-PA-PKG-V8N, SSS-PA-PKG-T5C, SSS-PA-NAV-S6P, SSS-PA-NAV-B8D |
+| MultiplicityRange | KerML::Kernel::Multiplicities | In | SSS-PA-ELEM-V7K, SSS-PA-ELEM-N8P, SSS-FB-VALID-CNF | SSS-PA-VIS-U7M |
+| Namespace | KerML::Root::Namespaces | In | SSS-PA-PKG-H6T, SSS-PA-PKG-V8N, SSS-PA-PKG-T5C, SSS-FB-PKG-W2M, SSS-FB-VALID-CNF, SSS-PA-PKG-C7B, SSS-PA-ELEM-R3G, SSS-PA-ELEM-M9T | SSS-PA-NAV-F3K, SSS-PA-PKG-V8N, SSS-PA-PKG-T5C, SSS-PA-NAV-S6P, SSS-PA-NAV-B8D |
 | NamespaceExpose | SysML::Systems::Views | In | SSS-PA-VIS-K9R | SSS-PA-ELEM-O2K |
 | NamespaceImport | KerML::Root::Namespaces | In | SSS-PA-PKG-D4N, SSS-PA-PKG-N4J, SSS-PA-PKG-R9K, SSS-PA-PKG-X1J | SSS-PA-PKG-L6D, SSS-PA-PKG-X2K |
-| NullExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| NullExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | ObjectiveMembership | SysML::Systems::Cases | In | SSS-PA-AV-O9U | SSS-PA-ELEM-O2K |
 | OccurrenceDefinition | SysML::Systems::Occurrences | In | SSS-PA-OCC-H0, SSS-PA-OCC-D1, SSS-PA-OCC-L3, SSS-PA-OCC-T5, SSS-PA-OCC-S6, SSS-PA-OCC-V8, SSS-PA-OCC-I7 | SSS-PA-OCC-R9 |
 | OccurrenceUsage | SysML::Systems::Occurrences | In | SSS-PA-OCC-U2, SSS-PA-OCC-T5, SSS-PA-OCC-S6, SSS-PA-OCC-V8, SSS-PA-OCC-I7 | SSS-PA-OCC-R9 |
-| OperatorExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| OperatorExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | OwningMembership | KerML::Root::Namespaces | In | NA | NA |
 | Package | KerML::Kernel::Packages | In | SSS-PA-PKG-R8W, SSS-PA-PKG-V2J, SSS-PA-PKG-M3G | SSS-PA-PKG-L6D |
 | ParameterMembership | KerML::Kernel::Behaviors | In | SSS-PA-ELEM-P6Q | SSS-PA-ELEM-P6Q, SSS-PA-ELEM-O2K |
@@ -1674,7 +1660,7 @@ Multiple requirement identifiers are comma-separated.
 | PortDefinition | SysML::Systems::Ports | In | SSS-PA-ARCH-5RR | SSS-PA-VIS-W3T |
 | PortUsage | SysML::Systems::Ports | In | SSS-PA-ARCH-5RR, SSS-PA-ARCH-K7M, SSS-PA-VAR-K3T | SSS-PA-VIS-W3T |
 | Predicate | KerML::Kernel::Functions | Out | - | - |
-| Redefinition | KerML::Core::Features | In | SSS-PA-ELEM-H9W, SSS-FB-ELEM-T7B | SSS-PA-ELEM-D8K |
+| Redefinition | KerML::Core::Features | In | SSS-PA-ELEM-H9W, SSS-FB-VALID-CNF | SSS-PA-ELEM-D8K |
 | ReferenceSubsetting | KerML::Core::Features | In | SSS-PA-ELEM-R4S | SSS-PA-ELEM-D8K |
 | ReferenceUsage | SysML::Systems::DefinitionAndUsage | In | SSS-PA-ELEM-RU1, SSS-PA-ELEM-U3G | SSS-PA-ELEM-RU2 |
 | Relationship † | KerML::Root::Elements | In | SSS-PA-TRACE-8ZB, SSS-PA-TRACE-V8K | SSS-PA-TRACE-RX1, SSS-PA-TRACE-IKS |
@@ -1687,9 +1673,9 @@ Multiple requirement identifiers are comma-separated.
 | ResultExpressionMembership | KerML::Kernel::Functions | In | SSS-PA-ELEM-X8T | SSS-PA-ELEM-X8T, SSS-PA-ELEM-O2K |
 | ReturnParameterMembership | KerML::Kernel::Functions | In | SSS-PA-ELEM-R7S | SSS-PA-ELEM-R7S, SSS-PA-ELEM-O2K |
 | SatisfyRequirementUsage | SysML::Systems::Requirements | In | SSS-PA-TRACE-Q72 | SSS-PA-VIS-C3D, SSS-PA-REQ-RF2 |
-| SelectExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| SelectExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | SendActionUsage | SysML::Systems::Actions | In | SSS-PA-BEH-S2N | SSS-PA-VIS-M1Z |
-| Specialization | KerML::Core::Types | In | SSS-PA-ELEM-M4J, SSS-PA-ELEM-L9P, SSS-FB-ELEM-C6V | SSS-PA-ELEM-R6F, SSS-PA-ELEM-D8K |
+| Specialization | KerML::Core::Types | In | SSS-PA-ELEM-M4J, SSS-PA-ELEM-L9P, SSS-FB-VALID-CNF | SSS-PA-ELEM-R6F, SSS-PA-ELEM-D8K |
 | StakeholderMembership | SysML::Systems::Requirements | In | SSS-PA-REQ-H6W | SSS-PA-REQ-RF1 |
 | StateDefinition | SysML::Systems::States | In | SSS-PA-BEH-RPK, SSS-PT-DATA-492, SSS-PA-BEH-SD1, SSS-PA-BEH-SC2, SSS-PA-BEH-SP3, SSS-FB-BEH-SV8 | SSS-PA-VIS-DP2, SSS-PA-VIS-B8V, SSS-PA-VIS-SH7 |
 | StateSubactionMembership | SysML::Systems::States | In | SSS-PA-BEH-SE4 | SSS-PA-VIS-SH7 |
@@ -1707,7 +1693,7 @@ Multiple requirement identifiers are comma-separated.
 | TextualRepresentation | KerML::Root::Annotations | In | SSS-PA-CMT-Y6L, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
 | TransitionFeatureMembership | SysML::Systems::States | In | SSS-PA-BEH-TG6 | SSS-PA-VIS-SH7 |
 | TransitionUsage | SysML::Systems::States | In | SSS-PA-BEH-RPK, SSS-PA-BEH-TR5, SSS-PA-BEH-TG6, SSS-FB-BEH-SV8 | SSS-PA-VIS-B8V, SSS-PA-VIS-SH7 |
-| TriggerInvocationExpression | SysML::Systems::Actions | In | SSS-PA-EXPR-X1A, SSS-FB-EXPR-X4D | SSS-PA-EXPR-X3C |
+| TriggerInvocationExpression | SysML::Systems::Actions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | Type | KerML::Core::Types | Out | - | - |
 | TypeFeaturing | KerML::Core::Features | In | SSS-PA-ARCH-N5W | SSS-PA-TRACE-RX1 |
 | Unioning | KerML::Core::Types | Deferred | TBC | TBC |
