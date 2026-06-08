@@ -1564,7 +1564,7 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | Import | In | SSS-PA-PKG-D4N, SSS-PA-PKG-A7Q, SSS-PA-PKG-H3W, SSS-PA-PKG-X8C, SSS-PA-PKG-X1J, SSS-PA-PKG-X2K, SSS-PA-PKG-X3L, SSS-PA-PKG-X4M, SSS-FB-PKG-B3M | SSS-PA-PKG-L6D, SSS-PA-PKG-X2K |
 | NamespaceImport | In | SSS-PA-PKG-D4N, SSS-PA-PKG-N4J, SSS-PA-PKG-R9K, SSS-PA-PKG-X1J | SSS-PA-PKG-L6D, SSS-PA-PKG-X2K |
 | MembershipImport | In | SSS-PA-PKG-D4N, SSS-PA-PKG-M5P, SSS-PA-PKG-X1J | SSS-PA-PKG-L6D, SSS-PA-PKG-X2K |
-| AliasMembership | In | SSS-PA-PKG-Q1M | SSS-PA-ELEM-O2K |
+| AliasMember | In | SSS-PA-PKG-Q1M | SSS-PA-ELEM-O2K |
 
 ### 8.2 KerML — Core
 
@@ -1664,8 +1664,7 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | CalculationUsage | In | SSS-PT-ANALYSIS-KU4, SSS-PT-ANALYSIS-KE6 | SSS-PA-EXPR-X3C, SSS-PA-EXPR-X5E |
 | ConstraintDefinition | In | SSS-PA-AV-LSX, SSS-PT-ANALYSIS-NWL | SSS-PA-EXPR-X1A, SSS-PA-EXPR-X3C |
 | ConstraintUsage | In | SSS-PA-AV-CU3, SSS-PA-AV-CN5, SSS-PT-ANALYSIS-NWL, SSS-PT-ANALYSIS-EAJ, SSS-PA-SCRIPT-K8B | SSS-PT-ANALYSIS-EAJ, SSS-PA-EXPR-X3C |
-| AssumeConstraintUsage | In | SSS-PA-REQ-DS6 | SSS-PA-REQ-DS6, SSS-PA-REQ-RF2 |
-| RequireConstraintUsage | In | SSS-PA-REQ-DS6 | SSS-PA-REQ-DS6, SSS-PA-REQ-RF2 |
+| RequirementConstraintUsage | In | SSS-PA-REQ-DS6 | SSS-PA-REQ-DS6, SSS-PA-REQ-RF2 |
 | Expression | In | SSS-PA-EXPR-X1A, SSS-PA-EXPR-X2B, SSS-FB-EXPR-X4D, SSS-PA-EXPR-X5E | SSS-PA-EXPR-X3C |
 | FeatureReferenceExpression | In | SSS-PA-EXPR-X2B | SSS-PA-EXPR-X3C |
 
@@ -1711,7 +1710,7 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | ViewpointUsage | In | SSS-PA-VIS-T2V | SSS-PA-VIS-T2V |
 | RenderingDefinition | In | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 |
 | RenderingUsage | In | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 |
-| ExposeMembership | In | SSS-PA-VIS-K9R | SSS-PA-ELEM-O2K |
+| Expose | In | SSS-PA-VIS-K9R | SSS-PA-ELEM-O2K |
 
 ### 8.11 SysML v2 — Metadata
 
@@ -1726,7 +1725,6 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | --- | --- | --- | --- |
 | OccurrenceDefinition | In | SSS-PA-OCC-H0, SSS-PA-OCC-D1, SSS-PA-OCC-L3, SSS-PA-OCC-T5, SSS-PA-OCC-S6, SSS-PA-OCC-V8 | SSS-PA-OCC-R9 |
 | OccurrenceUsage | In | SSS-PA-OCC-U2, SSS-PA-OCC-T5, SSS-PA-OCC-S6, SSS-PA-OCC-V8 | SSS-PA-OCC-R9 |
-| LifeClass | Deferred | TBC | TBC |
 | IndividualDefinition | In | SSS-PA-OCC-I7 | SSS-PA-OCC-R9 |
 | IndividualUsage | In | SSS-PA-OCC-I7 | SSS-PA-OCC-R9 |
 
@@ -1743,7 +1741,7 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | --- | --- | --- | --- |
 | Package (SysML) | In | SSS-PA-PKG-R8W, SSS-PA-PKG-V2J, SSS-PA-PKG-M3G | SSS-PA-PKG-L6D |
 | LibraryPackage (SysML) | In | SSS-PA-QU-G1W, SSS-PA-IE-OYJ, SSS-PA-PKG-P8D, SSS-PA-PKG-S1E, SSS-FB-PKG-L2F, SSS-PA-PKG-F8M, SSS-FG-PKG-P7L | SSS-PA-PKG-V4H, SSS-PA-PKG-M3G |
-| FilteredImport | In | SSS-PA-PKG-J3W | SSS-PA-PKG-L6D |
+| FilterMembership | In | SSS-PA-PKG-J3W | SSS-PA-PKG-L6D |
 | VariantMembership | In | SSS-PA-VAR-R7W, SSS-PA-VAR-J9K, SSS-PA-VAR-F1P | SSS-PA-VAR-M8F, SSS-PA-VAR-H2J |
 | VariationMembership | In | SSS-PA-VAR-R7W | SSS-PA-VAR-H2J, SSS-PA-VAR-M8F |
 
@@ -1752,4 +1750,4 @@ A concept is fully covered only when both its *Abstract syntax* and *UX / notati
 | Concept | Scope | Abstract syntax | UX / notation |
 | --- | --- | --- | --- |
 | Dependency | In | SSS-PA-TRACE-V8K | SSS-PA-TRACE-RX1, SSS-PA-TRACE-IKS |
-| DeriveRequirementUsage | In | SSS-PA-REQ-V4J | SSS-PA-REQ-RF2 |
+| Derivation | In | SSS-PA-REQ-V4J | SSS-PA-REQ-RF2 |
