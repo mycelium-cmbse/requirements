@@ -279,8 +279,6 @@ The following lifecycle states are defined (TBC):
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-
-| SSS-PA-STATE-H5J | All | Mycelium Fabric shall reject all create, modify, and delete operations on model elements when "the project is in the Review or Archived state." | - | H |  |
 | SSS-PA-STATE-M8T | PA | Mycelium Bloom shall transition a project from its current lifecycle state to any other lifecycle state (Preparation, Open, Review, Archived) when "the Project Administrator selects a target lifecycle state for the project." | - | H |  |
 | SSS-PA-STATE-F3B | PA, OA | Mycelium Bloom shall create a new project pre-populated with the content of an Archived project when "a user creates a new project using an archived project as a template." | - | H |  |
 | SSS-PA-STATE-R6G | PA, PT, VW | Mycelium Bloom shall display a visual indicator (e.g. banner, badge, or icon) showing the project's current lifecycle state (Preparation, Open, Review, Archived) when "a user views a project." | - | H |  |
@@ -1280,6 +1278,7 @@ User identity, credentials, and session management are handled by Mycelium Fabri
 | SSS-FB-IA-R4X | All | Mycelium Fabric shall restrict installation-wide management API endpoints to users with the Installation Administrator role when "a user attempts to access installation administration operations." | - |  |  |
 | SSS-FB-IA-J6C | All | Mycelium Fabric shall assign the Installation Administrator role to the first user who completes the initial setup on an on-premise deployment when "the installation has no existing Installation Administrator." | - |  |  |
 | SSS-FB-IA-Y2M | IA | Mycelium Fabric shall record all installation-wide administrative actions in an immutable audit log when "an Installation Administrator performs a create, update, delete, suspend, or reactivate operation on a user or organization." | - |  |  |
+| SSS-PA-STATE-H5J | All | Mycelium Fabric shall reject all create, modify, and delete operations on model elements when "the project is in the Review or Archived state." | - | H |  |
 
 ##### 5.2.2.3 Ownership enforcement
 
