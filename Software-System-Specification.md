@@ -289,9 +289,9 @@ The following lifecycle states are defined (TBC):
 
 Mycelium is a multi-user platform: in any project, several engineers from different ownerships are typically working on the model at the same time. The requirements in this section cover how Mycelium Bloom and Mycelium Fabric make collaboration *live*, visible, immediate, and lock-free, so that every user has continuous awareness of who else is in the project, what they are working on, and what is changing.
 
-###### 5.2.1.4a Project-level user presence
+###### 5.2.1.5a Project-level user presence
 
-When a user opens a project, they should see at a glance who else is currently working in the same project — without having to navigate to a separate panel. This is the equivalent of the avatar cluster Microsoft Word and Google Docs show in a shared document's title bar: a small, always-visible indication that "I am not alone here". The requirements in this subsection cover the **project-level** presence indicator only.
+When a user opens a project, they should see at a glance who else is currently working in the same project, without having to navigate to a separate panel. This is the equivalent of the avatar cluster Microsoft Word and Google Docs show in a shared document's title bar: a small, always-visible indication that "I am not alone here". The requirements in this subsection cover the **project-level** presence indicator only.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
@@ -303,9 +303,7 @@ When a user opens a project, they should see at a glance who else is currently w
 | SSS-CC-PRESENCE-G1R | All | Mycelium Bloom shall visually distinguish the local user's own entry in the project presence indicator (e.g. labelled "You" or rendered in a distinct slot) when "the project presence indicator includes the local user." | - | M |  |
 | SSS-CC-PRESENCE-H6T | All | Mycelium Fabric shall publish a project presence event to all clients connected to a project when "an Account connects to or disconnects from the project." | - | H |  |
 
----
-
-###### 5.2.1.4b Deep linking and sharing
+###### 5.2.1.5b Deep linking and sharing
 
 Engineers need to share specific surfaces of the model — a part, a requirement, a diagram, or an element pinned to a particular view — by copying a URL into email, chat, a comment, or a browser bookmark. The recipient pastes the URL and lands directly on that surface, signed in if necessary. The requirements in this section cover URL addressability of every navigable surface, an in-app "copy link" affordance, and the resolution behavior when a URL is opened (including stability across renames, scoping to a specific view, and graceful handling of missing or inaccessible targets). These requirements are also the technical foundation for future external integrations (chat, email, third-party notification routing) that embed Mycelium URLs.
 
@@ -320,9 +318,7 @@ Engineers need to share specific surfaces of the model — a part, a requirement
 | SSS-CC-LINK-H4T | All | Mycelium Bloom shall accept a URL that scopes a model element to a specific view, open that view, and select and center the addressed element when "a user opens a URL combining a view identifier and an element identifier." | - | M |  |
 | SSS-CC-LINK-J9W | All | Mycelium Bloom shall display an informative message indicating whether the target was deleted, moved, or is inaccessible due to permissions when "a user opens a Mycelium URL whose target cannot be resolved or is not accessible." | - | M |  |
 
----
-
-###### 5.2.1.4c Live model updates
+###### 5.2.1.5c Live model updates
 
 When user A edits the model, user B should see the change in near real-time without manually refreshing. Mycelium Bloom listens for change notifications from the backend and updates open views accordingly. The requirements in this section cover the UI behavior on receipt of live updates, including conflict indicators and preservation of the user's editing context.
 
@@ -331,11 +327,9 @@ When user A edits the model, user B should see the change in near real-time with
 | SSS-CC-LIVE-R4K | All | Mycelium Bloom shall update the hierarchical browser, detail panels, and tabular browsers in near real-time to reflect changes committed by other users when "Mycelium Fabric delivers a model change notification." | - | H |  |
 | SSS-CC-LIVE-W7N | All | Mycelium Bloom shall update all open diagrams in near real-time to reflect changes to model elements committed by other users when "a diagram contains elements that have been modified by another user." | - | H |  |
 | SSS-CC-LIVE-H3D | All | Mycelium Bloom shall display a visual indicator (e.g. highlight, flash, or badge) on model elements that have been modified by another user when "a model change notification is received for an element visible in the current view." | - | H |  |
-| SSS-CC-LIVE-M6J | All | Mycelium Bloom shall display a notification summary indicating the number and nature of changes made by other users when "one or more model change notifications are received while the user is working." | - | H |  |
+| SSS-CC-LIVE-M6J | All | Mycelium Bloom shall display a notification summary indicating the number and nature of changes made by other users when "one or more model change notifications are received while the user is working." | - | M |  |
 | SSS-CC-LIVE-T9F | PA, PT | Mycelium Bloom shall present a conflict indicator when the current user has uncommitted local changes to an element that another user has also modified and committed when "a model change notification is received for an element with pending local edits." | - | H |  |
 | SSS-CC-LIVE-K2B | All | Mycelium Bloom shall maintain the user's current scroll position, selection, and editing state when applying live model updates from other users when "the UI refreshes in response to incoming model changes." | - | H |  |
-
----
 
 ##### 5.2.1.6 Change persistence
 
