@@ -1133,7 +1133,7 @@ SysML v2 defines Comment as an annotating element with a textual body that can d
 | SSS-PA-CMT-H3D | PA, PT | Mycelium Bloom shall edit and delete Comments and Documentation owned by the user's Ownership when "a user modifies or removes a comment or documentation entry." | KerML 7.4 | H |  |
 | SSS-PA-CMT-M6J | PA, PT, VW | Mycelium Bloom shall display all Comments and Documentation associated with a model element in the detail panel, showing the text body, author, and creation date, when "a user views a model element's properties." | KerML 7.4 | H |  |
 | SSS-PA-CMT-T9F | PA, PT, VW | Mycelium Bloom shall indicate in the model browser that an element has Comments or Documentation attached using a visual indicator (e.g. icon or badge) when "an element has one or more Comments or Documentation entries." | KerML 7.4 | H |  |
-| SSS-PA-CMT-K2B | PA, PT | Mycelium Bloom shall format Comment and Documentation text using rich text (bold, italic, lists, links) when "a user edits the body of a Comment or Documentation element." | KerML 7.4 |  |  |
+| SSS-PA-CMT-K2B | PA, PT | Mycelium Bloom shall format Comment and Documentation text using rich text (bold, italic, lists, links) when "a user edits the body of a Comment or Documentation element." | KerML 7.4 | M |  |
 | SSS-PA-CMT-D5P | PA, PT | Mycelium Bloom shall annotate a single Comment on multiple model elements simultaneously when "a user creates a comment and selects multiple annotated elements." | KerML 7.4.2 | H |  |
 | SSS-PA-CMT-N8V | PA, PT | Mycelium Bloom shall specify an optional locale (e.g. "en", "fr", "de") on a Comment or Documentation element when "a user sets the language of a comment or documentation entry." | KerML 7.4.2 | L |  |
 | SSS-PA-CMT-Y6L | PA, PT | Mycelium Bloom shall create a Textual Representation on a model element, embedding language-specific text (e.g. a code snippet, formula, or DSL expression) tagged with the language identifier, when "a user adds a textual representation to an element and selects the language." | KerML 7.4.4 | M |  |
@@ -1214,7 +1214,7 @@ Mycelium models are versioned like source code. Every change becomes a Commit; a
 | SSS-PA-VC-R8W | PA, PT, VW | Mycelium Bloom shall display the currently active branch name in the application header when "a user is working in a project." | - | H |  |
 | SSS-PA-VC-H4N | PA, PT, VW | Mycelium Bloom shall display a list of all branches in the project with their name, head Commit, creator, and creation date when "a user opens the branch management view." | API 7.2.2 | H |  |
 | SSS-PA-VC-D7J | PA | Mycelium Bloom shall delete a non-default branch when "the Project Administrator initiates branch deletion and confirms the action." | API 7.2.2 | H |  |
-| SSS-PA-VC-M1F | PA, PT, VW | Mycelium Bloom shall display the commit and branch history as a graph visualization with parallel lanes for branches, commit nodes, merge lines, and tag markers when "a user opens the version history graph view." | - |  |  |
+| SSS-PA-VC-M1F | PA, PT, VW | Mycelium Bloom shall display the commit and branch history as a graph visualization with parallel lanes for branches, commit nodes, merge lines, and tag markers when "a user opens the version history graph view." | - | H |  |
 | SSS-PA-VC-W5T | PA, PT, VW | Mycelium Bloom shall display commit metadata (author, date, description, changed element count) in a detail panel when "a user selects a commit node in the version history graph." | API 7.2.3 | H |  |
 | SSS-PA-VC-N9B | PA, PT, VW | Mycelium Bloom shall highlight the active branch and its head Commit in the version history graph when "the version history graph is displayed." | - | H |  |
 | SSS-PA-VC-F2G | PA, PT, VW | Mycelium Bloom shall load the complete model state at a selected historical Commit in read-only mode when "a user selects a Commit other than the head Commit from the version history graph, branch list, or commit history." | API 7.2.3 | H |  |
@@ -1251,8 +1251,8 @@ Mycelium Fabric implements the OMG Systems Modelling API and Services specificat
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-CC-STD-XSS | All | Mycelium Fabric shall implement the OMG Systems Modelling API and Services specification (formal/25-09-04) using the REST/HTTP PSM when "the model server processes any API request." | API 7 |  |  |
-| SSS-CC-EXT-QIN | All | Mycelium Fabric shall expose a REST API compliant with the OMG Systems Modelling API to enable integration with domain-specific tools when "an external tool issues API requests to the model server." | API 7 |  |  |
+| SSS-CC-STD-XSS | All | Mycelium Fabric shall implement the OMG Systems Modelling API and Services specification (formal/25-09-04) using the REST/HTTP PSM when "the model server processes any API request." | API 7 | H |  |
+| SSS-CC-EXT-QIN | All | Mycelium Fabric shall expose a REST API compliant with the OMG Systems Modelling API to enable integration with domain-specific tools when "an external tool issues API requests to the model server." | API 7 | H |  |
 
 ##### 5.2.2.2 Authentication and authorization
 
@@ -1260,12 +1260,12 @@ User identity, credentials, and session management are handled by Mycelium Fabri
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-OA-AUTH-SI7 | All | Mycelium Fabric shall authenticate all user sessions using token-based authentication when "a user submits valid credentials at the login interface." | - |  |  |
-| SSS-OA-AUTH-GIT | All | Mycelium Fabric shall enforce password policies and session expiration rules when "the Organization Administrator has configured security policies in the authentication settings." | - |  |  |
-| SSS-FB-AUTH-L0Z | All | Mycelium Fabric shall send an invitation to a user to join the organization as a Member when "the Organization Administrator submits an invitation with the target user's identity." | - |  |  |
-| SSS-FB-IA-R4X | All | Mycelium Fabric shall restrict installation-wide management API endpoints to users with the Installation Administrator role when "a user attempts to access installation administration operations." | - |  |  |
-| SSS-FB-IA-J6C | All | Mycelium Fabric shall assign the Installation Administrator role to the first user who completes the initial setup on an on-premise deployment when "the installation has no existing Installation Administrator." | - |  |  |
-| SSS-FB-IA-Y2M | IA | Mycelium Fabric shall record all installation-wide administrative actions in an immutable audit log when "an Installation Administrator performs a create, update, delete, suspend, or reactivate operation on a user or organization." | - |  |  |
+| SSS-OA-AUTH-SI7 | All | Mycelium Fabric shall authenticate all user sessions using token-based authentication when "a user submits valid credentials at the login interface." | - | H |  |
+| SSS-OA-AUTH-GIT | All | Mycelium Fabric shall enforce password policies and session expiration rules when "the Organization Administrator has configured security policies in the authentication settings." | - | H |  |
+| SSS-FB-AUTH-L0Z | All | Mycelium Fabric shall send an invitation to a user to join the organization as a Member when "the Organization Administrator submits an invitation with the target user's identity." | - | H |  |
+| SSS-FB-IA-R4X | All | Mycelium Fabric shall restrict installation-wide management API endpoints to users with the Installation Administrator role when "a user attempts to access installation administration operations." | - | H |  |
+| SSS-FB-IA-J6C | All | Mycelium Fabric shall assign the Installation Administrator role to the first user who completes the initial setup on an on-premise deployment when "the installation has no existing Installation Administrator." | - | H |  |
+| SSS-FB-IA-Y2M | IA | Mycelium Fabric shall record all installation-wide administrative actions in an immutable audit log when "an Installation Administrator performs a create, update, delete, suspend, or reactivate operation on a user or organization." | - | M |  |
 | SSS-PA-STATE-H5J | All | Mycelium Fabric shall reject all create, modify, and delete operations on model elements when "the project is in the Review or Archived state." | - | H |  |
 
 ##### 5.2.2.3 Ownership enforcement
@@ -1274,10 +1274,10 @@ Ownership-based access control is enforced server-side by Mycelium Fabric, Bloom
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-CC-COLLAB-KOR | All | Mycelium Fabric shall enforce ownership-based access control using Owner metadata annotations on model elements when "a user attempts to create, modify, or delete a model element." | - |  |  |
-| SSS-PT-COLLAB-G8G | All | Mycelium Fabric shall prevent modification of elements and attributes not owned by the user when "a Participant attempts to edit an element whose Owner metadata does not match their assigned Ownership." | - |  |  |
-| SSS-FB-ATT-T4X | All | Mycelium Fabric shall enforce ownership-based access control on attachment operations (upload, delete) consistent with the element's Owner metadata when "a user attempts to modify attachments on a model element." | - |  |  |
-| SSS-PT-SUB-R8M | All | Mycelium Fabric shall reject creation of a ParameterSubscription on an AttributeUsage owned by the subscriber's own Ownership when "a Participant attempts to subscribe to an attribute owned by their own Ownership." | - | M |  |
+| SSS-CC-COLLAB-KOR | All | Mycelium Fabric shall enforce ownership-based access control using Owner metadata annotations on model elements when "a user attempts to create, modify, or delete a model element." | - | H |  |
+| SSS-PT-COLLAB-G8G | All | Mycelium Fabric shall prevent modification of elements and attributes not owned by the user when "a Participant attempts to edit an element whose Owner metadata does not match their assigned Ownership." | - | H |  |
+| SSS-FB-ATT-T4X | All | Mycelium Fabric shall enforce ownership-based access control on attachment operations (upload, delete) consistent with the element's Owner metadata when "a user attempts to modify attachments on a model element." | - | H |  |
+| SSS-PT-SUB-R8M | All | Mycelium Fabric shall reject creation of a ParameterSubscription on an AttributeUsage owned by the subscriber's own Ownership when "a Participant attempts to subscribe to an attribute owned by their own Ownership." | - | H |  |
 
 ##### 5.2.2.4 Model Validation and Commit Rejection
 
@@ -1294,7 +1294,7 @@ Mycelium Fabric is responsible for propagating model changes to all connected cl
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-CC-COLLAB-TLB | All | Mycelium Fabric shall propagate model changes to all connected users in near real-time when "a user commits changes to the shared model." | API 7 |  |  |
+| SSS-CC-COLLAB-TLB | All | Mycelium Fabric shall propagate model changes to all connected users in near real-time when "a user commits changes to the shared model." | API 7 | H |  |
 
 ##### 5.2.2.6 Model persistence and versioning
 
@@ -1302,8 +1302,8 @@ Mycelium Fabric persists model data in a relational (TBC) database with auto-gen
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-CC-PERF-6HL | All | Mycelium Fabric shall persist models with up to 50,000 (TBC) elements within a responsive timeframe (target TBD) when "a user commits changes to a model containing up to 50,000 (TBC) elements." | - |  |  |
-| SSS-CC-PERF-WTU | All | Mycelium Fabric shall respond to standard REST API requests within a responsive timeframe (target TBD) when "an external client or the web application issues an API request to the model server." | - |  |  |
+| SSS-CC-PERF-6HL | All | Mycelium Fabric shall persist models with up to 50,000 (TBC) elements within a responsive timeframe (target TBD) when "a user commits changes to a model containing up to 50,000 (TBC) elements." | - | H |  |
+| SSS-CC-PERF-WTU | All | Mycelium Fabric shall respond to standard REST API requests within a responsive timeframe (target TBD) when "an external client or the web application issues an API request to the model server." | - | H |  |
 
 ##### 5.2.2.7 Concurrent design support
 
@@ -1311,7 +1311,7 @@ Lock-free collaboration is fundamental to concurrent design, no user can block o
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-CC-COLLAB-62C | All | Mycelium Fabric shall support owner/ownership-based lock-free collaborative modeling where no single user can block others from updating the model when "multiple users concurrently modify different elements within the same project." | - |  |  |
+| SSS-CC-COLLAB-62C | All | Mycelium Fabric shall support owner/ownership-based lock-free collaborative modeling where no single user can block others from updating the model when "multiple users concurrently modify different elements within the same project." | - | H |  |
 
 ---
 
@@ -1323,47 +1323,47 @@ Mycelium Forge is the package registry for the Mycelium ecosystem. It takes its 
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-FG-REG-K1A | - | Mycelium Forge shall accept and distribute every published SysML v2 library as a single **kpar** file (KerML Project Archive, defined in KerML clause 10.3) whose structure, manifest, and metadata conform to the kpar specification, when "a client publishes or retrieves a library." | KerML 7.4.14, 8.3.4.13.3 |  |  |
-| SSS-FG-REG-S2B | - | Mycelium Forge shall assign every package version a SemVer 2.0.0 string of the form `MAJOR.MINOR.PATCH[-prerelease][+build]` and shall reject any publish request whose version string is not SemVer-compliant, whose version is not strictly greater than every previously published version of the same package, or whose major version change is not accompanied by release notes describing the breaking change, when "an authenticated client submits a publish request." | - |  |  |
-| SSS-FG-REG-I3C | - | Mycelium Forge shall treat every accepted `{package identifier, version}` pair as immutable: once published, its kpar content and its manifest shall not be mutated. A correction to a published version requires publishing a new version, when "a client attempts to republish an existing `{package identifier, version}`." | - |  |  |
-| SSS-FG-REG-U4D | - | Mycelium Forge shall support unlisting a published version, hiding it from search results and from new-install resolution while continuing to serve it on direct download to existing consumers, without deleting its content, when "an authenticated publisher unlists one of their package versions." | - |  |  |
-| SSS-FG-REG-A5E | - | Mycelium Forge shall expose an HTTP API endpoint that accepts a kpar file and publisher credentials and atomically registers the kpar either as the first version of a new package or as a new version of an existing package, returning the assigned download URL and the canonical manifest, when "an authenticated client pushes a kpar to the publish endpoint." | - |  |  |
-| SSS-FG-REG-D6F | - | Mycelium Forge shall expose HTTP API endpoints returning the kpar content of a package by `{package identifier, version}` and, given a package identifier alone, the kpar content of the latest non-prerelease, non-unlisted version of that package, when "a client requests a package from the download endpoint." | - |  |  |
-| SSS-FG-REG-Q7G | - | Mycelium Forge shall expose an HTTP search API accepting free-text query terms matched against package identifier, display name, description, tags, authors, and the indexed content of the library (element names, qualified names, Metadata Definitions, Quantity Kinds), with paginated results, configurable sort (relevance, downloads, last-updated, name), and optional filters on license, author, tag, and updated-since timestamp, when "a client queries the search endpoint." | - |  |  |
-| SSS-FG-REG-M8H | - | Mycelium Forge shall expose HTTP API endpoints returning the full manifest, the complete version list, the dependency graph, and the per-version release notes of a package without requiring the kpar content itself to be downloaded, when "a client queries package metadata." | - |  |  |
-| SSS-FG-REG-W9J | IA, OA, PA, PT, VW | Mycelium Forge shall provide a public web-based user interface, reachable by unauthenticated and authenticated users, that supports searching for packages by free-text query matched against package identifier, display name, description, tags, and indexed library content, with paginated and sortable results, when "a user visits the Forge web interface." | - |  |  |
-| SSS-FG-REG-X1K | IA, OA, PA, PT, VW | Mycelium Forge's web interface shall present, for each package, a detail page displaying the package identifier, display name, description, README, authors, license, tags, the full version history with per-version release notes and publication dates, dependency declarations, download counts, the latest stable version, and a direct download link for each listed version, when "a user opens a package in the Forge web interface." | - |  |  |
-| SSS-FG-REG-Y2L | IA, OA, PA | Mycelium Forge shall authenticate publishing clients using revocable API keys issued from the user's Mycelium account through the Forge web interface, scoping each key to a publisher and to a permitted set of operations (publish, unlist, manage-keys), when "a client submits a publish, unlist, or key-management request." Read access to public packages through the web interface, HTTP API, and download endpoint shall be permitted without authentication. | - |  |  |
-| SSS-FG-REG-C3M | - | Mycelium shall provide a first-party Forge client library, consumable by Mycelium Bloom, by CI/CD pipelines, and by third-party tooling, that wraps every Forge HTTP API endpoint and exposes programmatic operations for searching, retrieving metadata, listing versions, downloading a kpar, publishing a kpar, unlisting a version, and managing API credentials, when "a tool integrates with Mycelium Forge." | - |  |  |
-| SSS-PA-REG-B4N | PA, PT | Mycelium Bloom shall provide a Forge package picker that issues searches against Mycelium Forge via the first-party Forge client library, presents matching packages with their description, latest stable version, authors, license, and tags, and, upon confirmation, imports the selected package(s) into the current project through the auto-import flow defined by `SSS-PA-PKG-F8M`, `SSS-PA-PKG-X1J`, and `SSS-PA-PKG-X2K`, when "a user opens the 'Import from Forge' dialog." | KerML 7.2.5 |  |  |
-| SSS-PA-REG-V5P | PA, PT, VW | Mycelium Bloom shall display, per project, the list of Forge packages currently imported, showing each package's pinned version, latest available stable version, publication date, authors, license, and an explicit 'Update' action when a newer compatible stable version is available, when "a user views the project's Forge dependencies." | KerML 7.4.14 |  |  |
-| SSS-PA-REG-N6Q | PA, PT | Mycelium Bloom shall notify the Project Administrator, without automatically upgrading, whenever any Forge package imported into the current project has a newer non-prerelease, non-unlisted version available, when "Mycelium Bloom's Forge client detects an update for any imported package during a session." | - |  |  |
+| SSS-FG-REG-K1A | - | Mycelium Forge shall accept and distribute every published SysML v2 library as a single **kpar** file (KerML Project Archive, defined in KerML clause 10.3) whose structure, manifest, and metadata conform to the kpar specification, when "a client publishes or retrieves a library." | KerML 7.4.14, 8.3.4.13.3 | H |  |
+| SSS-FG-REG-S2B | - | Mycelium Forge shall assign every package version a SemVer 2.0.0 string of the form `MAJOR.MINOR.PATCH[-prerelease][+build]` and shall reject any publish request whose version string is not SemVer-compliant, whose version is not strictly greater than every previously published version of the same package, or whose major version change is not accompanied by release notes describing the breaking change, when "an authenticated client submits a publish request." | - | H |  |
+| SSS-FG-REG-I3C | - | Mycelium Forge shall treat every accepted `{package identifier, version}` pair as immutable: once published, its kpar content and its manifest shall not be mutated. A correction to a published version requires publishing a new version, when "a client attempts to republish an existing `{package identifier, version}`." | - | H |  |
+| SSS-FG-REG-U4D | - | Mycelium Forge shall support unlisting a published version, hiding it from search results and from new-install resolution while continuing to serve it on direct download to existing consumers, without deleting its content, when "an authenticated publisher unlists one of their package versions." | - | M |  |
+| SSS-FG-REG-A5E | - | Mycelium Forge shall expose an HTTP API endpoint that accepts a kpar file and publisher credentials and atomically registers the kpar either as the first version of a new package or as a new version of an existing package, returning the assigned download URL and the canonical manifest, when "an authenticated client pushes a kpar to the publish endpoint." | - | H |  |
+| SSS-FG-REG-D6F | - | Mycelium Forge shall expose HTTP API endpoints returning the kpar content of a package by `{package identifier, version}` and, given a package identifier alone, the kpar content of the latest non-prerelease, non-unlisted version of that package, when "a client requests a package from the download endpoint." | - | H |  |
+| SSS-FG-REG-Q7G | - | Mycelium Forge shall expose an HTTP search API accepting free-text query terms matched against package identifier, display name, description, tags, authors, and the indexed content of the library (element names, qualified names, Metadata Definitions, Quantity Kinds), with paginated results, configurable sort (relevance, downloads, last-updated, name), and optional filters on license, author, tag, and updated-since timestamp, when "a client queries the search endpoint." | - | H |  |
+| SSS-FG-REG-M8H | - | Mycelium Forge shall expose HTTP API endpoints returning the full manifest, the complete version list, the dependency graph, and the per-version release notes of a package without requiring the kpar content itself to be downloaded, when "a client queries package metadata." | - | H |  |
+| SSS-FG-REG-W9J | IA, OA, PA, PT, VW | Mycelium Forge shall provide a public web-based user interface, reachable by unauthenticated and authenticated users, that supports searching for packages by free-text query matched against package identifier, display name, description, tags, and indexed library content, with paginated and sortable results, when "a user visits the Forge web interface." | - | H |  |
+| SSS-FG-REG-X1K | IA, OA, PA, PT, VW | Mycelium Forge's web interface shall present, for each package, a detail page displaying the package identifier, display name, description, README, authors, license, tags, the full version history with per-version release notes and publication dates, dependency declarations, download counts, the latest stable version, and a direct download link for each listed version, when "a user opens a package in the Forge web interface." | - | H |  |
+| SSS-FG-REG-Y2L | IA, OA, PA | Mycelium Forge shall authenticate publishing clients using revocable API keys issued from the user's Mycelium account through the Forge web interface, scoping each key to a publisher and to a permitted set of operations (publish, unlist, manage-keys), when "a client submits a publish, unlist, or key-management request." Read access to public packages through the web interface, HTTP API, and download endpoint shall be permitted without authentication. | - | H |  |
+| SSS-FG-REG-C3M | - | Mycelium shall provide a first-party Forge client library, consumable by Mycelium Bloom, by CI/CD pipelines, and by third-party tooling, that wraps every Forge HTTP API endpoint and exposes programmatic operations for searching, retrieving metadata, listing versions, downloading a kpar, publishing a kpar, unlisting a version, and managing API credentials, when "a tool integrates with Mycelium Forge." | - | H |  |
+| SSS-PA-REG-B4N | PA, PT | Mycelium Bloom shall provide a Forge package picker that issues searches against Mycelium Forge via the first-party Forge client library, presents matching packages with their description, latest stable version, authors, license, and tags, and, upon confirmation, imports the selected package(s) into the current project through the auto-import flow defined by `SSS-PA-PKG-F8M`, `SSS-PA-PKG-X1J`, and `SSS-PA-PKG-X2K`, when "a user opens the 'Import from Forge' dialog." | KerML 7.2.5 | H |  |
+| SSS-PA-REG-V5P | PA, PT, VW | Mycelium Bloom shall display, per project, the list of Forge packages currently imported, showing each package's pinned version, latest available stable version, publication date, authors, license, and an explicit 'Update' action when a newer compatible stable version is available, when "a user views the project's Forge dependencies." | KerML 7.4.14 | H |  |
+| SSS-PA-REG-N6Q | PA, PT | Mycelium Bloom shall notify the Project Administrator, without automatically upgrading, whenever any Forge package imported into the current project has a newer non-prerelease, non-unlisted version available, when "Mycelium Bloom's Forge client detects an update for any imported package during a session." | - | M |  |
 
 ##### 5.2.3.2 Library management
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-IE-OYJ | PA | Mycelium Forge shall provide standard SysML v2 libraries (e.g. Quantities and Units, standard view definitions) for import into a project when "the Project Administrator selects one or more standard libraries for import." | SysML 9.8 |  |  |
+| SSS-PA-IE-OYJ | PA | Mycelium Forge shall provide standard SysML v2 libraries (e.g. Quantities and Units, standard view definitions) for import into a project when "the Project Administrator selects one or more standard libraries for import." | SysML 9.8 | H |  |
 | SSS-FG-PKG-P7L | - | Mycelium Forge shall publish a LibraryPackage as a versioned, downloadable package (including its metadata, content, and transitive library dependencies) when "a user or CI pipeline submits a LibraryPackage for publication to Mycelium Forge." | - | H |  |
 
 ##### 5.2.3.3 Authentication and authorization
 
-Mycelium Forge reuses the identity plumbing that Mycelium Fabric already provides, Keycloak-backed Mycelium Accounts and Fabric Organizations, and layers a Forge-specific per-package role model on top. A package has a set of Maintainers drawn from Accounts and Organizations; at least one individual-Account Owner must always exist; ownership is transferable between Accounts and Organizations with explicit acceptance by the receiving party.
+Mycelium Forge reuses the identity plumbing that Mycelium Fabric already provides, external identity provider backed Mycelium Accounts and Fabric Organizations, and layers a Forge-specific per-package role model on top. A package has a set of Maintainers drawn from Accounts and Organizations; at least one individual-Account Owner must always exist; ownership is transferable between Accounts and Organizations with explicit acceptance by the receiving party.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-FG-AUTH-S1A | IA, OA, PA, PT, VW | Mycelium Forge shall authenticate users through the same Keycloak identity provider used by Mycelium Fabric, accepting a valid Mycelium Account session without requiring Forge-specific registration, when "a user signs in to Mycelium Forge through the web interface, the HTTP API, or the Forge client library." | - |  |  |
-| SSS-FG-AUTH-S2B | - | Mycelium Forge shall use a scoped package identifier of the form `@<scope>/<package-name>`, where `<scope>` resolves to the slug of a Mycelium Account or a Fabric Organization, reserving the unscoped (global) namespace for standard libraries distributed by the Mycelium operator, when "a client publishes, queries, or downloads a package." | - |  |  |
-| SSS-FG-AUTH-M3C | - | Mycelium Forge shall maintain, for every package, a Maintainer set whose entries are Mycelium Accounts and/or Fabric Organizations, each entry holding the role `Owner` or `Maintainer`. An `Owner` may transfer or share ownership, add or remove Maintainers, and unlist or delete versions. A `Maintainer` may publish new versions and unlist versions but shall not modify the Maintainer set. The package's metadata, display name, description, authors, license, tags, dependencies, and release notes, is sourced from the manifest contained in the kpar of each published version and shall not be edited by any role outside of publishing a new version, when "any authenticated request operates on a package's content or ownership." | - |  |  |
-| SSS-FG-AUTH-O4D | - | Mycelium Forge shall reject any operation, removal of a Maintainer, role downgrade, ownership transfer, or Account deletion, that would leave a package with zero individual-Account Owners, and shall require the operation to first install another individual-Account Owner, when "an authenticated client submits a change to a package's Maintainer set or the Mycelium platform deletes an Account that is the last individual Owner of one or more packages." | - |  |  |
-| SSS-FG-AUTH-T5E | - | Mycelium Forge shall transfer or share Ownership of a package only after the receiving Account or the receiving Fabric Organization has explicitly accepted the transfer through the Forge web interface or the Forge client library, leaving the original Maintainer set unchanged until acceptance occurs, when "an Owner initiates a transfer of, or an addition to, a package's Owner set." | - |  |  |
-| SSS-FG-AUTH-G6F | OA | Mycelium Forge shall accept a Fabric Organization as a Maintainer or Owner of a package, granting publish, unlist, and, when the role is `Owner`, ownership-management authority to the Organization's Organization Administrators and to any Organization Member explicitly granted the `Forge Publisher` role by an Organization Administrator, when "an authenticated member of an Organization that holds such a role submits an operation against the package." | - |  |  |
-| SSS-FG-AUTH-P7G | - | Mycelium Forge shall treat a Fabric Organization entry in a package's Maintainer set as a group Owner that does not satisfy the 'at least one individual Owner' invariant of `SSS-FG-AUTH-O4D` on its own; an individual-Account Owner shall remain present alongside any Organization Owner, when "a Maintainer set is established or modified." | - |  |  |
-| SSS-FG-AUTH-R9J | OA, PA | Mycelium Forge shall record every privileged operation on a package, publish, unlist, delete, add/remove Maintainer, role change, ownership transfer, API-key issuance and revocation, in an append-only, tamper-evident audit log entry that identifies the acting Mycelium Account, the scope (if any) the action was taken on behalf of, the timestamp, and the affected package version, and shall make that log retrievable by the package's Owners, when "any such operation occurs." | - |  |  |
+| SSS-FG-AUTH-S1A | IA, OA, PA, PT, VW | Mycelium Forge shall authenticate users through the same external identity provider used by Mycelium Fabric, accepting a valid Mycelium Account session without requiring Forge-specific registration, when "a user signs in to Mycelium Forge through the web interface, the HTTP API, or the Forge client library." | - | H |  |
+| SSS-FG-AUTH-S2B | - | Mycelium Forge shall use a scoped package identifier of the form `@<scope>/<package-name>`, where `<scope>` resolves to the slug of a Mycelium Account or a Fabric Organization, reserving the unscoped (global) namespace for standard libraries distributed by the Mycelium operator, when "a client publishes, queries, or downloads a package." | - | H |  |
+| SSS-FG-AUTH-M3C | - | Mycelium Forge shall maintain, for every package, a Maintainer set whose entries are Mycelium Accounts and/or Fabric Organizations, each entry holding the role `Owner` or `Maintainer`. An `Owner` may transfer or share ownership, add or remove Maintainers, and unlist or delete versions. A `Maintainer` may publish new versions and unlist versions but shall not modify the Maintainer set. The package's metadata, display name, description, authors, license, tags, dependencies, and release notes, is sourced from the manifest contained in the kpar of each published version and shall not be edited by any role outside of publishing a new version, when "any authenticated request operates on a package's content or ownership." | - | H |  |
+| SSS-FG-AUTH-O4D | - | Mycelium Forge shall reject any operation, removal of a Maintainer, role downgrade, ownership transfer, or Account deletion, that would leave a package with zero individual-Account Owners, and shall require the operation to first install another individual-Account Owner, when "an authenticated client submits a change to a package's Maintainer set or the Mycelium platform deletes an Account that is the last individual Owner of one or more packages." | - | H |  |
+| SSS-FG-AUTH-T5E | - | Mycelium Forge shall transfer or share Ownership of a package only after the receiving Account or the receiving Fabric Organization has explicitly accepted the transfer through the Forge web interface or the Forge client library, leaving the original Maintainer set unchanged until acceptance occurs, when "an Owner initiates a transfer of, or an addition to, a package's Owner set." | - | H |  |
+| SSS-FG-AUTH-G6F | OA | Mycelium Forge shall accept a Fabric Organization as a Maintainer or Owner of a package, granting publish, unlist, and, when the role is `Owner`, ownership-management authority to the Organization's Organization Administrators and to any Organization Member explicitly granted the `Forge Publisher` role by an Organization Administrator, when "an authenticated member of an Organization that holds such a role submits an operation against the package." | - | H |  |
+| SSS-FG-AUTH-P7G | - | Mycelium Forge shall treat a Fabric Organization entry in a package's Maintainer set as a group Owner that does not satisfy the 'at least one individual Owner' invariant of `SSS-FG-AUTH-O4D` on its own; an individual-Account Owner shall remain present alongside any Organization Owner, when "a Maintainer set is established or modified." | - | H |  |
+| SSS-FG-AUTH-R9J | OA, PA | Mycelium Forge shall record every privileged operation on a package, publish, unlist, delete, add/remove Maintainer, role change, ownership transfer, API-key issuance and revocation, in an append-only, tamper-evident audit log entry that identifies the acting Mycelium Account, the scope (if any) the action was taken on behalf of, the timestamp, and the affected package version, and shall make that log retrievable by the package's Owners, when "any such operation occurs." | - | M |  |
 
 ### 5.3 System interface requirements
 
-This section specifies the interfaces across the Mycelium software boundary, the protocols, identity providers, data formats, human-machine interfaces, and external service integrations through which Mycelium communicates with the outside world. Each requirement below identifies *that* an interface exists and the standards or versions it is expected to comply with. The detailed bindings, payload schemas, authentication handshakes, error codes, versioning, and backward-compatibility rules, are specified in the Mycelium **Interface Requirements Document (IRD)**, to which this section defers. Where a capability is described in §5.2, that description remains the normative capability requirement and this section only pins the interface contract.
+This section specifies the interfaces across the Mycelium software boundary, the protocols, identity providers, data formats, human-machine interfaces, and external service integrations through which Mycelium communicates with the outside world. Each requirement below identifies *that* an interface exists and the standards or versions it is expected to comply with. Where a capability is described in §5.2, that description remains the normative capability requirement and this section only pins the interface contract.
 
 KerML-only content is handled through the same SysML v2 abstract-syntax channels: because SysML v2 specialises KerML, any KerML instance is representable in the JSON, XMI, and MessagePack payloads accepted under `SSS-CC-EXT-IN1`, `SSS-CC-EXT-IN2`, and `SSS-CC-EXT-IN3`.
 
@@ -1371,34 +1371,30 @@ Interfaces between Mycelium Bloom, Mycelium Fabric, and Mycelium Forge, i.e. bet
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-CC-EXT-AP1 | - | Mycelium Fabric shall expose the OMG Systems Modelling API and Services (formal/25-09-04) as its primary external programmatic interface over HTTPS with TLS 1.2 or later, when "an external client issues API requests to Mycelium Fabric." | API 7 |  |  |
-| SSS-CC-EXT-WS1 | - | Mycelium Fabric shall deliver near-real-time model-change notifications over a WebSocket transport (SignalR), protected by TLS 1.2 or later and authenticated with the same session credentials as the REST API, when "a client subscribes to live updates from Mycelium Fabric." | - |  |  |
-| SSS-CC-EXT-FG1 | - | Mycelium Forge shall expose the Forge HTTP API specified in §5.2.3.1 over HTTPS with TLS 1.2 or later, when "a client interacts with Mycelium Forge programmatically." | - |  |  |
-| SSS-CC-EXT-ID1 | - | Mycelium Fabric and Mycelium Forge shall authenticate users through OIDC 1.0 sessions brokered by a Keycloak identity provider. SAML 2.0 and LDAP v3 back-ends are supported transitively through Keycloak's upstream identity federation and are not directly terminated by Mycelium, when "an identity provider is configured for a Mycelium installation." | - |  |  |
-| SSS-CC-EXT-IN1 | - | Mycelium Fabric shall ingest SysML v2 abstract-syntax instances serialised as JSON conforming to OMG formal/25-09-03, when "a client submits a SysML v2 JSON abstract-syntax payload to Mycelium Fabric." | KerML 10.4 |  |  |
-| SSS-CC-EXT-IN2 | - | Mycelium Fabric shall ingest SysML v2 abstract-syntax instances serialised as XMI conforming to OMG formal/25-09-03, when "a client submits a SysML v2 XMI document to Mycelium Fabric." | KerML 10.2, XMI 2.5.1 |  |  |
-| SSS-CC-EXT-IN3 | - | Mycelium Fabric shall ingest SysML v2 abstract-syntax instances serialised as MessagePack, carrying the same content as the JSON abstract-syntax payload in `SSS-CC-EXT-IN1`, when "a client submits a SysML v2 MessagePack payload to Mycelium Fabric." | - |  |  |
-| SSS-CC-EXT-IN4 | - | Mycelium Fabric shall ingest ReqIF 1.2 for requirements import, preserving attribute types, enumerations, and structural hierarchy, when "a client submits a ReqIF document to Mycelium Fabric." | - |  |  |
-| SSS-CC-EXT-IN5 | - | Mycelium Fabric shall ingest ECSS-E-TM-10-25 Annex C.3 payloads produced for migration into SysML v2 projects, when "a client submits a ECSS-E-TM-10-25 Annex C.3 archive to Mycelium Fabric." | - |  |  |
-| SSS-CC-EXT-IN6 | - | *(Deferred.)* Mycelium Bloom shall ingest STEP (ISO 10303-242) files as attached 3D geometry sources for the 3D viewer, when "a user attaches a STEP file to a Part Usage." This requirement is deferred and is not part of the first release of Mycelium. | - |  |  |
-| SSS-CC-EXT-EG1 | - | Mycelium Fabric shall emit, upon request, SysML v2 abstract-syntax instances serialised as JSON, XMI, or MessagePack; SysML v2 textual notation and KerML textual notation rendered as a one-way representation of the abstract syntax (not intended for round-trip ingest); ReqIF 1.2; HTML; PDF; and CSV, when "a client requests an export of model content." | - |  |  |
-| SSS-CC-EXT-BR1 | - | Mycelium Bloom shall operate correctly on the latest two major versions of Google Chrome, Mozilla Firefox, Apple Safari, and Microsoft Edge running on Windows, macOS, and Linux, when "a user accesses Mycelium Bloom through a supported web browser." | - |  |  |
-| SSS-CC-EXT-NO1 | - | Mycelium Fabric shall deliver notifications through HTTP webhook channels, with webhook payloads signed using a shared secret and delivered over TLS 1.2 or later, when "a notification channel has been configured for an organisation." | - |  |  |
-| SSS-CC-EXT-OB1 | - | Mycelium Fabric and Mycelium Forge shall expose a Prometheus-compatible `/metrics` endpoint and an OpenTelemetry OTLP exporter for traces and metrics, authenticated through the installation's observability credentials, when "a metrics or tracing collector polls or receives from the endpoint." | - |  |  |
-| SSS-CC-EXT-IRD | - | The protocol bindings, payload schemas, authentication handshakes, error codes, and versioning rules for every interface listed in this section shall be elaborated in the Mycelium Interface Requirements Document (IRD), which is the normative source for the interface-level details referenced above. | - |  |  |
+| SSS-CC-EXT-AP1 | - | Mycelium Fabric shall expose the OMG Systems Modelling API and Services (formal/25-09-04) as its primary external programmatic interface over HTTPS with TLS 1.2 or later, when "an external client issues API requests to Mycelium Fabric." | API 7 | H |  |
+| SSS-CC-EXT-WS1 | - | Mycelium Fabric shall deliver near-real-time model-change notifications over a WebSocket transport (SignalR), protected by TLS 1.2 or later and authenticated with the same session credentials as the REST API, when "a client subscribes to live updates from Mycelium Fabric." | - | H |  |
+| SSS-CC-EXT-FG1 | - | Mycelium Forge shall expose the Forge HTTP API specified in §5.2.3.1 over HTTPS with TLS 1.2 or later, when "a client interacts with Mycelium Forge programmatically." | - | H |  |
+| SSS-CC-EXT-ID1 | - | Mycelium Fabric and Mycelium Forge shall authenticate users through OIDC 1.0 sessions brokered by a external identity provider. SAML 2.0 and LDAP v3 back-ends are supported transitively through Keycloak's upstream identity federation and are not directly terminated by Mycelium, when "an identity provider is configured for a Mycelium installation." | - | H |  |
+| SSS-CC-EXT-IN1 | - | Mycelium Fabric shall ingest SysML v2 abstract-syntax instances serialised as JSON conforming to OMG formal/25-09-03, when "a client submits a SysML v2 JSON abstract-syntax payload to Mycelium Fabric." | KerML 10.4 | H |  |
+| SSS-CC-EXT-IN3 | - | Mycelium Fabric shall ingest SysML v2 abstract-syntax instances serialised as MessagePack, carrying the same content as the JSON abstract-syntax payload in `SSS-CC-EXT-IN1`, when "a client submits a SysML v2 MessagePack payload to Mycelium Fabric." | - | H |  |
+| SSS-CC-EXT-IN4 | - | Mycelium Fabric shall ingest ReqIF 1.2 for requirements import, preserving attribute types, enumerations, and structural hierarchy, when "a client submits a ReqIF document to Mycelium Fabric." | - | H |  |
+| SSS-CC-EXT-IN5 | - | Mycelium Fabric shall ingest ECSS-E-TM-10-25 Annex C.3 payloads produced for migration into SysML v2 projects, when "a client submits a ECSS-E-TM-10-25 Annex C.3 archive to Mycelium Fabric." | - | H |  |
+| SSS-CC-EXT-EG1 | - | Mycelium Fabric shall emit, upon request, SysML v2 abstract-syntax instances serialised as JSON, XMI, or MessagePack; SysML v2 textual notation and KerML textual notation rendered as a one-way representation of the abstract syntax (not intended for round-trip ingest). | - | H |  |
+| SSS-CC-EXT-BR1 | - | Mycelium Bloom shall operate correctly on the latest two major versions of Google Chrome, Mozilla Firefox, Apple Safari, and Microsoft Edge running on Windows, macOS, and Linux, when "a user accesses Mycelium Bloom through a supported web browser." | - | H |  |
+| SSS-CC-EXT-NO1 | - | Mycelium Fabric shall deliver notifications through HTTP webhook channels, with webhook payloads signed using a shared secret and delivered over TLS 1.2 or later, when "a notification channel has been configured for an organisation." | - | H |  |
+| SSS-CC-EXT-OB1 | - | Mycelium Fabric and Mycelium Forge shall expose a Prometheus-compatible `/metrics` endpoint and an OpenTelemetry OTLP exporter for traces and metrics, authenticated through the installation's observability credentials, when "a metrics or tracing collector polls or receives from the endpoint." | - | H |  |
 
 ### 5.4 Adaptation and missionization requirements
 
-Missionization covers the set of adaptations that turn a generic Mycelium installation into one that fits a specific programme, customer, or mission without recompiling or modifying source code. The axes below, deployment model, identity integration, SysML v2 library catalogue, localisation, branding, retention, and notification, must all be configurable through declarative configuration or administrator-facing interfaces. Programme-specific model content (custom Metadata Definitions, custom Viewpoint / View / Rendering Definitions, custom libraries) is not an adaptation axis: it is authored and distributed like any other model content through §5.2.1 and Mycelium Forge (§5.2.3). Project-level adaptation (Regular vs Concurrent Design mode, per project) is covered by `SSS-PA-MGMT-73C` in §5.2.1.2 and is not repeated here.
+Missionization covers the set of adaptations that turn a generic Mycelium installation into one that fits a specific programme, customer, or mission without recompiling or modifying source code. The axes below, deployment model, identity integration, SysML v2 library catalogue, localisation, retention, and notification, must all be configurable through declarative configuration or administrator-facing interfaces. Programme-specific model content (custom Metadata Definitions, custom Viewpoint / View / Rendering Definitions, custom libraries) is not an adaptation axis: it is authored and distributed like any other model content through §5.2.1 and Mycelium Forge (§5.2.3). Project-level adaptation (Regular vs Concurrent Design mode, per project) is covered by `SSS-PA-MGMT-73C` in §5.2.1.2 and is not repeated here.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-CC-ADAPT-G1P | IA | Mycelium shall read its runtime configuration from a declarative source (configuration file, environment variable, or installation-administrator interface) and apply configuration changes when "an Installation Administrator modifies a configuration value." | - |  |  |
-| SSS-CC-ADAPT-A3R | IA | Mycelium Fabric shall integrate with a Keycloak identity provider whose authentication backends (JWT, OIDC, LDAP, SAML) are configured at the installation level when "an Installation Administrator configures the identity-provider backend." | - |  |  |
-| SSS-CC-ADAPT-L4S | IA, OA | Mycelium Forge shall expose a configurable catalogue of SysML v2 standard and programme-specific libraries whose membership is determined by installation-level and organisation-level configuration when "an Installation Administrator or Organisation Administrator updates the library catalogue." | - |  |  |
-| SSS-CC-ADAPT-I7V | PA, PT, VW | Mycelium Bloom shall render its user interface in the locale selected by the user, applying localised strings, date/number formats, and quantity-unit labels, selected from the set of locales installed at the deployment, when "a user selects a locale in their profile settings." | - |  |  |
-| SSS-CC-ADAPT-R9X | OA | Mycelium Fabric shall apply per-organisation data retention and archival policies, including commit history retention, audit log retention, and archived-project lifetime, configured at the organisation level, when "an Organisation Administrator configures the retention policy." | - |  |  |
-| SSS-CC-ADAPT-N1Y | OA | Mycelium Fabric shall deliver model-change notifications through configurable channels (email, webhook) whose endpoints and filters are set per organisation, when "an Organisation Administrator configures a notification channel." | - |  |  |
+| SSS-CC-ADAPT-G1P | IA | Mycelium shall read its runtime configuration from a declarative source (configuration file, environment variable, or installation-administrator interface) and apply configuration changes when "an Installation Administrator modifies a configuration value." | - | H |  |
+| SSS-CC-ADAPT-A3R | IA | Mycelium Fabric shall integrate with an external identity provider whose authentication backends (JWT, OIDC, LDAP, SAML) are configured at the installation level when "an Installation Administrator configures the identity-provider backend." | - | H |  |
+| SSS-CC-ADAPT-I7V | PA, PT, VW | Mycelium Bloom shall render its user interface in the locale selected by the user, applying localised strings, date/number formats, selected from the set of locales installed at the deployment, when "a user selects a locale in their profile settings." | - | L |  |
+| SSS-CC-ADAPT-R9X | OA | Mycelium Fabric shall apply per-organisation data retention and archival policies, including commit history retention, audit log retention, and archived-project lifetime, configured at the organisation level, when "an Organisation Administrator configures the retention policy." | - | M |  |
+| SSS-CC-ADAPT-N1Y | OA | Mycelium Fabric shall deliver model-change notifications through configurable channels (email, webhook) whose endpoints and filters are set per organisation, when "an Organisation Administrator configures a notification channel." | - | M |  |
 
 ### 5.5 Computer resource requirements
 
@@ -1410,17 +1406,15 @@ TBD: Minimum server specifications, browser hardware requirements.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-CC-PERF-CDT | All | Mycelium Bloom shall load a model with up to 10,000 elements within a responsive timeframe (target TBD) when "a user opens a project containing up to 10,000 model elements." | - |  |  |
-| SSS-CC-PERF-NGA | All | Mycelium Bloom shall reflect model edits in the UI within a responsive timeframe (target TBD) when "a user or a collaborating user commits a model change." | - |  |  |
-| SSS-CC-PERF-EIU | All | Mycelium Bloom shall render diagrams with 100+ elements within a responsive timeframe (target TBD) when "a user opens a diagram view containing 100 or more graphical elements." | - |  |  |
+| SSS-CC-PERF-CDT | All | Mycelium Bloom shall load a model with up to 10,000 elements within a responsive timeframe (target TBD) when "a user opens a project containing up to 10,000 model elements." | - | H |  |
+| SSS-CC-PERF-NGA | All | Mycelium Bloom shall reflect model edits in the UI within a responsive timeframe (target TBD) when "a user or a collaborating user commits a model change." | - | H |  |
+| SSS-CC-PERF-EIU | All | Mycelium Bloom shall render diagrams with 100+ elements within a responsive timeframe (target TBD) when "a user opens a diagram view containing 100 or more graphical elements." | - | H |  |
 
 #### 5.5.3 Computer software resource requirements
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-CC-WEB-1MV | All | The Mycelium platform shall be deployable as a cloud-native containerized service when "a system operator deploys the application using container orchestration tools." | - |  |  |
-
-The platform depends on the following software components: PostgreSQL (persistence), Keycloak (identity management), RabbitMQ (messaging).
+| SSS-CC-WEB-1MV | All | The Mycelium platform shall be deployable as a cloud-native containerized service when "a system operator deploys the application using container orchestration tools." | - | H |  |
 
 ### 5.6 Security requirements
 
@@ -1428,10 +1422,10 @@ The complete role and permission model is defined in [Roles and Permissions](Rol
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-OA-AUTH-B7A | OA | Mycelium Bloom shall provide a configuration interface for authentication mechanisms (JWT, OIDC, LDAP, SAML) when "the Organization Administrator accesses the authentication settings interface." | - |  |  |
-| SSS-VW-AC-R7Y | All | Mycelium Bloom shall prevent all create, modify, and delete operations on model elements when "the authenticated user has the Viewer role." | - |  |  |
-| SSS-VW-AC-VKZ | All | Mycelium Bloom shall restrict project and view access to only those projects the Viewer has been granted access to when "a Viewer attempts to open a project." | - |  |  |
-| SSS-IA-SEC-P5G | All | Mycelium Bloom shall present the installation administration interface only to users with the Installation Administrator role when "a user navigates to the application." | - |  |  |
+| SSS-OA-AUTH-B7A | OA | Mycelium Bloom shall provide a configuration interface for authentication mechanisms (JWT, OIDC, LDAP, SAML) when "the Organization Administrator accesses the authentication settings interface." | - | M |  |
+| SSS-VW-AC-R7Y | All | Mycelium Bloom shall prevent all create, modify, and delete operations on model elements when "the authenticated user has the Viewer role." | - | H |  |
+| SSS-VW-AC-VKZ | All | Mycelium Bloom shall restrict project and view access to only those projects the Viewer has been granted access to when "a Viewer attempts to open a project." | - | H |  |
+| SSS-IA-SEC-P5G | All | Mycelium Bloom shall present the installation administration interface only to users with the Installation Administrator role when "a user navigates to the application." | - | H |  |
 
 Additional security requirements (data-at-rest encryption, audit logging, vulnerability management): TBD.
 
@@ -1441,37 +1435,27 @@ Not applicable. The Mycelium platform is a web-based engineering tool and does n
 
 ### 5.8 Reliability and availability requirements
 
-TBD: Availability targets, data durability, backup and recovery requirements.
+Not applicable at this point in time. The Mycelium platform is developed as part of a TRL6 activity.
 
 ### 5.9 Quality requirements
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PT-UI-YJL | All | Mycelium Bloom shall present commonly used features first and advanced capabilities on demand (progressive disclosure) when "a user interacts with any feature area of the application." | - | L |  |
-| SSS-CC-QUAL-AX2 | All | Mycelium Bloom shall conform to WCAG 2.1 AA, providing keyboard navigation and screen-reader-accessible labels for its primary interface controls, when "a user navigates the interface with a keyboard or assistive technology." | - | L |  |
+| SSS-PT-UI-YJL | All | XXX | - | L |  |
+| SSS-CC-QUAL-AX2 | All | XXX | - | L |  |
 
-Additional quality requirements (internationalization, usability standards): TBD.
 
 ### 5.10 Design requirements and constraints
 
-| ID | Roles | Requirement | Ref | Prio | Effort |
-|----|-------|-------------|-----|------|--------|
-| SSS-CC-STD-UZA | All | The Mycelium platform shall implement the SysML v2 metamodel (OMG formal/25-09-03) as its native data model when "any model element is created, stored, or retrieved." | SysML 8 |  |  |
-| SSS-CC-STD-1OO | All | The Mycelium platform shall support the Kernel Modelling Language (KerML) as the underlying formalism for SysML v2 when "model elements are validated, serialized, or interpreted." | KerML 7 |  |  |
-| SSS-CC-WEB-3YC | All | Mycelium Bloom shall be accessible through modern web browsers without requiring desktop installation when "a user navigates to the application URL using a supported browser." | - |  |  |
-| SSS-CC-WEB-6NX | All | Mycelium Bloom shall provide a responsive interface optimized for desktop browsers when "a user accesses the application from a desktop-resolution display." | - |  |  |
+Other than the requirements specified in other sections, there are no specific design requirements at this stage.
 
 ### 5.11 Software operations requirements
 
-Operations requirements for the SaaS Platform Operator and on-premise IT operations are described in [Roles and Permissions](Roles-and-Permissions.md), section "Platform Scope."
-
-The system monitoring dashboard capability is defined in SSS-OA-SYS-IEJ (section 5.2.1.23).
-
-Additional operations requirements (deployment procedures, configuration management, upgrade procedures): TBD.
+Not applicable at this point in time. The Mycelium platform is developed as part of a TRL6 activity.
 
 ### 5.12 Software maintenance requirements
 
-TBD: Supportability, update mechanisms, backward compatibility, data migration between versions.
+Not applicable at this point in time. The Mycelium platform is developed as part of a TRL6 activity.
 
 ### 5.13 System and software observability requirements
 
@@ -1479,40 +1463,26 @@ The Mycelium platform must be operable in both SaaS and on-premise deployments, 
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-FB-OBS-S1A | - | Mycelium Fabric and Mycelium Forge shall emit every server log line as a structured JSON (TBC) record that includes at minimum an ISO 8601 timestamp, a log level, a trace identifier, a span identifier, the user identifier (when known), the organisation and project identifiers (when applicable), and a correlation identifier propagated from the originating request, when "any server-side component writes a log entry." | - |  |  |
-| SSS-FB-OBS-D2B | - | Mycelium Fabric and Mycelium Forge shall emit OpenTelemetry-compatible distributed traces covering inbound HTTP requests, outbound calls between Bloom, Fabric, Forge, and the database, background jobs, and SignalR notification flows, when "a request or background task executes." | - |  |  |
-| SSS-FB-OBS-M3C | - | Mycelium Fabric and Mycelium Forge shall expose a Prometheus-compatible `/metrics` endpoint publishing counters, gauges, and histograms for request rates, request latency, error rates, commit throughput, active SignalR connections, queue depths, and resource utilisation, when "a metrics scraper polls the endpoint." | - |  |  |
-| SSS-FB-OBS-H4D | - | Mycelium Fabric and Mycelium Forge shall expose HTTP `/livez` (TBC) and `/readyz` (TBC) endpoints returning a success status when the component is alive and ready to serve traffic and an error status with a machine-readable reason otherwise, when "an orchestrator or load balancer probes the component." | - |  |  |
-| SSS-FB-OBS-A5E | - | Mycelium Fabric shall record every security-relevant event, authentication success and failure, session creation and termination, role or permission changes, organisation and project lifecycle events, ownership reassignments, and configuration changes, into an append-only audit log that is tamper-evident (TBC), retrievable by authorised Installation Administrators, and retained per the organisation retention policy, when "any such event occurs." | - |  |  |
-| SSS-PA-OBS-E6F | PA, PT, VW | Mycelium Bloom shall display, on every user-facing error or failure dialog, the correlation identifier of the failing request and a one-click action to copy it to the clipboard, so that the user can include it in a support request, when "Mycelium Bloom surfaces an error to the user." | - |  |  |
-| SSS-FB-OBS-P7G | - | Mycelium Fabric shall publish progress events, start, percentage complete, stage, and terminal success/failure status, for long-running operations (commit creation, merge, library import, migration, package publication) over SignalR so that Bloom can display progress to the initiating user, when "a long-running operation executes." | - |  |  |
-| SSS-FB-OBS-R8H | - | Mycelium Fabric and Mycelium Forge shall scrub authentication credentials, session tokens, personal data beyond what the audit log requires, and any attribute values annotated as sensitive from all structured logs and traces, and shall enforce a per-deployment retention bound on log and trace storage, when "any component emits telemetry." | - |  |  |
+| SSS-FB-OBS-S1A | - | Mycelium Fabric and Mycelium Forge shall emit every server log line as a structured JSON (TBC) record that includes at minimum an ISO 8601 timestamp, a log level, a trace identifier, a span identifier, the user identifier (when known), the organisation and project identifiers (when applicable), and a correlation identifier propagated from the originating request, when "any server-side component writes a log entry." | - | H |  |
+| SSS-FB-OBS-D2B | - | Mycelium Fabric and Mycelium Forge shall emit OpenTelemetry-compatible distributed traces covering inbound HTTP requests, outbound calls between Bloom, Fabric, Forge, and the database, background jobs, and SignalR notification flows, when "a request or background task executes." | - | H |  |
+| SSS-FB-OBS-M3C | - | Mycelium Fabric and Mycelium Forge shall expose a Prometheus-compatible `/metrics` endpoint publishing counters, gauges, and histograms for request rates, request latency, error rates, commit throughput, active SignalR connections, queue depths, and resource utilisation, when "a metrics scraper polls the endpoint." | - | H |  |
+| SSS-FB-OBS-H4D | - | Mycelium Fabric and Mycelium Forge shall expose HTTP `/healthz` (TBC) and `/ready` (TBC) endpoints returning a success status when the component is alive and ready to serve traffic and an error status with a machine-readable reason otherwise, when "an orchestrator or load balancer probes the component." | - | H |  |
+| SSS-FB-OBS-A5E | - | Mycelium Fabric shall record every security-relevant event, authentication success and failure, session creation and termination, role or permission changes, organisation and project lifecycle events, ownership reassignments, and configuration changes, into an append-only audit log that is tamper-evident (TBC), retrievable by authorised Installation Administrators, and retained per the organisation retention policy, when "any such event occurs." | - | M |  |
+| SSS-PA-OBS-E6F | PA, PT, VW | Mycelium Bloom shall display, on every user-facing error or failure dialog, the correlation identifier of the failing request and a one-click action to copy it to the clipboard, so that the user can include it in a support request, when "Mycelium Bloom surfaces an error to the user." | - | H |  |
+| SSS-FB-OBS-P7G | - | Mycelium Fabric shall publish progress events, start, percentage complete, stage, and terminal success/failure status, for long-running operations (commit creation, merge, library import, migration, package publication) over SignalR so that Bloom can display progress to the initiating user, when "a long-running operation executes." | - | M |  |
+| SSS-FB-OBS-R8H | - | Mycelium Fabric and Mycelium Forge shall scrub authentication credentials, session tokens, personal data beyond what the audit log requires, and any attribute values annotated as sensitive from all structured logs and traces, and shall enforce a per-deployment retention bound on log and trace storage, when "any component emits telemetry." | - | H |  |
 
 ---
 
 ## 6. Verification, validation and system integration
 
-### 6.1 Verification and validation process requirements
-
-TBD: V&V approach, independence requirements, test environment specifications.
-
-### 6.2 Validation approach
-
-TBD: Validation strategy against the requirements baseline, mission-representative scenarios, acceptance criteria.
-
-### 6.3 Validation requirements
-
-TBD: Specific validation conditions and success criteria per requirement.
-
-### 6.4 Verification requirements
-
-TBD: Installation and acceptance requirements, delivery format, integration support.
+Verification and Validation are described in the SValP.
 
 ---
 
 ## 7. System models
 
-TBD: System context diagrams, component decomposition, interface diagrams. May reference SysML v2 model artifacts.
+N.A.
 
 ## 8. SysML v2 and KerML concept coverage matrix
 
