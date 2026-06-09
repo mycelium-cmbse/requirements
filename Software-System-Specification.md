@@ -1428,6 +1428,7 @@ The complete role and permission model is defined in [Roles and Permissions](Rol
 | SSS-VW-AC-R7Y | All | Mycelium Bloom shall prevent all create, modify, and delete operations on model elements when "the authenticated user has the Viewer role." | - | H |  |
 | SSS-VW-AC-VKZ | All | Mycelium Bloom shall restrict project and view access to only those projects the Viewer has been granted access to when "a Viewer attempts to open a project." | - | H |  |
 | SSS-IA-SEC-P5G | All | Mycelium Bloom shall present the installation administration interface only to users with the Installation Administrator role when "a user navigates to the application." | - | H |  |
+| SSS-CC-SUP-SBM | - | The Mycelium platform shall publish, for every released Mycelium Fabric and Mycelium Forge container image, a Software Bill of Materials (SBOM) in a standard machine-readable format (SPDX or CycloneDX) that enumerates the bundled software components with their versions and licenses, when "a Mycelium Fabric or Mycelium Forge container image is released." | - | H |  |
 
 Additional security requirements (data-at-rest encryption, audit logging, vulnerability management): TBD.
 
