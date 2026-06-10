@@ -1123,7 +1123,23 @@ Model content leaves Mycelium as human-readable documents for reports, reviews, 
 | SSS-PA-IE-B5W | PA, PT, VW | Mycelium Bloom shall export a Requirements Specification as a navigable HTML document preserving the hierarchical structure, requirement text, categories, and constraint details when "a user selects HTML as the export format for a Requirements Specification." | - | L |  |
 | SSS-PA-IE-N8G | PA, PT, VW | Mycelium Bloom shall export a user-selected set of model elements (e.g. a Package, a Part Definition with its decomposition, or a filtered query result) as a navigable HTML document showing element properties, attributes, relationships, and Documentation when "a user selects HTML as the export format for a model element selection." | - | M |  |
 
-##### 5.2.1.26 Comments and documentation
+##### 5.2.1.26 Metadata
+
+SysML v2 Metadata Definitions and Metadata Usages attach tool-specific or process-specific information to model elements without changing their semantics. Mycelium itself is built on this mechanism: ownership (`Owner`), parameter subscriptions (`ParameterSubscription`), and the publication workflow (`PublishedIn`, `OwnedValue`) are Metadata Definitions in the Concurrent Design library (see [Roles and Permissions](Roles-and-Permissions.md)). Metadata Definitions and Usages are similar to the Category concept in CDP4-COMET. The requirements in this section cover user-defined metadata: defining annotation types, applying them to elements, editing their values, and finding elements by their annotations.
+
+| ID | Roles | Requirement | Ref | Prio | Effort |
+|----|-------|-------------|-----|------|--------|
+| SSS-PA-META-K7R | PA, PT | Mycelium Bloom shall create a Metadata Definition whose owned Attribute Usages, typed by Attribute Definitions, define the data fields of the annotation, when "a user creates a Metadata Definition and specifies its attributes." | SysML 7.27 | H |  |
+| SSS-PA-META-W3D | PA, PT | Mycelium Bloom shall annotate a model element with a Metadata Usage typed by a selected Metadata Definition when "a user applies metadata to a model element from the detail panel, context menu or drag-n-drop operation." | SysML 7.27 | H |  |
+| SSS-PA-META-N8F | PA, PT | Mycelium Bloom shall set the attribute values of a Metadata Usage, validated against their typing Attribute Definitions, when "a user fills in the attribute values of an applied Metadata Usage." | SysML 7.27 | H |  |
+| SSS-PA-META-J1B | PA, PT | Mycelium Bloom shall edit the attribute values of an existing Metadata Usage when "a user modifies a metadata annotation on an element." | SysML 7.27 | H |  |
+| SSS-PA-META-D5J | PA, PT | Mycelium Bloom shall delete a Metadata Usage from an annotated element when "a user removes a metadata annotation via the detail panel or context menu." | SysML 7.27 | H |  |
+| SSS-PA-META-T4K | PA, PT, VW | Mycelium Bloom shall display the Metadata Usages applied to a model element, showing each annotation's Metadata Definition and attribute values, in the detail panel, when "a user views a model element's properties." | - | H |  |
+| SSS-PA-META-R9V | PA, PT, VW | Mycelium Bloom shall render Metadata Definitions and applied Metadata Usages in the model browser, tabular views, and diagrams using the SysML v2 metadata notation (guillemet-quoted definition name) when "a user views model content that declares or carries metadata." | SysML 8.2.3.27 | M |  |
+| SSS-PA-META-M6W | PA, PT, VW | Mycelium Bloom shall filter the model browser and tabular views by applied Metadata Definition and by metadata attribute values when "a user applies a metadata filter." | - | M |  |
+| SSS-PA-META-V8G | PA, PT, VW | Mycelium Bloom shall display all model elements annotated with a selected Metadata Definition when "a user opens the usage list of a Metadata Definition." | - | M |  |
+
+##### 5.2.1.27 Comments and documentation
 
 SysML v2 defines Comment as an annotating element with a textual body that can describe one or more model elements, and Documentation as a specialized Comment that formally documents its owning element. Comments and Documentation are the primary mechanism for adding explanatory text, rationale, design notes, and review feedback to model elements.
 
@@ -1143,7 +1159,7 @@ SysML v2 defines Comment as an annotating element with a textual body that can d
 | SSS-PA-CMT-RP1 | PA, PT | Mycelium Bloom shall create a reply to an existing Comment, modelled as a Comment annotating the parent Comment, forming a threaded discussion, when "a user replies to a Comment." | KerML 7.4 | M |  |
 | SSS-PA-CMT-RS2 | PA, PT | Mycelium Bloom shall mark a Comment as resolved or reopen it, and indicate the resolved status in the detail panel and the model browser, when "a user resolves or reopens a Comment." | - | M |  |
 
-##### 5.2.1.27 Review workflow
+##### 5.2.1.28 Review workflow
 
 Branch protection rules can require designated Reviewers to approve merges before they enter the default branch. The requirements in this section cover the reviewer interface for approving or requesting changes on protected branch merges, supporting the gatekeeper model for design baselines.
 
@@ -1156,7 +1172,7 @@ Branch protection rules can require designated Reviewers to approve merges befor
 | SSS-FB-VC-EN5 | - | Mycelium Fabric shall reject completion of a merge into a protected branch until the required number of approving reviews has been recorded when "a client attempts to complete a merge into a protected branch." | - | L |  |
 | SSS-PT-VC-CM6 | PA, PT | Mycelium Bloom shall complete the merge once the required approvals are recorded when "a user completes an approved merge into a protected branch." | - | L |  |
 
-##### 5.2.1.28 Attachments
+##### 5.2.1.29 Attachments
 
 Engineering elements often need supporting documentation: thermal analysis PDFs, interface drawings, datasheets, photographs, spreadsheets. Mycelium lets users attach files of any type to any model element and download them later. The requirements in this section cover upload, download, listing, removal, and inline preview for common formats.
 
@@ -1171,7 +1187,7 @@ Engineering elements often need supporting documentation: thermal analysis PDFs,
 | SSS-FB-ATT-VAL2 | - | Mycelium Fabric shall reject an attachment upload that exceeds the configured maximum file size or whose type is not permitted, returning an error, when "a client uploads an attachment." | - | M |  |
 | SSS-FB-ATT-SCAN3 | - | Mycelium Fabric shall scan uploaded attachments for malware and reject or quarantine any attachment that fails the scan when "an attachment is uploaded." | - | M |  |
 
-##### 5.2.1.29 Glossary of Terms
+##### 5.2.1.30 Glossary of Terms
 
 Engineering teams need a shared vocabulary. Acronyms, domain terms, and project-specific definitions should be discoverable wherever they appear. Mycelium models a glossary as a Package of Item Definitions with Documentation, and the user interface highlights terms throughout the application with tooltips and click-through navigation. This makes the glossary live and contextual rather than a forgotten document.
 
@@ -1184,7 +1200,7 @@ Engineering teams need a shared vocabulary. Acronyms, domain terms, and project-
 | SSS-PA-GLOSS-V9D | PA, PT, VW | Mycelium Bloom shall display a tooltip showing the glossary term definition when "a user hovers over a highlighted glossary term in any view." | KerML 7.4 | L |  |
 | SSS-PA-GLOSS-F6B | PA, PT, VW | Mycelium Bloom shall navigate to the glossary term's Item Definition in the glossary browser when "a user clicks a highlighted glossary term link." | KerML 7.4 | L |  |
 
-##### 5.2.1.30 Constants
+##### 5.2.1.31 Constants
 
 Engineering models reference physical and project-specific constants (the speed of light, gravitational acceleration, target margins). Modelling these as named, typed Attribute Definitions with fixed values and source references makes them reusable across the project and traceable to their origin. Users can drag a constant into any constraint or calculation to ensure consistent values.
 
@@ -1196,7 +1212,7 @@ Engineering models reference physical and project-specific constants (the speed 
 | SSS-PA-CONST-J5M | PA, PT | Mycelium Bloom shall insert a reference to a constant's value into a constraint expression or calculation when "a user drags a constant from the constants browser and drops it into a constraint or calculation editor." | SysML 9.8 | L |  |
 | SSS-PA-CONST-R2H | PA, PT, VW | Mycelium Bloom shall display a tooltip showing the constant's value, unit, and source reference when "a user hovers over a constant reference in a constraint expression, calculation, or attribute value." | SysML 9.8 | L |  |
 
-##### 5.2.1.31 Version control and branching
+##### 5.2.1.32 Version control and branching
 
 Mycelium models are versioned like source code. Every change becomes a Commit; alternatives live on Branches; milestones are marked with Tags; merges combine work from different lines. The requirements in this section cover the full Systems Modelling API version control model adapted to a collaborative MBSE context, including a Git-style history graph for navigating commits and branches.
 
@@ -1229,7 +1245,7 @@ Mycelium models are versioned like source code. Every change becomes a Commit; a
 | SSS-PA-VC-DB3 | PA | Mycelium Bloom shall set the default branch of a project when "the Project Administrator designates a branch as the default in the branch management view." | API 7.2.2 | H |  |
 | SSS-PA-VC-RN4 | PA, PT | Mycelium Bloom shall rename a non-default branch when "a user renames a branch in the branch management view." | API 7.2.2 | H |  |
 
-##### 5.2.1.32 Multi-backend support and polling
+##### 5.2.1.33 Multi-backend support and polling
 
 Mycelium Bloom must work not only with Mycelium Fabric but with any backend that implements the OMG Systems Modelling API. Some backends support push notifications (SignalR/WebSocket); others do not. The requirements in this section cover backend portability and a polling fallback for backends without push capability.
 
@@ -1522,7 +1538,7 @@ Multiple requirement identifiers are comma-separated.
 | Association | KerML::Kernel::Associations | Out | - | - |
 | AssociationStructure | KerML::Kernel::Associations | Out | - | - |
 | AttributeDefinition | SysML::Systems::Attributes | In | SSS-PA-ARCH-97Z, SSS-PA-QU-H2V, SSS-PA-QU-K6F, SSS-PA-CONST-N7K, SSS-PA-CONST-D3V, SSS-PA-CONST-W8F, SSS-PA-META-K7R, SSS-PA-GLOSS-T5R | SSS-PA-QU-T3K, SSS-PA-QU-R7N, SSS-PA-QU-W5J, SSS-PA-QU-D8M, SSS-PA-CONST-D3V, SSS-PA-CONST-J5M, SSS-PA-CONST-R2H |
-| AttributeUsage | SysML::Systems::Attributes | In | SSS-PA-ARCH-97Z, SSS-PT-DATA-I9M, SSS-PT-DATA-OH2, SSS-PT-DATA-492, SSS-PA-QU-N9X, SSS-PT-COLLAB-8U9, SSS-PT-PUB-K4W, SSS-PT-PUB-R7N, SSS-PT-PUB-H8J | SSS-PA-NAV-ZRW, SSS-PA-HIST-K3R, SSS-PA-HIST-T6W, SSS-PA-HIST-V2P |
+| AttributeUsage | SysML::Systems::Attributes | In | SSS-PA-ARCH-97Z, SSS-PA-ARCH-AV5, SSS-PT-DATA-OH2, SSS-PT-DATA-492, SSS-PA-QU-N9X, SSS-PT-COLLAB-8U9, SSS-PT-PUB-K4W, SSS-PT-PUB-R7N, SSS-PT-PUB-H8J | SSS-PA-NAV-ZRW, SSS-PA-HIST-K3R, SSS-PA-HIST-T6W, SSS-PA-HIST-V2P |
 | Behavior | KerML::Kernel::Behaviors | Out | - | - |
 | BindingConnector | KerML::Kernel::Connectors | Out | - | - |
 | BindingConnectorAsUsage | SysML::Systems::Connections | Out | - | - |
@@ -1544,13 +1560,13 @@ Multiple requirement identifiers are comma-separated.
 | ConnectionUsage | SysML::Systems::Connections | In | SSS-PA-ARCH-IGA, SSS-PA-ARCH-Y2D | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
 | Connector | KerML::Kernel::Connectors | Out | - | - |
 | ConnectorAsUsage † | SysML::Systems::Connections | Out | NA | NA |
-| ConstraintDefinition | SysML::Systems::Constraints | In | SSS-PA-AV-LSX, SSS-PT-ANALYSIS-NWL | SSS-PA-EXPR-X1A, SSS-PA-EXPR-X3C |
-| ConstraintUsage | SysML::Systems::Constraints | In | SSS-PA-AV-CU3, SSS-PA-AV-CN5, SSS-PT-ANALYSIS-NWL, SSS-PT-ANALYSIS-EAJ, SSS-PA-SCRIPT-K8B | SSS-PT-ANALYSIS-EAJ, SSS-PA-EXPR-X3C |
+| ConstraintDefinition | SysML::Systems::Constraints | In | SSS-PA-AV-LSX | SSS-PA-EXPR-X1A, SSS-PA-EXPR-X3C |
+| ConstraintUsage | SysML::Systems::Constraints | In | SSS-PA-AV-CU3, SSS-PA-AV-CN5, SSS-PT-ANALYSIS-EAJ, SSS-PA-SCRIPT-K8B | SSS-PT-ANALYSIS-EAJ, SSS-PA-EXPR-X3C |
 | ConstructorExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
-| ControlNode † | SysML::Systems::Actions | In | SSS-PA-BEH-WG5, SSS-FB-BEH-C7F | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
+| ControlNode † | SysML::Systems::Actions | In | SSS-PA-BEH-WG5, SSS-FB-VALID-CNF | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
 | CrossSubsetting | KerML::Core::Features | In | SSS-PA-ELEM-C5X | SSS-PA-ELEM-D8K |
 | DataType | KerML::Kernel::DataTypes | Out | - | - |
-| DecisionNode | SysML::Systems::Actions | In | SSS-PA-BEH-WG5, SSS-FB-BEH-C7F | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
+| DecisionNode | SysML::Systems::Actions | In | SSS-PA-BEH-WG5, SSS-FB-VALID-CNF | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
 | Definition | SysML::Systems::DefinitionAndUsage | Out | - | - |
 | Dependency | KerML::Root::Dependencies | In | SSS-PA-REQ-V4J, SSS-PA-TRACE-V8K | SSS-PA-REQ-RF2, SSS-PA-TRACE-RX1, SSS-PA-TRACE-IKS |
 | Differencing | KerML::Core::Types | Deferred | TBC | TBC |
@@ -1577,7 +1593,7 @@ Multiple requirement identifiers are comma-separated.
 | FlowDefinition | SysML::Systems::Flows | In | SSS-PA-BEH-PC7 | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
 | FlowEnd | KerML::Kernel::Interactions | Out | - | - |
 | FlowUsage | SysML::Systems::Flows | In | SSS-PA-BEH-PC7, SSS-PA-BEH-Q4N, SSS-PA-BEH-D6L, SSS-PA-BEH-X9V | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N, SSS-PA-VIS-I6T |
-| ForkNode | SysML::Systems::Actions | In | SSS-PA-BEH-WG5, SSS-FB-BEH-C7F | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
+| ForkNode | SysML::Systems::Actions | In | SSS-PA-BEH-WG5, SSS-FB-VALID-CNF | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
 | ForLoopActionUsage | SysML::Systems::Actions | In | SSS-PA-BEH-F6L | SSS-PA-VIS-M1Z |
 | FramedConcernMembership | SysML::Systems::Requirements | In | SSS-PA-REQ-SUC | SSS-PA-REQ-RF1 |
 | Function | KerML::Kernel::Functions | Out | - | - |
@@ -1594,7 +1610,7 @@ Multiple requirement identifiers are comma-separated.
 | InvocationExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | ItemDefinition | SysML::Systems::Items | In | SSS-PA-ARCH-B2D, SSS-PA-GLOSS-T5R | SSS-PA-GLOSS-K2W, SSS-PA-GLOSS-M3J, SSS-PA-GLOSS-V9D, SSS-PA-GLOSS-F6B, SSS-PA-VIS-I4R, SSS-PA-VIS-I5S |
 | ItemUsage | SysML::Systems::Items | In | SSS-PA-ARCH-B2D | SSS-PA-VIS-I4R, SSS-PA-VIS-I5S, SSS-PA-VIS-I6T |
-| JoinNode | SysML::Systems::Actions | In | SSS-PA-BEH-WG5, SSS-FB-BEH-C7F | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
+| JoinNode | SysML::Systems::Actions | In | SSS-PA-BEH-WG5, SSS-FB-VALID-CNF | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
 | LibraryPackage | KerML::Kernel::Packages | In | SSS-PA-QU-G1W, SSS-PA-IE-OYJ, SSS-PA-PKG-P8D, SSS-PA-PKG-S1E, SSS-FB-PKG-L2F, SSS-PA-PKG-F8M, SSS-FG-PKG-P7L | SSS-PA-PKG-V4H, SSS-PA-PKG-M3G |
 | LiteralBoolean | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | LiteralExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
@@ -1606,15 +1622,15 @@ Multiple requirement identifiers are comma-separated.
 | Membership | KerML::Root::Namespaces | In | SSS-PA-PKG-H6T, SSS-PA-PKG-Q1M | SSS-PA-ELEM-O2K |
 | MembershipExpose | SysML::Systems::Views | In | SSS-PA-VIS-K9R | SSS-PA-ELEM-O2K |
 | MembershipImport | KerML::Root::Namespaces | In | SSS-PA-PKG-D4N, SSS-PA-PKG-M5P, SSS-PA-PKG-X1J | SSS-PA-PKG-L6D, SSS-PA-PKG-X2K |
-| MergeNode | SysML::Systems::Actions | In | SSS-PA-BEH-WG5 | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
+| MergeNode | SysML::Systems::Actions | In | SSS-PA-BEH-WG5, SSS-FB-VALID-CNF | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
 | Metaclass | KerML::Kernel::Metadata | Out | - | - |
 | MetadataAccessExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | MetadataDefinition | SysML::Systems::Metadata | In | SSS-PA-META-K7R | SSS-PA-META-R9V |
 | MetadataFeature | KerML::Kernel::Metadata | In | SSS-PA-META-K7R, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
-| MetadataUsage | SysML::Systems::Metadata | In | SSS-PA-META-W3D, SSS-PA-META-N8F, SSS-PA-META-H2T, SSS-PA-META-D5J, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-J1B, SSS-PA-META-V8G, SSS-PT-PUB-B9G | SSS-PA-META-R9V, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-V8G, SSS-PA-VIS-B4F |
+| MetadataUsage | SysML::Systems::Metadata | In | SSS-PA-META-W3D, SSS-PA-META-N8F, SSS-PA-META-H2T, SSS-PA-META-D5J, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-J1B, SSS-PA-META-V8G, SSS-PT-PUB-K4W, SSS-PT-PUB-H8J | SSS-PA-META-R9V, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-V8G, SSS-PA-VIS-B4F |
 | Multiplicity | KerML::Core::Types | In | SSS-PA-ELEM-V7K, SSS-PA-ELEM-O1Q, SSS-PA-ELEM-V3W | SSS-PA-VIS-U7M |
 | MultiplicityRange | KerML::Kernel::Multiplicities | In | SSS-PA-ELEM-V7K, SSS-PA-ELEM-N8P, SSS-FB-VALID-CNF | SSS-PA-VIS-U7M |
-| Namespace | KerML::Root::Namespaces | In | SSS-PA-PKG-H6T, SSS-PA-PKG-V8N, SSS-PA-PKG-T5C, SSS-FB-PKG-W2M, SSS-FB-VALID-CNF, SSS-PA-PKG-C7B, SSS-PA-ELEM-R3G, SSS-PA-ELEM-M9T | SSS-PA-NAV-F3K, SSS-PA-PKG-V8N, SSS-PA-PKG-T5C, SSS-PA-NAV-S6P, SSS-PA-NAV-B8D |
+| Namespace | KerML::Root::Namespaces | In | SSS-PA-PKG-H6T, SSS-PA-PKG-V8N, SSS-PA-PKG-T5C, SSS-FB-VALID-CNF, SSS-PA-PKG-C7B, SSS-PA-ELEM-R3G, SSS-PA-ELEM-M9T | SSS-PA-NAV-F3K, SSS-PA-PKG-V8N, SSS-PA-PKG-T5C, SSS-PA-NAV-S6P, SSS-PA-NAV-B8D |
 | NamespaceExpose | SysML::Systems::Views | In | SSS-PA-VIS-K9R | SSS-PA-ELEM-O2K |
 | NamespaceImport | KerML::Root::Namespaces | In | SSS-PA-PKG-D4N, SSS-PA-PKG-N4J, SSS-PA-PKG-R9K, SSS-PA-PKG-X1J | SSS-PA-PKG-L6D, SSS-PA-PKG-X2K |
 | NullExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
