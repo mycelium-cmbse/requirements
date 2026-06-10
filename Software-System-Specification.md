@@ -550,7 +550,7 @@ The requirements in this section apply to every kind of Definition and Usage. Th
 | SSS-PA-ELEM-M6N | PA, PT, VW | Mycelium Bloom shall display the inherited Features of a conjugating Type with their directions shown inverted relative to the original Type, `in` rendered as `out`, `out` rendered as `in`, `inout` preserved, in the detail panel, the model browser, and on diagrams, when "a user views a Type that is the conjugate of another Type." | KerML 7.6.3 | H |  |
 | SSS-PA-ELEM-V3W | PA, PT, VW | Mycelium Bloom shall display, in the detail panel of the owning element, a warning for any Feature whose actual value count falls outside the literal bounds of its Multiplicity Range when "a user runs model validation or opens the detail panel of such a Feature." | KerML 7.6.6 | M |  |
 | SSS-PA-ELEM-F4M | PA, PT, VW | Mycelium Bloom shall display the owned Features of a Type, derived from its FeatureMemberships, with their visibility, multiplicity, direction, and type, in the detail panel of the Type, when "a user views a Type that owns one or more Features." | KerML 7.6.1 | H |  |
-| SSS-PA-ELEM-E5N | PA, PT, VW | Mycelium Bloom shall display the end Features of a Connector, Connection, Interaction, Association, or Flow Connection, derived from their EndFeatureMemberships, showing each end's referent Feature and multiplicity, in the detail panel, when "a user views a relationship element with end features." | KerML 7.13.2 | H |  |
+| SSS-PA-ELEM-E5N | PA, PT, VW | Mycelium Bloom shall display the end Features of a Connector, Connection, Interaction, Association, or Flow, derived from their EndFeatureMemberships, showing each end's referent Feature and multiplicity, in the detail panel, when "a user views a relationship element with end features." | KerML 7.13.2 | H |  |
 | SSS-PA-ELEM-P6Q | PA, PT, VW | Mycelium Bloom shall display the parameter Features of an Action, Calculation, Function, or Case, derived from their ParameterMemberships, with each parameter's direction, type, and multiplicity, in the detail panel, when "a user views an Action, Calculation, Function, or Case." | KerML 7.12.3 | H |  |
 | SSS-PA-ELEM-R7S | PA, PT, VW | Mycelium Bloom shall display the return Feature of a Function or Calculation, derived from its ReturnParameterMembership, with its type and multiplicity, in the detail panel, when "a user views a Function or Calculation." | KerML 7.12.3 | H |  |
 | SSS-PA-ELEM-X8T | PA, PT, VW | Mycelium Bloom shall display the result expression of a Calculation or Boolean Expression, derived from its ResultExpressionMembership, in its textual form, in the detail panel, when "a user views a Calculation or Boolean Expression." | KerML 7.12.3 | H |  |
@@ -739,7 +739,7 @@ An Enumeration Definition is a value type whose instances are restricted to a fi
 
 ##### 5.2.1.16 Behavior modeling
 
-Beyond structure, systems exhibit behavior: actions performed, states held, transitions triggered, flows of items and data. SysML v2 provides Action Definitions, State Definitions, and Flow Connections. The requirements in this section cover the behavioral modeling capabilities engineers need to describe what the system does and how its behavior depends on context. Subsections cover actions, states, flows, and performing and exhibiting behaviour on parts.
+Beyond structure, systems exhibit behavior: actions performed, states held, transitions triggered, flows of items and data. SysML v2 provides Action Definitions, State Definitions, and Flow Definitions. The requirements in this section cover the behavioral modeling capabilities engineers need to describe what the system does and how its behavior depends on context. Subsections cover actions, states, flows, and performing and exhibiting behaviour on parts.
 
 ###### 5.2.1.16.a Actions
 
@@ -775,13 +775,13 @@ A State Definition models the conditions or modes a system holds over time, each
 
 ###### 5.2.1.16.c Flows
 
-A flow models the transfer of items, energy, or data between parts. SysML v2 expresses this with Flow Connections and, where ordering matters, Succession Item Flows. The requirements in this subsection cover defining flow connections and the sequenced item flows used, for example, to convey messages between lifelines in a Sequence View.
+A flow models the transfer of items, energy, or data between parts. SysML v2 expresses this with Flows and, where ordering matters, Succession Flows. The requirements in this subsection cover defining flows and the sequenced flows used, for example, to convey messages between lifelines in a Sequence View.
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PA-BEH-PC7 | PA, PT | Mycelium Bloom shall create a Flow Connection Definition and instantiate it as a Flow Connection Usage to model the transfer of items, energy, or data between parts when "a user creates a Flow Connection Definition and specifies the flow type and endpoints." | SysML 7.16 | H |  |
-| SSS-PA-BEH-X9V | PA, PT | Mycelium Bloom shall create a Succession Item Flow that conveys items between two features and establishes that the receiving end occurs after the sending end when "a user creates a sequenced flow between two features (e.g. a message between lifelines in a Sequence View, or an ordered item transfer between actions)." | KerML 7.13.6 | H |  |
-| SSS-PA-BEH-D6L | PA, PT | Mycelium Bloom shall create the corresponding Succession Item Flow in the underlying model when "a user draws a message arrow between two lifelines in a Sequence View." | KerML 7.13.6, SysML 8.2.3.9 | H |  |
+| SSS-PA-BEH-PC7 | PA, PT | Mycelium Bloom shall create a Flow Definition and instantiate it as a Flow Usage to model the transfer of items, energy, or data between parts when "a user creates a Flow Definition and specifies the flow type and endpoints." | SysML 7.16 | H |  |
+| SSS-PA-BEH-X9V | PA, PT | Mycelium Bloom shall create a Succession Flow Usage that conveys items between two features and establishes that the receiving end occurs after the sending end when "a user creates a sequenced flow between two features (e.g. a message between lifelines in a Sequence View, or an ordered item transfer between actions)." | KerML 7.13.6 | H |  |
+| SSS-PA-BEH-D6L | PA, PT | Mycelium Bloom shall create the corresponding Succession Flow Usage in the underlying model when "a user draws a message arrow between two lifelines in a Sequence View." | KerML 7.13.6, SysML 8.2.3.9 | H |  |
 
 ###### 5.2.1.16.d Performing and exhibiting behaviour
 
@@ -877,7 +877,7 @@ An Interconnection View shows the structural composition of a system: parts, the
 | SSS-PA-VIS-Q7K | PA, PT, VW | Mycelium Bloom shall render Interface Usages as connection lines between ports with the «interface» label and optional constraint compartments using the SysML v2 graphical notation (section 8.2.3.14) when "an Interconnection View displays interface connections." | SysML 8.2.3.14 | H |  |
 | SSS-PA-VIS-I4R | PA, PT, VW | Mycelium Bloom shall render an Item Usage in the model browser, tabular views, and diagrams with a distinguishing icon and the «item» stereotype label, visually distinct from a Part Usage, showing its name, its typing Item Definition, and its multiplicity, when "a user views an Item Usage." | SysML 8.2.3.10 | H |  |
 | SSS-PA-VIS-I5S | PA, PT, VW | Mycelium Bloom shall render Item Usages on a structural diagram as rounded-corner nodes using the SysML v2 graphical notation, and shall create an Item Usage on the canvas by dragging an Item Definition from the model browser or the Item tool from the toolbox, when "a user adds or views an Item Usage on a structural diagram." | SysML 8.2.3.10 | H |  |
-| SSS-PA-VIS-I6T | PA, PT, VW | Mycelium Bloom shall render the payload Item Usage of a Flow Connection Usage alongside the flow connection line on a diagram, displaying the Item Usage name, its typing Item Definition, and its multiplicity, when "a user views a Flow Connection Usage that carries an Item." | SysML 8.2.3.16 | H |  |
+| SSS-PA-VIS-I6T | PA, PT, VW | Mycelium Bloom shall render the payload Item Usage of a Flow Usage alongside the flow line on a diagram, displaying the Item Usage name, its typing Item Definition, and its multiplicity, when "a user views a Flow Usage that carries an Item." | SysML 8.2.3.16 | H |  |
 
 ###### 5.2.1.19.3 Action Flow View
 
@@ -1593,7 +1593,7 @@ Multiple requirement identifiers are comma-separated.
 | Flow | KerML::Kernel::Interactions | Out | - | - |
 | FlowDefinition | SysML::Systems::Flows | In | SSS-PA-BEH-PC7 | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
 | FlowEnd | KerML::Kernel::Interactions | Out | - | - |
-| FlowUsage | SysML::Systems::Flows | In | SSS-PA-BEH-PC7, SSS-PA-BEH-Q4N, SSS-PA-BEH-D6L, SSS-PA-BEH-X9V | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N, SSS-PA-VIS-I6T |
+| FlowUsage | SysML::Systems::Flows | In | SSS-PA-BEH-PC7, SSS-PA-BEH-Q4N | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N, SSS-PA-VIS-I6T |
 | ForkNode | SysML::Systems::Actions | In | SSS-PA-BEH-WG5, SSS-FB-VALID-CNF | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
 | ForLoopActionUsage | SysML::Systems::Actions | In | SSS-PA-BEH-F6L | SSS-PA-VIS-M1Z |
 | FramedConcernMembership | SysML::Systems::Requirements | In | SSS-PA-REQ-SUC | SSS-PA-REQ-RF1 |
@@ -1628,7 +1628,7 @@ Multiple requirement identifiers are comma-separated.
 | MetadataAccessExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | MetadataDefinition | SysML::Systems::Metadata | In | SSS-PA-META-K7R | SSS-PA-META-R9V |
 | MetadataFeature | KerML::Kernel::Metadata | In | SSS-PA-META-K7R, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
-| MetadataUsage | SysML::Systems::Metadata | In | SSS-PA-META-W3D, SSS-PA-META-N8F, SSS-PA-META-H2T, SSS-PA-META-D5J, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-J1B, SSS-PA-META-V8G, SSS-PT-PUB-K4W, SSS-PT-PUB-H8J | SSS-PA-META-R9V, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-V8G, SSS-PA-VIS-B4F |
+| MetadataUsage | SysML::Systems::Metadata | In | SSS-PA-META-W3D, SSS-PA-META-N8F, SSS-PA-META-D5J, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-J1B, SSS-PA-META-V8G, SSS-PT-PUB-K4W, SSS-PT-PUB-H8J | SSS-PA-META-R9V, SSS-PA-META-T4K, SSS-PA-META-M6W, SSS-PA-META-V8G, SSS-PA-VIS-B4F |
 | Multiplicity | KerML::Core::Types | In | SSS-PA-ELEM-V7K, SSS-PA-ELEM-O1Q, SSS-PA-ELEM-V3W | SSS-PA-VIS-U7M |
 | MultiplicityRange | KerML::Kernel::Multiplicities | In | SSS-PA-ELEM-V7K, SSS-PA-ELEM-N8P, SSS-FB-VALID-CNF | SSS-PA-VIS-U7M |
 | Namespace | KerML::Root::Namespaces | In | SSS-PA-PKG-H6T, SSS-PA-PKG-V8N, SSS-PA-PKG-T5C, SSS-FB-VALID-CNF, SSS-PA-PKG-C7B, SSS-PA-ELEM-R3G, SSS-PA-ELEM-M9T | SSS-PA-NAV-F3K, SSS-PA-PKG-V8N, SSS-PA-PKG-T5C, SSS-PA-NAV-S6P, SSS-PA-NAV-B8D |
@@ -1678,7 +1678,7 @@ Multiple requirement identifiers are comma-separated.
 | Succession | KerML::Kernel::Connectors | Out | - | - |
 | SuccessionAsUsage | SysML::Systems::Connections | In | SSS-PA-BEH-WG5 | SSS-PA-VIS-E4R |
 | SuccessionFlow | KerML::Kernel::Interactions | Out | - | - |
-| SuccessionFlowUsage | SysML::Systems::Flows | Out | - | - |
+| SuccessionFlowUsage | SysML::Systems::Flows | In | SSS-PA-BEH-X9V, SSS-PA-BEH-D6L | SSS-PA-VIS-A9H |
 | TerminateActionUsage | SysML::Systems::Actions | Deferred | TBC | TBC |
 | TextualRepresentation | KerML::Root::Annotations | In | SSS-PA-CMT-Y6L, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
 | TransitionFeatureMembership | SysML::Systems::States | In | SSS-PA-BEH-TG6 | SSS-PA-VIS-SH7 |
