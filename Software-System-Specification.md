@@ -1517,7 +1517,7 @@ This appendix mirrors the complete KerML and SysML v2 metamodel and cross-refere
 
 Multiple requirement identifiers are comma-separated.
 
-**Abstract metaclasses (marked with †).** Rows whose concept name carries `†` are flagged `isAbstract = true` in the published UML model and cannot be instantiated directly; they carry `NA` in both coverage columns, because coverage is provided by their concrete subclasses. The published model flags only eight classes abstract (`Element`, `Relationship`, `Import`, `ConnectorAsUsage`, `ControlNode`, `LoopActionUsage`, `Expose`, `InstantiationExpression`); several conceptually-abstract bases such as `Feature`, `Type`, `Definition`, `Usage`, and `Membership` are modelled as concrete and therefore appear without `†`.
+**Abstract metaclasses (marked with †).** Rows whose concept name carries `†` are flagged `isAbstract = true` in the published UML model and cannot be instantiated directly. Where requirements address the abstract concept itself and apply uniformly to all of its concrete subclasses (the Import family, control nodes, the Expose kinds, and generic Relationship handling), the row cites those requirements; otherwise the row carries `NA` and coverage is provided by the rows of its concrete subclasses. The published model flags only eight classes abstract (`Element`, `Relationship`, `Import`, `ConnectorAsUsage`, `ControlNode`, `LoopActionUsage`, `Expose`, `InstantiationExpression`); several conceptually-abstract bases such as `Feature`, `Type`, `Definition`, `Usage`, and `Membership` are modelled as concrete and therefore appear without `†`.
 
 ### 8.1 SysML v2 - Metaclasses
 
@@ -1638,7 +1638,7 @@ Multiple requirement identifiers are comma-separated.
 | OccurrenceDefinition | SysML::Systems::Occurrences | In | SSS-PA-OCC-H0, SSS-PA-OCC-D1, SSS-PA-OCC-L3, SSS-PA-OCC-T5, SSS-PA-OCC-S6, SSS-PA-OCC-V8, SSS-PA-OCC-I7 | SSS-PA-OCC-R9 |
 | OccurrenceUsage | SysML::Systems::Occurrences | In | SSS-PA-OCC-U2, SSS-PA-OCC-T5, SSS-PA-OCC-S6, SSS-PA-OCC-V8, SSS-PA-OCC-I7 | SSS-PA-OCC-R9 |
 | OperatorExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
-| OwningMembership | KerML::Root::Namespaces | In | NA | NA |
+| OwningMembership | KerML::Root::Namespaces | In | SSS-PA-ELEM-M9T | SSS-PA-ELEM-O2K |
 | Package | KerML::Kernel::Packages | In | SSS-PA-PKG-R8W, SSS-PA-PKG-V2J, SSS-PA-PKG-M3G | SSS-PA-PKG-L6D |
 | ParameterMembership | KerML::Kernel::Behaviors | In | SSS-PA-ELEM-P6Q | SSS-PA-ELEM-P6Q, SSS-PA-ELEM-O2K |
 | PartDefinition | SysML::Systems::Parts | In | SSS-PA-ARCH-JQH, SSS-PA-ARCH-TB2, SSS-PA-ELEM-K4T, SSS-PA-ELEM-R8V, SSS-PA-ELEM-T2N, SSS-PA-ELEM-D7M, SSS-PA-ELEM-W4F | SSS-PA-VIS-W3T, SSS-PA-NAV-8IB, SSS-PA-NAV-G5X |
