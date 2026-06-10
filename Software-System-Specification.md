@@ -73,11 +73,11 @@ This document is the primary input for the System Requirements Review (SRR).
 
 ### 3.1.1 SysML v2 Definition and Usage types
 
-The following table lists the SysML v2 Definition types (and their corresponding Usage types) that Mycelium supports. Each Definition describes a reusable type; each Usage represents a specific occurrence or application of that type in a model context. Any Definition or Usage can own Attributes.
+The following table lists the SysML v2 Definition types (and their corresponding Usage types) that Mycelium supports. Each Definition describes a reusable type; each Usage represents a specific occurrence or application of that type in a model context. Any Definition or Usage can own Attributes. Models are organized into Packages, which are Namespaces rather than Definition or Usage types; package management is covered in 5.2.1.9.
 
 | Definition | Usage | Description | SSS section |
 |-----------|-------|-------------|-------------|
-| PackageDefinition | — | Organizational container grouping related model elements | 5.2.1.9 |
+| OccurrenceDefinition | OccurrenceUsage | Entity occurring in time and space; base for parts, actions, and states, with time slices, snapshots, and individual designation | 5.2.1.11 |
 | PartDefinition | PartUsage | Structural building block of a system (system, subsystem, equipment, component) | 5.2.1.11 |
 | ItemDefinition | ItemUsage | Non-structural element representing data, signals, energy, or resources | 5.2.1.11 |
 | AttributeDefinition | AttributeUsage | Data characteristic (quantity, text, boolean) with optional unit and measurement scale | 5.2.1.11, 5.2.1.14 |
@@ -87,8 +87,8 @@ The following table lists the SysML v2 Definition types (and their corresponding
 | InterfaceDefinition | InterfaceUsage | Standardized connection between ports with compatibility rules | 5.2.1.11 |
 | ActionDefinition | ActionUsage | Function or behavior with input/output parameters, decomposable into sub-actions | 5.2.1.16 |
 | StateDefinition | StateUsage | Condition or mode with entry, do, and exit actions | 5.2.1.16 |
-| TransitionUsage | — | Transition between states with trigger, guard, and effect | 5.2.1.16 |
-| FlowConnectionDefinition | FlowConnectionUsage | Transfer of items, energy, or data between parts | 5.2.1.16 |
+| — | TransitionUsage | Transition between states with trigger, guard, and effect | 5.2.1.16 |
+| FlowDefinition | FlowUsage | Transfer of items, energy, or data between parts | 5.2.1.16 |
 | UseCaseDefinition | UseCaseUsage | System behavior from an external actor perspective | 5.2.1.10 |
 | RequirementDefinition | RequirementUsage | Stakeholder-imposed condition with textual statement and constraint features | 5.2.1.10 |
 | ConcernDefinition | ConcernUsage | Stakeholder concern linked to requirements and viewpoints | 5.2.1.10 |
@@ -99,6 +99,7 @@ The following table lists the SysML v2 Definition types (and their corresponding
 | AllocationDefinition | AllocationUsage | Mapping from functional to physical elements | 5.2.1.13 |
 | ViewDefinition | ViewUsage | Presentation of model content for a specific purpose | 5.2.1.19 |
 | ViewpointDefinition | ViewpointUsage | Stakeholder concerns specifying what a view addresses | 5.2.1.19 |
+| RenderingDefinition | RenderingUsage | Presentation styling applied to rendered view content | 5.2.1.19 |
 | MetadataDefinition | MetadataUsage | Tool-specific or process-specific annotation on model elements | 5.2.1.26 |
 
 ### 3.2 Abbreviated terms
