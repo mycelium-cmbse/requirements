@@ -356,7 +356,7 @@ Concurrent design brings 20-30 engineers from different domains into the same ro
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PT-CDS-RKV | PA, PT | Mycelium Bloom shall support concurrent design sessions with at least 20-30 Participants from multiple Ownerships working simultaneously when "multiple Participants are connected to the same project and actively modifying model data." | - |  |  |
+| SSS-PT-CDS-RKV | PA, PT | Mycelium Bloom shall support concurrent design sessions with at least 20-30 Participants from multiple Ownerships working simultaneously when "multiple Participants are connected to the same project and actively modifying model data." | - | H |  |
 | SSS-PT-UI-256 | PT | Mycelium Bloom shall present a selector to switch the active Ownership when "the Participant is assigned to multiple Ownerships and selects a different active Ownership from the Ownership selector." | - | H |  |
 
 ###### 5.2.1.7a Subscriptions
@@ -365,8 +365,9 @@ When one engineer's work depends on another's outputs, they need to track those 
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PT-COLLAB-8U9 | PT | Mycelium Bloom shall create a ParameterSubscription on an AttributeUsage owned by another Ownership when "the Participant selects an attribute from another Ownership and initiates a subscription." | - |  |  |
-| SSS-PT-COLLAB-12K | PT | Mycelium Bloom shall deliver a near real-time notification when "an attribute that the Participant has subscribed to is published by another Ownership." | - |  |  || SSS-PT-SUB-A1K | PT | Mycelium Bloom shall create a standing subscription rule that subscribes the Participant's Ownership to every existing and future AttributeUsage typed by a selected AttributeDefinition kind (e.g. mass, mass margin) and owned by another Ownership when "the Participant defines a standing subscription rule for one or more attribute kinds." | - | H |  |
+| SSS-PT-COLLAB-8U9 | PT | Mycelium Bloom shall create a ParameterSubscription on an AttributeUsage owned by another Ownership when "the Participant selects an attribute from another Ownership and initiates a subscription." | - | H |  |
+| SSS-PT-COLLAB-12K | PT | Mycelium Bloom shall deliver a near real-time notification when "an attribute that the Participant has subscribed to is published by another Ownership." | - | M |  |
+| SSS-PT-SUB-A1K | PT | Mycelium Bloom shall create a standing subscription rule that subscribes the Participant's Ownership to every existing and future AttributeUsage typed by a selected AttributeDefinition kind (e.g. mass, mass margin) and owned by another Ownership when "the Participant defines a standing subscription rule for one or more attribute kinds." | - | H |  |
 | SSS-PT-SUB-B4R | PT | Mycelium Bloom shall scope a standing subscription rule to all other Ownerships or to one or more selected Ownerships when "the Participant configures the owner scope of a standing subscription rule." | - | M |  |
 | SSS-PT-SUB-C7M | PT | Mycelium Bloom shall display, edit, enable, disable, and delete the Participant's standing subscription rules when "the Participant opens the standing subscription rules manager." | - | M |  |
 | SSS-PT-SUB-D9T | All | Mycelium Fabric shall evaluate the applicable standing subscription rules and create the corresponding ParameterSubscription when "an AttributeUsage matching a standing rule's attribute kind and owner scope is created or becomes owned by another Ownership." | - | H |  |

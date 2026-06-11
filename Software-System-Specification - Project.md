@@ -332,7 +332,7 @@ Concurrent design brings 20-30 engineers from different domains into the same ro
 
 | ID | Roles | Requirement | Ref | Prio | Effort |
 |----|-------|-------------|-----|------|--------|
-| SSS-PT-CDS-RKV | PA, PT | Mycelium Bloom shall support concurrent design sessions with at least 20-30 Participants from multiple Ownerships working simultaneously when "multiple Participants are connected to the same project and actively modifying model data." | - |  |  |
+| SSS-PT-CDS-RKV | PA, PT | Mycelium Bloom shall support concurrent design sessions with at least 20-30 Participants from multiple Ownerships working simultaneously when "multiple Participants are connected to the same project and actively modifying model data." | - | H |  |
 | SSS-PT-UI-256 | PT | Mycelium Bloom shall present a selector to switch the active Ownership when "the Participant is assigned to multiple Ownerships and selects a different active Ownership from the Ownership selector." | - | H |  |
 
 ###### 5.2.1.7a Subscriptions
