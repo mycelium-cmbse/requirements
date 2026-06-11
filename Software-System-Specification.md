@@ -1518,7 +1518,7 @@ This appendix mirrors the complete KerML and SysML v2 metamodel and cross-refere
 
 Multiple requirement identifiers are comma-separated.
 
-**Abstract metaclasses (marked with †).** Rows whose concept name carries `†` are flagged `isAbstract = true` in the published UML model and cannot be instantiated directly. Where requirements address the abstract concept itself and apply uniformly to all of its concrete subclasses (the Import family, control nodes, the Expose kinds, and generic Relationship handling), the row cites those requirements; otherwise the row carries `NA` and coverage is provided by the rows of its concrete subclasses. The published model flags only eight classes abstract (`Element`, `Relationship`, `Import`, `ConnectorAsUsage`, `ControlNode`, `LoopActionUsage`, `Expose`, `InstantiationExpression`); several conceptually-abstract bases such as `Feature`, `Type`, `Definition`, `Usage`, and `Membership` are modelled as concrete and therefore appear without `†`.
+**Abstract metaclasses (marked with †).** Rows whose concept name carries `†` are flagged `isAbstract = true` in the published UML model and cannot be instantiated directly. Where requirements address the abstract concept itself and apply uniformly to all of its concrete subclasses (the Import family, control nodes, the Expose kinds, and generic Element and Relationship handling), the row cites those requirements; otherwise the row carries `NA` and coverage is provided by the rows of its concrete subclasses. The published model flags only eight classes abstract (`Element`, `Relationship`, `Import`, `ConnectorAsUsage`, `ControlNode`, `LoopActionUsage`, `Expose`, `InstantiationExpression`); several conceptually-abstract bases such as `Feature`, `Type`, `Definition`, `Usage`, and `Membership` are modelled as concrete and therefore appear without `†`.
 
 ### 8.1 SysML v2 - Metaclasses
 
@@ -1538,8 +1538,8 @@ Multiple requirement identifiers are comma-separated.
 | AssignmentActionUsage | SysML::Systems::Actions | In | SSS-PA-BEH-A3S | SSS-PA-VIS-M1Z |
 | Association | KerML::Kernel::Associations | Out | - | - |
 | AssociationStructure | KerML::Kernel::Associations | Out | - | - |
-| AttributeDefinition | SysML::Systems::Attributes | In | SSS-PA-ARCH-97Z, SSS-PA-QU-H2V, SSS-PA-QU-K6F, SSS-PA-CONST-N7K, SSS-PA-CONST-D3V, SSS-PA-CONST-W8F, SSS-PA-META-K7R, SSS-PA-GLOSS-T5R | SSS-PA-QU-T3K, SSS-PA-QU-R7N, SSS-PA-QU-W5J, SSS-PA-QU-D8M, SSS-PA-CONST-D3V, SSS-PA-CONST-J5M, SSS-PA-CONST-R2H |
-| AttributeUsage | SysML::Systems::Attributes | In | SSS-PA-ARCH-97Z, SSS-PA-ARCH-AV5, SSS-PT-DATA-OH2, SSS-PT-DATA-492, SSS-PA-QU-N9X, SSS-PT-COLLAB-8U9, SSS-PT-PUB-K4W, SSS-PT-PUB-R7N, SSS-PT-PUB-H8J | SSS-PA-NAV-ZRW, SSS-PA-HIST-K3R, SSS-PA-HIST-T6W, SSS-PA-HIST-V2P |
+| AttributeDefinition | SysML::Systems::Attributes | In | SSS-PA-ARCH-97Z, SSS-PA-QU-H2V, SSS-PA-QU-K6F, SSS-PA-CONST-N7K, SSS-PA-CONST-D3V, SSS-PA-CONST-W8F, SSS-PA-META-K7R, SSS-PA-GLOSS-T5R, SSS-PA-ARCH-AD7, SSS-PA-QU-CV2 | SSS-PA-QU-T3K, SSS-PA-QU-R7N, SSS-PA-QU-W5J, SSS-PA-QU-D8M, SSS-PA-CONST-D3V, SSS-PA-CONST-J5M, SSS-PA-CONST-R2H |
+| AttributeUsage | SysML::Systems::Attributes | In | SSS-PA-ARCH-97Z, SSS-PA-ARCH-AV5, SSS-PT-DATA-OH2, SSS-PT-DATA-492, SSS-PA-QU-N9X, SSS-PT-COLLAB-8U9, SSS-PT-PUB-K4W, SSS-PT-PUB-R7N, SSS-PT-PUB-H8J | SSS-PA-NAV-ZRW, SSS-PA-HIST-K3R, SSS-PA-HIST-T6W, SSS-PA-HIST-V2P, SSS-PA-QU-UC3 |
 | Behavior | KerML::Kernel::Behaviors | Out | - | - |
 | BindingConnector | KerML::Kernel::Connectors | Out | - | - |
 | BindingConnectorAsUsage | SysML::Systems::Connections | Out | - | - |
@@ -1554,11 +1554,11 @@ Multiple requirement identifiers are comma-separated.
 | Comment | KerML::Root::Annotations | In | SSS-PA-CMT-R4K, SSS-PA-CMT-M6J, SSS-PA-CMT-T9F, SSS-PA-CMT-K2B, SSS-PA-CMT-D5P, SSS-PA-CMT-N8V, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-VIS-F8Q, SSS-PA-VIS-B2M, SSS-PA-VIS-T1J, SSS-PA-VIS-G5R, SSS-PA-CMT-L7X |
 | ConcernDefinition | SysML::Systems::Requirements | In | SSS-PA-REQ-SUC | SSS-PA-REQ-RF1 |
 | ConcernUsage | SysML::Systems::Requirements | In | SSS-PA-REQ-SUC | SSS-PA-REQ-RF1 |
-| ConjugatedPortDefinition | SysML::Systems::Ports | In | SSS-PA-ARCH-K7M, SSS-FB-VALID-CNF | SSS-PA-ELEM-M6N |
+| ConjugatedPortDefinition | SysML::Systems::Ports | In | SSS-PA-ARCH-K7M, SSS-FB-VALID-CNF | SSS-PA-ELEM-M6N, SSS-PA-ARCH-PV3 |
 | ConjugatedPortTyping | SysML::Systems::Ports | Out | - | - |
 | Conjugation | KerML::Core::Types | In | SSS-PA-ARCH-K7M, SSS-PA-ELEM-J4K, SSS-FB-VALID-CNF | SSS-PA-ELEM-D8K, SSS-PA-ELEM-M6N |
-| ConnectionDefinition | SysML::Systems::Connections | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
-| ConnectionUsage | SysML::Systems::Connections | In | SSS-PA-ARCH-IGA, SSS-PA-ARCH-Y2D | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
+| ConnectionDefinition | SysML::Systems::Connections | In | SSS-PA-ARCH-IGA, SSS-PA-ARCH-CD1 | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
+| ConnectionUsage | SysML::Systems::Connections | In | SSS-PA-ARCH-IGA, SSS-PA-ARCH-Y2D, SSS-PA-ARCH-CR9 | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
 | Connector | KerML::Kernel::Connectors | Out | - | - |
 | ConnectorAsUsage † | SysML::Systems::Connections | Out | NA | NA |
 | ConstraintDefinition | SysML::Systems::Constraints | In | SSS-PA-AV-LSX | SSS-PA-EXPR-X1A, SSS-PA-EXPR-X3C |
@@ -1568,15 +1568,15 @@ Multiple requirement identifiers are comma-separated.
 | CrossSubsetting | KerML::Core::Features | In | SSS-PA-ELEM-C5X | SSS-PA-ELEM-D8K |
 | DataType | KerML::Kernel::DataTypes | Out | - | - |
 | DecisionNode | SysML::Systems::Actions | In | SSS-PA-BEH-WG5, SSS-FB-VALID-CNF | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
-| Definition | SysML::Systems::DefinitionAndUsage | Out | - | - |
+| Definition | SysML::Systems::DefinitionAndUsage | In | SSS-PA-ELEM-C1A, SSS-PA-ELEM-C3C, SSS-PA-ELEM-J6D, SSS-PA-ELEM-H8W, SSS-PA-ELEM-P5K, SSS-PA-ELEM-CD7, SSS-FB-ELEM-CD8 | SSS-PA-ELEM-N4K |
 | Dependency | KerML::Root::Dependencies | In | SSS-PA-REQ-V4J, SSS-PA-TRACE-V8K | SSS-PA-REQ-RF2, SSS-PA-TRACE-RX1, SSS-PA-TRACE-IKS |
 | Differencing | KerML::Core::Types | Deferred | TBC | TBC |
 | Disjoining | KerML::Core::Types | Deferred | TBC | TBC |
 | Documentation | KerML::Root::Annotations | In | SSS-PA-CMT-W7N, SSS-PA-CMT-H3D, SSS-PA-CMT-M6J, SSS-PA-CMT-L7X, SSS-PA-CMT-Z9K | SSS-PA-CMT-L7X |
-| Element † | KerML::Root::Elements | In | NA | NA |
+| Element † | KerML::Root::Elements | In | SSS-PA-ELEM-U1E, SSS-PA-ELEM-U2F | SSS-PA-ELEM-R1D, SSS-PA-ELEM-N1G, SSS-PA-ELEM-N2H, SSS-PA-ELEM-N3J |
 | ElementFilterMembership | KerML::Kernel::Packages | In | SSS-PA-PKG-J3W | SSS-PA-PKG-L6D |
 | EndFeatureMembership | KerML::Core::Features | In | SSS-PA-ELEM-E5N | SSS-PA-ELEM-E5N, SSS-PA-ELEM-O2K |
-| EnumerationDefinition | SysML::Systems::Enumerations | In | SSS-PA-ARCH-9W5, SSS-PA-ARCH-E1A, SSS-PA-ARCH-E2B, SSS-FB-VALID-CNF | SSS-PA-VIS-E3C |
+| EnumerationDefinition | SysML::Systems::Enumerations | In | SSS-PA-ARCH-9W5, SSS-PA-ARCH-E1A, SSS-PA-ARCH-E2B, SSS-PA-ARCH-E6G, SSS-FB-VALID-CNF | SSS-PA-VIS-E3C |
 | EnumerationUsage | SysML::Systems::Enumerations | In | SSS-PA-ARCH-9W5, SSS-PA-ARCH-E4D, SSS-FB-VALID-CNF | SSS-PA-VIS-E3C, SSS-PA-ARCH-E4D |
 | EventOccurrenceUsage | SysML::Systems::Occurrences | In | SSS-PA-OCC-U2, SSS-PA-BEH-H83 | SSS-PA-OCC-R9 |
 | ExhibitStateUsage | SysML::Systems::States | In | SSS-PA-BEH-H83 | SSS-PA-VIS-SH7 |
@@ -1588,7 +1588,7 @@ Multiple requirement identifiers are comma-separated.
 | FeatureInverting | KerML::Core::Features | Deferred | TBC | TBC |
 | FeatureMembership | KerML::Core::Types | In | SSS-PA-ELEM-F4M | SSS-PA-ELEM-F4M, SSS-PA-ELEM-O2K |
 | FeatureReferenceExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X2B | SSS-PA-EXPR-X3C |
-| FeatureTyping | KerML::Core::Features | In | SSS-PA-ELEM-F3T | SSS-PA-ELEM-D8K |
+| FeatureTyping | KerML::Core::Features | In | SSS-PA-ELEM-F3T, SSS-PA-ELEM-C2B | SSS-PA-ELEM-D8K |
 | FeatureValue | KerML::Kernel::FeatureValues | In | SSS-PA-ARCH-AV5, SSS-PT-DATA-D5I | SSS-PA-NAV-ZRW |
 | Flow | KerML::Kernel::Interactions | Out | - | - |
 | FlowDefinition | SysML::Systems::Flows | In | SSS-PA-BEH-PC7 | SSS-PA-VIS-W3T, SSS-PA-VIS-G8N |
@@ -1604,13 +1604,13 @@ Multiple requirement identifiers are comma-separated.
 | IndexExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | InstantiationExpression † | KerML::Kernel::Expressions | Out | NA | NA |
 | Interaction | KerML::Kernel::Interactions | Out | - | - |
-| InterfaceDefinition | SysML::Systems::Interfaces | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-Q7K |
-| InterfaceUsage | SysML::Systems::Interfaces | In | SSS-PA-ARCH-IGA | SSS-PA-VIS-Q7K |
+| InterfaceDefinition | SysML::Systems::Interfaces | In | SSS-PA-ARCH-IGA, SSS-PA-ARCH-ID1, SSS-PA-ARCH-IC4 | SSS-PA-VIS-Q7K |
+| InterfaceUsage | SysML::Systems::Interfaces | In | SSS-PA-ARCH-IGA, SSS-PA-ARCH-IU2, SSS-PA-ARCH-IR3, SSS-PA-ARCH-IC4 | SSS-PA-VIS-Q7K |
 | Intersecting | KerML::Core::Types | Deferred | TBC | TBC |
 | Invariant | KerML::Kernel::Functions | Out | - | - |
 | InvocationExpression | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
 | ItemDefinition | SysML::Systems::Items | In | SSS-PA-ARCH-B2D, SSS-PA-GLOSS-T5R | SSS-PA-GLOSS-K2W, SSS-PA-GLOSS-M3J, SSS-PA-GLOSS-V9D, SSS-PA-GLOSS-F6B, SSS-PA-VIS-I4R, SSS-PA-VIS-I5S |
-| ItemUsage | SysML::Systems::Items | In | SSS-PA-ARCH-B2D | SSS-PA-VIS-I4R, SSS-PA-VIS-I5S, SSS-PA-VIS-I6T |
+| ItemUsage | SysML::Systems::Items | In | SSS-PA-ARCH-B2D, SSS-PA-ARCH-B2F, SSS-PA-ARCH-B2G, SSS-PA-ARCH-B2K | SSS-PA-VIS-I4R, SSS-PA-VIS-I5S, SSS-PA-VIS-I6T, SSS-PA-ARCH-B2J |
 | JoinNode | SysML::Systems::Actions | In | SSS-PA-BEH-WG5, SSS-FB-VALID-CNF | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
 | LibraryPackage | KerML::Kernel::Packages | In | SSS-PA-QU-G1W, SSS-PA-IE-OYJ, SSS-PA-PKG-P8D, SSS-PA-PKG-S1E, SSS-FB-PKG-L2F, SSS-PA-PKG-F8M, SSS-FG-PKG-P7L | SSS-PA-PKG-V4H, SSS-PA-PKG-M3G |
 | LiteralBoolean | KerML::Kernel::Expressions | In | SSS-PA-EXPR-X1A, SSS-FB-VALID-CNF | SSS-PA-EXPR-X3C |
@@ -1643,12 +1643,12 @@ Multiple requirement identifiers are comma-separated.
 | Package | KerML::Kernel::Packages | In | SSS-PA-PKG-R8W, SSS-PA-PKG-V2J, SSS-PA-PKG-M3G | SSS-PA-PKG-L6D |
 | ParameterMembership | KerML::Kernel::Behaviors | In | SSS-PA-ELEM-P6Q | SSS-PA-ELEM-P6Q, SSS-PA-ELEM-O2K |
 | PartDefinition | SysML::Systems::Parts | In | SSS-PA-ARCH-JQH, SSS-PA-ARCH-TB2, SSS-PA-ELEM-K4T, SSS-PA-ELEM-R8V, SSS-PA-ELEM-T2N, SSS-PA-ELEM-D7M, SSS-PA-ELEM-W4F | SSS-PA-VIS-W3T, SSS-PA-NAV-8IB, SSS-PA-NAV-G5X |
-| PartUsage | SysML::Systems::Parts | In | SSS-PA-ARCH-JQH, SSS-PA-ARCH-TB2, SSS-PA-VAR-K3T | SSS-PA-VIS-W3T, SSS-PA-VIS-M2K, SSS-PA-VIS-R3F |
+| PartUsage | SysML::Systems::Parts | In | SSS-PA-ARCH-JQH, SSS-PA-ARCH-TB2, SSS-PA-VAR-K3T, SSS-PA-ARCH-PT5, SSS-PA-ARCH-PR4, SSS-PA-ARCH-B2K | SSS-PA-VIS-W3T, SSS-PA-VIS-M2K, SSS-PA-VIS-R3F, SSS-PA-ARCH-PD6 |
 | PayloadFeature | KerML::Kernel::Interactions | In | SSS-PA-BEH-PC7 | SSS-PA-VIS-I6T |
 | PerformActionUsage | SysML::Systems::Actions | In | SSS-PA-BEH-H83 | SSS-PA-VIS-SMC, SSS-PA-VIS-E4R |
 | PortConjugation | SysML::Systems::Ports | Out | - | - |
-| PortDefinition | SysML::Systems::Ports | In | SSS-PA-ARCH-5RR | SSS-PA-VIS-W3T |
-| PortUsage | SysML::Systems::Ports | In | SSS-PA-ARCH-5RR, SSS-PA-ARCH-K7M, SSS-PA-VAR-K3T | SSS-PA-VIS-W3T |
+| PortDefinition | SysML::Systems::Ports | In | SSS-PA-ARCH-5RR, SSS-PA-ARCH-PF1 | SSS-PA-VIS-W3T |
+| PortUsage | SysML::Systems::Ports | In | SSS-PA-ARCH-5RR, SSS-PA-ARCH-K7M, SSS-PA-VAR-K3T, SSS-PA-ARCH-PU8, SSS-PA-ARCH-PN2 | SSS-PA-VIS-W3T, SSS-PA-ARCH-PV3 |
 | Predicate | KerML::Kernel::Functions | Out | - | - |
 | Redefinition | KerML::Core::Features | In | SSS-PA-ELEM-H9W, SSS-FB-VALID-CNF | SSS-PA-ELEM-D8K |
 | ReferenceSubsetting | KerML::Core::Features | In | SSS-PA-ELEM-R4S | SSS-PA-ELEM-D8K |
@@ -1657,8 +1657,8 @@ Multiple requirement identifiers are comma-separated.
 | RenderingDefinition | SysML::Systems::Views | In | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 |
 | RenderingUsage | SysML::Systems::Views | In | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 | SSS-PA-VIS-RD1, SSS-PA-VIS-RD2 |
 | RequirementConstraintMembership | SysML::Systems::Requirements | In | SSS-PA-REQ-DS6 | SSS-PA-REQ-DS6, SSS-PA-REQ-RF2 |
-| RequirementDefinition | SysML::Systems::Requirements | In | SSS-PA-REQ-QP0, SSS-PA-REQ-WD0, SSS-PA-REQ-T8K, SSS-PA-REQ-M3N, SSS-PA-REQ-H6W | SSS-PA-VIS-C3D, SSS-PA-IE-B5W |
-| RequirementUsage | SysML::Systems::Requirements | In | SSS-PA-REQ-QP0, SSS-PA-REQ-WD0, SSS-PA-REQ-DS6, SSS-PA-REQ-T8K, SSS-PA-REQ-M3N, SSS-PA-REQ-H6W, SSS-PA-REQ-V4J, SSS-PA-REQ-W9B | SSS-PA-VIS-C3D, SSS-PA-IE-B5W |
+| RequirementDefinition | SysML::Systems::Requirements | In | SSS-PA-REQ-QP0, SSS-PA-REQ-WD0, SSS-PA-REQ-T8K, SSS-PA-REQ-M3N, SSS-PA-REQ-H6W | SSS-PA-VIS-C3D, SSS-PA-IE-B5W, SSS-PA-REQ-D7V, SSS-PA-REQ-D7W |
+| RequirementUsage | SysML::Systems::Requirements | In | SSS-PA-REQ-QP0, SSS-PA-REQ-WD0, SSS-PA-REQ-DS6, SSS-PA-REQ-T8K, SSS-PA-REQ-M3N, SSS-PA-REQ-H6W, SSS-PA-REQ-V4J, SSS-PA-REQ-W9B | SSS-PA-VIS-C3D, SSS-PA-IE-B5W, SSS-PA-REQ-D7V, SSS-PA-REQ-D7W |
 | RequirementVerificationMembership | SysML::Systems::VerificationCases | In | SSS-PA-REQ-W9B | SSS-PA-REQ-RF2 |
 | ResultExpressionMembership | KerML::Kernel::Functions | In | SSS-PA-ELEM-X8T | SSS-PA-ELEM-X8T, SSS-PA-ELEM-O2K |
 | ReturnParameterMembership | KerML::Kernel::Functions | In | SSS-PA-ELEM-R7S | SSS-PA-ELEM-R7S, SSS-PA-ELEM-O2K |
@@ -1687,7 +1687,7 @@ Multiple requirement identifiers are comma-separated.
 | Type | KerML::Core::Types | Out | - | - |
 | TypeFeaturing | KerML::Core::Features | In | SSS-PA-ARCH-N5W | SSS-PA-TRACE-RX1 |
 | Unioning | KerML::Core::Types | Deferred | TBC | TBC |
-| Usage | SysML::Systems::DefinitionAndUsage | Out | - | - |
+| Usage | SysML::Systems::DefinitionAndUsage | In | SSS-PA-ELEM-C2B, SSS-PA-ELEM-C3C, SSS-PA-ELEM-W3N, SSS-PA-ELEM-J6D, SSS-PA-ELEM-H8W, SSS-PA-ELEM-P5K, SSS-PA-ELEM-CD7, SSS-FB-ELEM-CD8 | SSS-PA-ELEM-N4K |
 | UseCaseDefinition | SysML::Systems::UseCases | In | SSS-PA-BEH-IX9 | SSS-PA-VIS-UC1, SSS-PA-VIS-UC2 |
 | UseCaseUsage | SysML::Systems::UseCases | In | SSS-PA-BEH-IX9, SSS-PA-BEH-T7P | SSS-PA-VIS-UC1, SSS-PA-VIS-UC2 |
 | VariantMembership | SysML::Systems::DefinitionAndUsage | In | SSS-PA-VAR-R7W, SSS-PA-VAR-J9K, SSS-PA-VAR-F1P | SSS-PA-VAR-M8F, SSS-PA-VAR-H2J |
