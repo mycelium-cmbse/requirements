@@ -12,7 +12,7 @@ Every verb must describe something the software actively does: renders a UI, pro
 
 Each requirement has a unique identifier.
 
-The requirements are organized in tables. The tables list the `Requirement Identifier`, the `roles` it applies to, the requirement body or text and a `reference` to the Kerml or SysML2 specification in case this is applicable. If the kerml or syml2 reference is not applicable a `-` is used. The last two columns describe the priority (`low - (L)`, `medium - (M)`, `high - (H)`). This specification only includes the High priority requirements that will be implemented in contract 4000151333/26/NL/GP/mdu
+The requirements are organized in tables. The tables list the `Requirement Identifier`, the `roles` it applies to, the requirement body or text and a `reference` to the Kerml or SysML2 specification in case this is applicable. If the kerml or syml2 reference is not applicable a `-` is used. The last column describe the priority (`low - (L)`, `medium - (M)`, `high - (H)`). This specification only includes the High priority requirements that will be implemented in contract 4000151333/26/NL/GP/mdu
 
 ---
 
