@@ -7,13 +7,26 @@ This repository contains the `Requirements` for the Mycelium collaborative MBSE 
 The core contents are:
 
 - `Software-System-Specification.md` — Software System Specification (SSS) per ECSS-E-ST-40C Annex B
-- `Software-Requirements-Specification.md` — Software Requirements Specification (SRS) per ECSS-E-ST-40C Annex D
+- `Software-System-Specification-Justification.md` - Justifications for selected requirements to provide extra contaxt for these requirements.
+- `Software-System-Specification - Project.md` — Software System Specification (SSS) per ECSS-E-ST-40C Annex B, including the High priority requirements that will be implemented in contract 4000151333/26/NL/GP/mdu.
 - `Roles-and-Permissions.md` — Role and permission model supporting the SSS
 
 The following folders contain reference documentation
 
 - `cdp4-comet/` — CDP4-COMET user manual reference
 - `Reference Documentation/` — third-party specification documents (see notice below)
+
+## Scripting
+
+The `scripting` folder contains script(s) to conver the markdown into other formats:
+  - `Mdtodocx.cs`: a c# script to conver a `.md` file into a `.docx` file
+
+To conver the SSS into a docx file execute the following command from the root of the repository:
+
+```
+dotnet run scripting/MdToDocx.cs -- "Software-System-Specification.md"
+dotnet run scripting/MdToDocx.cs -- "Software-System-Specification - Project.md"
+```
 
 ## Third-Party Reference Documentation
 
