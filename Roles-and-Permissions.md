@@ -439,7 +439,7 @@ The Installation Administrator is a super-admin over the whole installation. It 
 | View all organizations | Name, creation date, member count, package count, status |
 | Manage organizations | Create, suspend, reactivate and delete organizations |
 | View all accounts | Username, email, memberships, roles, status |
-| Manage accounts | Deactivate and delete accounts; grant and revoke the Installation Administrator role |
+| Manage accounts | Create, deactivate and delete accounts; mark an email address verified where no verification message can be delivered; grant and revoke the Installation Administrator role |
 | Assign organization memberships | Add and remove accounts to and from any organization with a specified role |
 | Reserve and release scope slugs | Including refusing a slug that collides with a proxied upstream scope (§5.1.2, `F1-06`) |
 | Configure mirroring | Scope routing to an upstream, upstream credentials, bulk pre-warm, air-gapped bundle import and export (§5.1, DD-16) |
