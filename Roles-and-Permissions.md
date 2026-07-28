@@ -491,7 +491,6 @@ The Account that creates an Organization becomes its Administrator. Multiple Acc
 | Manage organization roles | Assign and revoke Administrator and Member |
 | Configure publishing policy | Whether Members may create new packages in the organization scope (enabled by default) |
 | Transfer administration | Transfer the role to another member, on that member's acceptance |
-| Delete any package in the scope | Subject to the deletion policy below |
 | Configure default package visibility | The visibility new packages receive unless overridden |
 
 **The Organization Administrator does not automatically hold a package role.** Package access is granted per package. The role may optionally be configured to carry implicit *read* access across the organization's packages for audit purposes; it never carries implicit write.
@@ -548,7 +547,6 @@ The Account that first publishes a package name becomes its Owner. Multiple Owne
 | Manage the package team | Grant and revoke Owner, Maintainer and Reader |
 | Transfer ownership | Effective only on the recipient's explicit acceptance (`SSS-FG-AUTH-T5E`) |
 | Manage package settings | Description, licence, links — within the limits of frozen metadata (`M3C`) |
-| Delete the package | Subject to the deletion policy below |
 
 **A package always retains at least one individual-Account Owner** (`SSS-FG-AUTH-O4D`). An Organization may hold ownership, but an Organization Owner alone does not satisfy the invariant (`P7G`). Any operation that would leave a package without an individual Owner — the last Owner leaving, being removed, or the Organization being deleted — is refused, not silently repaired.
 
@@ -593,11 +591,12 @@ The scope is **declared at publish time and authorised**, never derived from the
 
 | Action | Who | Condition |
 |---|---|---|
-| Unlist or relist a version | Owner, Maintainer | Always available |
-| Delete a package | Owner; Organization Administrator of the owning scope | Only while no version has been downloaded and no dependants exist — DD-19's `usage[]` graph supplies the check. Otherwise the operation degrades to unlisting every version, and says so rather than failing silently |
-| Erase a package or version | Installation Administrator | Audited. Reserved for accidental disclosure of confidential material, or a lawful erasure request |
+| Unlist or relist a version | Owner, Maintainer | Always available. The only withdrawal a package's own team has |
+| Delete a package, or erase a version | Installation Administrator | Audited. Reserved for accidental disclosure of confidential material, or a lawful erasure request |
 
-Erasure is deliberately an administrator operation rather than a self-service one. It is the escape hatch every registry eventually needs — a credential committed into an artefact, a model published from the wrong scope — and making it self-service turns a rare, considered act into an ordinary button.
+**An Owner cannot delete a package, under any condition.** There is no threshold of "no downloads yet" or "no dependants yet" that unlocks it, because any such threshold is a race: a package with no dependants at the moment of the check may acquire one before the deletion commits, and a package with no recorded downloads may still have been copied by a mirror. A rule with no exceptions is also the only one a publisher can rely on — if `@scope/name` resolved yesterday, it resolves today.
+
+Deletion and erasure are therefore administrator operations. They are the escape hatch every registry eventually needs — a credential committed into an artefact, a model published from the wrong scope — and making them self-service turns a rare, considered act into an ordinary button.
 
 Destructive actions are confirmed on their own page requiring the package name to be typed (§7.4, `G-07`) and are recorded in the audit log (`SSS-FG-AUTH-R9J`).
 
