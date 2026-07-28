@@ -364,9 +364,9 @@ Projects can operate in one of two modes, configured by the Project Administrato
 
 ## Mycelium Forge Roles and Permissions
 
-This document defines the role and permission model for **Mycelium Forge**, the MBSE artefact sharing platform. It is a working document: it is the authority on the intended model while it is being agreed, after which the settled parts move into `design.md` §13 and into SSS requirements.
+This document defines the role and permission model for **Mycelium Forge**, the MBSE artefact sharing platform. It is the authority on the intended model while it is being agreed; the settled parts are carried into SSS requirements.
 
-Forge is a **registry**: a scope holds packages, and a package holds immutable versions (`design.md` §8).
+Forge is a **registry**: a scope holds packages, and a package holds immutable versions.
 
 | Concept | Definition | Identity |
 |---|---|---|
@@ -380,7 +380,7 @@ There is no container between Scope and Package. `SSS-FG-AUTH-S2B` fixes the ide
 
 ### Core principles
 
-1. **Forge owns its identity registry.** Per DD-20 Forge ships its own OIDC provider (Keycloak) and does not depend on Fabric's authentication or authorization. An external identity provider may be federated as configuration, but Forge is deployable without one.
+1. **Forge owns its identity registry.** Forge ships its own OIDC provider and does not depend on Fabric's authentication or authorization. An upstream identity provider may be federated as configuration, but Forge is deployable without one.
 2. **Roles define capabilities; visibility defines reach.** A role determines which operations a principal may perform on a package. Whether a principal can *see* the package at all is governed by the package's visibility, not by a role assignment.
 3. **Self-service by default.** Authenticated users create Organizations and publish packages without administrator intervention.
 4. **Principals are not only people.** An API key is a first-class principal with its own authority, because CI/CD pipelines may publish (`SSS-FG-REG-Y2L`).
@@ -392,8 +392,8 @@ There is no container between Scope and Package. `SSS-FG-AUTH-S2B` fixes the ide
 
 | Principal | Description | Authentication |
 |---|---|---|
-| **Anonymous** | An unauthenticated visitor or crawler | None. `SSS-FG-REG-W9J` requires the web interface to be reachable unauthenticated, and DD-01 depends on public pages being crawlable and CDN-cacheable |
-| **Account** | A registered person. Exists at installation level, independently of any Organization | OIDC against Forge's own provider (DD-20) |
+| **Anonymous** | An unauthenticated visitor or crawler | None. `SSS-FG-REG-W9J` requires the web interface to be reachable unauthenticated, and public pages must stay crawlable and cacheable at a CDN |
+| **Account** | A registered person. Exists at installation level, independently of any Organization | OIDC against Forge's own provider |
 | **API key** | A machine credential issued by an Account, acting with that Account's authority narrowed to an explicit set of operations | Bearer credential, hashed at rest, revealed once at issuance (`SSS-FG-REG-Y2L`) |
 
 An API key never exceeds the authority of the Account that issued it. Where the two differ, the narrower applies. Revoking an Account's access revokes every key it issued.
@@ -422,7 +422,7 @@ Scope (@alice or @starion)
        └── PackageVersion (immutable)
 ```
 
-**An Account is a namespace in its own right.** `design.md` §8.2 resolves a scope to an Account *or* an Organization slug, and §8's model has `Account "1" --> "0..1" Scope`. An individual publishes to `@alice/…` without belonging to any Organization.
+**An Account is a namespace in its own right.** A scope resolves to an Account *or* an Organization slug, so an individual publishes to `@alice/…` without belonging to any Organization.
 
 ---
 
@@ -432,7 +432,7 @@ Scope (@alice or @starion)
 
 The Installation Administrator is a super-admin over the whole installation. It exists in both SaaS and on-premise deployments.
 
-**Bootstrap is from configuration, not from whoever arrives first.** Per DD-20 and `F1-05`, the seeded administrator is supplied as deployment configuration.
+**Bootstrap is from configuration, not from whoever arrives first.** The seeded administrator is supplied as deployment configuration.
 
 | Capability | Description |
 |---|---|
@@ -441,8 +441,8 @@ The Installation Administrator is a super-admin over the whole installation. It 
 | View all accounts | Username, email, memberships, roles, status |
 | Manage accounts | Create, deactivate and delete accounts; mark an email address verified where no verification message can be delivered; grant and revoke the Installation Administrator role |
 | Assign organization memberships | Add and remove accounts to and from any organization with a specified role |
-| Reserve and release scope slugs | Including refusing a slug that collides with a proxied upstream scope (§5.1.2, `F1-06`) |
-| Configure mirroring | Scope routing to an upstream, upstream credentials, bulk pre-warm, air-gapped bundle import and export (§5.1, DD-16) |
+| Reserve and release scope slugs | Including refusing a slug that collides with a scope proxied from an upstream registry |
+| Configure mirroring | Scope routing to an upstream, upstream credentials, bulk pre-warm, air-gapped bundle import and export |
 | View installation metrics | Accounts, organizations, packages, storage usage, active sessions |
 | View the audit log | The append-only, tamper-evident record of privileged operations (`SSS-FG-AUTH-R9J`) |
 
@@ -455,7 +455,7 @@ The Platform Operator is held by the team operating the SaaS infrastructure. It 
 | Capability | Description |
 |---|---|
 | Monitor platform health | Infrastructure metrics, logs and alerts across all tenants |
-| Perform platform maintenance | Backups, upgrades, schema migrations (DD-18) |
+| Perform platform maintenance | Backups, upgrades, schema migrations |
 | Configure platform defaults | Authentication policy, retention, compliance settings |
 | Manage billing and quotas | Storage, account and package limits per organization |
 | Suspend organizations | For policy violation or non-payment |
@@ -469,7 +469,7 @@ The Platform scope does not exist inside the application on-premise. Its respons
 | SaaS Platform Operator responsibility | On-premise equivalent |
 |---|---|
 | Monitor platform health | Container orchestration dashboards, log aggregation, APM |
-| Perform platform maintenance | Backups and migrations via deployment pipelines; the migrator is an explicit invocation (DD-18) |
+| Perform platform maintenance | Backups and migrations via deployment pipelines; the migrator is an explicit invocation |
 | Configure platform defaults | Environment variables, configuration files or Helm values |
 | Manage billing and quotas | Not applicable — the customer manages its own capacity |
 | Suspend organizations | Installation Administrator, in the application |
@@ -495,7 +495,7 @@ The Account that creates an Organization becomes its Administrator. Multiple Acc
 
 **The Organization Administrator does not automatically hold a package role.** Package access is granted per package. The role may optionally be configured to carry implicit *read* access across the organization's packages for audit purposes; it never carries implicit write.
 
-**An Organization does not own its members' Accounts.** An Account exists at installation level and is provisioned on first login (DD-20, `F1-05`). An Organization controls membership — who belongs and with what role — not existence. Removing a member from an Organization does not deactivate their Account, and no Organization Administrator can create or delete one.
+**An Organization does not own its members' Accounts.** An Account exists at installation level and is provisioned on first login. An Organization controls membership — who belongs and with what role — not existence. Removing a member from an Organization does not deactivate their Account, and no Organization Administrator can create or delete one.
 
 #### Organization Member
 
@@ -513,7 +513,7 @@ Members cannot manage roles or memberships, delete packages they do not own, or 
 
 ### Package scope
 
-A Package is the container for versions of a kpar or other MBSE artefact (§9). It is the unit of visibility, ownership and collaboration.
+A Package is the container for versions of a kpar or other MBSE artefact. It is the unit of visibility, ownership and collaboration.
 
 #### Visibility
 
@@ -525,13 +525,13 @@ Visibility is an attribute of the Package, set by an Owner.
 | **Organization-visible** | All members of the owning Organization, read-only; write requires an explicit role | Sharing within the organisation |
 | **Public** | **Anyone, including unauthenticated visitors and crawlers** | Publishing to the community |
 
-**Public means anonymous.**  `SSS-FG-REG-W9J` requires unauthenticated reach, and DD-01 and §7.2 rest on public pages being linkable, crawlable and cacheable at a CDN.
+**Public means anonymous.** `SSS-FG-REG-W9J` requires unauthenticated reach, and the public web interface depends on its pages being linkable, crawlable and cacheable at a CDN.
 
-**Visibility ships in the first release.** It is not a later addition: search (`E-02`), qualified-name resolution (`E-03`), artefact serving (`C-01`) and mirror replication (§5.1.6) each carry an authorisation dimension from the outset, and `A-01`'s baseline schema carries the attribute.
+**Visibility ships in the first release.** It is not a later addition: search, qualified-name resolution, artefact serving and mirror replication each carry an authorisation dimension from the outset, and the baseline schema carries the attribute.
 
 **New packages are private by default.** An Organization Administrator may set a different default for their organisation; the installation default is private. The two failure modes are not symmetric — an accidental publication cannot be recalled once crawlers, CDN edges, mirrors and downstream copies have taken it, whereas an accidentally private package is corrected in one action.
 
-**Private and organization-visible artefacts are not cached at a CDN.** DD-22 sets `Cache-Control: public, max-age=31536000, immutable` on artefact responses, which is correct only for public packages: the artefact URL is `@scope/name/version/artifact` and therefore guessable, so a shared edge would serve private bytes to anyone who asked for them. Non-public artefacts are served from origin under `Cache-Control: private, no-store`. DD-22's economics are unaffected — its argument rests on *popular* artefacts absorbing origin load, and a non-public package has a small, known audience by construction. The content hash remains the `ETag` on both paths.
+**Private and organization-visible artefacts are not cached at a CDN.** Public artefact responses carry `Cache-Control: public, max-age=31536000, immutable`, which is correct only for public packages: the artefact URL is `@scope/name/version/artifact` and therefore guessable, so a shared edge would serve private bytes to anyone who asked for them. Non-public artefacts are served from origin under `Cache-Control: private, no-store`. The economics of CDN caching are unaffected — they rest on *popular* artefacts absorbing origin load, and a non-public package has a small, known audience by construction. The content hash remains the `ETag` on both paths.
 
 **Visibility and unlisting are orthogonal, not two points on one scale.** `SSS-FG-REG-U4D` unlisting hides a version from search and resolution while *still serving direct downloads*; it is a deprecation signal. A package may be public-and-unlisted or private-and-listed. Conflating the two is the likeliest implementation error in this area.
 
@@ -546,9 +546,9 @@ The Account that first publishes a package name becomes its Owner. Multiple Owne
 | Set visibility | Private, organization-visible or public |
 | Manage the package team | Grant and revoke Owner, Maintainer and Reader |
 | Transfer ownership | Effective only on the recipient's explicit acceptance (`SSS-FG-AUTH-T5E`) |
-| Manage package settings | Description, licence, links — within the limits of frozen metadata (`M3C`) |
+| Manage package settings | Description, licence, links — within the limits of frozen metadata (`SSS-FG-AUTH-M3C`) |
 
-**A package always retains at least one individual-Account Owner** (`SSS-FG-AUTH-O4D`). An Organization may hold ownership, but an Organization Owner alone does not satisfy the invariant (`P7G`). Any operation that would leave a package without an individual Owner — the last Owner leaving, being removed, or the Organization being deleted — is refused, not silently repaired.
+**A package always retains at least one individual-Account Owner** (`SSS-FG-AUTH-O4D`). An Organization may hold ownership, but an Organization Owner alone does not satisfy the invariant (`SSS-FG-AUTH-P7G`). Any operation that would leave a package without an individual Owner — the last Owner leaving, being removed, or the Organization being deleted — is refused, not silently repaired.
 
 #### Maintainer
 
@@ -571,11 +571,11 @@ An explicit read grant on a package whose visibility would otherwise exclude the
 
 #### Anonymous and unauthenticated access
 
-An anonymous visitor may read metadata for, search, resolve names within, and download artefacts from **public packages only** (`SSS-FG-REG-W9J`, `F1-04`). Private and organization-visible packages are absent from search results and from qualified-name resolution, and are indistinguishable from packages that do not exist — see *How visibility propagates*.
+An anonymous visitor may read metadata for, search, resolve names within, and download artefacts from **public packages only** (`SSS-FG-REG-W9J`). Private and organization-visible packages are absent from search results and from qualified-name resolution, and are indistinguishable from packages that do not exist — see *How visibility propagates*.
 
 #### Publishing authority
 
-Publishing is authorised against the **scope**, not inherited from the Organization role (§8.2, `B-03`, `SSS-FG-AUTH-G6F`):
+Publishing is authorised against the **scope**, not inherited from the Organization role (`SSS-FG-AUTH-S2B`, `SSS-FG-AUTH-G6F`):
 
 | Case | Who may publish |
 |---|---|
@@ -587,7 +587,7 @@ The scope is **declared at publish time and authorised**, never derived from the
 
 #### Deletion and erasure
 
-**A published version is never hard-deleted by a user.** `SSS-FG-REG-U4D` unlisting is the only withdrawal available: the version leaves search and resolution and continues to serve direct downloads. This follows from `I3C` immutability and from the `usage[]` IRIs that point at published versions — a hard delete breaks resolution permanently and silently for every dependant, which is precisely the failure §8.2's hash fallback exists to survive.
+**A published version is never hard-deleted by a user.** `SSS-FG-REG-U4D` unlisting is the only withdrawal available: the version leaves search and resolution and continues to serve direct downloads. This follows from `SSS-FG-REG-I3C` immutability and from the `usage[]` IRIs that point at published versions — a hard delete breaks resolution permanently and silently for every dependant, which is precisely the failure the content-hash fallback exists to survive.
 
 | Action | Who | Condition |
 |---|---|---|
@@ -598,7 +598,7 @@ The scope is **declared at publish time and authorised**, never derived from the
 
 Deletion and erasure are therefore administrator operations. They are the escape hatch every registry eventually needs — a credential committed into an artefact, a model published from the wrong scope — and making them self-service turns a rare, considered act into an ordinary button.
 
-Destructive actions are confirmed on their own page requiring the package name to be typed (§7.4, `G-07`) and are recorded in the audit log (`SSS-FG-AUTH-R9J`).
+Destructive actions are confirmed on their own page requiring the package name to be typed, and are recorded in the audit log (`SSS-FG-AUTH-R9J`).
 
 ---
 
@@ -611,7 +611,7 @@ Destructive actions are confirmed on their own page requiring the package name t
 | Revoke a key | The issuing Account; the Installation Administrator for any key |
 | List own keys | The issuing Account — metadata and prefix only, never the secret |
 
-A key's secret is displayed once, at issuance, and is stored only as a hash (`SSS-FG-REG-Y2L`, `F1-02`). A key is not a principal that can be granted package roles in its own right; it derives every permission from its issuing Account at the time of use.
+A key's secret is displayed once, at issuance, and is stored only as a hash (`SSS-FG-REG-Y2L`). A key is not a principal that can be granted package roles in its own right; it derives every permission from its issuing Account at the time of use.
 
 ---
 
@@ -637,21 +637,21 @@ Visibility is an attribute of the Package, but four mechanisms elsewhere in the 
 
 #### Search and qualified-name resolution
 
-Both filter to what the requester may read. **A requester cannot distinguish "does not exist" from "exists but is not yours"** — package lookup (`D-02`) and qualified-name resolution (`E-03`) return the same response in either case, because the existence of a private package name may itself be sensitive for a defence or space programme.
+Both filter to what the requester may read. **A requester cannot distinguish "does not exist" from "exists but is not yours"** — package lookup and qualified-name resolution (`SSS-FG-REG-Z5Q`) return the same response in either case, because the existence of a private package name may itself be sensitive for a defence or space programme.
 
 One residual oracle is accepted rather than concealed: publishing to a name already taken privately within the same scope must fail, and that failure reveals the name is taken. It is bounded — names are per-scope, so `@alice/foo` does not block `@bob/foo`, and a principal publishing into a scope generally holds a role in it.
 
 #### The content-hash fallback
 
-§8.2 permits serving a byte-identical copy from another scope when the declared version cannot be served. That candidate set is **restricted to artefacts the requester is authorised to read**. Where the only byte-identical copies are invisible to the requester, resolution fails exactly as if none existed.
+Forge may serve a byte-identical copy from another scope when the declared version cannot be served. That candidate set is **restricted to artefacts the requester is authorised to read**. Where the only byte-identical copies are invisible to the requester, resolution fails exactly as if none existed.
 
-The filter is on the **requester's** authorisation, not on the artefact's visibility. Filtering the other way would make identical content an oracle for the existence of private packages. §8.2 also has Forge report the substitution to the caller; that report names only a scope the caller can already see.
+The filter is on the **requester's** authorisation, not on the artefact's visibility. Filtering the other way would make identical content an oracle for the existence of private packages. Forge reports the substitution to the caller, and that report names only a scope the caller can already see.
 
-This degrades availability, which §8.2 anticipates when it calls the mechanism "an availability fallback, not a resolution rule".
+This degrades availability, which is acceptable: substitution is an availability fallback, not a resolution rule.
 
 #### Mirror replication
 
-A mirror replicates exactly what its upstream credential (§5.1.7) is entitled to read. §5.1.6's promise that a mirror searches the whole upstream catalogue therefore reads: **the whole upstream catalogue visible to this installation's credential**. A mirror configured with an anonymous or public-scope credential replicates public packages only; an organisation mirroring its own private packages to an on-premise instance supplies a credential that can see them. Proxied scopes remain read-only (`P4-02`).
+A mirror replicates exactly what its upstream credential is entitled to read. The promise that a mirror searches the whole upstream catalogue therefore reads: **the whole upstream catalogue visible to this installation's credential**. A mirror configured with an anonymous or public-scope credential replicates public packages only; an organisation mirroring its own private packages to an on-premise instance supplies a credential that can see them. Proxied scopes remain read-only.
 
 #### Artefact caching
 
@@ -661,9 +661,9 @@ Non-public artefacts bypass the CDN — see *Visibility*, above.
 
 ### Verified publishers — deferred
 
-`design.md` §13.1 defers verified publishers beyond the first release, scoped to publisher identity. Two things are settled in advance so the deferral does not become a design gap:
+Verified publishers are deferred beyond the first release, scoped to publisher identity. Two things are settled in advance so the deferral does not become a gap:
 
 - **It is an attribute of the Scope, not a role.** Verification asserts that a namespace is who it claims to be — that `@esa` is the European Space Agency. It grants no capability, so modelling it as a role would misrepresent it.
-- **It needs a granting authority.** The Installation Administrator on-premise; Starion on SaaS. DD-20 notes there is no external authority to vouch for a scope, so the grant is an operational act with an audit entry, not an automated check.
+- **It needs a granting authority.** The Installation Administrator on-premise; Starion on SaaS. There is no external authority that can vouch for a scope, so the grant is an operational act with an audit entry, not an automated check.
 
 ---
