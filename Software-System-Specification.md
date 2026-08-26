@@ -149,6 +149,7 @@ The Mycelium platform provides the following high-level capabilities:
 - Diagram editing (Interconnection, Action Flow, State Transition, Sequence, General, Grid Views).
 - Model import/export in SysML v2 JSON and XMI format and ECSS-E-TM-10-25 migration.
 - Model export in a variety or formats inlcuding CSV, SVG, the SysML2 Textual Notation
+- SysML v2 textual notation authoring: the notation is both rendered from the model and edited by the user and pushed back into the model.
 - Self-service organization and project creation.
 - SysML v2 library package management via Mycelium Forge based on kerml kpar.
 - Mycelium Bloom must work not only with Mycelium Fabric but with any backend that implements the OMG Systems Modelling API.
@@ -159,7 +160,7 @@ The Mycelium platform provides the following high-level capabilities:
 - The platform shall natively implement the SysML v2 metamodel (OMG formal/25-09-03) as its data model.
 - The model server shall conform to the OMG Systems Modelling API and Services specification (formal/25-09-04) using the REST/HTTP PSM.
 - The platform shall support the Kernel Modelling Language (KerML) as the underlying formalism for SysML v2.
-- The web application shall not provide SysML v2 textual notation editing or parsing capabilities; The sysml v2 textual notation is generated read-only.
+- The web application provides SysML v2 textual notation editing and parsing entirely client-side; the notation is generated from the model, may be edited by the user, and is parsed in the browser into abstract-syntax changes before being submitted. The model server ingests the SysML v2 abstract syntax only and never parses textual notation.
 
 ### 4.4 Operational environment
 
@@ -412,6 +413,22 @@ Engineers spend a lot of of their time finding, selecting, and understanding mod
 | SSS-PA-NAV-G5X | PA, PT, VW | Mycelium Bloom shall provide a tabular element browser that lists Definitions and Usages for each kind of Definition and Usage in a sortable, filterable table showing element name, namespace path, type, Ownership, and key attributes when "a user opens the tabular element browser." | - | H |
 | SSS-PA-NAV-W4B | PA, PT, VW | Mycelium Bloom shall support the hierarchical Browser View and the tabular element browser as independent views that can be open simultaneously when "a user has both views open." | - | H |
 | SSS-PA-NAV-M2C | PA, PT, VW | Mycelium Bloom shall open and display multiple hierarchical Browser Views and multiple tabular element browsers at the same time, without limiting the user to a single instance of either, each maintaining its own scope, filters, sorting, and selection, when "a user opens an additional Browser View or tabular element browser." | - | H |
+
+###### 5.2.1.8a Bulk editing in tabular views
+
+Applying the same change to a hundred elements one at a time is the single most tedious operation in early-phase modelling: setting a category on every equipment item, filling a mass margin down a column, or reassigning a whole subsystem to a different Ownership. The requirements in this subsection cover editing many elements in one operation from the table-shaped surfaces where a column-oriented edit is natural: the tabular element browser (`SSS-PA-NAV-G5X`) and the Grid View (`SSS-PA-VIS-JPW`). A bulk operation is always previewed before it is applied and always lands as a single atomic change through the persistence modes of §5.2.1.6, so that a hundred edited elements produce one Commit rather than a hundred. The hierarchical Browser View and the diagram canvas are not bulk-editing surfaces; multi-selection there remains a selection mechanism.
+
+| ID | Roles | Requirement | Ref | Prio |
+|----|-------|-------------|-----|------|
+| SSS-PA-BULK-S1K | PA, PT | Mycelium Bloom shall set the value of a property shared by every element of a multi-row selection, on all selected elements, in a single operation when "a user selects multiple rows in the tabular element browser or the Grid View and edits a property value for the selection." | - | H |
+| SSS-PA-BULK-F2R | PA, PT | Mycelium Bloom shall propagate the value of a column cell to every row of a contiguous selected range when "a user invokes a fill-down operation on a column in the tabular element browser or the Grid View." | - | H |
+| SSS-PA-BULK-V4D | PA, PT | Mycelium Bloom shall display a preview listing every element, every property, its current value, and its resulting value before the change is applied when "a user submits a bulk edit operation." | - | H |
+| SSS-PA-BULK-A5T | PA, PT | Mycelium Bloom shall apply a bulk edit operation as a single atomic change, persisted as one Commit in immediate mode per `SSS-PA-PERSIST-K4R` or as one entry in the pending batch in batch mode per `SSS-PA-PERSIST-W8N`, when "a user confirms a previewed bulk edit operation." | API 7.2.3 | H |
+| SSS-PA-BULK-X6J | PA, PT | Mycelium Bloom shall exclude from a bulk edit operation, and report to the user with the reason, every selected element the user is not permitted to modify (Ownership assignment, project lifecycle state, or LibraryPackage immutability), and shall apply the operation to the remaining elements, when "a bulk edit selection contains elements the user cannot modify." | - | H |
+| SSS-PA-BULK-N9G | PA, PT | Mycelium Bloom shall offer for bulk editing only those properties carried by every element of the selection, and shall indicate which properties are unavailable and why, when "a user opens the bulk edit interface on a heterogeneous selection." | - | M |
+| SSS-PA-BULK-P3M | PA, PT | Mycelium Bloom shall write a rectangular block of clipboard values into the corresponding selected rows and columns, reporting any value that cannot be applied to its target property, when "a user pastes tabular clipboard content into a selected range in the tabular element browser or the Grid View." | - | M |
+| SSS-PA-BULK-M7W | PA, PT | Mycelium Bloom shall apply a Metadata Usage, remove a Metadata Usage, or reassign the Owner metadata across every element of a multi-row selection in a single operation when "a user invokes a bulk metadata or bulk Ownership assignment on a selection in the tabular element browser or the Grid View." | SysML 7.27 | M |
+| SSS-PA-BULK-D8B | PA, PT | Mycelium Bloom shall delete every element of a multi-row selection in a single confirmed operation, reporting each element that could not be deleted together with the reason, when "a user invokes a bulk delete on a selection in the tabular element browser or the Grid View." | - | M |
 
 ##### 5.2.1.9 Namespace and package management
 
@@ -938,7 +955,7 @@ A General View is an unconstrained canvas where engineers can place any model el
 
 ###### 5.2.1.19.9 Grid View
 
-A Grid View presents model data in tabular or matrix form. Engineers use it to compare attributes across many elements at once, or to view two-dimensional relationships between element sets.
+A Grid View presents model data in tabular or matrix form. Engineers use it to compare attributes across many elements at once, or to view two-dimensional relationships between element sets. Together with the tabular element browser, the Grid View is a bulk-editing surface: the requirements for editing many elements in one operation are in §5.2.1.8a.
 
 | ID | Roles | Requirement | Ref | Prio |
 |----|-------|-------------|-----|------|
@@ -957,11 +974,18 @@ Different stakeholders have different concerns: a power engineer wants a power-f
 
 ###### 5.2.1.19.11 Textual notation
 
-SysML v2 has a textual notation that some engineers prefer for editing, reviewing or sharing model content. Mycelium generates this notation read-only from the model, providing a reference representation without requiring users to edit text directly.
+SysML v2 has a textual notation that some engineers prefer for editing, reviewing or sharing model content. Mycelium generates this notation from the model and, beyond reading it, lets the user edit it and push the result back into the model. Parsing happens entirely in the browser: Mycelium Bloom parses the edited text against the SysML v2 concrete syntax grammar, resolves the names it references, and turns the result into ordinary abstract-syntax changes. Nothing about this capability requires a server-side parser, so it remains available against any backend implementing the OMG Systems Modelling API (§5.2.1.33), and `SSS-CC-EXT-EG1` continues to hold: Mycelium Fabric emits textual notation but never ingests it. The resulting changes are persisted through the normal persistence modes of §5.2.1.6 and are subject to the same server-side validation (`SSS-FB-VALID-CNF`) and Ownership enforcement (`SSS-CC-COLLAB-KOR`) as any other edit.
 
 | ID | Roles | Requirement | Ref | Prio |
 |----|-------|-------------|-----|------|
-| SSS-PA-VIS-IXL | PA, PT, VW | Mycelium Bloom shall generate and display the SysML v2 textual notation representation of model elements (read-only) when "a user selects one or more model elements and requests textual notation view." | SysML 8.2.2 | H |
+| SSS-PA-VIS-IXL | PA, PT, VW | Mycelium Bloom shall generate and display the SysML v2 textual notation representation of model elements when "a user selects one or more model elements and requests textual notation view." | SysML 8.2.2 | H |
+| SSS-PA-VIS-TN1 | PA, PT | Mycelium Bloom shall provide an editable textual notation editor scoped to a selected Element, Namespace, or Package, pre-populated with the notation generated per `SSS-PA-VIS-IXL`, when "a user requests the textual notation view of a model scope and has permission to modify it." | SysML 8.2.2 | M |
+| SSS-PA-VIS-TN2 | PA, PT | Mycelium Bloom shall render syntax highlighting and offer auto-completion of SysML v2 keywords and of the element names resolvable in the edited scope when "a user types in the textual notation editor." | SysML 8.2 | M |
+| SSS-PA-VIS-TN3 | PA, PT | Mycelium Bloom shall parse the edited text against the SysML v2 concrete syntax grammar entirely within the browser, without issuing a request to the connected backend, when "the content of the textual notation editor changes." | SysML 8.2 | M |
+| SSS-PA-VIS-TN4 | PA, PT | Mycelium Bloom shall display each syntax error and each unresolvable name reference inline with its line, column, and message, and shall prevent the edited text from being applied while any such error is present, when "the parse of the textual notation editor content fails." | SysML 8.2 | M |
+| SSS-PA-VIS-TN5 | PA, PT | Mycelium Bloom shall display the set of model changes implied by the edited text, listing the elements to be created, updated, and deleted with their old and new values, when "a user requests to apply the content of the textual notation editor." | - | M |
+| SSS-PA-VIS-TN6 | PA, PT | Mycelium Bloom shall apply the parsed result as model changes persisted through the active persistence mode of §5.2.1.6, subject to the same validation and Ownership rules as any other edit, when "a user confirms the model changes implied by the edited textual notation." | API 7.2.3 | M |
+| SSS-PA-VIS-TN7 | PA, PT | Mycelium Bloom shall regenerate the textual notation from the persisted model and replace the editor content with it, so that the editor reflects the committed model, when "the model changes implied by the edited textual notation have been applied." | SysML 8.2.2 | M |
 
 ###### 5.2.1.19.12 Diagram export
 
@@ -975,17 +999,29 @@ Diagrams need to leave Mycelium for reports, presentations, and external tools. 
 
 ###### 5.2.1.19.13 Diagram management and canvas operations
 
-Beyond rendering, engineers need to manage diagrams as artifacts and arrange their content. The requirements in this subsection cover the lifecycle of a diagram and the canvas operations common to every diagram type. Diagram persistence and real-time collaboration are covered separately in 5.2.1.20.
+Beyond rendering, engineers need to manage diagrams as artifacts and arrange their content. The requirements in this subsection cover the lifecycle of a diagram and the canvas operations common to every diagram type. Automatic layout and the generation of a diagram from a set of elements are covered in 5.2.1.19.14; diagram persistence and real-time collaboration are covered separately in 5.2.1.20.
 
 | ID | Roles | Requirement | Ref | Prio |
 |----|-------|-------------|-----|------|
 | SSS-PA-VIS-DM1 | PA, PT | Mycelium Bloom shall provide operations to create, open, rename, and delete diagrams and to list the diagrams of a project with their name and type when "a user accesses the project's diagram list." | - | H |
 | SSS-PA-VIS-ZP3 | PA, PT, VW | Mycelium Bloom shall zoom, pan, and fit the diagram to the view when "a user zooms, pans, or invokes fit-to-view on a diagram." | - | H |
-| SSS-PA-VIS-LY2 | PA, PT | Mycelium Bloom shall apply an automatic layout that arranges the nodes and routes the relationships of a diagram when "a user invokes auto-layout on a diagram." | - | L |
 | SSS-PA-VIS-AL4 | PA, PT | Mycelium Bloom shall align and distribute selected diagram nodes when "a user invokes an alignment or distribution action on a multi-element selection." | - | L |
 | SSS-PA-VIS-SE5 | PA, PT | Mycelium Bloom shall select multiple diagram elements and cut, copy, and paste them within or between diagrams when "a user performs a multi-selection and a clipboard operation." | - | M |
 | SSS-PA-VIS-UR6 | PA, PT | Mycelium Bloom shall undo and redo diagram editing operations when "a user invokes undo or redo in a diagram editor." | - | M |
 | SSS-PA-VIS-RT7 | PA, PT | Mycelium Bloom shall edit the routing of a relationship by adding, moving, and removing waypoints when "a user reroutes a relationship on a diagram." | - | M |
+
+###### 5.2.1.19.14 Automatic layout and view generation
+
+Arranging a diagram by hand is acceptable for a dozen nodes and unacceptable for a hundred. Automatic layout removes that cost, and it is what makes a second capability practical: selecting a set of model elements anywhere in the application and asking Mycelium to produce a readable diagram of them immediately, rather than dropping them onto a canvas in a pile. The requirements in this subsection cover the layout algorithms, the scope a layout is applied to, the generation of a new diagram from a selection, and the ability to undo a layout that made things worse. The layout produced is ordinary diagram content and is persisted per `SSS-PA-VIS-P1A` (§5.2.1.20).
+
+| ID | Roles | Requirement | Ref | Prio |
+|----|-------|-------------|-----|------|
+| SSS-PA-VIS-LY2 | PA, PT | Mycelium Bloom shall apply an automatic layout that arranges the nodes and routes the relationships of a diagram when "a user invokes auto-layout on a diagram." | - | M |
+| SSS-PA-VIS-LA1 | PA, PT | Mycelium Bloom shall present the layout algorithms applicable to the diagram type, comprising at minimum hierarchical (layered), orthogonal, force-directed, tree, and grid layouts, and shall apply the algorithm the user selects, when "a user invokes auto-layout and chooses a layout algorithm." | - | M |
+| SSS-PA-VIS-LA2 | PA, PT | Mycelium Bloom shall apply the layout to the whole diagram or to the current selection only, leaving the position and routing of unselected elements unchanged, when "a user invokes auto-layout and chooses the layout scope." | - | M |
+| SSS-PA-VIS-LA3 | PA, PT | Mycelium Bloom shall create a new diagram of a user-chosen type containing a user-selected set of model elements together with the relationships that exist between them, and shall apply the chosen layout algorithm to it on creation, when "a user selects one or more model elements in the model browser, a tabular view, or a query result and invokes the create-view action." | - | M |
+| SSS-PA-VIS-LA5 | PA, PT | Mycelium Bloom shall restore the node positions and relationship routing that preceded the most recently applied automatic layout when "a user reverts an applied auto-layout." | - | M |
+| SSS-PA-VIS-LA4 | PA, PT | Mycelium Bloom shall include in the generated diagram the elements related to the selection up to a user-specified traversal depth when "a user sets a traversal depth greater than zero while creating a view from a selection." | - | L |
 
 ##### 5.2.1.20 Diagram persistence and real-time collaboration
 
@@ -1025,7 +1061,7 @@ Spatial decomposition is most intuitive in 3D. Mycelium offers an interactive 3D
 
 ##### 5.2.1.22 Queries
 
-Engineers need to ask questions of their models: list all elements categorized as Equipment, find all requirements with no Satisfy relationship, retrieve all parts above a mass threshold. Mycelium offers a query interface based on the Systems Modelling API query operations, with the ability to save and re-execute queries against any commit.
+Engineers need to ask questions of their models: list all elements categorized as Equipment, find all requirements with no Satisfy relationship, retrieve all parts above a mass threshold. Mycelium offers a query interface based on the Systems Modelling API query operations, with the ability to save and re-execute queries against any commit. The queries in this section are model queries: they are executed by the backend and return model elements. They are distinct from the *view filters* of §5.2.1.24c, which determine which elements an already-open view shows or hides and are not executed against the model server.
 
 | ID | Roles | Requirement | Ref | Prio |
 |----|-------|-------------|-----|------|
@@ -1090,6 +1126,58 @@ Mycelium supports novice, intermediate, and expert users. The interface should a
 | SSS-PT-UI-G4M | All | Mycelium Bloom shall display an About window showing the application name, version number, license information, copyright notice, and links to documentation and source code when "a user opens the About dialog." | - | M |
 | SSS-PT-UI-TH1 | All | Mycelium Bloom shall provide a setting to switch the interface theme (light, dark, or high-contrast) when "a user selects a theme in their preferences." | - | L |
 | SSS-PT-UI-KB3 | All | Mycelium Bloom shall provide keyboard shortcuts for common operations, configurable by the user, when "a user invokes or customises a keyboard shortcut." | - | L |
+
+###### 5.2.1.24a Preference scopes
+
+A setting in Mycelium is rarely a single global value. An organization wants a house style for how views open; a project wants its own conventions on top of that; an individual engineer wants to override both for their own screen. Mycelium therefore resolves every user-configurable setting from three scopes, in increasing order of specificity: the **organization** default set by the Organization Administrator, the **project** default set by the Project Administrator, and the **user** override set by the individual. The most specific value present wins, and clearing a value at one scope falls back to the next scope out rather than to a hard-coded default. The requirements in this subsection define this resolution mechanism; §5.2.1.24b and §5.2.1.24c are its two principal consumers.
+
+| ID | Roles | Requirement | Ref | Prio |
+|----|-------|-------------|-----|------|
+| SSS-CC-PREF-R1V | All | Mycelium Bloom shall resolve the effective value of every user-configurable setting from the organization-scope default, the project-scope default, and the user-scope override, applying the value of the most specific scope in which a value is present, when "a user opens a project or any view whose behaviour depends on a scoped setting." | - | H |
+| SSS-CC-PREF-C3D | All | Mycelium Bloom shall clear a user-scope override so that the setting reverts to the inherited project-scope or organization-scope value when "a user resets a setting to its inherited value." | - | H |
+| SSS-OA-PREF-O4K | OA | Mycelium Bloom shall set the organization-scope default of any scoped setting, applying it to every project in the organization that does not define its own value, when "the Organization Administrator edits the organization preference defaults." | - | H |
+| SSS-PA-PREF-P5W | PA | Mycelium Bloom shall set the project-scope default of any scoped setting, applying it to every member of the project who does not define their own override, when "the Project Administrator edits the project preference defaults." | - | H |
+| SSS-FB-PREF-F7J | - | Mycelium Fabric shall persist preference values at organization, project, and user scope, and shall return the resolved preference set for the authenticated user in a single response, when "a client requests the preferences applicable to a project." | - | H |
+| SSS-CC-PREF-S2N | All | Mycelium Bloom shall display, for each setting, the scope from which its effective value is taken when "a user views a settings interface." | - | M |
+| SSS-CC-PREF-L6B | All | Mycelium Bloom shall store user-scope preferences in local browser storage, and continue to apply them, when "the connected backend exposes no preference store as determined by `SSS-CC-BACK-CD2`." | - | M |
+
+###### 5.2.1.24b View configuration persistence
+
+An engineer who spends a session hiding irrelevant columns, reordering the ones that matter, sorting by mass and filtering to their own Ownership expects to find the view exactly that way tomorrow. View configuration is presentation state: which columns are visible, in what order, at what width, how rows are sorted and grouped, and which display filter is active. It is explicitly **not** model content. It is stored through the three-scope mechanism of §5.2.1.24a, so that an organization or a project can set a sensible starting configuration that individual users then adapt. Because it is not model content, changing it produces no Commit, notifies no other user, and appears in no diff.
+
+| ID | Roles | Requirement | Ref | Prio |
+|----|-------|-------------|-----|------|
+| SSS-CC-VIEW-V1R | All | Mycelium Bloom shall persist, at user scope, the set of visible columns, their order, their width, the sort order, the grouping, and the active display filter of a view when "a user changes the column selection, column order, column width, sort order, grouping, or filter of a view." | - | H |
+| SSS-CC-VIEW-R2M | All | Mycelium Bloom shall restore the persisted configuration of a view when "a user reopens a view for which a configuration has been persisted." | - | H |
+| SSS-CC-VIEW-I3T | All | Mycelium Bloom shall persist the configuration of each view kind independently, and independently per view instance where several instances of the same view kind are open per `SSS-PA-NAV-M2C`, when "a user configures one of several open views." | - | H |
+| SSS-CC-VIEW-D4F | All | Mycelium Bloom shall discard the user-scope configuration of a view and restore the project-scope or organization-scope default configuration when "a user resets a view to its default configuration." | - | H |
+| SSS-CC-VIEW-N5P | All | Mycelium Bloom shall persist view configuration outside the SysML v2 model, shall not represent it as model content, and shall not create a Commit, when "a user changes the configuration of a view." | - | H |
+| SSS-PA-VIEW-B6K | PA, OA | Mycelium Bloom shall define the default configuration of a view kind at project scope or organization scope when "the Project Administrator or Organization Administrator saves the current configuration of a view as the default for that scope." | - | M |
+
+###### 5.2.1.24c Saved view filters
+
+Beyond remembering how a view was left, engineers want to name a way of looking at the model and come back to it: "power subsystem only", "everything without an Owner", "items over 5 kg". A view filter is a named set of criteria determining which elements a view shows, hides, or highlights. Like view configuration, a filter is Bloom configuration stored through §5.2.1.24a and is not a SysML v2 Element; saving one creates no model content. Saving a filter at project or organization scope is what makes it shared with the team. These filters operate on what an open view displays and are distinct from the model queries of §5.2.1.22, which are executed by the backend and return element sets.
+
+| ID | Roles | Requirement | Ref | Prio |
+|----|-------|-------------|-----|------|
+| SSS-CC-VIEW-F7G | All | Mycelium Bloom shall provide a filter editor composing criteria on element name, element type, Ownership, applied Metadata Definition, attribute value, and namespace scope, and shall show or hide the elements of a view according to those criteria, when "a user composes or edits a view filter." | - | M |
+| SSS-CC-VIEW-S8W | All | Mycelium Bloom shall save a view filter under a user-supplied name at user scope, project scope, or organization scope, persisted outside the SysML v2 model, when "a user saves the filter currently composed in the filter editor." | - | M |
+| SSS-CC-VIEW-M9C | All | Mycelium Bloom shall list, apply, rename, duplicate, and delete the saved view filters visible at the user's scopes when "a user opens the saved filters list." | - | M |
+| SSS-CC-VIEW-A1H | All | Mycelium Bloom shall apply a saved filter to any view that supports the criteria it declares, and shall indicate each criterion that does not apply to that view, when "a user applies a saved filter to a view." | - | M |
+| SSS-CC-VIEW-X2L | All | Mycelium Bloom shall indicate that a filter is active on a view and the number of elements it hides, and shall clear the filter on request, when "a view is displayed with an active filter." | - | M |
+
+###### 5.2.1.24d In-application contextual documentation
+
+Mycelium exposes a large surface: a dozen diagram types, ownership, subscriptions, publication, branching. A user standing in front of an unfamiliar view should not have to leave the application to find out what it is for. The requirements in this subsection cover documentation that describes the view the user is currently looking at and the tool they currently have selected, presented as a panel or callout the user can close and that stays closed. Dismissal is persisted per user through §5.2.1.24a, so the help never becomes an obstacle for an experienced user while remaining available on demand.
+
+| ID | Roles | Requirement | Ref | Prio |
+|----|-------|-------------|-----|------|
+| SSS-CC-HELP-D1N | All | Mycelium Bloom shall display documentation describing the purpose and the available operations of the currently active view and of the currently selected tool when "a user opens a view or selects a tool for which contextual documentation exists." | - | H |
+| SSS-CC-HELP-C2R | All | Mycelium Bloom shall render contextual documentation as a closable panel or callout that leaves the underlying view interactive while it is displayed when "contextual documentation is shown." | - | H |
+| SSS-CC-HELP-P3J | All | Mycelium Bloom shall persist the dismissed state of each documentation item per user, shall not display a dismissed item again, and shall restore all dismissed items on request, when "a user closes a contextual documentation panel or callout." | - | H |
+| SSS-CC-HELP-A4V | All | Mycelium Bloom shall present a persistent help affordance in the header of every view that reopens the contextual documentation for that view when "a user activates the help affordance of a view." | - | H |
+| SSS-CC-HELP-U5B | All | Mycelium Bloom shall replace the displayed contextual documentation with the documentation of the newly active view or tool when "a user changes the active view or selects a different tool while contextual documentation is displayed." | - | H |
+| SSS-CC-HELP-L6T | All | Mycelium Bloom shall navigate to the corresponding section of the full product documentation when "a user activates the documentation link in a contextual documentation panel." | - | M |
 
 ##### 5.2.1.25 Import, export and migration
 
@@ -1246,6 +1334,19 @@ Mycelium models are versioned like source code. Every change becomes a Commit; a
 | SSS-PA-VC-TG2 | PA | Mycelium Bloom shall provide operations to list and delete Tags, showing each Tag's name, target Commit, and creator, when "a user accesses the tag management view." | API 7.2.4 | H |
 | SSS-PA-VC-DB3 | PA | Mycelium Bloom shall set the default branch of a project when "the Project Administrator designates a branch as the default in the branch management view." | API 7.2.2 | H |
 | SSS-PA-VC-RN4 | PA, PT | Mycelium Bloom shall rename a non-default branch when "a user renames a branch in the branch management view." | API 7.2.2 | H |
+
+###### 5.2.1.32a Branching enablement
+
+Not every project wants branches. A Concurrent Design Facility study runs as a single line of development in a single room over a few days, and a small team modelling one system rarely needs more. For those projects the branch, merge, and review vocabulary is not a feature but an obstacle, and a visible one: branch selectors, merge actions, and protected-branch settings occupying the interface for a workflow that will never be used. The requirements in this subsection cover a project-level setting that turns branching off, initialised from an organization-level default. Disabling branching removes only the branching surfaces; everything else in §5.2.1.32 remains: changes are still Commits, milestones are still Tags, and the commit history, the version history graph, commit diffing, and read-only historical snapshots all stay available on the project's default branch.
+
+| ID | Roles | Requirement | Ref | Prio |
+|----|-------|-------------|-----|------|
+| SSS-PA-VC-BE1 | PA | Mycelium Bloom shall provide a project setting to enable or disable branching, initialised from the organization-scope default, when "the Project Administrator accesses the project's version control settings." | - | H |
+| SSS-OA-VC-BE2 | OA | Mycelium Bloom shall provide an organization setting determining whether branching is enabled by default in newly created projects when "the Organization Administrator accesses the organization's project defaults settings." | - | H |
+| SSS-PA-VC-BE3 | PA, PT, VW | Mycelium Bloom shall hide the branch creation, branch switching, branch management, merge, and merge-review surfaces and shall operate solely on the project's default branch when "a user opens a project whose branching setting is disabled." | - | H |
+| SSS-PA-VC-BE4 | PA, PT, VW | Mycelium Bloom shall keep commit creation, commit history, the version history graph, commit diffing, read-only historical snapshot loading, and tagging available on the default branch when "a user works in a project whose branching setting is disabled." | API 7.2.3 | H |
+| SSS-PA-VC-BE5 | PA | Mycelium Bloom shall prevent branching from being disabled, listing the branches concerned and requiring that they first be merged or deleted, when "the Project Administrator attempts to disable branching on a project that holds branches other than the default branch." | - | H |
+| SSS-FB-VC-BE6 | - | Mycelium Fabric shall reject branch creation, branch deletion, branch rename, and merge operations, returning an error identifying the disabled branching setting, when "a client submits such an operation for a project whose branching setting is disabled." | API 7.2.2 | H |
 
 ##### 5.2.1.33 Multi-backend support and polling
 

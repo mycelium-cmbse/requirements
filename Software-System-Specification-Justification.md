@@ -94,3 +94,87 @@ SysML v2 separates *what something is* (a `Definition`, e.g. `part def Battery`)
 - **At the Usage** — specific: a particular `Usage` can override the inherited icon to show, for example, a distinct picture of the *primary* battery versus the *redundant* battery when the design needs to distinguish them visually.
 
 This upload requirement is paired with the rendering requirement [SSS-PA-VIS-J2R](Software-System-Specification.md#521191-general-diagramming-and-notation), which actually places the icon or image on the diagram, and with [SSS-PA-VIS-A6F](Software-System-Specification.md#521191-general-diagramming-and-notation), which keeps the element's name and type designator visible alongside the custom icon so that legibility for non-experts does not come at the cost of unambiguous identification for SysML v2 readers.
+
+## [SSS-PA-VIS-TN1 … SSS-PA-VIS-TN7 — editable textual notation](Software-System-Specification.md#5211911-textual-notation)
+
+### Why the earlier constraint was reversed
+
+An earlier version of §4.3 stated that the web application *shall not* provide SysML v2 textual notation editing or parsing capabilities, and that the notation is generated read-only. That constraint has been removed. The reasoning behind it was sound as a scoping decision — parsing a concrete syntax is a substantial piece of engineering, and a modelling tool can be complete without it — but it does not survive contact with how experienced SysML v2 practitioners actually work. For a user fluent in the notation, typing
+
+```
+part def Battery {
+    attribute mass : ISQ::MassValue;
+    port power : PowerPort;
+}
+```
+
+is faster than creating a Part Definition in the browser, adding an Attribute Usage, choosing its type from a picker, adding a Port Usage, and choosing its type from another picker. The same holds for bulk authoring, for pasting a fragment out of a specification or an email, and for correcting a structural mistake that would take a dozen clicks to unpick graphically. Read-only notation serves review and sharing; it does not serve authoring, and authoring is where the time goes.
+
+Keeping the notation read-only also creates an asymmetry Mycelium does not otherwise have. Every other representation in the platform round-trips: a diagram edit changes the model and a model edit changes the diagram ([SSS-PA-VIS-K8M](Software-System-Specification.md#521191-general-diagramming-and-notation), [SSS-PA-VIS-H2W](Software-System-Specification.md#521191-general-diagramming-and-notation)); a tabular edit changes the model. The textual notation would have been the only view of the model that is not also a way into it.
+
+### Why the parser is client-side
+
+`SSS-PA-VIS-TN3` places the parser in the browser rather than in Mycelium Fabric. Three reasons:
+
+- **Multi-backend portability.** [SSS-CC-BACK-R5W](Software-System-Specification.md#521133-multi-backend-support-and-polling) requires Mycelium Bloom to work against *any* backend implementing the OMG Systems Modelling API, not only Mycelium Fabric. That API has no textual-notation endpoint. A server-side parser would make textual editing a Fabric-only capability, and [SSS-CC-BACK-CD2](Software-System-Specification.md#521133-multi-backend-support-and-polling) would then have to disable it for every third-party backend. A client-side parser keeps the capability available everywhere.
+- **Interaction latency.** Syntax highlighting, error markers, and auto-completion (`SSS-PA-VIS-TN2`, `SSS-PA-VIS-TN4`) are keystroke-frequency operations. A network round-trip per parse is the difference between an editor and a form.
+- **One commit path.** Because Bloom parses locally, what it submits is an ordinary set of abstract-syntax changes, indistinguishable from an edit made in a diagram or a table. `SSS-PA-VIS-TN6` therefore inherits the existing persistence modes (§5.2.1.6), server-side well-formedness validation ([SSS-FB-VALID-CNF](Software-System-Specification.md#5224-model-validation-and-commit-rejection)), and Ownership enforcement ([SSS-CC-COLLAB-KOR](Software-System-Specification.md#5223-ownership-enforcement)) without any of them needing to learn about text. There is no second write path into the model, and therefore no second place for the rules to be enforced or forgotten.
+
+### Why Fabric still does not ingest textual notation
+
+[SSS-CC-EXT-EG1](Software-System-Specification.md#53-system-interface-requirements) is deliberately unchanged: Mycelium Fabric emits SysML v2 and KerML textual notation as a one-way rendering of the abstract syntax and does not accept it as input. This is not an oversight left over from the previous constraint. The Systems Modelling API is an abstract-syntax interface; accepting concrete syntax at the server boundary would add a parser, a grammar version, and a class of parse-error responses to an interface specified in terms of element payloads, and would give external clients a second, semantically weaker way to write to the model. Text is a user-interface affordance in Mycelium, and it stays on the user-interface side of the boundary.
+
+### Why the change set is shown before it is applied
+
+`SSS-PA-VIS-TN5` requires the implied creations, updates, and deletions to be displayed before anything is written. Editing text is a blunt instrument: deleting three lines can delete three elements and everything they own, and unlike a diagram, the text gives no visual cue that a subtree went with them. The preview turns an irreversible structural edit into a reviewed one. `SSS-PA-VIS-TN7` then regenerates the notation from the persisted model rather than leaving the user's text in place, so that the editor cannot drift out of agreement with what was actually stored — normalisation, defaulting, and any element the user did not write are all visible immediately.
+
+## [SSS-CC-PREF-R1V, SSS-CC-VIEW-N5P — preference scoping and view configuration](Software-System-Specification.md#52124a-preference-scopes)
+
+### Why three scopes rather than one
+
+A single per-user preference store is the obvious design and the wrong one for a collaborative engineering platform. Three distinct needs exist at once:
+
+- An **organization** running many studies wants a house configuration — which columns a requirements table opens with, which theme, which default filters — applied to every project without configuring each one.
+- A **project** has conventions the organization cannot anticipate: a thermal study wants different default columns than a launcher study. The Project Administrator needs to set a starting point for their team.
+- An **individual** engineer works on their own screen, at their own resolution, on their own subsystem, and must be able to override both without asking anyone.
+
+Collapsing these into one scope forces a choice between an organization that cannot standardise anything and users who cannot adapt anything. The org → project → user precedence in `SSS-CC-PREF-R1V` resolves it in the only order that makes sense: the more specific the scope, the more it knows about the actual situation, so the more specific value wins.
+
+The reset behaviour in `SSS-CC-PREF-C3D` matters as much as the precedence. Clearing a user override falls back to the *inherited* value, not to a hard-coded product default. This is what makes an organization-level or project-level change actually take effect for users who have not deliberately overridden it — without it, the defaults would only ever apply to accounts that had never touched a setting, and the scoping would be decorative. `SSS-CC-PREF-S2N` exists for the same reason: a user who cannot see that a value came from the project scope cannot tell the difference between a setting they chose and a setting that was chosen for them.
+
+`SSS-CC-PREF-L6B` covers the case where the connected backend is not Mycelium Fabric and offers no preference store. Preferences degrade to browser-local storage rather than disappearing, which keeps [SSS-CC-BACK-R5W](Software-System-Specification.md#521133-multi-backend-support-and-polling) honest: multi-backend support should cost the user features they cannot have, not features that merely need somewhere to be kept.
+
+### Why view configuration is deliberately not model content
+
+`SSS-CC-VIEW-N5P` states that view configuration is persisted outside the SysML v2 model and creates no Commit. This is the one requirement in §5.2.1.24b that constrains rather than enables, and it is there because the alternative is tempting and wrong.
+
+Mycelium already persists one category of presentation state *inside* the model boundary: diagram layout, under [SSS-PA-VIS-P1A](Software-System-Specification.md#52120-diagram-persistence-and-real-time-collaboration) and [SSS-FB-VIS-P3C](Software-System-Specification.md#52120-diagram-persistence-and-real-time-collaboration), which explicitly applies commit, branch, merge, and ownership semantics to node positions and routing. That is correct for diagrams: a diagram is a shared artifact that a team reviews together, and where a box sits is part of what was agreed. It is emphatically not correct for view configuration, which is per-user and per-session. If resizing a column produced a Commit, then:
+
+- every column drag would enter the commit history and the version history graph, burying model changes in presentation noise;
+- every column drag would fire a real-time notification to all connected users under [SSS-CC-COLLAB-TLB](Software-System-Specification.md#5225-real-time-notifications);
+- commit diffs ([SSS-PA-VC-P89](Software-System-Specification.md#521132-version-control-and-branching)) and merge reviews ([SSS-PT-VC-DV3](Software-System-Specification.md#521128-review-workflow)) would surface changes that mean nothing to a reviewer;
+- two users could conflict on a merge over how wide a column is.
+
+The same argument applies to the saved view filters of §5.2.1.24c. A filter is a way of looking at the model, not a statement about the system being designed, and modelling it as a SysML v2 Element would make it subject to ownership enforcement, validation, branching, and merge — all of which are costs with no corresponding benefit. Sharing, the one property that might have justified putting filters in the model, is obtained instead by saving them at project or organization scope through §5.2.1.24a.
+
+This is also the boundary that separates §5.2.1.24c from §5.2.1.22. A *query* is executed against the model server, may target any Commit, returns element sets, and is legitimately a shared project asset. A *filter* decides what an already-loaded view shows. They look similar in the interface and are entirely different in where they run and what they cost.
+
+## [SSS-PA-VC-BE1 … SSS-FB-VC-BE6 — branching enablement](Software-System-Specification.md#521132a-branching-enablement)
+
+### Why a project would turn branching off
+
+Version control with branches is one of Mycelium's differentiators against CDP4-COMET, so a setting that disables it deserves explanation. The answer is that Mycelium's primary use case does not use branches, and the interface pays for them anyway.
+
+A Concurrent Design Facility session is 20 to 30 engineers in one room over a few days, working on one model, in one line of development, with changes published and integrated continuously ([SSS-PT-CDS-RKV](Software-System-Specification.md#52117-concurrent-design)). The whole point of the concurrent design method is that divergence is resolved *in the room, immediately*, not in a parallel line of work merged later. There is no branch to create, and a Participant who creates one has almost certainly misunderstood the workflow. The same holds for a small team modelling a single system: the coordination cost of branching exceeds its value below a certain team size.
+
+Meanwhile, branching is not free in the interface. A branch selector sits in the application header ([SSS-PA-VC-R8W](Software-System-Specification.md#521132-version-control-and-branching)), branch management is a view, merges are a workflow with conflict resolution, and protected branches bring a whole review workflow (§5.2.1.28) with reviewers and approval counts. For a project that will never use any of it, this is a permanent tax on the interface and a permanent source of confusion for exactly the audience Mycelium is trying to reach: the subject-matter expert who is an authority on thermal control and has never used Git.
+
+### Why the scope is what it is
+
+The setting is per project with an organization-level default (`SSS-PA-VC-BE1`, `SSS-OA-VC-BE2`) because the decision is genuinely a per-project one — an organization may run CDF studies and long-running system development in parallel — while an organization that only does one kind of work should not have to configure every project by hand.
+
+`SSS-PA-VC-BE4` is the requirement that keeps this from being a mistake. Disabling branching disables *branching*, not version control. Commits, tags, the history graph, commit diffing, and read-only historical snapshots all remain, because these serve every project regardless of workflow: a CDF study still needs a baseline tag at the end of each session, still needs to see what changed since yesterday, and still needs to open the model as it was on Tuesday. What is removed is only the machinery for maintaining parallel lines of development. A project that starts simple and later needs branches re-enables the setting and finds its full history intact.
+
+`SSS-PA-VC-BE5` handles the transition in the other direction. Disabling branching while non-default branches exist would orphan work: the branches would still exist in Mycelium Fabric with no interface reaching them. Requiring them to be merged or deleted first makes the loss explicit and deliberate rather than silent.
+
+Finally, `SSS-FB-VC-BE6` enforces the setting server-side. Hiding the branch surfaces in Mycelium Bloom is a user-interface convenience, not a control — the Systems Modelling API is a public interface ([SSS-CC-EXT-QIN](Software-System-Specification.md#5221-systems-modelling-api)) and any client can call `createBranch` directly. This follows the same principle as ownership enforcement (§5.2.2.3): Bloom presents the rule, Fabric enforces it.
