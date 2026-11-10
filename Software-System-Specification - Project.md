@@ -319,12 +319,11 @@ When user A edits the model, user B should see the change in near real-time with
 
 ##### 5.2.1.6 Change persistence
 
-Mycelium Bloom operates in two persistence modes. In immediate mode, each edit is persisted to Mycelium Fabric as an individual Commit on the active branch, making it visible to other users in near real-time. In batch mode, the user collects multiple changes locally before persisting them as a single atomic Commit. Both modes produce Systems Modelling API Commits.
+Mycelium Bloom operates in immediate persistence mode: each edit is persisted to Mycelium Fabric as an individual Systems Modelling API Commit on the active branch, making it visible to other users in near real-time.
 
 | ID | Roles | Requirement | Ref | Prio |
 |----|-------|-------------|-----|------|
 | SSS-PA-PERSIST-K4R | PA, PT | Mycelium Bloom shall persist each model edit (create, update, delete) to Mycelium Fabric as an individual Commit on the active branch in immediate mode when "a user completes an edit and immediate persistence mode is active." | API 7.2.3 | H |
-| SSS-PA-PERSIST-W8N | PA, PT | Mycelium Bloom shall accumulate model edits locally without persisting them to Mycelium Fabric in batch mode when "a user performs edits and batch persistence mode is active." | API 7.2.3 | H |
 
 ##### 5.2.1.7 Concurrent Design
 
@@ -349,12 +348,11 @@ When one engineer's work depends on another's outputs, they need to track those 
 
 ###### 5.2.1.7b Publication workflow
 
-In Concurrent Design Mode, attribute owners edit their own values (OwnedValue) without immediately affecting the values visible to subscribers. A publication event copies the OwnedValue to the AttributeUsage value, making it available to all consumers. This staged, manual publication is the default. A project may instead enable *auto-publish mode*, in which each owner edit is published immediately and the manual publication step is not required. The publication mechanism is modeled in the Concurrent Design library using PublicationDefinition, PublishedIn, and OwnedValue MetadataDefinitions (see [Roles and Permissions](Roles-and-Permissions.md)).
+In Concurrent Design Mode, attribute owners edit their own values (OwnedValue) without immediately affecting the values visible to subscribers. A publication event copies the OwnedValue to the AttributeUsage value, making it available to all consumers. The publication mechanism is modeled in the Concurrent Design library using PublicationDefinition, PublishedIn, and OwnedValue MetadataDefinitions (see [Roles and Permissions](Roles-and-Permissions.md)).
 
 | ID | Roles | Requirement | Ref | Prio |
 |----|-------|-------------|-----|------|
 | SSS-PT-PUB-K4W | PT | Mycelium Bloom shall store the owner's pending value as an OwnedValue metadata annotation on the AttributeUsage, without overwriting the published attribute value visible to subscribers, when "a Participant edits an attribute value in Concurrent Design Mode with auto-publish disabled." | - | H |
-| SSS-PT-PUB-C8L | PT | Mycelium Bloom shall publish an attribute value immediately upon edit, making the new value visible to all subscribers without requiring a manual publish operation, when "a Participant edits an attribute value while auto-publish mode is enabled." | - | H |
 | SSS-PT-PUB-R7N | PA, PT, VW | Mycelium Bloom shall visually distinguish attributes with pending unpublished changes (OwnedValue differs from published value) from attributes where OwnedValue and published value are equal when "a user views attributes in the model browser, detail panel, or tabular views." | - | H |
 | SSS-PT-PUB-D3M | PA, PT, VW | Mycelium Bloom shall display the old (published) value, the new (owned) value, and the difference (absolute and percentage) for each attribute with pending changes when "a user opens the publication review view." | - | H |
 | SSS-PT-PUB-H8J | PA | Mycelium Bloom shall publish all pending attribute changes across all Ownerships in a single operation, copying each OwnedValue to its corresponding AttributeUsage value and creating a PublicationDefinition record with timestamp, when "the Project Administrator initiates a publish-all operation." | - | H |
@@ -377,6 +375,18 @@ Engineers spend a lot of of their time finding, selecting, and understanding mod
 | SSS-PA-NAV-G5X | PA, PT, VW | Mycelium Bloom shall provide a tabular element browser that lists Definitions and Usages for each kind of Definition and Usage in a sortable, filterable table showing element name, namespace path, type, Ownership, and key attributes when "a user opens the tabular element browser." | - | H |
 | SSS-PA-NAV-W4B | PA, PT, VW | Mycelium Bloom shall support the hierarchical Browser View and the tabular element browser as independent views that can be open simultaneously when "a user has both views open." | - | H |
 | SSS-PA-NAV-M2C | PA, PT, VW | Mycelium Bloom shall open and display multiple hierarchical Browser Views and multiple tabular element browsers at the same time, without limiting the user to a single instance of either, each maintaining its own scope, filters, sorting, and selection, when "a user opens an additional Browser View or tabular element browser." | - | H |
+
+###### 5.2.1.8a Bulk editing in tabular views
+
+Applying the same change to a hundred elements one at a time is the single most tedious operation in early-phase modelling: setting a category on every equipment item, filling a mass margin down a column, or reassigning a whole subsystem to a different Ownership. The requirements in this subsection cover editing many elements in one operation from the table-shaped surfaces where a column-oriented edit is natural: the tabular element browser (`SSS-PA-NAV-G5X`) and the Grid View (`SSS-PA-VIS-JPW`). A bulk operation is always previewed before it is applied and always lands as a single atomic change through the persistence modes of §5.2.1.6, so that a hundred edited elements produce one Commit rather than a hundred. The hierarchical Browser View and the diagram canvas are not bulk-editing surfaces; multi-selection there remains a selection mechanism.
+
+| ID | Roles | Requirement | Ref | Prio |
+|----|-------|-------------|-----|------|
+| SSS-PA-BULK-S1K | PA, PT | Mycelium Bloom shall set the value of a property shared by every element of a multi-row selection, on all selected elements, in a single operation when "a user selects multiple rows in the tabular element browser or the Grid View and edits a property value for the selection." | - | H |
+| SSS-PA-BULK-F2R | PA, PT | Mycelium Bloom shall propagate the value of a column cell to every row of a contiguous selected range when "a user invokes a fill-down operation on a column in the tabular element browser or the Grid View." | - | H |
+| SSS-PA-BULK-V4D | PA, PT | Mycelium Bloom shall display a preview listing every element, every property, its current value, and its resulting value before the change is applied when "a user submits a bulk edit operation." | - | H |
+| SSS-PA-BULK-A5T | PA, PT | Mycelium Bloom shall apply a bulk edit operation as a single atomic change, persisted as one Commit in immediate mode per `SSS-PA-PERSIST-K4R` or as one entry in the pending batch in batch mode per `SSS-PA-PERSIST-W8N`, when "a user confirms a previewed bulk edit operation." | API 7.2.3 | H |
+| SSS-PA-BULK-X6J | PA, PT | Mycelium Bloom shall exclude from a bulk edit operation, and report to the user with the reason, every selected element the user is not permitted to modify (Ownership assignment, project lifecycle state, or LibraryPackage immutability), and shall apply the operation to the remaining elements, when "a bulk edit selection contains elements the user cannot modify." | - | H |
 
 ##### 5.2.1.9 Namespace and package management
 
@@ -901,6 +911,42 @@ Mycelium supports novice, intermediate, and expert users. The interface should a
 |----|-------|-------------|-----|------|
 | SSS-PT-UI-NLJ | All | Mycelium Bloom shall provide a role-aware interface that surfaces information and tools relevant to the user's assigned Ownership and tasks when "a user logs in and the application loads their role and Ownership assignments." | - | H |
 
+###### 5.2.1.24a Preference scopes
+
+A setting in Mycelium is rarely a single global value. An organization wants a house style for how views open; a project wants its own conventions on top of that; an individual engineer wants to override both for their own screen. Mycelium therefore resolves every user-configurable setting from three scopes, in increasing order of specificity: the **organization** default set by the Organization Administrator, the **project** default set by the Project Administrator, and the **user** override set by the individual. The most specific value present wins, and clearing a value at one scope falls back to the next scope out rather than to a hard-coded default. The requirements in this subsection define this resolution mechanism; §5.2.1.24b and §5.2.1.24c are its two principal consumers.
+
+| ID | Roles | Requirement | Ref | Prio |
+|----|-------|-------------|-----|------|
+| SSS-CC-PREF-R1V | All | Mycelium Bloom shall resolve the effective value of every user-configurable setting from the organization-scope default, the project-scope default, and the user-scope override, applying the value of the most specific scope in which a value is present, when "a user opens a project or any view whose behaviour depends on a scoped setting." | - | H |
+| SSS-CC-PREF-C3D | All | Mycelium Bloom shall clear a user-scope override so that the setting reverts to the inherited project-scope or organization-scope value when "a user resets a setting to its inherited value." | - | H |
+| SSS-OA-PREF-O4K | OA | Mycelium Bloom shall set the organization-scope default of any scoped setting, applying it to every project in the organization that does not define its own value, when "the Organization Administrator edits the organization preference defaults." | - | H |
+| SSS-PA-PREF-P5W | PA | Mycelium Bloom shall set the project-scope default of any scoped setting, applying it to every member of the project who does not define their own override, when "the Project Administrator edits the project preference defaults." | - | H |
+| SSS-FB-PREF-F7J | - | Mycelium Fabric shall persist preference values at organization, project, and user scope, and shall return the resolved preference set for the authenticated user in a single response, when "a client requests the preferences applicable to a project." | - | H |
+
+###### 5.2.1.24b View configuration persistence
+
+An engineer who spends a session hiding irrelevant columns, reordering the ones that matter, sorting by mass and filtering to their own Ownership expects to find the view exactly that way tomorrow. View configuration is presentation state: which columns are visible, in what order, at what width, how rows are sorted and grouped, and which display filter is active. It is explicitly **not** model content. It is stored through the three-scope mechanism of §5.2.1.24a, so that an organization or a project can set a sensible starting configuration that individual users then adapt. Because it is not model content, changing it produces no Commit, notifies no other user, and appears in no diff.
+
+| ID | Roles | Requirement | Ref | Prio |
+|----|-------|-------------|-----|------|
+| SSS-CC-VIEW-V1R | All | Mycelium Bloom shall persist, at user scope, the set of visible columns, their order, their width, the sort order, the grouping, and the active display filter of a view when "a user changes the column selection, column order, column width, sort order, grouping, or filter of a view." | - | H |
+| SSS-CC-VIEW-R2M | All | Mycelium Bloom shall restore the persisted configuration of a view when "a user reopens a view for which a configuration has been persisted." | - | H |
+| SSS-CC-VIEW-I3T | All | Mycelium Bloom shall persist the configuration of each view kind independently, and independently per view instance where several instances of the same view kind are open per `SSS-PA-NAV-M2C`, when "a user configures one of several open views." | - | H |
+| SSS-CC-VIEW-D4F | All | Mycelium Bloom shall discard the user-scope configuration of a view and restore the project-scope or organization-scope default configuration when "a user resets a view to its default configuration." | - | H |
+| SSS-CC-VIEW-N5P | All | Mycelium Bloom shall persist view configuration outside the SysML v2 model, shall not represent it as model content, and shall not create a Commit, when "a user changes the configuration of a view." | - | H |
+
+###### 5.2.1.24d In-application contextual documentation
+
+Mycelium exposes a large surface: a dozen diagram types, ownership, subscriptions, publication, branching. A user standing in front of an unfamiliar view should not have to leave the application to find out what it is for. The requirements in this subsection cover documentation that describes the view the user is currently looking at and the tool they currently have selected, presented as a panel or callout the user can close and that stays closed. Dismissal is persisted per user through §5.2.1.24a, so the help never becomes an obstacle for an experienced user while remaining available on demand.
+
+| ID | Roles | Requirement | Ref | Prio |
+|----|-------|-------------|-----|------|
+| SSS-CC-HELP-D1N | All | Mycelium Bloom shall display documentation describing the purpose and the available operations of the currently active view and of the currently selected tool when "a user opens a view or selects a tool for which contextual documentation exists." | - | H |
+| SSS-CC-HELP-C2R | All | Mycelium Bloom shall render contextual documentation as a closable panel or callout that leaves the underlying view interactive while it is displayed when "contextual documentation is shown." | - | H |
+| SSS-CC-HELP-P3J | All | Mycelium Bloom shall persist the dismissed state of each documentation item per user, shall not display a dismissed item again, and shall restore all dismissed items on request, when "a user closes a contextual documentation panel or callout." | - | H |
+| SSS-CC-HELP-A4V | All | Mycelium Bloom shall present a persistent help affordance in the header of every view that reopens the contextual documentation for that view when "a user activates the help affordance of a view." | - | H |
+| SSS-CC-HELP-U5B | All | Mycelium Bloom shall replace the displayed contextual documentation with the documentation of the newly active view or tool when "a user changes the active view or selects a different tool while contextual documentation is displayed." | - | H |
+
 ##### 5.2.1.25 Import, export and migration
 
 Mycelium must interoperate with the broader MBSE ecosystem. Models can be imported and exported in SysML v2 JSON, requirements in ReqIF, content in HTML for documentation. CDP4-COMET ECSS-E-TM-10-25 models can be migrated to SysML v2 via a semi-automated converter. The requirements in this section cover all import, export, and migration capabilities.
@@ -1002,7 +1048,7 @@ Mycelium models are versioned like source code. Every change becomes a Commit; a
 | SSS-PA-VC-SPJ | PA | Mycelium Bloom shall create an immutable Tag on a specific Commit to mark a milestone, baseline, or release when "the Project Administrator selects a Commit and assigns a Tag name." | API 7.2.4 | H |
 | SSS-PA-VC-P89 | PA, PT, VW | Mycelium Bloom shall display the differences between two Commits showing which elements were created, updated, or deleted, consistent with the Systems Modelling API diffCommits operation, when "a user selects two Commits for comparison." | API 7.2.6 | H |
 | SSS-PA-VC-7S4 | PA, PT, VW | Mycelium Bloom shall retrieve and display the complete versioned data of a Project at any Commit when "a user selects a historical Commit for inspection." | API 7.2.3 | H |
-| SSS-PA-VC-28D | PA | Mycelium Bloom shall provide operations to designate Participants or Viewers as Reviewers for protected branches when "the Project Administrator assigns reviewers in the branch protection settings." | - | H |
+| SSS-VW-VH-WGA | PA, PT, VW | Mycelium Bloom shall display the commit history of a project when "a user navigates to the version history view." | API 7.2.3 | H |
 | SSS-PA-VC-V3K | PA, PT | Mycelium Bloom shall switch the active branch, loading the model state at the head Commit of the selected branch, when "a user selects a different branch from the branch selector." | API 7.2.2 | H |
 | SSS-PA-VC-R8W | PA, PT, VW | Mycelium Bloom shall display the currently active branch name in the application header when "a user is working in a project." | - | H |
 | SSS-PA-VC-H4N | PA, PT, VW | Mycelium Bloom shall display a list of all branches in the project with their name, head Commit, creator, and creation date when "a user opens the branch management view." | API 7.2.2 | H |
@@ -1018,6 +1064,19 @@ Mycelium models are versioned like source code. Every change becomes a Commit; a
 | SSS-PA-VC-TG2 | PA | Mycelium Bloom shall provide operations to list and delete Tags, showing each Tag's name, target Commit, and creator, when "a user accesses the tag management view." | API 7.2.4 | H |
 | SSS-PA-VC-DB3 | PA | Mycelium Bloom shall set the default branch of a project when "the Project Administrator designates a branch as the default in the branch management view." | API 7.2.2 | H |
 | SSS-PA-VC-RN4 | PA, PT | Mycelium Bloom shall rename a non-default branch when "a user renames a branch in the branch management view." | API 7.2.2 | H |
+
+###### 5.2.1.32a Branching enablement
+
+Not every project wants branches. A Concurrent Design Facility study runs as a single line of development in a single room over a few days, and a small team modelling one system rarely needs more. For those projects the branch, merge, and review vocabulary is not a feature but an obstacle, and a visible one: branch selectors, merge actions, and protected-branch settings occupying the interface for a workflow that will never be used. The requirements in this subsection cover a project-level setting that turns branching off, initialised from an organization-level default. Disabling branching removes only the branching surfaces; everything else in §5.2.1.32 remains: changes are still Commits, milestones are still Tags, and the commit history, the version history graph, commit diffing, and read-only historical snapshots all stay available on the project's default branch.
+
+| ID | Roles | Requirement | Ref | Prio |
+|----|-------|-------------|-----|------|
+| SSS-PA-VC-BE1 | PA | Mycelium Bloom shall provide a project setting to enable or disable branching, initialised from the organization-scope default, when "the Project Administrator accesses the project's version control settings." | - | H |
+| SSS-OA-VC-BE2 | OA | Mycelium Bloom shall provide an organization setting determining whether branching is enabled by default in newly created projects when "the Organization Administrator accesses the organization's project defaults settings." | - | H |
+| SSS-PA-VC-BE3 | PA, PT, VW | Mycelium Bloom shall hide the branch creation, branch switching, branch management, merge, and merge-review surfaces and shall operate solely on the project's default branch when "a user opens a project whose branching setting is disabled." | - | H |
+| SSS-PA-VC-BE4 | PA, PT, VW | Mycelium Bloom shall keep commit creation, commit history, the version history graph, commit diffing, read-only historical snapshot loading, and tagging available on the default branch when "a user works in a project whose branching setting is disabled." | API 7.2.3 | H |
+| SSS-PA-VC-BE5 | PA | Mycelium Bloom shall prevent branching from being disabled, listing the branches concerned and requiring that they first be merged or deleted, when "the Project Administrator attempts to disable branching on a project that holds branches other than the default branch." | - | H |
+| SSS-FB-VC-BE6 | - | Mycelium Fabric shall reject branch creation, branch deletion, branch rename, and merge operations, returning an error identifying the disabled branching setting, when "a client submits such an operation for a project whose branching setting is disabled." | API 7.2.2 | H |
 
 ##### 5.2.1.33 Multi-backend support and polling
 
@@ -1111,7 +1170,7 @@ Mycelium Forge is the package registry for the Mycelium ecosystem. It takes its 
 
 | ID | Roles | Requirement | Ref | Prio |
 |----|-------|-------------|-----|------|
-| SSS-PA-IE-OYJ | PA | Mycelium Forge shall provide standard SysML v2 libraries (e.g. Quantities and Units, standard view definitions) for import into a project when "the Project Administrator selects one or more standard libraries for import." | SysML 9.8 | H |
+| NA | NA    | NA          | NA  | NA   | NA     |
 
 ##### 5.2.3.3 Authentication and authorization
 
@@ -1119,13 +1178,7 @@ Mycelium Forge reuses the identity plumbing that Mycelium Fabric already provide
 
 | ID | Roles | Requirement | Ref | Prio |
 |----|-------|-------------|-----|------|
-| SSS-FG-AUTH-S1A | IA, OA, PA, PT, VW | Mycelium Forge shall authenticate users through the same external identity provider used by Mycelium Fabric, accepting a valid Mycelium Account session without requiring Forge-specific registration, when "a user signs in to Mycelium Forge through the web interface, the HTTP API, or the Forge client library." | - | H |
-| SSS-FG-AUTH-S2B | - | Mycelium Forge shall use a scoped package identifier of the form `@<scope>/<package-name>`, where `<scope>` resolves to the slug of a Mycelium Account or a Fabric Organization, reserving the unscoped (global) namespace for standard libraries distributed by the Mycelium operator, when "a client publishes, queries, or downloads a package." | - | H |
-| SSS-FG-AUTH-M3C | - | Mycelium Forge shall maintain, for every package, a Maintainer set whose entries are Mycelium Accounts and/or Fabric Organizations, each entry holding the role `Owner` or `Maintainer`. An `Owner` may transfer or share ownership, add or remove Maintainers, and unlist or delete versions. A `Maintainer` may publish new versions and unlist versions but shall not modify the Maintainer set. The package's metadata, display name, description, authors, license, tags, dependencies, and release notes, is sourced from the manifest contained in the kpar of each published version and shall not be edited by any role outside of publishing a new version, when "any authenticated request operates on a package's content or ownership." | - | H |
-| SSS-FG-AUTH-O4D | - | Mycelium Forge shall reject any operation, removal of a Maintainer, role downgrade, ownership transfer, or Account deletion, that would leave a package with zero individual-Account Owners, and shall require the operation to first install another individual-Account Owner, when "an authenticated client submits a change to a package's Maintainer set or the Mycelium platform deletes an Account that is the last individual Owner of one or more packages." | - | H |
-| SSS-FG-AUTH-T5E | - | Mycelium Forge shall transfer or share Ownership of a package only after the receiving Account or the receiving Fabric Organization has explicitly accepted the transfer through the Forge web interface or the Forge client library, leaving the original Maintainer set unchanged until acceptance occurs, when "an Owner initiates a transfer of, or an addition to, a package's Owner set." | - | H |
-| SSS-FG-AUTH-G6F | OA | Mycelium Forge shall accept a Fabric Organization as a Maintainer or Owner of a package, granting publish, unlist, and, when the role is `Owner`, ownership-management authority to the Organization's Organization Administrators and to any Organization Member explicitly granted the `Forge Publisher` role by an Organization Administrator, when "an authenticated member of an Organization that holds such a role submits an operation against the package." | - | H |
-| SSS-FG-AUTH-P7G | - | Mycelium Forge shall treat a Fabric Organization entry in a package's Maintainer set as a group Owner that does not satisfy the 'at least one individual Owner' invariant of `SSS-FG-AUTH-O4D` on its own; an individual-Account Owner shall remain present alongside any Organization Owner, when "a Maintainer set is established or modified." | - | H |
+| NA | NA    | NA          | NA  | NA   | NA     |
 
 ### 5.3 System interface requirements
 
